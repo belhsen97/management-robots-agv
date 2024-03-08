@@ -7,8 +7,9 @@ The project is not yet complete !.
 ### Built With
 
 * [![Angular][Angular.io]][Angular-url]
+* [![ngrx][ngrx.io]][ngrx-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![NgRx][NgRx.com]][NgRx-url]
+
 * [![MaterialUI][MaterialUI.io]][MaterialUI-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
 
@@ -37,8 +38,8 @@ The project is not yet complete !
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
-[NgRx.io]: https://img.shields.io/badge/NgRx-a829c3?style=for-the-badge&logo=NgRx&logoColor=white
-[NgRx-url]: https://ngrx.io/
+[ngrx.io]: https://img.shields.io/badge/ngrx-a829c3?style=for-the-badge&logo=ngrx&logoColor=white
+[ngrx-url]: https://ngrx.io/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [MaterialUI.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
