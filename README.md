@@ -8,9 +8,10 @@ The project is not yet complete !.
 
 * [![Angular][Angular.io]][Angular-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![Material-ui][Material-ui.io]][Material-ui-url]
-* [![Material-ui][Material-ui.io]][Material-ui-url]
+* [![NgRx][NgRx.com]][NgRx-url]
+* [![MaterialUI][MaterialUI.io]][MaterialUI-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
+
 
 
 
@@ -29,6 +30,9 @@ The project is not yet complete !
 
 
 
+
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
@@ -37,7 +41,7 @@ The project is not yet complete !
 [NgRx-url]: https://ngrx.io/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[Material-ui.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
-[Material-ui-url]: https://material.angular.io/
+[MaterialUI.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[MaterialUI-url]: https://material.angular.io/
 [Spring-Boot.io]: https://img.shields.io/badge/Spring-FFFFFF?style=for-the-badge&logo=spring&logoColor=green
 [Spring-Boot-url]: https://spring.io/projects/spring-boot
