@@ -10,7 +10,7 @@ The project is not yet complete !.
 * [![ngrx][ngrx.io]][ngrx-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
-* [![MaterialUI][MaterialUI.io]][MaterialUI-url]
+* [![Material%20UI][Material%20UI.io]][Material%20UI-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
 
 
@@ -42,7 +42,7 @@ The project is not yet complete !
 [ngrx-url]: https://ngrx.io/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[MaterialUI.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
-[MaterialUI-url]: https://material.angular.io/
+[Material%20UI.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[Material%20UI-url]: https://material.angular.io/
 [Spring-Boot.io]: https://img.shields.io/badge/Spring-FFFFFF?style=for-the-badge&logo=spring&logoColor=green
 [Spring-Boot-url]: https://spring.io/projects/spring-boot
