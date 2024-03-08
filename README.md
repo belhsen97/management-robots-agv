@@ -8,8 +8,9 @@ The project is not yet complete !.
 
 * [![Angular][Angular.io]][Angular-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![Material-ui][Material-ui.io]][Material-ui-url]
+* [![Material-ui][Material-ui.io]][Material-ui-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
-
 
 
 
@@ -17,10 +18,13 @@ The project is not yet complete !.
 The project is not yet complete !
 
 
-
-
-
-
+## Back-End Based on Micro Services
+* [api-gateway](https://github.com/belhsen97/summer-internship-2023/tree/master/plateforme/api-gateway/src/main/java/tn/esprit)
+* [discovery-server](https://github.com/belhsen97/summer-internship-2023/tree/master/plateforme/discovery-server/src/main/java/tn/esprit)
+* [chat-service](https://github.com/belhsen97/summer-internship-2023/tree/master/plateforme/chat-service/src/main/java/tn/esprit)
+* [mail-service](https://github.com/belhsen97/summer-internship-2023/tree/master/plateforme/mail-service/src/main/java/tn/esprit)
+* [offer-pro-service](https://github.com/belhsen97/summer-internship-2023/tree/master/plateforme/offer-pro-service/src/main/java/tn/esprit)
+* [user-service](https://github.com/belhsen97/summer-internship-2023/tree/master/plateforme/user-service/src/main/java/tn/esprit)
 
 
 
@@ -29,7 +33,11 @@ The project is not yet complete !
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
+[NgRx.io]: https://img.shields.io/badge/NgRx-a829c3?style=for-the-badge&logo=NgRx&logoColor=white
+[NgRx-url]: https://ngrx.io/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
+[Material-ui.com]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[Material-ui-url]: https://material.angular.io/
 [Spring-Boot.io]: https://img.shields.io/badge/Spring-FFFFFF?style=for-the-badge&logo=spring&logoColor=green
 [Spring-Boot-url]: https://spring.io/projects/spring-boot
