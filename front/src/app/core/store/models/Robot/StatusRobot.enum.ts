@@ -1,0 +1,1 @@
+export enum StatusRobot {WAITING = 'WAITING',RUNNING = 'RUNNING',INACTIVE = 'INACTIVE'}

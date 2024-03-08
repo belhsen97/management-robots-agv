@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+
+    <form #formModel="ngForm" (ngSubmit)="onSubmitForm(formModel)" class="mt-4">
+        <!-- <div class="flex-row"> -->
+        <mat-form-field>
+            <mat-label>Code</mat-label>
+            <input type="text" matInput [(ngModel)]="workstationService.tag.code" #code="ngModel"
+                name="tag-code" placeholder="Ex. 460247808139" required>
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+            <!-- <mat-error   *ngIf="(code.errors?.['required']">code is <strong>required</strong></mat-error> -->
+            <mat-error *ngIf="code.invalid && (code.dirty || code.touched || formModel.submitted)">
+                <span *ngIf="code.errors?.['required']">code is <strong>required</strong></span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Description of new Tag</mat-label>
+            <textarea matInput  placeholder="Ex. it for workstation of stock or for line of ..."
+            [(ngModel)]="workstationService.tag.description" #description="ngModel" name="tag-description"
+            ></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
+            <mat-icon>add</mat-icon>Add workstation</button>
+        <a (click)="closepopup()" mat-raised-button color="primary-color">Close</a>
+    </form>
+
+</mat-dialog-content>

@@ -1,0 +1,70 @@
+.sign-in-page{ min-width: 400px;} 
+.container{  margin-right: 10%;
+    margin-left: 10%;
+  } 
+.col-md-6{   
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    height: 100vh;
+    max-width: 50%;
+}
+section{ 
+    overflow-y: scroll; 
+    height: 100vh;
+    background-image: var(--background-image-mind-ia-path);  
+    background-size: cover;/*The cover value tells the browser to scale the image up or down as needed to fit the entire webpage, maintaining the aspect ratio of the image. This can be a good choice if you want the image to fill the entire webpage but don’t want it to be stretched or distorted.*/
+}
+.card{
+    min-height: 660px;
+    max-height: 6800px;
+    min-width: 400px;
+    max-width: 450px;
+ 
+    border-image: linear-gradient(to right, var(--blue-steel) 0%,
+    var(--blue-dark-Cyan) 25%, 
+    var(--blue-deep-Sky) 50%, 
+    var(--blue-cerulean ) 75%, 
+    var( --blue-caribbean-Green) 100% )1; /*1 is the width of the border image slice*/
+    /*border-top-color: rgb(53,193,240);*/ 
+    border-top-style: solid;
+    border-top-width: 30px;
+}
+
+ 
+.img-fluid {
+	width: 300px;  
+}
+
+.img-sebn-logo{
+    width: 170px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.height-100-percent {height: 100%;}
+
+/* p,h2{
+    color: #58595B;
+} */
+
+
+
+
+
+
+
+.btn{
+    width: 100%;border-radius: 50px;
+}
+    
+
+
+.invalid {
+    color:#DC3545;
+    font-size: 12px; 
+}
+.valid {
+    color:#28a745; 
+    font-size: 12px;
+}   

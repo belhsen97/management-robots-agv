@@ -1,0 +1,75 @@
+<!-- Sign in Start -->
+<section class="sign-in-page">
+    <div class="container height-100-percent" >
+        <div class="row height-100-percent">
+             <div class="col-md-6">
+                            <img  src="assets/images/logoEnovaRobotics-1-04-white.png" class="img-fluid mb-4">
+            </div>
+
+        <div class="col-md-6 py-5">
+            <div class="card shadow h-100 py-2 card-border pt-4 px-5">
+                <img  src="assets/images/SEBN-LOGO-preview.png" class="img-sebn-logo">
+               <h1 class="font-weight-bold mb-0 mt-4">Sign up</h1> 
+               <p class="mt-2"  >Enter your username, email address and password to create new account.</p>              
+                <form class="mt-2"#signUpForm = "ngForm" (ngSubmit)="signUp(signUpForm)" class="mt-4" >
+                    <div class="form-group" >
+                        <label for="auth-input-username" >Username</label>
+                        <input type="text" placeholder="Enter username" class="form-control mb-0"
+                         id="auth-input-username" name="auth-username"
+                         [(ngModel)]="userService.authRequestDto.username"  
+                        #username="ngModel" required>  
+                        <div class="invalid" *ngIf="signUpForm.submitted || ( username.invalid && username.touched) " >
+                          <p  *ngIf="username.errors?.['required']">Please enter a username in the text input.</p>
+                       </div> 
+                       <div class="valid" *ngIf="username.valid && username.touched" >
+                          <p >username validate.</p>
+                       </div> 
+                    </div> 
+
+
+                    <div class="form-group">
+                        <label for="sign-up-input-email">Email address</label>
+                        <input type="email" placeholder="Enter email" class="form-control mb-0" 
+                        id="sign-up-input-email" name="sign-up-email"
+                        [(ngModel)]="userService.authRequestDto.email"  
+                       #email="ngModel" pattern="^[a-z0-9\.]+@+[a-z0-9]+\.+[a-z]{2,3}$"  required>
+                       <div class="invalid" *ngIf="signUpForm.submitted || ( email.invalid && email.touched) " >
+                          <p  *ngIf="email.errors?.['required']"> Please enter a email in the text input</p>
+                          <p  *ngIf="email.errors?.['pattern']"> pattern must be like abc@gmail.com</p>
+                      </div> 
+                       <div class="valid" *ngIf="email.valid && email.touched" >
+                          <p >email validate.</p>
+                       </div>  
+                    </div>
+                    <div class="form-group">
+                        <label for="sign-up-input-password">Password</label>
+                        <input type="password" placeholder="Enter Password" class="form-control mb-0"
+                        id="sign-up-input-password" name="sign-up-password"
+                        [(ngModel)]="userService.authRequestDto.password"  
+                        #password="ngModel" minlength="4" required>
+                        <div class="invalid" *ngIf="signUpForm.submitted || ( password.invalid && password.touched) " >
+                          <p  *ngIf="password.errors?.['required']"> Please enter a password in the text input</p>
+                          <p  *ngIf="password.errors?.['minlength']"> minimum must be 4 characters.</p>
+                      </div> 
+                       <div class="valid" *ngIf="password.valid && password.touched" >
+                          <p >password validate.</p>
+                       </div> 
+                    </div>
+
+
+
+
+
+
+                    <button type="submit" class="btn btn-primary gradient-custom mt-2">Sign up</button>
+                    <div class="sign-info mt-2">
+                        <span class="dark-color d-inline-block line-height-2">have you an account? <a routerLink="/sign-in">Sign in</a></span>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+</section>

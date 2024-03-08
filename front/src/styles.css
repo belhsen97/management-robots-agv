@@ -1,0 +1,147 @@
+/* You can add global styles to this file, and also import other style files */
+ 
+
+
+
+:root {
+  --background-image-mind-ia-path: url("src/assets/images/background.jpg");
+  --navy-blue:#004E9E;
+    --medium-spring-green : #3FE8A6;
+    --red-blush :#EF8993;
+    --platinum:#E2E1E4;
+    --blue-steel: #1B6485 ;
+    --blue-dark-Cyan:#14728A  ;
+    --blue-deep-Sky:  #0D8490 ;
+    --blue-cerulean :#059495 ;
+    --blue-caribbean-Green: #00A099 ;
+    --silver-sand :#d7dde1;
+	--blue: #007bff;
+	--red: #dc3545;
+	--orange: #fd7e14;
+	--yellow: #ffc107;
+	--green: #28a745;
+	--teal: #20c997;
+	--cyan: #17a2b8;
+	--white: #fff;
+	--gray: #6c757d;
+	--gray-dark: #343a40;
+	--primary: #007bff;
+	--secondary: #6c757d;
+	--success: #8FE9C6;/*#28a745;*/
+	--info: #17a2b8;
+	--warning: #F5EDA2;/*#ffc107;*/
+	--danger: #F59098;/*#dc3545;*/
+	--light: #f8f9fa;
+	--dark: #343a40;
+}
+
+  
+ 
+
+
+body {
+    min-width: 1280px;
+    min-height: 720px;
+}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #00A099;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right,      var(--blue-steel) 0%,
+    var(--blue-dark-Cyan) 25%, 
+    var(--blue-deep-Sky) 50%, 
+    var(--blue-cerulean ) 75%, 
+    var( --blue-caribbean-Green) 100% );
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right,      var(--blue-steel) 0%,
+    var(--blue-dark-Cyan) 25%, 
+    var(--blue-deep-Sky) 50%, 
+    var(--blue-cerulean ) 75%, 
+    var( --blue-caribbean-Green) 100% );
+    }
+   
+
+    .custom-border-left-card {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-left-color:  var( --blue-caribbean-Green) ;
+        border-left-style: solid;
+        border-left-width: 4px;
+        min-width: 950px;
+      }
+
+
+
+
+      .cursor-drop {
+        cursor: no-drop;
+      }
+      
+      .cursor-pointer {
+        cursor: pointer;
+      }
+      
+      .cursor-cell {
+        cursor: cell;
+      }
+      
+      .cursor-copy {
+        cursor: copy;
+      }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ 
+.btn-primary{
+  background-color: var(--navy-blue);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.green-snackbar {
+  /*background: green !important ;*/
+  color: white;
+}
+.green-snackbar button {
+  background-color:green;
+  color: white !important;
+  border: none;
+}
+.yellow-snackbar {
+  /*background: #fd7e14 !important;*/
+  color: white;
+}
+.yellow-snackbar button {
+  background-color:#fd7e14;
+  color: white !important;
+  border: none;
+}
+.red-snackbar {
+  /*background: red !important;*/
+  color: white;
+}
+.red-snackbar button {
+  background-color:red;
+  color: white !important;
+  border: none;
+}
+
+ 

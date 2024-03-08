@@ -1,0 +1,134 @@
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="mat-elevation-z8">
+            <div class="table-container">
+                <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+                        <td mat-cell *matCellDef="let element">{{ element.no }}</td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="createdAt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>createdAt</th>
+                        <td mat-cell *matCellDef="let element">{{  element.createdAt.toLocaleString() }}</td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>username</th>
+                        <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="firstname">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>firstname</th>
+                        <td mat-cell *matCellDef="let element">{{ element.firstname }}</td>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="lastname">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>lastname</th>
+                        <td mat-cell *matCellDef="let element">{{ element.lastname }}</td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="enabled">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>enabled</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button *ngIf="element.enabled" mat-raised-button color="primary-color"
+                                (click)="onClickEnable(element.username , true )">
+                                <mat-icon>check_circle_outline</mat-icon>activate</button>
+                            <button *ngIf="!element.enabled" mat-raised-button color="primary-color"
+                                (click)="onClickEnable(element.username , false )">
+                                <mat-icon>highlight_off</mat-icon>deactivate</button>
+                        </td>
+
+
+
+
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>role</th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field>
+                                <mat-label>Role</mat-label>
+                                <mat-select [(value)]="element.role" (selectionChange)="onChangeRole(element.username,$event)"
+                                    panelClass="my-select-panel-class">
+                                    <mat-option *ngFor="let optionRole of userService.listRole"
+                                        [value]="optionRole?.value">{{optionRole.label}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- <div class="form-group">
+                        <label for="pi-current-state-input">Roles :</label>
+                        <select class="form-control" id="pi-current-state-input"
+                                name="edit-global-account-pi-state" [(ngModel)]="element.role" #stateregion="ngModel" required > 
+                           <optgroup label="24 States of tunisian"> 
+                              <option *ngFor="let optionRole of userService.listRole" [value]="optionRole.value" [selected] = "optionRole?.value === element.role">{{ optionRole.label }}</option> 
+                          </optgroup>
+                        </select>
+                     </div> -->
+                        </td>
+                    </ng-container>
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Action</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button class="ml-2" mat-raised-button color="primary-color"
+                                (click)="onClickDelete(element.id)">
+                                <mat-icon>delete_forever</mat-icon>delete
+                            </button>
+                        </td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="expand">
+                        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                        <td mat-cell *matCellDef="let element">
+                           <button mat-icon-button aria-label="expand row"
+                                (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+                                <mat-icon *ngIf="(expandedElement === element)">keyboard_arrow_up</mat-icon>
+                                <mat-icon *ngIf="!(expandedElement === element)">keyboard_arrow_down</mat-icon>
+                            </button> 
+                    
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="expandedDetail">
+                        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length ">
+                            <div class="example-element-detail"
+                                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                <div class="photo-profile-container rounded-circle">
+                                    <img [src]="element.photo.downloadURL" class="img-fluid " alt="user">
+                                </div>
+                                <div class="example-element-description">
+                                    <p> <strong> {{element.firstname}} {{element.lastname}} </strong> ,<strong>
+                                            {{element.gender}}</strong> , can be reached at
+                                        <strong>{{element.email}}</strong>, with the matricule ID
+                                        <strong>{{element.matricule}}</strong>.</p>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsToDisplayWithExpand" class="example-element-row"
+                        [class.example-expanded-row]="expandedElement === row">
+                        <!-- (click)="expandedElement = expandedElement === row ? null : element -->
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+
+
+                </table>
+            </div>
+            <br />
+            <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

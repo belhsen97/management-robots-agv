@@ -1,0 +1,16 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ
+i	java:S116"TRename this field "smtp_host" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓŞ©Ã
+i	java:S116"TRename this field "smtp_auth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºº³Õ
+s	java:S116 "^Rename this field "smtp_enableStarttls" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£”áñ
+r	java:S116""XRename this field "smtp_username" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆŠÃºúÿÿÿÿ
+r	java:S116$"XRename this field "smtp_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µôÖÅúÿÿÿÿ
+—
+java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ü€•ñ
+b
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÒøÇüÿÿÿÿ
+[
+java:S1155>">Use isEmpty() to check whether the collection is empty or not.(«ÇÖÚ8Îâ—ñá1
+[
+java:S1155B">Use isEmpty() to check whether the collection is empty or not.(ğ‰êã8Ïâ—ñá1
+Q	java:S125{"<This block of commented-out lines of code should be removed.(¢Ğ¬€

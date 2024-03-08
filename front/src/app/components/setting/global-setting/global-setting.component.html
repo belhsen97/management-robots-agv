@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Setting Robot</mat-card-title>
+            <!-- <mat-card-subtitle>subtitle</mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-card-content>
+
+            <p class="mt-3">Parameter globale of robots agv </p>
+
+            <form #parameterForm="ngForm" (ngSubmit)="onSubmitForm(parameterForm)" class="mt-4">
+                <div class="d-flex flex-column custom-border pt-2 pl-2" >
+                <p>Distance : </p>
+                <div class="d-flex justify-content-between mx-2">
+                    <mat-form-field>
+                        <mat-label>Min</mat-label>
+                        <input type="number" matInput [(ngModel)]="robotService.settingRobot.distance.min"
+                            #distanceMin="ngModel" name="setting-distance-min-input"
+                            required>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <!-- <mat-error   *ngIf="(distanceMin.errors?.['required']">Name is <strong>required</strong></mat-error> -->
+                        <mat-error
+                            *ngIf="distanceMin.invalid && (distanceMin.dirty || distanceMin.touched || parameterForm.submitted)">
+                            <span *ngIf="distanceMin.errors?.['required']">distanceMin is
+                                <strong>required</strong></span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Max</mat-label>
+                        <input type="number" matInput [(ngModel)]="robotService.settingRobot.distance.max"
+                            #distanceMax="ngModel" name="setting-distance-max-input"
+                            required>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <!-- <mat-error   *ngIf="(distanceMax.errors?.['required']">distanceMax is <strong>required</strong></mat-error> -->
+                        <mat-error
+                            *ngIf="distanceMax.invalid && (distanceMax.dirty || distanceMax.touched || parameterForm.submitted)">
+                            <span *ngIf="distanceMax.errors?.['required']">distanceMax is
+                                <strong>required</strong></span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mx-2">
+                    <span>0 mm</span>
+                    <mat-slider min="0" max="10" step="0.1" showTickMarks>
+                        <input value="3" name="setting-distance-min-input-slider"
+                            [(ngModel)]="robotService.settingRobot.distance.min" matSliderStartThumb>
+                        <input value="9" name="setting-distance-max-input-slider"
+                            [(ngModel)]="robotService.settingRobot.distance.max" matSliderEndThumb>
+                    </mat-slider>
+                    <span>10 mm</span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column custom-border mt-3 mb-3 pt-2 pl-2" >
+                <p>Speed : </p>
+                <div class="d-flex justify-content-between mx-2">
+                    <mat-form-field>
+                        <mat-label>Min</mat-label>
+                        <input type="number" matInput [(ngModel)]="robotService.settingRobot.speed.min" #speedMin="ngModel"
+                            name="setting-speed-min-input" required>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <!-- <mat-error   *ngIf="(speedMin.errors?.['required']">Name is <strong>required</strong></mat-error> -->
+                        <mat-error
+                            *ngIf="speedMin.invalid && (speedMin.dirty || speedMin.touched || parameterForm.submitted)">
+                            <span *ngIf="speedMin.errors?.['required']">speedMin is <strong>required</strong></span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Max</mat-label>
+                        <input type="number" matInput [(ngModel)]="robotService.settingRobot.speed.max" #speedMax="ngModel"
+                            name="setting-speed-max-input" required>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <!-- <mat-error   *ngIf="(speedMax.errors?.['required']">Name is <strong>required</strong></mat-error> -->
+                        <mat-error
+                            *ngIf="speedMax.invalid && (speedMax.dirty || speedMax.touched || parameterForm.submitted)">
+                            <span *ngIf="speedMax.errors?.['required']">speedMax is <strong>required</strong></span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mx-2">
+                    <span>0 mm/s</span>
+                    <mat-slider min="0" max="10" step="0.1" showTickMarks>
+                        <input name="setting-speed-min-input-slider" [(ngModel)]="robotService.settingRobot.speed.min"
+                            matSliderStartThumb>
+                        <input name="setting-speed-max-input-slider" [(ngModel)]="robotService.settingRobot.speed.max"
+                            matSliderEndThumb>
+                    </mat-slider>
+                    <span>10 mm/s</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button mat-raised-button color="primary" [disabled]="parameterForm.invalid" type="submit">
+                    <mat-icon>edit</mat-icon>update</button>
+                </div>
+            </form>
+
+
+
+        </mat-card-content>
+        <mat-card-actions>
+            <!-- <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button> -->
+        </mat-card-actions>
+    </mat-card>
+
+</div>

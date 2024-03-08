@@ -1,0 +1,17 @@
+
+g	java:S112\"FDefine and throw a dedicated exception instead of using a generic one.(õŒÜçüÿÿÿÿ8¹£Êöà1
+b	java:S112g"FDefine and throw a dedicated exception instead of using a generic one.(«×¶ó8º£Êöà1
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹
+b
+java:S6830$"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıíõùÿÿÿÿ
+b	java:S100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õì#
+c
+java:S1612+"AReplace this lambda with method reference 'UserMapper::mapToDto'.(ÑÕæ¿şÿÿÿÿ8„¤Êöà1
+h	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÀÌîÿÿÿÿÿ
+c	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»‡Š
+h	java:S1009"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÏ¢äÿÿÿÿÿ
+
+java:S1130\"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(õŒÜçüÿÿÿÿ8¦¤Êöà1
+‰
+java:S1130g"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(«×¶ó8­¤Êöà1
+d	java:S100—"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ë©¢

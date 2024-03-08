@@ -1,0 +1,28 @@
+.navbar{
+    z-index: 1000;
+} 
+ 
+ 
+.photo-profile-container {
+  position: relative;
+  width: 50px; /* Set the width and height as needed */
+  height: 50px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.photo-profile-container img { 
+  width: 100%;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+ 
+h6,h5 {
+  color: var(--gray-dark);
+  font-size: 16px;
+}
+ 
+
+ 

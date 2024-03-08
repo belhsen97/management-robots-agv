@@ -1,0 +1,79 @@
+.mat-mdc-raised-button.mat-primary-color {
+  color: white;  
+  background-color: var(--navy-blue); 
+}
+
+.table-container {
+  overflow-x: auto;
+}
+ 
+.my-select-panel-class.mat-select-panel { 
+  background-color: red;
+  font-size: 10px;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: #f3efef;
+}
+ 
+
+
+
+
+
+
+
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+
+
+.photo-profile-container {
+  position: relative;
+  width: 75px; /* Set the width and height as needed */
+  height: 75px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.example-element-description{
+  /* padding-top: 20px;  */
+  /* padding-bottom: 20px;  */
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}

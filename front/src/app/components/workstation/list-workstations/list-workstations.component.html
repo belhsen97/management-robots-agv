@@ -1,0 +1,134 @@
+  <div class="row mb-3">
+    <div class="col-md-12">
+        <div class="d-flex flex-row-reverse">
+            <button mat-raised-button color="primary-color" (click)="onClickAddWorkstation()"class="mx-2"> <mat-icon>add</mat-icon>Add new workstation</button> 
+            <button mat-raised-button color="primary-color" (click)="onClickAddTag()"class="mx-2"> <mat-icon>add</mat-icon>Add new tag</button> 
+        </div> 
+    </div>
+</div>  
+<div class="row mb-5">
+    <div class="col-5">
+        <div class="mat-elevation-z8">
+            <div class="table-container">
+                <table mat-table [dataSource]="dataSourceTag" matSort >
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+                        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="code">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>code</th>
+                        <td mat-cell *matCellDef="let element">{{ element.code }}</td>
+                    </ng-container>  
+
+                 <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>description</th>
+                    <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+                </ng-container>  
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Action</th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="d-flex flex-row">
+                            <button class="ml-2" mat-raised-button color="primary-color"
+                                (click)=" onClickEditTag(element.id)">
+                                <mat-icon>edit</mat-icon>edit
+                            </button>
+                            <button class="ml-2" mat-raised-button color="primary-color"
+                            (click)="onClickDeleteTag(element.id)">
+                            <mat-icon>delete_forever</mat-icon>delete
+                            </button>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsTag"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsTag"></tr>
+                </table>
+            </div>
+            <br />
+            <mat-paginator #paginatorTag [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div> 
+    <div class="col-7">
+        <div class="mat-elevation-z8">
+            <div class="table-container">
+                <table mat-table [dataSource]="dataSourceWorkstation" matSort >
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+                        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
+                        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+                    </ng-container>  
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="enable">
+                        <th mat-header-cell *matHeaderCellDef>enable</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button *ngIf="element.enable" mat-raised-button color="primary-color"
+                                (click)="onClickActivate(element.id,true)">
+                                <mat-icon>check_circle_outline</mat-icon>activate</button>
+                            <button *ngIf="!element.enable" mat-raised-button color="primary-color"
+                                (click)="onClickActivate(element.id,false)">
+                                <mat-icon>highlight_off</mat-icon>deactivate</button>
+                        </td>
+
+
+
+
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <!-- <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field>
+                                <mat-label>Status</mat-label>
+                                <mat-select [(value)]="element.status" (selectionChange)="onChangeStatus(element.id,$event)"
+                                    panelClass="my-select-panel-class">
+                                    <mat-option *ngFor="let optionStatus of workstationService.listStatusStation"
+                                        [value]="optionStatus?.value">{{optionStatus.label}}</mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+                            <!-- <div class="form-group">
+                        <label for="pi-current-state-input">Roles :</label>
+                        <select class="form-control" id="pi-current-state-input"
+                                name="edit-global-account-pi-state" [(ngModel)]="element.role" #stateregion="ngModel" required > 
+                           <optgroup label="24 States of tunisian"> 
+                              <option *ngFor="let optionRole of userService.listRole" [value]="optionRole.value" [selected] = "optionRole?.value === element.role">{{ optionRole.label }}</option> 
+                          </optgroup>
+                        </select>
+                     </div> -->
+                        <!-- </td>
+                    </ng-container> -->
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Action</th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="d-flex flex-row">
+                            <button class="ml-2" mat-raised-button color="primary-color"
+                                (click)=" onClickEditWorkstation(element.id)">
+                                <mat-icon>edit</mat-icon>edit
+                            </button>
+                            <button class="ml-2" mat-raised-button color="primary-color"
+                            (click)="onClickDeleteWorkstation(element.id)">
+                            <mat-icon>delete_forever</mat-icon>delete
+                            </button>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsWorkstation"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsWorkstation"></tr>
+                </table>
+            </div>
+            <br />
+            <mat-paginator #paginatorWorkstation [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

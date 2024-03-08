@@ -1,0 +1,1 @@
+export enum Connection {CONNECTED = 'CONNECTED',DISCONNECTED = 'DISCONNECTED'}

@@ -1,0 +1,35 @@
+.input-design {
+    margin-left: 5px;
+    min-width: 200px;
+    max-width: 250px;
+  }
+  .icon-header {
+    font-size: 35px;
+    margin-right: 5px;
+    color: rgb(23,162,184);
+  }
+  
+  p {
+    color: rgb(73,80,87);
+    font-size: 16px;
+  }
+  h4 {
+     margin-left: 5px;
+  }
+  
+
+  .p-span{
+    font-size: 24px;
+  }
+  .d-flex-margin{
+    margin-top: 20px;margin-bottom: 10px;
+  } 
+
+  .invalid {
+    color:#DC3545;
+    font-size: 12px; 
+}
+.valid {
+    color:#28a745; 
+    font-size: 12px;
+}

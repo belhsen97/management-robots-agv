@@ -1,0 +1,49 @@
+.mat-mdc-raised-button.mat-primary-color {
+    color: white;
+    background-color: var(--navy-blue);
+  }
+  
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-column-statusRobot,
+  .mat-column-modeRobot {
+    max-width: 60px;
+  }
+  
+  .mat-column-connection {
+    max-width: 70px;
+  }
+  
+  .mat-column-operationStatus {
+    max-width: 77px;
+  }
+  
+  
+  .mat-column-levelBattery,
+  .mat-column-speed {
+    text-align: center;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  
+  
+  
+  .cell-danger {
+    background-color: var(--danger);
+  }
+  
+  .cell-steady {
+    background-color: var(--success);
+  }
+  
+  .cell-warning {
+    background-color: var(--warning);
+  }

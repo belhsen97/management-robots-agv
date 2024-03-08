@@ -1,0 +1,60 @@
+<!-- Sign in Start -->
+<section class="sign-in-page">
+    <div class="container height-100-percent" >
+        <div class="row height-100-percent">
+             <div class="col-md-6">
+                            <img  src="assets/images/logoEnovaRobotics-1-04-white.png" class="img-fluid mb-4">
+            </div>
+
+        <div class="col-md-6 py-5">
+            <div class="card shadow h-100 py-2 card-border pt-5 px-5">
+                <img  src="assets/images/SEBN-LOGO-preview.png" class="img-sebn-logo">
+               <h1 class="font-weight-bold mb-0 mt-4">Sign in</h1> 
+               <p class="mt-2"  >Enter your email address and password to access admin panel.</p>   
+                <form class="mt-2"#signInForm = "ngForm" (ngSubmit)="signIn(signInForm)">
+                    <div class="form-group" >
+                        <label for="sign-in-input-username">Username</label>
+                        <input type="text" placeholder="Enter username" class="form-control mb-0"
+                         id="sign-in-input-username" name="sign-in-username"
+                         [(ngModel)]="userService.authRequestDto.username"  
+                        #username="ngModel" required> 
+                        <div class="invalid" *ngIf="signInForm.submitted || ( username.invalid && username.touched) " >
+                            <p  *ngIf="username.errors?.['required']">Please enter a username in the text input.</p>
+                         </div> 
+                         <div class="valid" *ngIf="username.valid && username.touched" >
+                            <p >username validate.</p>
+                         </div> 
+                    </div>   
+
+                    <div class="form-group">
+                        <label for="sign-in-input-password">Password</label> 
+                        <span class="text-primary float-right cursor-pointer"  routerLink="/forgot-password" >Forgot password?</span>
+                        <input type="password" placeholder="Enter Password" class="form-control mb-0"
+                        id="sign-in-input-password" name="sign-in-password"
+                        [(ngModel)]="userService.authRequestDto.password"  
+                        #password="ngModel" minlength="4" required>
+                        <div class="invalid" *ngIf="signInForm.submitted || ( password.invalid && password.touched) " >
+                            <p  *ngIf="password.errors?.['required']"> Please enter a password in the text input</p>
+                            <p  *ngIf="password.errors?.['minlength']"> minimum must be 4 characters.</p>
+                        </div> 
+                         <div class="valid" *ngIf="password.valid && password.touched" >
+                            <p >password validate.</p>
+                         </div> 
+                    </div> 
+                    <div class="d-inline-block w-100 mb-2">
+                        <div class="custom-control custom-checkbox d-inline-block pt-1">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember Me</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary gradient-custom mt-2">Sign in</button>
+                    <div class="sign-info mt-2">
+                        <span class="dark-color d-inline-block line-height-2">Don't have an account? <a routerLink="/sign-up" >Sign up</a></span>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

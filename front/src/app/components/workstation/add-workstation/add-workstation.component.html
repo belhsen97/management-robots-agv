@@ -1,0 +1,180 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+
+  <form  #formModel="ngForm" (ngSubmit)="onSubmitForm(formModel)" class="mt-4">
+   <!-- <div class="flex-row"> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput [(ngModel)]="workstationService.workstation.name" #namee="ngModel"
+        name="workstation-name" placeholder="Ex. pat@example.com" required>
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <!-- <mat-error   *ngIf="(namee.errors?.['required']">Name is <strong>required</strong></mat-error> -->
+      <mat-error *ngIf="namee.invalid && (namee.dirty || namee.touched || formModel.submitted)"> 
+        <span *ngIf="namee.errors?.['required']">Name is <strong>required</strong></span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label>Type</mat-label>
+      <input type="text" matInput [(ngModel)]="workstationService.workstation.type" #type="ngModel"
+        name="workstation-type" placeholder="Ex. pat@example.com" required>
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="type.invalid && (type.dirty || type.touched || formModel.submitted)"> 
+        <span *ngIf="type.errors?.['required']">type is <strong>required</strong></span>
+      </mat-error>
+    </mat-form-field>
+  </div>-->
+
+  <div class="flex-row">
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label>location</mat-label>
+      <input type="text" matInput [(ngModel)]="workstationService.workstation.location" #location="ngModel"
+        name="workstation-location" placeholder="Ex. pat@example.com" required>
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="location.invalid && (location.dirty || location.touched || formModel.submitted)"> 
+        <span *ngIf="location.errors?.['required']">location is <strong>required</strong></span>
+      </mat-error>
+    </mat-form-field> -->
+
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label>Status</mat-label>
+      <mat-select name="status" [(ngModel)]="workstationService.workstation.status" #status="ngModel" required>
+        <mat-option *ngFor="let optionStatus of workstationService.listStatusStation" [value]="optionStatus?.value">
+          {{ optionStatus.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="status.invalid && (status.dirty || status.touched || formModel.submitted)">
+        <span *ngIf="status.errors?.['required']">Status is required</span>
+      </mat-error>
+    </mat-form-field> -->
+  </div>
+
+  
+  <mat-button-toggle-group name="workstation-enable"  aria-label="Font Style">
+    <mat-button-toggle  [value]="true" [checked]="workstationService.workstation.enable">enable</mat-button-toggle>
+    <mat-button-toggle  [value]="false" [checked]="!workstationService.workstation.enable">disable</mat-button-toggle> 
+  </mat-button-toggle-group>
+
+  <mat-form-field>
+    <mat-label>Toppings</mat-label>
+    <mat-select multiple [(value)]="workstationService.workstation.tags">
+      <mat-option *ngFor="let tag of workstationService.listTags" [value]="tag" >{{tag.description}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  
+
+    <!-- 
+    
+    <form class="mt-2"#signUpForm = "ngForm" (ngSubmit)="onSubmitForm(signUpForm)" class="mt-4" >
+  <div class="form-group" >
+      <label for="workstation-input-name" >name</label>
+      <input type="text" placeholder="Enter name" class="form-control mb-0"
+       id="workstation-input-name" name="workstation-name"
+       [(ngModel)]="workstationService.workstation.name"  
+      #name="ngModel" required>  
+      <div class="invalid" *ngIf="signUpForm.submitted || ( name.invalid && name.touched) " >
+        <p  *ngIf="name.errors?.['required']">Please enter a name in the text input.</p>
+     </div> 
+     <div class="valid" *ngIf="name.valid && name.touched" >
+        <p >name validate.</p>
+     </div> 
+  </div> 
+    
+    <div class="form-group" >
+    <label for="workstation-input-type" >type</label>
+    <input type="text" placeholder="Enter type" class="form-control mb-0"
+     id="workstation-input-type" name="workstation-type"
+     [(ngModel)]="workstationService.workstation.type"  
+    #type="ngModel" required>  
+    <div class="invalid" *ngIf="signUpForm.submitted || ( type.invalid && type.touched) " >
+      <p  *ngIf="type.errors?.['required']">Please enter a type in the text input.</p>
+   </div> 
+   <div class="valid" *ngIf="type.valid && type.touched" >
+      <p >type validate.</p>
+   </div> 
+</div> 
+
+<div class="form-group" >
+  <label for="workstation-input-location" >location</label>
+  <input type="text" placeholder="Enter location" class="form-control mb-0"
+   id="workstation-input-location" name="workstation-location"
+   [(ngModel)]="workstationService.workstation.location"  
+  #location="ngModel" required>  
+  <div class="invalid" *ngIf="signUpForm.submitted || ( location.invalid && location.touched) " >
+    <p  *ngIf="location.errors?.['required']">Please enter a location in the text input.</p>
+ </div> 
+ <div class="valid" *ngIf="location.valid && location.touched" >
+    <p >location validate.</p>
+ </div> 
+</div> 
+
+<div class="form-group">
+  <label for="pi-current-state-input">Status Station:</label>
+  <select class="form-control" id="pi-current-status-input"
+          name="edit-global-account-pi-status" [(ngModel)]="workstationService.workstation.status" #status="ngModel" required > 
+     <optgroup label="status workstation"> 
+        <option *ngFor="let optionRole of workstationService.listStatusStation" [value]="optionRole.value" [selected] = "optionRole?.value === workstationService.workstation.status">{{ optionRole.label }}</option> 
+    </optgroup>
+  </select>
+</div> 
+
+  <button type="submit" class="btn btn-primary gradient-custom mt-2">ADDDDD</button>
+  <div class="sign-info mt-2">
+      <span class="dark-color d-inline-block line-height-2">have you an account? <a routerLink="/sign-in">Sign in</a></span>
+  </div>
+  
+
+-->
+
+<button mat-raised-button color="primary" [disabled]="formModel.invalid"  type="submit" > <mat-icon>add</mat-icon>Add workstation</button>
+<a (click)="closepopup()"  mat-raised-button color="primary-color"  >Close</a>
+</form>
+
+
+
+</mat-dialog-content>
+
+
+
+
+
+
+<!-- <h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+    {{ data.message }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" (click)="dialogRef.close(true)" >Yes</button> 
+ 
+  <button mat-button   (click)="dialogRef.close(false)">No</button>
+</mat-dialog-actions> -->
+
+
+
+
+<!-- <form>
+    
+  <mat-card>
+      <mat-card-header>
+          <h1>{{ data.title }}</h1>
+      </mat-card-header>
+      <mat-card-content>
+          <mat-form-field>
+              <mat-label>Title</mat-label>
+              <input matInput >
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput ></textarea>
+          </mat-form-field>
+
+
+      </mat-card-content>
+      <mat-card-actions>
+          <button type="submit" mat-raised-button color="primary">Save</button>
+          <a (click)="closepopup()" mat-raised-button color="primary">Close</a>
+      </mat-card-actions>
+  </mat-card>
+</form>  -->

@@ -1,0 +1,13 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹
+]
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’‹©
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùå²Òøÿÿÿÿ8Ø­ñ×á1
+e
+java:S1612"HReplace this lambda with method reference 'WorkstationMapper::mapToDto'.(áñ«„8È„ŸØá1
+o	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È¼¹şÿÿÿÿ8‹Åûïá1
+o	java:S100$"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×æÖèúÿÿÿÿ8ç ğá1
+^
+java:S1128"<Remove this unused import 'com.enova.web.api.Dtos.RobotDto'.(®Ûå®ùÿÿÿÿ8²ì¡ğá1
+_
+java:S1128"BRemove this unused import 'com.enova.web.api.Mappers.RobotMapper'.(È²«Õ8²ì¡ğá1

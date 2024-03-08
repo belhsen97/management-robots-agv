@@ -1,0 +1,38 @@
+<div class="modal"  [class]="state ? 'show' : 'fade'"  role="dialog" tabindex="-1" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa fa-info-circle icon-header"></i>
+                <h4 class="modal-title">{{title}}</h4>
+                <button (click) ="onClickYesNo(false)"  class="close" type="button" aria-label="Close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+          <div class="modal-body">
+                <form>
+                    <p><span id="span-first-char" class="p-span">U</span>{{text}} <br></p>
+                    <div class="form-group">
+                        <div class="custom-file">
+                           <input type="file"   id="file-modale-input"
+                            name="file-modale-input-name"
+                            accept=".png, .jpg, .jpeg"  (change)="onChange($event)" 
+                            required>  
+                           <label class="custom-file-label" for="file-modale-input">Choose your photo</label>
+                        </div>
+                        <div class="invalid" *ngIf="!this.valid">
+                            <p class="invalid" *ngIf="this.requiredInvalid">Please choose a file to upload.</p>
+                            <p class="invalid" *ngIf="this.typeInvalid">Only JPG, JPEG, and PNG files are allowed.</p>
+                        </div>
+                        <div class="valid" *ngIf="this.valid">
+                            <p class="valid" > File is valid.</p>
+                        </div> 
+                     </div>
+                    <div class="d-flex flex-row d-flex justify-content-end d-flex-margin">
+                        <button (click) ="onClickToSend()" type="submit" class="btn btn-primary" type="button">Send &nbsp;&nbsp;<i class="fa fa-send"></i></button>
+                        <button  (click) ="onClickYesNo(false)"  class="btn btn-light" type="button" data-dismiss="modal" style="margin-left:10px;" >Cancel</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
