@@ -1,4 +1,5 @@
-# management-robots-agv ( PFE 2024 )
+# SEBN-project ( PFE 2024 )
+
 
 # About
 Development Web Application to manage, control and monitor AGV robots.
