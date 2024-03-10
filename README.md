@@ -101,7 +101,7 @@ Add in pom.xml this dependencies below.
 
 
 
-## Installation
+## Running
 
 ### Database
 Run service MongoDB Server (MongoDB) in bash windows if you have os windows and MongoDB installed
