@@ -21,8 +21,10 @@
             ></textarea>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
-            <mat-icon>add</mat-icon>Add workstation</button>
+        <button  *ngIf="!data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
+            <mat-icon>add</mat-icon>Add Tag</button>
+        <button  *ngIf="data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
+                <mat-icon>edit</mat-icon>Edit Tag</button>
         <a (click)="closepopup()" mat-raised-button color="primary-color">Close</a>
     </form>
 

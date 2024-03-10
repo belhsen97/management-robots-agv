@@ -25,11 +25,10 @@ public class WorkstationMapper {
                                 .collect(Collectors.toSet())
         );
         return Workstation.builder()
-                .id(wd.getId())
                 .name(wd.getName())
                 .enable(wd.isEnable())
                 .robots(robotList)
-                .tags(wd.getTags())
+                //.tags(wd.getTags())
                 .build();
     }
 

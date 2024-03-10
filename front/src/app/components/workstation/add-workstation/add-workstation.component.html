@@ -1,15 +1,16 @@
 <h2 mat-dialog-title>{{ data.title }}</h2>
 <mat-dialog-content>
-
-  <form  #formModel="ngForm" (ngSubmit)="onSubmitForm(formModel)" class="mt-4">
-   <!-- <div class="flex-row"> -->
+  <form #formModel="ngForm" (ngSubmit)="onSubmitForm(formModel)" class="mt-4">
+    <!-- <div class="flex-row"> -->
     <mat-form-field class="example-full-width">
       <mat-label>Name</mat-label>
       <input type="text" matInput [(ngModel)]="workstationService.workstation.name" #namee="ngModel"
-        name="workstation-name" placeholder="Ex. pat@example.com" required>
+        name="workstation-name" placeholder="Ex. pat@example.com" required />
       <mat-hint>Errors appear instantly!</mat-hint>
       <!-- <mat-error   *ngIf="(namee.errors?.['required']">Name is <strong>required</strong></mat-error> -->
-      <mat-error *ngIf="namee.invalid && (namee.dirty || namee.touched || formModel.submitted)"> 
+      <mat-error *ngIf="
+          namee.invalid && (namee.dirty || namee.touched || formModel.submitted)
+        ">
         <span *ngIf="namee.errors?.['required']">Name is <strong>required</strong></span>
       </mat-error>
     </mat-form-field>
@@ -25,8 +26,8 @@
     </mat-form-field>
   </div>-->
 
-  <div class="flex-row">
-    <!-- <mat-form-field class="example-full-width">
+    <div class="flex-row">
+      <!-- <mat-form-field class="example-full-width">
       <mat-label>location</mat-label>
       <input type="text" matInput [(ngModel)]="workstationService.workstation.location" #location="ngModel"
         name="workstation-location" placeholder="Ex. pat@example.com" required>
@@ -36,7 +37,7 @@
       </mat-error>
     </mat-form-field> -->
 
-    <!-- <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
       <mat-label>Status</mat-label>
       <mat-select name="status" [(ngModel)]="workstationService.workstation.status" #status="ngModel" required>
         <mat-option *ngFor="let optionStatus of workstationService.listStatusStation" [value]="optionStatus?.value">
@@ -47,22 +48,20 @@
         <span *ngIf="status.errors?.['required']">Status is required</span>
       </mat-error>
     </mat-form-field> -->
-  </div>
+    </div>
 
-  
-  <mat-button-toggle-group name="workstation-enable"  aria-label="Font Style">
-    <mat-button-toggle  [value]="true" [checked]="workstationService.workstation.enable">enable</mat-button-toggle>
-    <mat-button-toggle  [value]="false" [checked]="!workstationService.workstation.enable">disable</mat-button-toggle> 
-  </mat-button-toggle-group>
+    <mat-button-toggle-group [(ngModel)]="workstationService.workstation.enable" name="workstation-enable"
+      aria-label="Font Style">
+      <mat-button-toggle [value]="true">enable</mat-button-toggle>
+      <mat-button-toggle [value]="false">disable</mat-button-toggle>
+    </mat-button-toggle-group>
 
-  <mat-form-field>
-    <mat-label>Toppings</mat-label>
-    <mat-select multiple [(value)]="workstationService.workstation.tags">
-      <mat-option *ngFor="let tag of workstationService.listTags" [value]="tag" >{{tag.description}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  
-  
+    <mat-form-field>
+      <mat-label>Toppings</mat-label>
+      <mat-select multiple [(value)]="workstationService.workstation.tags">
+        <mat-option *ngFor="let tag of workstationService.listTags" [value]="tag">{{ tag.description }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <!-- 
     
@@ -127,18 +126,16 @@
 
 -->
 
-<button mat-raised-button color="primary" [disabled]="formModel.invalid"  type="submit" > <mat-icon>add</mat-icon>Add workstation</button>
-<a (click)="closepopup()"  mat-raised-button color="primary-color"  >Close</a>
-</form>
+    <button *ngIf="!data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
+      <mat-icon>add</mat-icon>Add workstation
+    </button>
+    <button *ngIf="data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
+      <mat-icon>edit</mat-icon>Edit workstation
+    </button>
 
-
-
+    <a (click)="closepopup()" mat-raised-button color="primary-color">Close</a>
+  </form>
 </mat-dialog-content>
-
-
-
-
-
 
 <!-- <h2 mat-dialog-title>{{ data.title }}</h2>
 <mat-dialog-content>
@@ -149,9 +146,6 @@
  
   <button mat-button   (click)="dialogRef.close(false)">No</button>
 </mat-dialog-actions> -->
-
-
-
 
 <!-- <form>
     

@@ -8,8 +8,9 @@ import { SettingRobot } from '../models/Robot/SettingRobot.model';
 import { WorkstationDto } from '../models/Workstation/WorkstationDto.model';
 import { PanelRobot } from '../models/Robot/PanelRobot.model';
 import { Service } from './globalservice.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,14 +32,15 @@ export class RobotService extends Service {
 
 
   public workstation: WorkstationDto = {
-    id: 1,
+    no: 1,
+    id: "1",
     name: "workstation 1",
     enable: true,
     tags: [],
     robots: []
   };
   public robot: RobotDto = {
-    id: 1,
+    id: "1",
     createdAt: new Date(),
     name: "Robot",
     statusRobot: StatusRobot.RUNNING,
@@ -63,11 +65,28 @@ export class RobotService extends Service {
     this.refreshValuesPanelRobot();
   }
 
+  getAll(): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot`,
+      { observe: 'response', 
+      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
+     })
+  }
+
+
+
+
+
+
+
+
+
+
+
   randomDataRobots(): void {
     for (var i = 0; i < 50; i++) {
       const count = i + 1;
       this.listRobots[i] = {
-        id: count,
+        id: count.toString(),
         createdAt: new Date(),
         name: "Robot-" + count,
         statusRobot: this.getRandomEnumValue(StatusRobot),

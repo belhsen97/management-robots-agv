@@ -7,7 +7,6 @@ import com.enova.web.api.Entitys.User;
 public class UserMapper {
     public static User mapToEntity(UserDto userDto){
         return User.builder()
-                .id(userDto.getId())
                 .createdAt(userDto.getCreatedAt())
                 .username(userDto.getUsername())
                 .role(userDto.getRole())

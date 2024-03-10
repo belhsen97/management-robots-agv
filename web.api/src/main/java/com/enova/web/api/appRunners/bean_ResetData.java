@@ -1,7 +1,6 @@
 package com.enova.web.api.appRunners;
 
 import com.enova.web.api.Entitys.*;
-import com.enova.web.api.Entitys.Enums.*;
 import com.enova.web.api.Enums.*;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.UserRepository;

@@ -9,8 +9,7 @@
 </div>
 
 
-<mat-tab-group mat-stretch-tabs class="stretched-tabs mat-elevation-z4 mb-5" color="primary" #tabGroup
-    (selectedIndexChange)="_setDataSource($event)">
+<mat-tab-group mat-stretch-tabs class="stretched-tabs mat-elevation-z4 mb-5" color="primary" #tabGroup>
     <mat-tab label="Cards">
         
         <div class="row justify-content-center">
@@ -19,7 +18,7 @@
                     <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
                     <div   mat-card-avatar class="example-header-image"></div>
                     <mat-card-title>{{card.name}}</mat-card-title>
-                    <mat-card-subtitle>{{card.id}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{card.workstation.name}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <p><strong>Status</strong> : {{card.statusRobot}}</p>
@@ -40,24 +39,6 @@
         </mat-paginator>
     </mat-tab>
     <!-- <mat-tab label="Table">
-
-       <mat-card class="example-card" *ngFor="let card of obs2 | async">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{card.name}}</mat-card-title>
-                <mat-card-subtitle>{{card.ip}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>{{card.createdAt}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions>
-        </mat-card>  
-
-        <mat-paginator #paginator2 [pageSize]="1" [pageSizeOptions]="[10, 15, 20]">
-        </mat-paginator>
     </mat-tab> -->
 
 

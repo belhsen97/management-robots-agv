@@ -101,3 +101,14 @@
   .mat-mdc-row:hover .mat-mdc-cell {
     border-color: #f3efef;
   }
+
+
+
+  .icon-disable {
+    color: var(--danger);
+  }
+  
+  .icon-enable {
+    color: var(--success);
+  }
+  

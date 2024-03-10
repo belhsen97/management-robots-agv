@@ -11,6 +11,9 @@ import { MessageBoxConfirmationComponent } from '../../shared/message-box-confir
 import { WorkstationDto } from 'src/app/core/store/models/Workstation/WorkstationDto.model';
 import { Tag } from 'src/app/core/store/models/Workstation/Tag.model';
 import { AddTagComponent } from '../add-tag/add-tag.component';
+import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
+import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-workstations',
@@ -22,7 +25,7 @@ export class ListWorkstationsComponent implements OnInit , AfterViewInit, OnDest
   @ViewChild(MatSort) sortWorkstation   !: MatSort;
   @ViewChild("paginatorTag") paginatorTag  !: MatPaginator;
   @ViewChild(MatSort) sortTag   !: MatSort;
-  displayedColumnsWorkstation: string[] = ['id', 'name', 'enable','action'];
+  displayedColumnsWorkstation: string[] = ['no', 'name', 'enable','action'];
   displayedColumnsTag : string[] = ['id', 'code', 'description','action'];
   dataSourceWorkstation:any;
   dataSourceTag :any;
@@ -45,8 +48,23 @@ export class ListWorkstationsComponent implements OnInit , AfterViewInit, OnDest
       console.log(value);
     });
 
-
     this.dataSourceWorkstation = new MatTableDataSource<WorkstationDto>(this.workstationService.listWorkstations);
+    this.workstationService.getAll().subscribe(
+      (response) => { 
+        this.workstationService.listWorkstations = response.body; 
+        this.workstationService.listWorkstations.forEach((workstation, index) => {workstation.no = 1+index;});
+        this.dataSourceWorkstation.data =    this.workstationService.listWorkstations ;
+      }
+      ,(error) => {
+        this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert(    this.workstationService.msgReponseStatus) ); 
+        //this.workstationService.goToComponent("/sign-in");
+      }) ;
+
+
+
+
+
     this.dataSourceTag= new MatTableDataSource<Tag>(this.workstationService.listTags);
  
   }
@@ -69,16 +87,24 @@ export class ListWorkstationsComponent implements OnInit , AfterViewInit, OnDest
 
 
 
-  openPopupWorkStation(id: any, title: any, isedit = false) {
-    this.dialog.open(AddWorkstationComponent, {
+  openPopupWorkStation(element: any, title: any, isedit = false) {
+   const dialogRef =  this.dialog.open(AddWorkstationComponent, {
       width: '40%',
       data: {
-        id: id,
+        element: element,
         title: title,
         isedit: isedit
       }
-    })
+    });
+    return dialogRef;
+    // dialogRef.componentInstance.onSubmitCallback = (form: any) => {
+    //   console.log(form.invalid);
+    //   console.log(this.workstationService.workstation);
+    // };
   }
+
+
+
   openPopupTag(id: any, title: any, isedit = false) {
     this.dialog.open(AddTagComponent, {
       width: '40%',
@@ -112,26 +138,78 @@ export class ListWorkstationsComponent implements OnInit , AfterViewInit, OnDest
  
 
   onClickAddWorkstation():void{
-    this.openPopupWorkStation(0, "Add New WorkStation"); 
+    const dialogRef = this.openPopupWorkStation(undefined, "Add New WorkStation");
+    dialogRef.afterClosed().subscribe(result => {if (result==null){ return;}
+      // Handle result from the dialog 
+      this.workstationService.insert(result).subscribe(
+        (response) => { 
+          this.workstationService.workstation = response.body; 
+          this.workstationService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
+          this.store.dispatch( ShowAlert(  this.workstationService.msgReponseStatus) ); 
+          this.workstationService.workstation.no =  this.workstationService.listWorkstations.length+1;
+          this.workstationService.listWorkstations.push(  this.workstationService.workstation );
+          this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+        },
+        (error:HttpErrorResponse) => {
+          if ((error.status === 406 )||(error.status === 403 )) {   this.workstationService.msgReponseStatus = error.error; }
+          else {
+            this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+          }
+          this.store.dispatch( ShowAlert(  this.workstationService.msgReponseStatus) );  console.log(error.status) ;
+        }  
+        );
+    });
   }
-  onClickAddTag():void{
-    this.openPopupTag(0, "Add New Tag"); 
+
+
+  onClickEditWorkstation(element:any ):void{
+    const dialogRef = this.openPopupWorkStation(element,"Edit WorkStation",true);
+    dialogRef.afterClosed().subscribe(result => {if (result==null){ return;}
+      // Handle result from the dialog 
+      this.workstationService.update(element.id,result).subscribe(
+        (response) => { 
+          this.workstationService.workstation = response.body; 
+          this.workstationService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
+          this.store.dispatch( ShowAlert(  this.workstationService.msgReponseStatus) ); 
+
+          const index = this.workstationService.listWorkstations.findIndex(element => element.id === this.workstationService.workstation.id);
+          if (index !== -1) {  this.workstationService.listWorkstations[index] =  this.workstationService.workstation;  } 
+        //   this.workstationService.listWorkstations.forEach((w) => { if(w.id === id) { w =   this.workstationService.workstation ;} });
+
+          this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+        },
+        (error:HttpErrorResponse) => {
+          if ((error.status === 406 )||(error.status === 403 )) {   this.workstationService.msgReponseStatus = error.error; }
+          else {
+            this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+          }
+          this.store.dispatch( ShowAlert(  this.workstationService.msgReponseStatus) );  console.log(error.status) ;
+        }  
+        );
+    });
   }
-  onClickEditWorkstation(id:any ):void{
-    this.openPopupWorkStation(id,"Edit WorkStation",true);
-  }
-  onClickEditTag(id:any ):void{
-    this.openPopupTag(id,"Edit Tag",true);
-  }
+
+
+
   onClickDeleteWorkstation(id:any ):void{
     this.openDialogConfirmation('Confirmation', '  Would you want to delete work station equal '+id+' ?','300ms', '500ms',
     () => { 
-
-    });
-  }
-  onClickDeleteTag(id:any ):void{
-    this.openDialogConfirmation('Confirmation', '  Would you want to delete Tag equal '+id+' ?','300ms', '500ms',
-    () => { 
+     console.log(id)
+      this.workstationService.delete(id).subscribe(
+        (response) => { 
+          this.workstationService.msgReponseStatus = response.body; 
+          this.store.dispatch( ShowAlert(  this.workstationService.msgReponseStatus) ); 
+          this.workstationService.listWorkstations = this.workstationService.listWorkstations.filter(item => item.id !== id);
+          this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+        },
+        (error:HttpErrorResponse) => {
+          if ((error.status === 406 )||(error.status === 403 )) {   this.workstationService.msgReponseStatus = error.error; }
+          else {
+            this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+          }
+          this.store.dispatch( ShowAlert(  this.workstationService.msgReponseStatus) );  console.log(error.status) ;
+        }  
+        );
 
     });
   }
@@ -148,7 +226,41 @@ export class ListWorkstationsComponent implements OnInit , AfterViewInit, OnDest
   onChangeStatus(id:any,event: any) {
     const selectedStatus = event.value;
     console.log(id,selectedStatus);}
-  onClickActivate(id:any,enable : boolean){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    onClickAddTag():void{
+      this.openPopupTag(0, "Add New Tag"); 
+    }
+    onClickEditTag(id :any ):void{
+      
+        this.openPopupTag(id,"Edit Tag",true);
+    
+  
+    }
+    onClickDeleteTag(id:any ):void{
+      this.openDialogConfirmation('Confirmation', '  Would you want to delete Tag equal '+id+' ?','300ms', '500ms',
+      () => { 
+  
+      });
+    }
+  
+
 }
  
  

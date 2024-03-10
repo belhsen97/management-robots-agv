@@ -9,7 +9,6 @@ public class RobotMapper {
         final Workstation w =  r.getWorkstation() == null ? null : WorkstationMapper.mapToEntity(r.getWorkstation()) ;
         final String name =  w == null ? null : w.getName() == null ? null : w.getName();
         return Robot.builder()
-                .id(r.getId())
                 .createdAt(r.getCreatedAt())
                 .name(r.getName())
                 .statusRobot(r.getStatusRobot())

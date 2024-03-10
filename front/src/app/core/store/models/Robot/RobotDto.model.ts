@@ -5,7 +5,7 @@ import { OperationStatus } from "./OperationStatus.enum";
 import { StatusRobot } from "./StatusRobot.enum";
 
 export interface RobotDto {
-    id: number;
+    id: String;
     createdAt: Date;
     name: string;
     statusRobot: StatusRobot;
