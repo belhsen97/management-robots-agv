@@ -1,4 +1,4 @@
-package com.enova.web.api.Entitys.Enums;
+package com.enova.web.api.Enums;
 
 public enum StatusRobot {WAITING,RUNNING,INACTIVE}
 

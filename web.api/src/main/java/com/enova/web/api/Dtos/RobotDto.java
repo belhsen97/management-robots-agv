@@ -1,10 +1,10 @@
 package com.enova.web.api.Dtos;
 
 
-import com.enova.web.api.Entitys.Enums.Connection;
-import com.enova.web.api.Entitys.Enums.ModeRobot;
-import com.enova.web.api.Entitys.Enums.OperationStatus;
-import com.enova.web.api.Entitys.Enums.StatusRobot;
+import com.enova.web.api.Enums.Connection;
+import com.enova.web.api.Enums.ModeRobot;
+import com.enova.web.api.Enums.OperationStatus;
+import com.enova.web.api.Enums.StatusRobot;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

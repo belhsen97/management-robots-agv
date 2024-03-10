@@ -131,3 +131,5 @@ g
 7src/main/java/com/enova/web/api/Mappers/UserMapper.java,5\5\55e75a984d4ee9c0313119a9cbaa29acd4109a14
 n
 >src/main/java/com/enova/web/api/Mappers/WorkstationMapper.java,3\d\3d27f70c3659a532a9725853d54d589e6ba06d0a
+f
+6src/main/java/com/enova/web/api/Enums/StatusRobot.java,3\b\3bfa1ecdde91dc366bee42cd96d498fa37afacdc

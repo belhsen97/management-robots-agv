@@ -3,7 +3,7 @@ package com.enova.web.api.Controllers;
 
 import com.enova.web.api.Dtos.*;
 import com.enova.web.api.Entitys.Attachment;
-import com.enova.web.api.Entitys.Enums.Roles;
+import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Entitys.User;
 import com.enova.web.api.Mappers.AttachmentMapper;
 import com.enova.web.api.Mappers.UserMapper;

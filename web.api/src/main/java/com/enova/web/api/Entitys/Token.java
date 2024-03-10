@@ -1,7 +1,7 @@
 package com.enova.web.api.Entitys;
 
 
-import com.enova.web.api.Entitys.Enums.TokenType;
+import com.enova.web.api.Enums.TokenType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

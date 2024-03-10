@@ -1,17 +1,15 @@
 package com.enova.web.api.Entitys;
 
 
-import com.enova.web.api.Entitys.Enums.Connection;
-import com.enova.web.api.Entitys.Enums.ModeRobot;
-import com.enova.web.api.Entitys.Enums.OperationStatus;
-import com.enova.web.api.Entitys.Enums.StatusRobot;
+import com.enova.web.api.Enums.Connection;
+import com.enova.web.api.Enums.ModeRobot;
+import com.enova.web.api.Enums.OperationStatus;
+import com.enova.web.api.Enums.StatusRobot;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;

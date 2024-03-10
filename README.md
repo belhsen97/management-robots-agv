@@ -18,6 +18,7 @@ The project is not yet complete !
 * [![ngrx][ngrx.io]][ngrx-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![material-UI][material-UI.io]][material-UI-url]
+* [![Java][Java.io]][Java-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
 * [![mongodb][mongodb.com]][mongodb-url]
 
@@ -151,6 +152,8 @@ Add in pom.xml this dependencies below.
 [material-UI-url]: https://material.angular.io/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap%20v4.4.1-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
+[Java.io]: https://img.shields.io/badge/Java%20v11-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
+[Java-url]: https://www.java.com/fr/
 [Spring-Boot.io]: https://img.shields.io/badge/Spring%20v2.6.9-97CA00?style=for-the-badge&logo=spring&logoColor=white
 [Spring-Boot-url]: https://spring.io/projects/spring-boot
 [mongodb.com]: https://img.shields.io/badge/Mongodb%20v6.0-4DA53F?style=for-the-badge&logo=mongodb&logoColor=white

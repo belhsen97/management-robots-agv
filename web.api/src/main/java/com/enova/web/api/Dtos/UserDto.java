@@ -1,7 +1,7 @@
 package com.enova.web.api.Dtos;
 
-import com.enova.web.api.Entitys.Enums.Gender;
-import com.enova.web.api.Entitys.Enums.Roles;
+import com.enova.web.api.Enums.Gender;
+import com.enova.web.api.Enums.Roles;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

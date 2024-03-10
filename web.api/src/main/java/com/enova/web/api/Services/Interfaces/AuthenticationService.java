@@ -3,7 +3,7 @@ package com.enova.web.api.Services.Interfaces;
 import com.enova.web.api.Dtos.AuthenticationRequestDto;
 import com.enova.web.api.Dtos.AuthenticationResponseDto;
 import com.enova.web.api.Dtos.ReponseStatus;
-import com.enova.web.api.Entitys.Enums.TokenType;
+import com.enova.web.api.Enums.TokenType;
 import com.enova.web.api.Entitys.Token;
 import com.enova.web.api.Entitys.User;
 import com.enova.web.api.Repositorys.UserRepository;

@@ -7,7 +7,7 @@ import com.enova.web.api.Dtos.mail.BodyContent;
 import com.enova.web.api.Dtos.mail.Msg;
 import com.enova.web.api.Dtos.mail.TypeBody;
 import com.enova.web.api.Entitys.Attachment;
-import com.enova.web.api.Entitys.Enums.Roles;
+import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Entitys.User;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
