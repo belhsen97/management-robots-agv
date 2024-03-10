@@ -101,7 +101,31 @@ Add in pom.xml this dependencies below.
 
 
 
+## Installation
 
+### Database
+Run service MongoDB Server (MongoDB) in bash windows if you have os windows and MongoDB installed
+```bash
+NET START MongoDB
+```
+
+### Server API Spring
+Make file .jar for java project 
+```bash
+mvn clean
+mvn install
+```
+and then you will see in web.api\target   file:  web.api-0.0.1-SNAPSHOT.jar run it.
+```bash
+java -jar    -noverify  web.api\target\web.api-0.0.1-SNAPSHOT.jar
+```
+or  you will find file run-web-api.bat if you have os windows
+
+### Front Angular
+first add node_Modules and in \front : 
+```bash
+ng serve
+```
 
 
 
