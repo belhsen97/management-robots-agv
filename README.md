@@ -15,7 +15,7 @@ In short, an AGV robot dashboard is designed to provide users with complete visi
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![material-UI][material-UI.io]][material-UI-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
-* [![mongodb][mongodb.com]][mongodb-url]
+* [![mongodb v6.0][mongodb.com]][mongodb-url]
 
 
 
