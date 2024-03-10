@@ -8,7 +8,11 @@ Development Web Application to manage, control and monitor AGV robots.
 it is a platform designe to manage the robots in the production line, managing typical elements such as system status, mission status, alerts and notifications, statistics, control mode, fleet management, etc., as well as the importance of real time as robots move simultaneously through the line on both the interaction and control sides, in order to guarantee maintenance time, and add or remove robots in the event of failure.
 In short, an AGV robot dashboard is designed to provide users with complete visibility of the AGV robot's operation and performance, as well as the tools to monitor it and react quickly if necessary.
 
-### Built With
+# Note
+The project is not yet complete !
+
+
+## Built With
 
 * [![Angular][Angular.io]][Angular-url]
 * [![ngrx][ngrx.io]][ngrx-url]
@@ -18,12 +22,23 @@ In short, an AGV robot dashboard is designed to provide users with complete visi
 * [![mongodb][mongodb.com]][mongodb-url]
 
 
+## Installation
+
+Use the package manager [pip](https://angular.io/cli/version) to install foobar.
 
 
-# Note
-The project is not yet complete !
+```bash
+ng add @ngrx/store@16.2.0
+ng add @ngrx/store-devtools@16.2.0
+ng add @ngrx/router-store@16.2.0
+ng add @ngrx/effects@16.2.0
+ng add @angular/material
+ng add highcharts-angular
+ng add highcharts 
+```
+  
 
-
+ 
 
 
 

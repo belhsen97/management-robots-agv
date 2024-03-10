@@ -9,8 +9,8 @@ import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IWorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +40,7 @@ public class WorkstationService implements IWorkstationService {
     }
 
     @Override
+    @Transactional
     public Workstation insert(Workstation obj) {
         if (workstationRepository.findbyName(obj.getName()).isPresent()) {
             throw new MethodArgumentNotValidException("other Workstation found");
@@ -52,16 +53,20 @@ public class WorkstationService implements IWorkstationService {
            robotRepository.saveAll(obj.getRobots());
        }
         obj.setRobots(null);
-        return workstationRepository.save(obj);
+        final Workstation w = workstationRepository.save(obj);
+        return this.selectById(w.getId());
     }
     @Override
+    @Transactional
     public Workstation update(String id, Workstation obj) {
         Workstation w = this.selectById(id);
         //if (w == null) {return null; }
         this.robotRepository.changeWorkstation(w.getName(),obj.getName());
         w.setName(obj.getName());
         w.setEnable(obj.isEnable());
-        return workstationRepository.save(w);
+        w.setRobots(null);
+        w = workstationRepository.save(w);
+        return this.selectById(w.getId());
     }
     @Override
     public boolean delete(String id) {

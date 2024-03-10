@@ -1,10 +1,8 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8íª¼Ââ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8¦ãøÃâ1
 c
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8øª¼Ââ1
-X	java:S125'"<This block of commented-out lines of code should be removed.(»œÛ–8ûª¼Ââ1
-]	java:S125<"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8»àÄÂâ1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8´ãøÃâ1
+X	java:S125'"<This block of commented-out lines of code should be removed.(»œÛ–8·ãøÃâ1
+]	java:S125?"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8ºãøÃâ1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8«¼Ââ1
-M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8«¼Ââ1
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8ÊÌùÃâ1
