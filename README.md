@@ -36,7 +36,7 @@ ng add highcharts-angular
 ng add highcharts 
 ```
 ### Back 
-
+Add in pom.xml this dependencies below.
 ```xml
 	<dependencies>
 		<dependency>
