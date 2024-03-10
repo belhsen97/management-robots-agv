@@ -23,9 +23,8 @@ The project is not yet complete !
 
 
 ## Installation
-
-Use the package manager [pip](https://angular.io/cli/version) to install foobar.
-
+# Front
+Use Angular CLI [ng](https://angular.io/cli/version) to add external libraries.
 
 ```bash
 ng add @ngrx/store@16.2.0
@@ -36,7 +35,7 @@ ng add @angular/material
 ng add highcharts-angular
 ng add highcharts 
 ```
-  
+
 
  
 
