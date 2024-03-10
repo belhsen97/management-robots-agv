@@ -33,16 +33,18 @@ public interface RobotRepository extends MongoRepository<Robot, String> {
     @Query(value = "{ 'idWorkstation' : ?0 }")
     List<Robot> findAllByIdWorkstation(String idWorstation);
 
+
+
+
     @Query(value = "{ 'name' : ?0 }")
     Optional<Robot> findbyName(String name);
 
 
-//    default void gededex (String idW , newIdW) {
-//        this.findAllByIdWorkstation(idW).isEmpty()
-//
-//                .ifPresent(robot -> {
-//            robot.setIdWorkstation();
-//            this..save(robot);
-//        });
-//    }
+
+    default void changeWorkstation (String idW ,String newIdW) {
+        List<Robot> rbs =    this.findAllByIdWorkstation(idW);
+        if(this.findAllByIdWorkstation(idW).isEmpty()){   return ;  }
+        rbs.forEach(robot -> robot.setIdWorkstation(newIdW));
+        this.saveAll(rbs);
+    }
 }

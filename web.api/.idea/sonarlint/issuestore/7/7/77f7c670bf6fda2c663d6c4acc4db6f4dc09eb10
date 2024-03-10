@@ -1,12 +1,12 @@
 
-c	java:S112†"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8æ¾ñá1
-h	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÛêÎøÿÿÿÿ8ç¾ñá1
+c	java:S112‡"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8æ¾ñá1
+h	java:S112‚"FDefine and throw a dedicated exception instead of using a generic one.(ÛêÎøÿÿÿÿ8ç¾ñá1
 …
-java:S1488‰"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8è¾ñá1
+java:S1488Š"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8è¾ñá1
 n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÿ¹»…ÿÿÿÿÿ8é¾ñá1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¡ù“8ê¾ñá1
 ³
-java:S4449„"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8õ¾ñá1
+java:S4449…"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8õ¾ñá1
 _
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ö¾ñá1
 _
@@ -19,11 +19,10 @@ _
 java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞ8ö¾ñá1
 S
 java:S6437L"6Revoke and change this password, as it is compromised.(´²•¯8ş¾ñá1
-L	java:S106h"+Replace this use of System.out by a logger.(Ë¿æÔÿÿÿÿÿ8€¾ñá1
-X	java:S125i"<This block of commented-out lines of code should be removed.(åäóŞ8¾ñá1
-]	java:S125k"<This block of commented-out lines of code should be removed.(ãÌí¶şÿÿÿÿ8¾ñá1
-X	java:S125n"<This block of commented-out lines of code should be removed.(Ä”­“8¾ñá1
-]	java:S125s"<This block of commented-out lines of code should be removed.(öŠò·øÿÿÿÿ8¾ñá1
+X	java:S125h"<This block of commented-out lines of code should be removed.(• «ú8é“éâ1
+]	java:S125l"<This block of commented-out lines of code should be removed.(ãÌí¶şÿÿÿÿ8¾ñá1
+X	java:S125o"<This block of commented-out lines of code should be removed.(Ä”­“8¾ñá1
+]	java:S125t"<This block of commented-out lines of code should be removed.(öŠò·øÿÿÿÿ8¾ñá1
 A
-java:S2119“"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8…¾ñá1
-^	java:S125¦"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ8†¾ñá1
+java:S2119”"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8…¾ñá1
+^	java:S125§"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ8†¾ñá1

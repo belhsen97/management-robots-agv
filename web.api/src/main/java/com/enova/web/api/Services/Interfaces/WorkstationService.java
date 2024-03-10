@@ -3,12 +3,15 @@ package com.enova.web.api.Services.Interfaces;
 import com.enova.web.api.Entitys.Robot;
 import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
+import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IWorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +31,12 @@ public class WorkstationService implements IWorkstationService {
 
     @Override
     public Workstation selectById(String id) {
-        return this.workstationRepository.findById(id).orElse(null);
+        Optional<Workstation> w =  this.workstationRepository.findById(id);
+        if ( w.isEmpty()){
+            throw new RessourceNotFoundException("Cannot found Workstation by id ="+id );
+        }
+        return w.get();
+       // return this.workstationRepository.findById(id).orElseThrow();
     }
 
     @Override
@@ -36,31 +44,31 @@ public class WorkstationService implements IWorkstationService {
         if (workstationRepository.findbyName(obj.getName()).isPresent()) {
             throw new MethodArgumentNotValidException("other Workstation found");
         }
+       if (obj.getRobots() != null && !obj.getRobots().isEmpty()){
+           obj.getRobots().forEach(robot -> {
+               robot.setIdWorkstation(obj.getName());
+               robot.setCreatedAt(new Date());
+           });
+           robotRepository.saveAll(obj.getRobots());
+       }
+        obj.setRobots(null);
         return workstationRepository.save(obj);
     }
     @Override
     public Workstation update(String id, Workstation obj) {
         Workstation w = this.selectById(id);
-        if (w != null) {return null; }
-
-
-        if ( !w.getRobots().isEmpty() ) {
-
-           // this.robotRepository.   not finish
-        }
-
-
+        //if (w == null) {return null; }
+        this.robotRepository.changeWorkstation(w.getName(),obj.getName());
         w.setName(obj.getName());
         w.setEnable(obj.isEnable());
         return workstationRepository.save(w);
     }
- //Set<Tag> tags ;
- //Set<Robot> robots ;
     @Override
     public boolean delete(String id) {
         Workstation w = this.selectById(id);
         if (w != null) {
             workstationRepository.delete(w);
+            robotRepository.changeWorkstation(w.getName(),null);
             return true;
         }
         return false;

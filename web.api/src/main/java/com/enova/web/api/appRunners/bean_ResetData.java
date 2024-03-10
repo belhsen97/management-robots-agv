@@ -101,7 +101,8 @@ public class bean_ResetData implements CommandLineRunner {
                     .build();
             robotRepository.save(robot);
         }
-        System.out.println( robotRepository.findAllByIdWorkstation(workstation1.getName()).size());
+       // robotRepository.updateWorkstation(workstation1.getName(),workstation3.getName());
+       // System.out.println( );
      //  System.out.println(robotRepository.findAll().get(0).getWorkstation().getName());
 
      //  System.out.println(workstationRepository.findAll().get(0).getRobots().size());

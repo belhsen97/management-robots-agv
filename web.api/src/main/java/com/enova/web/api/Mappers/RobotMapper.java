@@ -23,6 +23,7 @@ public class RobotMapper {
     }
 
     public static RobotDto mapToDto(Robot r) {
+        if (  r == null ) { return null; }
         final WorkstationDto w = r.getWorkstation() == null ? null : WorkstationMapper.mapToDto(r.getWorkstation());
         return RobotDto.builder()
                 .id(r.getId())

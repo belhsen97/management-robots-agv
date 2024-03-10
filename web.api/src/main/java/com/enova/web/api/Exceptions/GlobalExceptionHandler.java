@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
+import java.util.NoSuchElementException;
 
 
 @ControllerAdvice
@@ -67,6 +68,16 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
+//    @ExceptionHandler(NoSuchElementException.class)
+//    public ResponseEntity<?> handleAccessDeniedException(NoSuchElementException ex, WebRequest request) {
+//        MsgReponseStatus errorDetails = MsgReponseStatus.builder()
+//                .title("No Such Element Exception")
+//                .status(ReponseStatus.UNSUCCESSFUL)
+//                .datestamp(new Date())
+//                .message(ex.getMessage())
+//                .build();
+//        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+//    }
 
     //an I/O error occurs accessing information using streams, files and directories.
     @ExceptionHandler(IOException.class)

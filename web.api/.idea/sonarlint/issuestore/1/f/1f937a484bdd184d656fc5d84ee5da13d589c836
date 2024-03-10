@@ -1,15 +1,10 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8õÛÖğá1
-[
-java:S2259/"?A "NullPointerException" could be thrown; "w" is nullable here.(ıë“j8ÿÛÖğá1
-U
-java:S3516*"9Refactor this method to not always return the same value.(¾Óí@8ÿÛÖğá1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8íª¼Ââ1
 c
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8ÜÖğá1
-]	java:S1259"<This block of commented-out lines of code should be removed.(Æßçùÿÿÿÿ8†ÜÖğá1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8øª¼Ââ1
+X	java:S125'"<This block of commented-out lines of code should be removed.(»œÛ–8ûª¼Ââ1
+]	java:S125<"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8»àÄÂâ1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8ˆÜÖğá1
-Q
-java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8ˆÜÖğá1
-U
-java:S1068"3Remove this unused "robotRepository" private field.(”áÍÀûÿÿÿÿ8ˆÜÖğá1
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8«¼Ââ1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8«¼Ââ1
