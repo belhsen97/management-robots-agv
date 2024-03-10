@@ -15,7 +15,7 @@ In short, an AGV robot dashboard is designed to provide users with complete visi
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![material-UI][material-UI.io]][material-UI-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
-* [![mongodb v6.0][mongodb.com]][mongodb-url]
+* [![mongodb][mongodb.com]][mongodb-url]
 
 
 
@@ -33,15 +33,15 @@ The project is not yet complete !
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular.io]: https://img.shields.io/badge/Angular%20v16.2.0-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
-[ngrx.io]: https://img.shields.io/badge/ngrx-a829c3?style=for-the-badge&logo=ngrx&logoColor=white
+[ngrx.io]: https://img.shields.io/badge/ngrx%20v16.2.0-a829c3?style=for-the-badge&logo=ngrx&logoColor=white
 [ngrx-url]: https://ngrrex.io/
-[material-UI.io]: https://img.shields.io/badge/material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[material-UI.io]: https://img.shields.io/badge/material%20UI%20v16.2.14-007FFF?style=for-the-badge&logo=mui&logoColor=white
 [material-UI-url]: https://material.angular.io/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap%20v4.4.1-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[Spring-Boot.io]: https://img.shields.io/badge/Spring-97CA00?style=for-the-badge&logo=spring&logoColor=white
+[Spring-Boot.io]: https://img.shields.io/badge/Spring%20v2.6.9-97CA00?style=for-the-badge&logo=spring&logoColor=white
 [Spring-Boot-url]: https://spring.io/projects/spring-boot
-[mongodb.com]: https://img.shields.io/badge/Mongodb-4DA53F?style=for-the-badge&logo=mongodb&logoColor=white
+[mongodb.com]: https://img.shields.io/badge/Mongodb%20v6.0-4DA53F?style=for-the-badge&logo=mongodb&logoColor=white
 [mongodb-url]: https://www.mongodb.com/
