@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { WorkstationService } from 'src/app/core/store/services/workstation.service';
+import { WorkstationService } from 'src/app/core/services/workstation.service';
 
 @Component({
   selector: 'app-add-tag',

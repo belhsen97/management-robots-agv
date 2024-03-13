@@ -6,6 +6,7 @@ import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.UserRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IFileService;
+import com.enova.web.api.Services.ITagService;
 import com.enova.web.api.Services.Interfaces.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 @Order(value = 1)//Register BeanRunnerOne bean
@@ -34,7 +39,10 @@ public class bean_ResetData implements CommandLineRunner {
     @Autowired
     IFileService ifileService;
     @Autowired
+    ITagService iTagService;
+    @Autowired
     PasswordEncoder passwordEncoder;
+
     final Token token = Token.builder()
             .token("Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RmaTk3IiwiaWF0IjoxNzA5NDk0NTUyLCJleHAiOjE3MDk0OTU5OTJ9.8sxfA6qa8ijehu4GZJrnVaOQ5nCU9AXWYgtIQGAFsjs")
             .tokenType(TokenType.BEARER)
@@ -67,7 +75,7 @@ public class bean_ResetData implements CommandLineRunner {
             .name("workstation-3")
             .enable(true)
             .build();
-
+    Tag tag1 = Tag.builder().code("code-1").description("description").build();
 
     @Override
     public void run(String... args) throws Exception {
@@ -80,32 +88,42 @@ public class bean_ResetData implements CommandLineRunner {
             user.addToken(token);
             userRepository.save(user);
         }
-        workstationRepository.deleteAll();
-        workstation1 = workstationRepository.save(workstation1);
-        workstation2 = workstationRepository.save(workstation2);
-        workstation3 = workstationRepository.save(workstation3);
-        robotRepository.deleteAll();
-        for ( int i = 1; i<26; i++) {
-            final Robot robot = Robot.builder()
-                    //.id(i)
-                    .idWorkstation(workstation1.getName())
-                    //.workstation(workstation1)
-                    .name("robot-"+i)
-                    .createdAt(new Date())
-                    .connection(Connection.CONNECTED)
-                    .modeRobot(ModeRobot.AUTO)
-                    .statusRobot(StatusRobot.RUNNING)
-                    .operationStatus(OperationStatus.PAUSE)
-                    .levelBattery(100)
-                    .speed(1.5)
-                    .build();
-            robotRepository.save(robot);
-        }
-       // robotRepository.updateWorkstation(workstation1.getName(),workstation3.getName());
-       // System.out.println( );
-     //  System.out.println(robotRepository.findAll().get(0).getWorkstation().getName());
 
-     //  System.out.println(workstationRepository.findAll().get(0).getRobots().size());
+        workstationRepository.deleteAll();
+//        workstation1 = workstationRepository.save(workstation1);
+//        workstation2 = workstationRepository.save(workstation2);
+//        workstation3 = workstationRepository.save(workstation3);
+        iTagService.deleteAll();
+//        for (int i = 1; i < 100; i++) {
+//            final Tag tag = Tag.builder()
+//                    .code("code-" + i)
+//                    .description("description-tag")
+//                    .workstationName(workstation1.getName())
+//                    .build();
+//            iTagService.insert(tag);
+//        }
+        robotRepository.deleteAll();
+//        for (int i = 1; i < 26; i++) {
+//            final Robot robot = Robot.builder()
+//                    //.id(i)
+//                    .idWorkstation(workstation1.getName())
+//                    //.workstation(workstation1)
+//                    .name("robot-" + i)
+//                    .createdAt(new Date())
+//                    .connection(Connection.CONNECTED)
+//                    .modeRobot(ModeRobot.AUTO)
+//                    .statusRobot(StatusRobot.RUNNING)
+//                    .operationStatus(OperationStatus.PAUSE)
+//                    .levelBattery(100)
+//                    .speed(1.5)
+//                    .build();
+//            robotRepository.save(robot);
+//        }
+        // robotRepository.updateWorkstation(workstation1.getName(),workstation3.getName());
+        // System.out.println( );
+        //  System.out.println(robotRepository.findAll().get(0).getWorkstation().getName());
+
+        //  System.out.println(workstationRepository.findAll().get(0).getRobots().size());
 
 
         //  System.out.println(userRepository.  isExistsValidToken(token.getToken()));
@@ -144,18 +162,18 @@ public class bean_ResetData implements CommandLineRunner {
         return attachment;
     }
 
-        public static String generateRandomIP() {
-            Random rand = new Random();
-            StringBuilder ip = new StringBuilder();
-            for (int i = 0; i < 4; i++) {
-                ip.append(rand.nextInt(256));
-                if (i < 3) {
-                    ip.append(".");
-                }
+    public static String generateRandomIP() {
+        Random rand = new Random();
+        StringBuilder ip = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            ip.append(rand.nextInt(256));
+            if (i < 3) {
+                ip.append(".");
             }
-
-            return ip.toString();
         }
+
+        return ip.toString();
+    }
 
 }
 

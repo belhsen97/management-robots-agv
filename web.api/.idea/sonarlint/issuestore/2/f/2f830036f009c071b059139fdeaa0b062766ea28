@@ -1,4 +1,7 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÙÙ„Ş8ù÷¸ëá1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÙÙ„Ş8¶÷¨ìâ1
+W	java:S125%"<This block of commented-out lines of code should be removed.(Ò®ë8º÷¨ìâ1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8Ú´½íá1
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8º÷¨ìâ1
+W
+java:S1128":Remove this unused import 'com.enova.web.api.Entitys.Tag'.(ñ˜ó8º÷¨ìâ1

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { UserService } from 'src/app/core/store/services/user.service.ts.service';
+import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 
 @Component({

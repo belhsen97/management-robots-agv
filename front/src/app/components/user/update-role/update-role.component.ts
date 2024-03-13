@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Role } from 'src/app/core/store/models/User/Role.enum';
-import { UserService } from 'src/app/core/store/services/user.service.ts.service';
+import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 @Component({
   selector: 'app-update-role',

@@ -6,7 +6,7 @@ import { Gender } from 'src/app/core/store/models/User/Gender.enum';
 import { MsgReponseStatus } from 'src/app/core/store/models/Global/MsgReponseStatus.model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { Role } from 'src/app/core/store/models/User/Role.enum';
-import { UserService } from 'src/app/core/store/services/user.service.ts.service';
+import { UserService } from 'src/app/core/services/user.service.ts.service';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';

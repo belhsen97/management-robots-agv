@@ -1,8 +1,10 @@
 package com.enova.web.api.Mappers;
 
 import com.enova.web.api.Dtos.RobotDto;
+import com.enova.web.api.Dtos.TagDto;
 import com.enova.web.api.Dtos.WorkstationDto;
 import com.enova.web.api.Entitys.Robot;
+import com.enova.web.api.Entitys.Tag;
 import com.enova.web.api.Entitys.Workstation;
 
 import java.util.ArrayList;
@@ -24,11 +26,22 @@ public class WorkstationMapper {
                                 .map(robot -> RobotMapper.mapToEntity(robot))
                                 .collect(Collectors.toSet())
         );
+        Set<Tag> tagList = new HashSet<Tag>();
+        tagList = (
+                (wd.getTags() == null || wd.getTags().isEmpty())
+                        ?
+                        tagList
+                        :
+                        wd.getTags()
+                                .stream()
+                                .map(tag -> TagMapper.mapToEntity(tag))
+                                .collect(Collectors.toSet())
+        );
         return Workstation.builder()
                 .name(wd.getName())
                 .enable(wd.isEnable())
                 .robots(robotList)
-                //.tags(wd.getTags())
+                .tags(tagList)
                 .build();
     }
 
@@ -44,14 +57,23 @@ public class WorkstationMapper {
                                 .stream()
                                 .map(robot -> RobotMapper.mapToDto(robot))
                                 .collect(Collectors.toList())
-
-
+        );
+        List<TagDto> tagDtoList = new ArrayList<TagDto>();
+        tagDtoList = (
+                (w.getTags() == null || w.getTags().isEmpty())
+                        ?
+                        tagDtoList
+                        :
+                        w.getTags()
+                                .stream()
+                                .map(tag -> TagMapper.mapToDto(tag))
+                                .collect(Collectors.toList())
         );
         return WorkstationDto.builder()
                 .id(w.getId())
                 .name(w.getName())
                 .enable(w.isEnable())
-                .tags(w.getTags())
+                .tags(tagDtoList)
                 .robots(robotDtoList)
                 .build();
     }

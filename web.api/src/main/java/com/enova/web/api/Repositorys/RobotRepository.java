@@ -41,10 +41,10 @@ public interface RobotRepository extends MongoRepository<Robot, String> {
 
 
 
-    default void changeWorkstation (String idW ,String newIdW) {
-        List<Robot> rbs =    this.findAllByIdWorkstation(idW);
-        if(this.findAllByIdWorkstation(idW).isEmpty()){   return ;  }
-        rbs.forEach(robot -> robot.setIdWorkstation(newIdW));
+    default void changeWorkstation (String oldName ,String newName) {
+        List<Robot> rbs =    this.findAllByIdWorkstation(oldName);
+        if(rbs.isEmpty()){   return ;  }
+        rbs.forEach(robot -> robot.setIdWorkstation(newName));
         this.saveAll(rbs);
     }
 }

@@ -1,0 +1,14 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8±ßíëâ1
+d
+java:S3655B"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûşÿÿÿÿ8ÂÀñëâ1
+d
+java:S36553"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûşÿÿÿÿ8¹ßíëâ1
+i
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éâ†Òşÿÿÿÿ8»ßíëâ1
+]	java:S125="<This block of commented-out lines of code should be removed.(½€¡Œûÿÿÿÿ8¿ßíëâ1
+W	java:S125X"<This block of commented-out lines of code should be removed.(•¡·&8Áßíëâ1
+^
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8¨íŠíâ1
+H
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8¨íŠíâ1

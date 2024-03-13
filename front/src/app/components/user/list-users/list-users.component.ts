@@ -6,7 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
 import {   UserDto } from 'src/app/core/store/models/User/UserDto.model'; 
-import { UserService } from 'src/app/core/store/services/user.service.ts.service';
+import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';

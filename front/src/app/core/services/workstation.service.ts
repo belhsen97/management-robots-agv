@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { WorkstationDto } from '../models/Workstation/WorkstationDto.model';
+import { WorkstationDto } from '../store/models/Workstation/WorkstationDto.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Service } from './globalservice.service';
-import { Tag } from '../models/Workstation/Tag.model';
+import { Tag } from '../store/models/Workstation/Tag.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

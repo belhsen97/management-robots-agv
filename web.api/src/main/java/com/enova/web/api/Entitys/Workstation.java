@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -23,13 +24,14 @@ public class Workstation  implements Serializable  {
     String id;
     String name ;
     boolean enable ;
-    Set<Tag> tags ;
-
     @JsonIgnore
     Set<Robot> robots ;
-
     @JsonGetter("robots")
     public  Set<Robot> getRobots() {return this.robots;}
+    @JsonIgnore
+    Set<Tag> tags ;
+    @JsonGetter("tags")
+    public  Set<Tag> getTags() {return this.tags;}
 }
 //    @Id
 //    String id;

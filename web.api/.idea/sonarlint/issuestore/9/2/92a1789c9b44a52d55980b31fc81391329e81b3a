@@ -1,4 +1,9 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾ž±µÿÿÿÿÿ8ÝÇ¸íá1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾ž±µÿÿÿÿÿ8Ô°Æ¨ã1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ðºýÿÿÿÿ8éÇ¸íá1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ðºýÿÿÿÿ8ß°Æ¨ã1
+]	java:S125<"<This block of commented-out lines of code should be removed.(ü‚‚œüÿÿÿÿ8å°Æ¨ã1
+]	java:S125@"<This block of commented-out lines of code should be removed.(½€¡Œûÿÿÿÿ8æ°Æ¨ã1
+]	java:S125O"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ç°Æ¨ã1
+W
+java:S1128":Remove this unused import 'com.enova.web.api.Entitys.Tag'.(Žñ˜ó8è°Æ¨ã1

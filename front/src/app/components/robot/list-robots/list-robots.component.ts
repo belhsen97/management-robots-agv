@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
-import { RobotService } from 'src/app/core/store/services/robot.service';
+import { RobotService } from 'src/app/core/services/robot.service';
 import { AddRobotComponent } from '../add-robot/add-robot.component';
 import { Store } from '@ngrx/store';
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';

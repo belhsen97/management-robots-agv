@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
-import { UserService } from 'src/app/core/store/services/user.service.ts.service';
+import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 @Component({
   selector: 'app-sign-up',

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { RobotService } from 'src/app/core/store/services/robot.service';
+import { RobotService } from 'src/app/core/services/robot.service';
 
 @Component({
   selector: 'app-add-robot',

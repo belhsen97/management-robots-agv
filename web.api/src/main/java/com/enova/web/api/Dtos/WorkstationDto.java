@@ -15,6 +15,6 @@ public class WorkstationDto {
     String id;
     String name ;
     boolean enable ;
-    Set<Tag> tags ;
+    List<TagDto> tags ;
     List<RobotDto> robots;
 }

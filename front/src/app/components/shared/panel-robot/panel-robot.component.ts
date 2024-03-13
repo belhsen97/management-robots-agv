@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RobotService } from 'src/app/core/store/services/robot.service';
+import { RobotService } from 'src/app/core/services/robot.service';
 
 @Component({
   selector: 'app-panel-robot',

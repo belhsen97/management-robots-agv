@@ -2,8 +2,10 @@ package com.enova.web.api.Services.Interfaces;
 
 
 import com.enova.web.api.Entitys.Robot;
+import com.enova.web.api.Entitys.Tag;
 import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
+import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IRobotService;
@@ -34,16 +36,20 @@ public class RobotService implements IRobotService {
 
     @Override
     public Robot selectById(String id) {
-        return this.robotRepository.findById(id).orElse(null);
+        Optional<Robot> r = this.robotRepository.findById(id);
+        if (r.isEmpty()) {
+            throw new RessourceNotFoundException("Cannot found Workstation by id = " + id);
+        }
+        return r.get();
     }
 
     @Override
     public Robot insert(Robot obj) {
         if (robotRepository.findbyName(obj.getName()).isPresent()) {
-            throw new MethodArgumentNotValidException("other Robot found");
+            throw new MethodArgumentNotValidException("other Robot found equal "+obj.getName());
         }
         obj.setCreatedAt(new Date());
-        Optional<Workstation> w = workstationRepository.findbyName(obj.getName());
+        Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
         obj.setIdWorkstation(w.isPresent() ? w.get().getName() : null);
         return robotRepository.save(obj);
     }
@@ -51,10 +57,13 @@ public class RobotService implements IRobotService {
     @Override
     public Robot update(String id, Robot obj) {
         Robot r = this.selectById(id);
-        if (r != null) {
+//        if (r != null) {
             r.setName(obj.getName());
 
-            Optional<Workstation> w = workstationRepository.findbyName(obj.getName());
+            Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
+//            if (w.isEmpty()) {
+//                throw new MethodArgumentNotValidException("cant found Workstation found");
+//            }
             r.setIdWorkstation(w.isPresent() ? w.get().getName() : r.getIdWorkstation());
 
             r.setNotice(obj.getNotice());
@@ -67,8 +76,8 @@ public class RobotService implements IRobotService {
             r.setSpeed(obj.getSpeed());
 
             return robotRepository.save(r);
-        }
-        return null;
+//        }
+//        return null;
     }
 
 

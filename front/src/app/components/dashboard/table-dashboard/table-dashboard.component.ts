@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
-import { RobotService } from 'src/app/core/store/services/robot.service';
+import { RobotService } from 'src/app/core/services/robot.service';
 
 @Component({
   selector: 'app-table-dashboard',

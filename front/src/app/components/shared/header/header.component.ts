@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ShowAlert, openSidebar, searchInput } from 'src/app/core/store/Global/App.Action';
 import { AppStateModel } from 'src/app/core/store/Global/AppState.Model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
-import { UserService } from 'src/app/core/store/services/user.service.ts.service';
+import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 @Component({
   selector: 'app-header',

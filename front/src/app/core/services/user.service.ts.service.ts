@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Role } from '../models/User/Role.enum';
-import { Gender } from '../models/User/Gender.enum';
-import { AuthenticationRequestDto } from '../models/User/AuthenticationRequestDto.model';
-import { ReponseStatus } from '../models/Global/ReponseStatus.enum';
-import { AuthenticationResponseDto } from '../models/User/AuthenticationResponseDto.model';
-import { UserDto } from '../models/User/UserDto.model';
+import { Role } from '../store/models/User/Role.enum';
+import { Gender } from '../store/models/User/Gender.enum';
+import { AuthenticationRequestDto } from '../store/models/User/AuthenticationRequestDto.model';
+import { ReponseStatus } from '../store/models/Global/ReponseStatus.enum';
+import { AuthenticationResponseDto } from '../store/models/User/AuthenticationResponseDto.model';
+import { UserDto } from '../store/models/User/UserDto.model';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
