@@ -7,6 +7,7 @@ import com.enova.web.api.Dtos.mail.BodyContent;
 import com.enova.web.api.Dtos.mail.Msg;
 import com.enova.web.api.Dtos.mail.TypeBody;
 import com.enova.web.api.Entitys.Attachment;
+import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Entitys.User;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
@@ -53,7 +54,11 @@ public class UserService implements IUserService {
 
     @Override
     public User selectById(String id) {
-        return this.userRepository.findById(id).orElse(null);
+        Optional<User> u = this.userRepository.findById(id);  // return this.userRepository.findById(id).orElseThrow();
+        if (u.isEmpty()) {
+            throw new RessourceNotFoundException("Cannot found user by id =" + id);
+        }
+        return u.get();
     }
 
     @Override
@@ -87,13 +92,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean delete(String id) {
+    public void delete(String id) {
         User user = this.selectById(id);
-        if (user != null) {
-            userRepository.delete(user);
-            return true;
-        }
-        return false;
+        userRepository.delete(user);
     }
 
     @Override

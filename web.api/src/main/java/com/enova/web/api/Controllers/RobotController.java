@@ -2,10 +2,7 @@ package com.enova.web.api.Controllers;
 
 import com.enova.web.api.Dtos.*;
 import com.enova.web.api.Entitys.Robot;
-import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Mappers.RobotMapper;
-import com.enova.web.api.Mappers.UserMapper;
-import com.enova.web.api.Mappers.WorkstationMapper;
 import com.enova.web.api.Services.IRobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,34 +29,30 @@ public class RobotController {
         final List<Robot> list = iService.selectAll();
         return list.stream().map(r -> RobotMapper.mapToDto(r)).collect(Collectors.toList());
     }
+
     @GetMapping("{id}")
     public ResponseEntity<RobotDto> SelectBy(@PathVariable String id) {
         return ResponseEntity.ok(RobotMapper.mapToDto(iService.selectById(id)));
     }
+
     @PostMapping
     public RobotDto Insert(@RequestBody RobotDto rd) {
         return RobotMapper.mapToDto(iService.insert(RobotMapper.mapToEntity(rd)));
     }
+
     @PutMapping("{id}")
     public ResponseEntity<RobotDto> update(@PathVariable String id, @RequestBody RobotDto rd) {
         return ResponseEntity.ok(RobotMapper.mapToDto(iService.update(id, RobotMapper.mapToEntity(rd))));
     }
+
     @DeleteMapping("{id}")
     public ResponseEntity<MsgReponseStatus> delete(@PathVariable String id) {
-        if (iService.delete(id)) {
-            return ResponseEntity.ok(
-                    MsgReponseStatus.builder()
-                            .status(ReponseStatus.SUCCESSFUL)
-                            .title("Delete robot")
-                            .message("SUCCESSFUL to delete robot : " + id)
-                            .datestamp(new Date()).build());
-        }
-        return ResponseEntity.ok(
-                MsgReponseStatus.builder()
-                        .status(ReponseStatus.UNSUCCESSFUL)
-                        .title("Delete robot")
-                        .message("UNSUCCESSFUL to delete robot : " + id)
-                        .datestamp(new Date()).build());
+        iService.delete(id);
+        return ResponseEntity.ok(MsgReponseStatus.builder()
+                .status(ReponseStatus.SUCCESSFUL)
+                .title("Delete robot")
+                .message("SUCCESSFUL to delete robot : " + id)
+                .datestamp(new Date()).build());
     }
 
 }

@@ -7,6 +7,6 @@ public interface IGenericCRUD<T,ID> {
     T insert( T object);
     //List<T> insertAll( List<T> object);
     T update( ID id , T object);
-    boolean delete(  ID id );
+    void delete(  ID id );
     void deleteAll( );
 }

@@ -23,14 +23,14 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
   @ViewChild("paginatorWorkstation") paginatorWorkstation  !: MatPaginator;
   @ViewChild(MatSort) sortWorkstation   !: MatSort;
   displayedColumnsWorkstation: string[] = ['name', 'enable', 'NRobot', 'NTag', 'action'];
-  dataSourceWorkstation: any;
+  dataSourceWorkstation !: MatTableDataSource<WorkstationDto>;
 
 
 
   constructor(private store: Store,
     public workstationService: WorkstationService,
     public tagService: TagService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog){}
 
 
 
@@ -138,8 +138,6 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
     dialogRef.afterClosed().subscribe(result => {
       if (result == null) { return; }
       // Handle result from the dialog 
-
-      console.log(result);
       this.workstationService.insert(result).subscribe(
         (response) => {
           this.workstationService.workstation = response.body;

@@ -59,9 +59,6 @@ public class TagService implements ITagService {
         t.setCode(obj.getCode());
         t.setDescription(obj.getDescription());
         Optional<Workstation> w = workstationRepository.findbyName(obj.getWorkstationName());
-//            if (w.isEmpty()) {
-//                throw new MethodArgumentNotValidException("cant found Workstation found");
-//            }
         t.setWorkstationName(w.isPresent() ? w.get().getName() : t.getWorkstationName());
         System.out.println(t.getWorkstation());
         t = tagRepository.save(t);
@@ -70,13 +67,9 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public boolean delete(String id) {
-        Optional<Tag> t = this.tagRepository.findById(id);
-        if (t.isPresent()) {
-            tagRepository.delete(t.get());
-            return true;
-        }
-        return false;
+    public void delete(String id) {
+        Tag t = this.selectById(id);
+        tagRepository.delete(t);
     }
 
 

@@ -17,8 +17,8 @@
 
           <mat-form-field>
             <mat-label>Workstations</mat-label>
-            <mat-select  [(ngModel)]="tagService.tag.workstation" name="tag-workstations" #workstations="ngModel"
-              [compareWith]="compareWorkstations">
+            <mat-select  [(ngModel)]="tagService.tag.workstation" name="tag-workstation" #workstation="ngModel"
+              [compareWith]="compareWorkstation">
               <mat-option *ngFor="let wOption of workstationService.listWorkstations" [value]="wOption">{{ wOption.name }}</mat-option>
             </mat-select>
           </mat-form-field>  

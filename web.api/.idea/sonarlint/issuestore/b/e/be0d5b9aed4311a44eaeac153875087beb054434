@@ -3,13 +3,12 @@
 d
 java:S36553"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûþÿÿÿÿ8æÕ±Öã1
 d
-java:S3655D"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûþÿÿÿÿ8æÕ±Öã1
+java:S3655A"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûþÿÿÿÿ8æÕ±Öã1
 i
 java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éâ†Òþÿÿÿÿ8èÕ±Öã1
-]	java:S125>"<This block of commented-out lines of code should be removed.(½€¡Œûÿÿÿÿ8îÕ±Öã1
-L	java:S106B"+Replace this use of System.out by a logger.(ÙÚþÍÿÿÿÿÿ8ïÕ±Öã1
-W	java:S125Z"<This block of commented-out lines of code should be removed.(•¡·&8ñÕ±Öã1
+L	java:S106?"+Replace this use of System.out by a logger.(ÙÚþÍÿÿÿÿÿ8ïÕ±Öã1
+W	java:S125S"<This block of commented-out lines of code should be removed.(•¡·&8ñÕ±Öã1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8ñÕ±Öã1
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8²ûöêã1
 H
-java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8ñÕ±Öã1
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8²ûöêã1

@@ -8,7 +8,7 @@ import { SettingRobot } from '../store/models/Robot/SettingRobot.model';
 import { WorkstationDto } from '../store/models/Workstation/WorkstationDto.model';
 import { PanelRobot } from '../store/models/Robot/PanelRobot.model';
 import { Service } from './globalservice.service';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -27,32 +27,21 @@ export class RobotService extends Service {
   { label: 'RUNNING', value: StatusRobot.RUNNING }, { label: 'INACTIVE', value: StatusRobot.INACTIVE }];
   public settingRobot: SettingRobot = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
 
-
   public panelRobot: PanelRobot = { count: 20, connected: 10, running: 20, operationStatus: 10, auto: 10 }
-
-
-  public workstation: WorkstationDto = {
-    id: "1",
-    name: "workstation 1",
-    enable: true,
-    tags: [],
-    robots: []
-  };
+  public workstation: WorkstationDto = {id: "",name: "",enable: true,tags:[],robots: []};
   public robot: RobotDto = {
-    id: "1",
+    id: "",
     createdAt: new Date(),
-    name: "Robot",
+    name: "",
     statusRobot: StatusRobot.RUNNING,
     modeRobot: ModeRobot.MANUAL,
-    notice: "vide",
+    notice: "",
     connection: Connection.CONNECTED,
     operationStatus: OperationStatus.PAUSE,
-    levelBattery: 98,
-    speed: 1.5,
+    levelBattery: 0,
+    speed: 0,
     workstation: this.workstation
   };
-
-
   public listRobots: RobotDto[] = [];
 
 
@@ -64,13 +53,34 @@ export class RobotService extends Service {
     this.refreshValuesPanelRobot();
   }
 
+
+
+
   getAll(): Observable<HttpResponse<any>> {
     return this.http.get(`${this.url}/robot`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
-
+ insert(r: RobotDto): Observable<HttpResponse<any>> {
+    return this.http.post(`${this.url}/robot`, r,
+      { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json',
+        //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+    }) })
+  }
+  update(id: string, r: RobotDto): Observable<HttpResponse<any>> {
+    return this.http.put(`${this.url}/robot/${id}`, r,
+      { observe: 'response',
+       headers: new HttpHeaders({'Content-Type': 'application/json',
+       // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+      }) })
+  }
+  delete(id: any): Observable<HttpResponse<any>> {
+    return this.http.delete(`${this.url}/robot/${id}`,
+      { observe: 'response',
+       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
+      })
+  }
 
 
 

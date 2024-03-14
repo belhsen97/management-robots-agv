@@ -144,15 +144,11 @@ public class WorkstationService implements IWorkstationService {
     }
 
     @Override
-    public boolean delete(String id) {
+    public void delete(String id) {
         Workstation w = this.selectById(id);
-        if (w != null) {
-            this.workstationRepository.delete(w);
-            this.robotRepository.changeWorkstation(w.getName(), null);
-            this.tagRepository.changeWorkstation(w.getName(), null);
-            return true;
-        }
-        return false;
+        this.robotRepository.changeWorkstation(w.getName(), null);
+        this.tagRepository.changeWorkstation(w.getName(), null);
+        this.workstationRepository.delete(w);
     }
 
     @Override

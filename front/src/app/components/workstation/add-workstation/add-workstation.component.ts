@@ -20,7 +20,7 @@ export class AddWorkstationComponent  implements OnInit   {
  
 
   compareTags(tag1: any, tag2: any): boolean {  return tag1 && tag2 ? tag1.id === tag2.id : tag1 === tag2; }
-  compareRobots(robot1: any, robot2: any): boolean {  return robot1 && robot2 ? robot1.id === robot2.id : robot1 === robot2; }
+  compareRobots(r1: any, r2: any): boolean {  return r1 && r2 ? r1.id === r2.id : r1 === r2; }
 
 
   closepopup() {this.dialogRef.close(null);}

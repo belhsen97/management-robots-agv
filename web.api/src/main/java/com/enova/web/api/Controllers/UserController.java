@@ -65,20 +65,12 @@ public class UserController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<MsgReponseStatus> delete(@PathVariable String id) {
-        if (iUserService.delete(id)) {
-            return ResponseEntity.ok(
-                    MsgReponseStatus.builder()
-                            .status(ReponseStatus.SUCCESSFUL)
-                            .title("Delete user")
-                            .message("SUCCESSFUL to delete user : " + id)
-                            .datestamp(new Date()).build());
-        }
-        return ResponseEntity.ok(
-                MsgReponseStatus.builder()
-                        .status(ReponseStatus.UNSUCCESSFUL)
-                        .title("Delete user")
-                        .message("UNSUCCESSFUL to delete user : " + id)
-                        .datestamp(new Date()).build());
+        iUserService.delete(id);
+        return ResponseEntity.ok(MsgReponseStatus.builder()
+                .status(ReponseStatus.SUCCESSFUL)
+                .title("Delete user")
+                .message("SUCCESSFUL to delete user : " + id)
+                .datestamp(new Date()).build());
     }
 
 

@@ -38,7 +38,7 @@ public class RobotService implements IRobotService {
     public Robot selectById(String id) {
         Optional<Robot> r = this.robotRepository.findById(id);
         if (r.isEmpty()) {
-            throw new RessourceNotFoundException("Cannot found Workstation by id = " + id);
+            throw new RessourceNotFoundException("Cannot found robot by id = " + id);
         }
         return r.get();
     }
@@ -46,49 +46,41 @@ public class RobotService implements IRobotService {
     @Override
     public Robot insert(Robot obj) {
         if (robotRepository.findbyName(obj.getName()).isPresent()) {
-            throw new MethodArgumentNotValidException("other Robot found equal "+obj.getName());
+            throw new MethodArgumentNotValidException("other Robot found equal " + obj.getName());
         }
         obj.setCreatedAt(new Date());
         Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
         obj.setIdWorkstation(w.isPresent() ? w.get().getName() : null);
-        return robotRepository.save(obj);
+        obj = robotRepository.save(obj);
+        obj.setWorkstation(w.get());
+        return obj;
     }
 
     @Override
     public Robot update(String id, Robot obj) {
         Robot r = this.selectById(id);
-//        if (r != null) {
-            r.setName(obj.getName());
-
-            Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
-//            if (w.isEmpty()) {
-//                throw new MethodArgumentNotValidException("cant found Workstation found");
-//            }
-            r.setIdWorkstation(w.isPresent() ? w.get().getName() : r.getIdWorkstation());
-
-            r.setNotice(obj.getNotice());
-            //remove it cause reel time !!!!!!!!!!!!!
-            r.setConnection(obj.getConnection());
-            r.setStatusRobot(obj.getStatusRobot());
-            r.setModeRobot(obj.getModeRobot());
-            r.setOperationStatus(obj.getOperationStatus());
-            r.setLevelBattery(obj.getLevelBattery());
-            r.setSpeed(obj.getSpeed());
-
-            return robotRepository.save(r);
-//        }
-//        return null;
+        Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
+        r.setWorkstation(null);
+        r.setName(obj.getName());
+        r.setIdWorkstation(w.isPresent() ? w.get().getName() : r.getIdWorkstation());
+        r.setNotice(obj.getNotice());
+        //remove it cause reel time !!!!!!!!!!!!!
+        r.setConnection(obj.getConnection());
+        r.setStatusRobot(obj.getStatusRobot());
+        r.setModeRobot(obj.getModeRobot());
+        r.setOperationStatus(obj.getOperationStatus());
+        r.setLevelBattery(obj.getLevelBattery());
+        r.setSpeed(obj.getSpeed());
+        r = robotRepository.save(r);
+        r.setWorkstation(w.get());
+        return r;
     }
 
 
     @Override
-    public boolean delete(String id) {
-        Optional<Robot> r = this.robotRepository.findById(id);
-        if (r.isPresent()) {
-            robotRepository.delete(r.get());
-            return true;
-        }
-        return false;
+    public void delete(String id) {
+        Robot r = this.selectById(id);
+        robotRepository.delete(r);
     }
 
     @Override
