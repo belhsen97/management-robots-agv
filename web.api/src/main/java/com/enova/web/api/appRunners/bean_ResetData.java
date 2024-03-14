@@ -89,11 +89,11 @@ public class bean_ResetData implements CommandLineRunner {
             userRepository.save(user);
         }
 
-        workstationRepository.deleteAll();
+//        workstationRepository.deleteAll();
 //        workstation1 = workstationRepository.save(workstation1);
 //        workstation2 = workstationRepository.save(workstation2);
 //        workstation3 = workstationRepository.save(workstation3);
-        iTagService.deleteAll();
+//        iTagService.deleteAll();
 //        for (int i = 1; i < 100; i++) {
 //            final Tag tag = Tag.builder()
 //                    .code("code-" + i)
@@ -102,7 +102,7 @@ public class bean_ResetData implements CommandLineRunner {
 //                    .build();
 //            iTagService.insert(tag);
 //        }
-        robotRepository.deleteAll();
+//        robotRepository.deleteAll();
 //        for (int i = 1; i < 26; i++) {
 //            final Robot robot = Robot.builder()
 //                    //.id(i)

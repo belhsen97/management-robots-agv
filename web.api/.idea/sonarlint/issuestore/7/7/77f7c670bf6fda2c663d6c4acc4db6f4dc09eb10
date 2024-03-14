@@ -21,9 +21,7 @@ _
 java:S6813+"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
 S
 java:S6437T"6Revoke and change this password, as it is compromised.(´²•¯8ãï×ëâ1
-]	java:S125]"<This block of commented-out lines of code should be removed.(ÃÉÉ¶şÿÿÿÿ8ò¨œíâ1
-X	java:S125a"<This block of commented-out lines of code should be removed.(ıÑ…˜8ô¨œíâ1
-]	java:S125j"<This block of commented-out lines of code should be removed.(Õøìèúÿÿÿÿ8õ¨œíâ1
+]	java:S125\"<This block of commented-out lines of code should be removed.(ˆÇßµüÿÿÿÿ8š‘Òã1
 ]	java:S125~"<This block of commented-out lines of code should be removed.(ãÌí¶şÿÿÿÿ8æï×ëâ1
 Y	java:S125"<This block of commented-out lines of code should be removed.(Ä”­“8æï×ëâ1
 ^	java:S125†"<This block of commented-out lines of code should be removed.(öŠò·øÿÿÿÿ8çï×ëâ1

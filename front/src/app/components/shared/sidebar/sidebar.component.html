@@ -20,10 +20,25 @@
                   </li>
                </ul>
             </li>
+
+
+
+
             <li>
-               <a routerLink="/workstation/list" class="iq-waves-effect"><i
-                     class="la la-desktop"></i><span>Workstation</span></a>
+               <a href="#workstation-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
+                  aria-expanded="false">
+                  <i class="las la-chart-area"></i><span>workstation</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul id="workstation-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                  <li class="ml-3"> <a routerLink="/workstation/list" class="iq-waves-effect">
+                     <i class="la la-chart-line"></i><span>List Workstations</span></a>
+                  </li>
+                  <li class="ml-3"> <a routerLink="/workstation/tags" class="iq-waves-effect">
+                     <i class="la la-table"></i><span>List Tags</span></a>
+                  </li>
+               </ul>
             </li>
+
+
             <li>
                <a href="#profile-account-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
                   aria-expanded="false">

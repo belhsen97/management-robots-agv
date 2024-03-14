@@ -15,6 +15,7 @@ public class TagMapper {
                 .code(tdto.getCode())
                 .description(tdto.getDescription())
                 .workstationName(name)
+                .workstation(null)
                 .build();
     }
 

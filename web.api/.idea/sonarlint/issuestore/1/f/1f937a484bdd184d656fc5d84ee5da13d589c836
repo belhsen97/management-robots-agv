@@ -1,17 +1,23 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8ª Õ¨ã1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Ö¬Óã1
 c
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8· Õ¨ã1
-X	java:S125)"<This block of commented-out lines of code should be removed.(Í¶Æ«8¹ Õ¨ã1
-]	java:S1259"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8º Õ¨ã1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8Ö¬Óã1
+X	java:S125)"<This block of commented-out lines of code should be removed.(Í¶Æ«8 Ö¬Óã1
+]	java:S1259"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8¤Ö¬Óã1
 J
-java:S1125>"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8» Õ¨ã1
+java:S1125>"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¥Ö¬Óã1
 E
-java:S1125?"(Remove the unnecessary boolean literals.(èõ¬—8» Õ¨ã1
-X	java:S125H"<This block of commented-out lines of code should be removed.(¹½´ü8½ Õ¨ã1
-]	java:S125S"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8œúÙ¨ã1
-]	java:S125_"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8¿ Õ¨ã1
-H
-java:S1168}"+Return an empty collection instead of null.(â°¼ö8Á Õ¨ã1
-X	java:S125}"<This block of commented-out lines of code should be removed.(â°¼ö8Á Õ¨ã1
-^	java:S125„"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8Á Õ¨ã1
+java:S1125?"(Remove the unnecessary boolean literals.(èõ¬—8¦Ö¬Óã1
+X	java:S125I"<This block of commented-out lines of code should be removed.(¹½´ü8©Ö¬Óã1
+]	java:S125U"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«Ö¬Óã1
+]	java:S125a"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8¬Ö¬Óã1
+J
+java:S1125i"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8ÏµµÓã1
+E
+java:S1125j"(Remove the unnecessary boolean literals.(èõ¬—8ĞµµÓã1
+X	java:S125t"<This block of commented-out lines of code should be removed.(¹½´ü8ÑµµÓã1
+^	java:S125€"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8ÓµµÓã1
+I
+java:S1168¥"+Return an empty collection instead of null.(â°¼ö8°Ö¬Óã1
+Y	java:S125¥"<This block of commented-out lines of code should be removed.(â°¼ö8°Ö¬Óã1
+^	java:S125¬"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8±Ö¬Óã1

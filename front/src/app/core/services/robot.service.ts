@@ -32,7 +32,6 @@ export class RobotService extends Service {
 
 
   public workstation: WorkstationDto = {
-    no: 1,
     id: "1",
     name: "workstation 1",
     enable: true,
@@ -100,16 +99,6 @@ export class RobotService extends Service {
       };
     }
   }
-
-   
-
-
-
-
- 
-
-
-
   public refreshValuesPanelRobot(): void {
      this.panelRobot.count = this.listRobots.length;
      this.panelRobot.connected = this.listRobots.filter(robot => {return robot.connection == Connection.DISCONNECTED}).length;

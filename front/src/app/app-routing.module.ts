@@ -14,6 +14,7 @@ import { ChartsDashboardComponent } from './components/dashboard/charts-dashboar
 import { EditUserComponent } from './components/user/edit-user/edit-user.component';
 import { EmailComposeComponent } from './components/email/email-compose/email-compose.component';
 import { TableDashboardComponent } from './components/dashboard/table-dashboard/table-dashboard.component';
+import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListWorkstationsComponent
+      },
+      {
+        path: 'tags',
+        component: ListTagsComponent
       }
     ]
   },

@@ -1,10 +1,9 @@
 import { RobotDto } from "../Robot/RobotDto.model";
-import { Tag } from "./Tag.model";
+import { TagDto } from "../Tag/TagDto.model";
 export interface WorkstationDto {
-    no:number
     id: String;
     name: string;
     enable: boolean;
-    tags: Tag[];
+    tags: TagDto[];
     robots: RobotDto[];
 }

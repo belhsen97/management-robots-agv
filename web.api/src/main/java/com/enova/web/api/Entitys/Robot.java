@@ -38,7 +38,7 @@ public class Robot implements Serializable {
 
     @JsonIgnore
     Workstation workstation;
-    public void setWorkstation(Workstation w) {if(w==null){return;}this.idWorkstation = w.getName();}
+   // public void setWorkstation(Workstation w) {if(w==null){return;}this.idWorkstation = w.getName(); this.workstation = null;   }
     @JsonGetter("workstation")
     public Workstation getWorkstation() {return this.workstation;}
 }

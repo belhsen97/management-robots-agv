@@ -57,12 +57,21 @@
     </mat-button-toggle-group>
 
     <mat-form-field>
-      <mat-label>Toppings</mat-label>
-      <mat-select multiple [(value)]="workstationService.workstation.tags">
-        <mat-option *ngFor="let tag of workstationService.listTags" [value]="tag">{{ tag.description }}</mat-option>
+      <mat-label>Tags</mat-label>
+      <mat-select multiple [(ngModel)]="workstationService.workstation.tags" name="workstation-tags" #tags="ngModel"
+        [compareWith]="compareTags">
+        <mat-option *ngFor="let tag of tagService.listTags" [value]="tag">{{ tag.code }}</mat-option>
       </mat-select>
     </mat-form-field>
 
+
+    <mat-form-field>
+      <mat-label>Robots</mat-label>
+      <mat-select multiple [(ngModel)]="workstationService.workstation.robots" name="workstation-robots"
+        #robots="ngModel" [compareWith]="compareRobots">
+        <mat-option *ngFor="let robot of robotService.listRobots" [value]="robot">{{ robot.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <!-- 
     
     <form class="mt-2"#signUpForm = "ngForm" (ngSubmit)="onSubmitForm(signUpForm)" class="mt-4" >

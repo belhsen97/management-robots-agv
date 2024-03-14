@@ -12,9 +12,5 @@ v	java:S120"ZRename this package name to match the regular expression '^[a-z_
 java:S1118":Add a private constructor to hide the implicit public one.(Á–¬‰úÿÿÿÿ8Ä·óâ1
 g
 java:S1612"EReplace this lambda with method reference 'RobotMapper::mapToEntity'.(ıïãÜüÿÿÿÿ8Ê·óâ1
-`
-java:S1612%"CReplace this lambda with method reference 'TagMapper::mapToEntity'.(¸ºı¼8ö¤Şìâ1
 d
 java:S1612:"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(÷û²—üÿÿÿÿ8‚”âìâ1
-b
-java:S1612E"@Replace this lambda with method reference 'TagMapper::mapToDto'.(ÓØÖèıÿÿÿÿ8×™ëìâ1

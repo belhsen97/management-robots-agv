@@ -39,6 +39,8 @@ import { TableDashboardComponent } from './components/dashboard/table-dashboard/
 import { PanelRobotComponent } from './components/shared/panel-robot/panel-robot.component';
 import { AddTagComponent } from './components/workstation/add-tag/add-tag.component';
 import { AddRobotComponent } from './components/robot/add-robot/add-robot.component';
+import { CommonModule } from '@angular/common';
+import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 
 @NgModule({
   declarations: [
@@ -66,10 +68,12 @@ import { AddRobotComponent } from './components/robot/add-robot/add-robot.compon
     TableDashboardComponent,
     PanelRobotComponent,
     AddTagComponent,
-    AddRobotComponent
+    AddRobotComponent,
+    ListTagsComponent
         
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule , 
     FormsModule,

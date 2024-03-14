@@ -5,7 +5,7 @@
         <!-- <div class="flex-row"> -->
         <mat-form-field>
             <mat-label>Code</mat-label>
-            <input type="text" matInput [(ngModel)]="workstationService.tag.code" #code="ngModel"
+            <input type="text" matInput [(ngModel)]="tagService.tag.code" #code="ngModel"
                 name="tag-code" placeholder="Ex. 460247808139" required>
             <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
             <!-- <mat-error   *ngIf="(code.errors?.['required']">code is <strong>required</strong></mat-error> -->
@@ -14,10 +14,19 @@
             </mat-error>
         </mat-form-field>
 
+
+          <mat-form-field>
+            <mat-label>Workstations</mat-label>
+            <mat-select  [(ngModel)]="tagService.tag.workstation" name="tag-workstations" #workstations="ngModel"
+              [compareWith]="compareWorkstations">
+              <mat-option *ngFor="let wOption of workstationService.listWorkstations" [value]="wOption">{{ wOption.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>  
+
         <mat-form-field>
             <mat-label>Description of new Tag</mat-label>
             <textarea matInput  placeholder="Ex. it for workstation of stock or for line of ..."
-            [(ngModel)]="workstationService.tag.description" #description="ngModel" name="tag-description"
+            [(ngModel)]="tagService.tag.description" #description="ngModel" name="tag-description"
             ></textarea>
         </mat-form-field>
 

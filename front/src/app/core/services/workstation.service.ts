@@ -3,7 +3,7 @@ import { WorkstationDto } from '../store/models/Workstation/WorkstationDto.model
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Service } from './globalservice.service';
-import { Tag } from '../store/models/Workstation/Tag.model';
+import { TagDto } from '../store/models/Tag/TagDto.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,17 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class WorkstationService extends Service {
 
-  public readonly  listTags : Tag[]=[];
+  public  listTags : TagDto[]=[];
   public listWorkstations  : WorkstationDto[] =[];
   
-  public tag : Tag ={
-    id:1,
-    code: "000747643911405335" ,
-    description : "description"
-   };
 
+  
   public workstation : WorkstationDto ={
-    no: 1,
     id:"1",
     name: "workstation 1" ,
     enable: true,
@@ -29,10 +24,18 @@ export class WorkstationService extends Service {
     robots: []
    };
 
+  public tag : TagDto ={
+    id:"1",
+    code: "000747643911405335" ,
+    description : "description",
+    workstation : this.workstation
+   };
+
+
 
    constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
     super(http, router, activeRoute);
-    this.randomDataTags();
+    
     //this.randomDataWorkstations();
   }
 
@@ -68,21 +71,11 @@ export class WorkstationService extends Service {
 
 
 
-  randomDataTags(): void {
-    for (var i = 0; i < 100; i++) {
-      const count = i + 1;
-      this.listTags[i] = {
-        id: count,
-        code: this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString(),
-        description : "tag description "+count 
-      };
-    }
-  }
+
   randomDataWorkstations(): void {
     for (var i = 0; i < 2; i++) {
       const count = i + 1;
       this.listWorkstations[i] = {
-        no: count,
         id: count.toString(),
         name : "Workstation-"+count,
         enable : true,

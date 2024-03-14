@@ -1,0 +1,114 @@
+
+.btn-primary{
+    background-color:   var( --blue-caribbean-Green) ;
+    border-color:  var( --blue-caribbean-Green) ;
+    width: 100px;
+  }
+  .btn-danger{
+    background-color:   var( --red-blush) ;
+    border-color:  var( --red-blush) ;
+    width: 100px;
+  }
+  .pi-table {
+    color:   var( --blue-caribbean-Green) ;
+  } 
+  
+   
+  .table-responsive {
+    height: 500px;
+    overflow: auto;
+  }
+  
+  thead {
+    background-color: #f7f6f6;
+    text-align: center;
+  }
+  
+   
+   
+  h3 {
+    color: rgb(73,80,87);
+    font-family: TimesNewRoman;
+    font-size: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+   
+  .btn-edit{
+    background-color:  var( --medium-spring-green) ;
+    color: var(--white);
+  }
+  
+  
+  
+  
+  table {
+    width: 100%;
+  }
+  
+ /* .mat-column-action {
+    max-width: 180px;
+  } */
+  .mat-column-id {
+    max-width: 60px;
+    text-align: center;
+  }
+  /* 
+  th{
+    background-color: var( --blue-caribbean-Green);
+  } */
+  
+  
+  .mat-mdc-raised-button.mat-primary-color {
+    color: white;  
+    background-color: var(--navy-blue); 
+  }
+  
+  
+  
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+   
+  
+  
+  
+  
+  
+  
+  .my-select-panel-class.mat-select-panel { 
+    background-color: red;
+    font-size: 10px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: #f3efef;
+  }
+
+
+
+  .icon-disable {
+    color: var(--danger);
+  }
+  
+  .icon-enable {
+    color: var(--success);
+  }
+  

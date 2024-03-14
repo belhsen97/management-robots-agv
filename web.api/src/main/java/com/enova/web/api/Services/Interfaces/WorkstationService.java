@@ -66,6 +66,7 @@ public class WorkstationService implements IWorkstationService {
                 Optional<Robot> robotOptional =   this.robotRepository.findbyName(robot.getName());
                 if (robotOptional.isPresent()){robot = robotOptional.get();}
                 else{ robot.setCreatedAt(new Date());}
+                robot.setWorkstation(null);
                 robot.setIdWorkstation(obj.getName());
                 this.robotRepository.save(robot);
             });
@@ -77,6 +78,7 @@ public class WorkstationService implements IWorkstationService {
                 if (tagOptional.isPresent()) {
                     tag = tagOptional.get();
                 }
+                tag.setWorkstation(null);
                 tag.setWorkstationName(obj.getName());
                 this.tagRepository.save(tag);
             });
@@ -93,8 +95,46 @@ public class WorkstationService implements IWorkstationService {
     public Workstation update(String id, Workstation obj) {
         Workstation w = this.selectById(id);
         //if (w == null) {return null; }
-        this.robotRepository.changeWorkstation(w.getName(), obj.getName());
-        this.tagRepository.changeWorkstation(w.getName(), obj.getName());
+//        this.robotRepository.changeWorkstation(w.getName(), obj.getName());
+//        this.tagRepository.changeWorkstation(w.getName(), obj.getName());
+
+
+
+        this.robotRepository.changeWorkstation(w.getName(), null);
+        this.tagRepository.changeWorkstation(w.getName(), null);
+        final boolean fullListRobots  = (obj.getRobots() == null && obj.getRobots().isEmpty()? false :true);
+        final boolean fullListTags = (obj.getTags() == null && obj.getTags().isEmpty()? false :true);
+        if (fullListRobots) {
+            obj.getRobots().forEach(robot -> {
+                Optional<Robot> robotOptional =   this.robotRepository.findbyName(robot.getName());
+                if (robotOptional.isPresent()){robot = robotOptional.get();}
+                else{ robot.setCreatedAt(new Date());}
+                robot.setWorkstation(null);
+                robot.setIdWorkstation(obj.getName());
+                this.robotRepository.save(robot);
+            });
+            //this.robotRepository.saveAll(obj.getRobots());
+        }
+        if (fullListTags) {
+            obj.getTags().forEach(tag -> {
+                Optional<Tag> tagOptional =   this.tagRepository.findbyCode(tag.getCode());
+                if (tagOptional.isPresent()) {
+                    tag = tagOptional.get();
+                }
+                tag.setWorkstation(null);
+                tag.setWorkstationName(obj.getName());
+                this.tagRepository.save(tag);
+            });
+            // this.tagRepository.saveAll(obj.getTags());
+        }
+
+
+
+
+
+
+
+
         w.setName(obj.getName());
         w.setEnable(obj.isEnable());
         w.setRobots(null);

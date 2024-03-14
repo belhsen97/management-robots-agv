@@ -1,16 +1,17 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8í£èâ1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿¤×şÿÿÿÿ8ó£èâ1
-i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şÁ%8ô£èâ1
-o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚æäşÿÿÿÿ8ô£èâ1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿¤×şÿÿÿÿ8ó£èâ1
+o	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñáäûÿÿÿÿ8ô£èâ1
+b
+java:S1612""@Replace this lambda with method reference 'TagMapper::mapToDto'.(„‘û®ıÿÿÿÿ8–«…Öã1
+j	java:S100&"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ•˜œ8ô£èâ1
 d
-java:S1128"BRemove this unused import 'com.enova.web.api.Dtos.WorkstationDto'.(íŠ÷Âûÿÿÿÿ8Îöìâ1
+java:S1128"BRemove this unused import 'com.enova.web.api.Dtos.WorkstationDto'.(íŠ÷Âûÿÿÿÿ8ê‹Öã1
 ^
-java:S1128"BRemove this unused import 'com.enova.web.api.Entitys.Workstation'.(Š²8Îöìâ1
+java:S1128"BRemove this unused import 'com.enova.web.api.Entitys.Workstation'.(Š²8ê‹Öã1
 e
-java:S1128"HRemove this unused import 'com.enova.web.api.Mappers.WorkstationMapper'.(³¥ï«8Ïöìâ1
+java:S1128
+"HRemove this unused import 'com.enova.web.api.Mappers.WorkstationMapper'.(³¥ï«8ë‹Öã1
 h
-java:S1128"KRemove this unused import 'com.enova.web.api.Services.IWorkstationService'.(ßÅ³Â8Ïöìâ1
-Z
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8Ïöìâ1
+java:S1128"KRemove this unused import 'com.enova.web.api.Services.IWorkstationService'.(ßÅ³Â8ë‹Öã1

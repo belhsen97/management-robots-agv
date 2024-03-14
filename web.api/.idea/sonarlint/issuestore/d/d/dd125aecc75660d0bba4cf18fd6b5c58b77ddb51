@@ -6,6 +6,6 @@ java:S1118
 f
 java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8Î¡‡éâ1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Dtos.RobotDto'.(®Ûå®ùÿÿÿÿ8¤‚¯ëâ1
+java:S1128"<Remove this unused import 'com.enova.web.api.Dtos.RobotDto'.(®Ûå®ùÿÿÿÿ8¹»Òã1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8¤‚¯ëâ1
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8¹»Òã1

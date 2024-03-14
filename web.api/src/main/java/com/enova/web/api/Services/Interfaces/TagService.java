@@ -35,7 +35,7 @@ public class TagService implements ITagService {
     public Tag selectById(String id) {
         Optional<Tag> t = this.tagRepository.findById(id);
         if (t.isEmpty()) {
-            throw new RessourceNotFoundException("Cannot found Workstation by id = " + id);
+            throw new RessourceNotFoundException("Cannot found Tag by id = " + id);
         }
         return t.get();
     }
@@ -55,6 +55,7 @@ public class TagService implements ITagService {
     @Override
     public Tag update(String id, Tag obj) {
         Tag t = this.selectById(id);
+        t.setWorkstation(null);
         t.setCode(obj.getCode());
         t.setDescription(obj.getDescription());
         Optional<Workstation> w = workstationRepository.findbyName(obj.getWorkstationName());
@@ -62,6 +63,7 @@ public class TagService implements ITagService {
 //                throw new MethodArgumentNotValidException("cant found Workstation found");
 //            }
         t.setWorkstationName(w.isPresent() ? w.get().getName() : t.getWorkstationName());
+        System.out.println(t.getWorkstation());
         t = tagRepository.save(t);
         t.setWorkstation(w.get());
         return t;
