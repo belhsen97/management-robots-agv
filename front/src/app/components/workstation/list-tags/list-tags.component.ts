@@ -5,10 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors'; 
 import { WorkstationService } from 'src/app/core/services/workstation.service';
-import { AddWorkstationComponent } from '../add-workstation/add-workstation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
-import { WorkstationDto } from 'src/app/core/store/models/Workstation/WorkstationDto.model';
 import { TagDto } from 'src/app/core/store/models/Tag/TagDto.model';
 import { AddTagComponent } from '../add-tag/add-tag.component';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
@@ -24,8 +22,7 @@ import { TagService } from 'src/app/core/services/tag.service';
 export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
   @ViewChild("paginatorTag") paginatorTag  !: MatPaginator;
   @ViewChild(MatSort) sortTag   !: MatSort;
-  displayedColumnsTag : string[] = [ 'code', 'workstation','action'];
-  dataSourceTag :any;
+  displayedColumnsTag : string[] = [ 'code', 'workstation','action']; 
 
 
 
@@ -43,8 +40,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
     //   console.log( item);
     // });
     this.store.select(getValueSearchInput).subscribe(value => {
-      if (value === null || value === undefined || this.dataSourceTag == undefined ){return ; }
-      this.dataSourceTag.filter = value;
+      if (value === null || value === undefined || this.tagService.dataSource == undefined ){return ; }
+      this.tagService.dataSource.filter = value;
       console.log(value);
     });
 
@@ -62,11 +59,11 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
         //this.workstationService.goToComponent("/sign-in");
       }) ;
 
-    this.dataSourceTag= new MatTableDataSource<TagDto>(this.tagService.listTags);
+    this.tagService.dataSource= new MatTableDataSource<TagDto>(this.tagService.listTags);
     this.tagService.getAll().subscribe(
       (response) => { 
         this.tagService.listTags = response.body; 
-        this.dataSourceTag.data =    this.tagService.listTags ;
+        this.tagService.dataSource.data =    this.tagService.listTags ;
       }
       ,(error) => {
         this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -79,7 +76,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       this.tagService.getAll().subscribe(
       (response) => { 
         this.tagService.listTags = response.body; 
-        this.dataSourceTag.data =    this.tagService.listTags ;
+        this.tagService.dataSource.data =    this.tagService.listTags ;
       }
       ,(error) => {
         this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -88,12 +85,12 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       }) ;
   }
   ngAfterViewInit() {
-    this.dataSourceTag.paginator = this.paginatorTag;
-    this.dataSourceTag.sort = this.sortTag;
+    this.tagService.dataSource.paginator = this.paginatorTag;
+    this.tagService.dataSource.sort = this.sortTag;
   }
   ngOnDestroy(): void {
-    if (this.dataSourceTag) {
-      this.dataSourceTag.disconnect();
+    if (this.tagService.dataSource) {
+      this.tagService.dataSource.disconnect();
     }
   }
 
@@ -169,7 +166,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
           this.tagService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
           this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
           this.tagService.listTags.push(  this.tagService.tag );
-          this.dataSourceTag.data = this.tagService.listTags;
+          this.tagService.dataSource.data = this.tagService.listTags;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
@@ -194,7 +191,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
           if (index !== -1) {  this.tagService.listTags[index] =  this.tagService.tag;  } 
         //   this.tagService.listTags.forEach((w) => { if(w.id === id) { w =   this.tagService.workstation ;} });
 
-          this.dataSourceTag.data = this.tagService.listTags;
+          this.tagService.dataSource.data = this.tagService.listTags;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
@@ -218,7 +215,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
             this.tagService.msgReponseStatus = response.body; 
             this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
             this.tagService.listTags = this.tagService.listTags.filter(item => item.id !== id);
-            this.dataSourceTag.data = this.tagService.listTags;
+            this.tagService.dataSource.data = this.tagService.listTags;
           },
           (error:HttpErrorResponse) => {
             if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }

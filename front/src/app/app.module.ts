@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { PageErrorComponent } from './components/shared/page-error/page-error.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { HighchartsChartModule } from 'highcharts-angular';
+// import { HighchartsChartModule } from 'highcharts-angular';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
 import { ListUsersComponent } from './components/user/list-users/list-users.component';
 import { StoreModule } from '@ngrx/store';
@@ -41,6 +41,7 @@ import { AddTagComponent } from './components/workstation/add-tag/add-tag.compon
 import { AddRobotComponent } from './components/robot/add-robot/add-robot.component';
 import { CommonModule } from '@angular/common';
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
+import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ListTagsComponent } from './components/workstation/list-tags/list-tags.
     PanelRobotComponent,
     AddTagComponent,
     AddRobotComponent,
-    ListTagsComponent
+    ListTagsComponent,
+    DetailsWorkstationComponent
         
   ],
   imports: [
@@ -81,7 +83,7 @@ import { ListTagsComponent } from './components/workstation/list-tags/list-tags.
     
     BrowserAnimationsModule,
 
-    HighchartsChartModule ,
+    // HighchartsChartModule ,
     
     MaterialModule,
      

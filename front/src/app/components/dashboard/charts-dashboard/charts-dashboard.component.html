@@ -1,1 +1,47 @@
-<p>Dashboard charts</p>
+<div class="row mb-3">
+    <div class="col-md-12">
+  
+  
+      <div class="row">
+        <div class="col-6">
+          <app-panel-robot></app-panel-robot>
+        </div>
+  
+        <div class="col-6 d-flex flex-column justify-content-center align-items-center ">
+          <div>
+            <button (click)="onClickStopAllRobot()" mat-raised-button color="primary-color" class="mr-2">
+              <mat-icon>play_arrow</mat-icon>Stop All Robot</button>
+            <button (click)="onClickStartAllRobot()" mat-raised-button color="primary-color" class="mr-2">
+              <mat-icon>pause</mat-icon>Start All Robot</button>
+            <button (click)="onClickTrunOffAllRobot()" mat-raised-button color="primary-color" class="mr-2">
+              <mat-icon>power_settings_new</mat-icon>Turn OFF All Robot</button>
+          </div>
+        </div>
+      </div>
+  
+  
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">
+
+
+
+
+        <!-- <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" style = "width: 100%; height: 400px; display: block;">
+        </highcharts-chart>  -->
+         <figure class="highcharts-figure">
+            <div id="container"></div>
+            <p class="highcharts-description">
+                Basic line chart showing trends in a dataset. This chart includes the
+                <code>series-label</code> module, which adds a label to each line for
+                enhanced readability.
+            </p>
+        </figure>
+
+
+
+
+    </div>
+</div>

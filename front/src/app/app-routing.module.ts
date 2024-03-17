@@ -15,6 +15,7 @@ import { EditUserComponent } from './components/user/edit-user/edit-user.compone
 import { EmailComposeComponent } from './components/email/email-compose/email-compose.component';
 import { TableDashboardComponent } from './components/dashboard/table-dashboard/table-dashboard.component';
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
+import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
       {
         path: 'tags',
         component: ListTagsComponent
+      }
+      ,
+      {
+        path: 'tag/:id',
+        component: DetailsWorkstationComponent
       }
     ]
   },

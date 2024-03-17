@@ -1,0 +1,53 @@
+.example-card {
+    max-width: 250px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  .header-image-robot {
+    background-image: url('/assets/images/robots/AGV-AMR.png');
+  }
+  .header-image-tag {
+    background-image: url('/assets/images/tags/rfid-logo.png');
+  }
+  .header-image-robot, .header-image-tag {
+    background-size: cover;  
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;  
+    background-size: cover;
+  }
+
+
+
+
+.custom-list-inline{
+     padding-left: 0;
+    list-style: none; 
+    /* overflow: scroll; */
+    overflow-y: scroll;    
+ 
+}
+li{   
+}
+.custom-list-inline::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  .custom-list-inline::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+  }
+  
+  .custom-list-inline::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the thumb */
+  }
+  
+  .custom-list-inline::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+  }
+  
+  span{
+    font-size: 16px;
+  }

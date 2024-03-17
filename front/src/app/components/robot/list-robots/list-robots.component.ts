@@ -12,6 +12,7 @@ import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.en
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
 
 @Component({
   selector: 'app-list-robots',
@@ -32,11 +33,19 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
   ngOnInit() {
    this.dataSourceRobot = new MatTableDataSource<RobotDto>();
 
+   this.store.select(getValueSearchInput).subscribe(value => {
+    if (value === null || value === undefined || this.dataSourceRobot == undefined) { return; }
+    this.dataSourceRobot.filter = value;
+    console.log(value);
+  });
+
+
     this.dataSourceRobot.data = this.robotService.listRobots;
     this.obs = this.dataSourceRobot.connect();
     this.robotService.getAll().subscribe(
       (response) => { 
         this.robotService.listRobots = response.body;
+        this.robotService.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
         this.dataSourceRobot.data =    this.robotService.listRobots ;
       }
       ,(error) => {

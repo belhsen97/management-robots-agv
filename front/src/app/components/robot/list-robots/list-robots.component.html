@@ -21,6 +21,7 @@
                     <mat-card-subtitle>{{card.workstation.name}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
+                    <p><strong>created</strong> : {{ robotService.formatDateAgo(card.createdAt)}}</p>
                     <p><strong>Status</strong> : {{card.statusRobot}}</p>
                     <p><strong>Mode</strong>  : {{card.modeRobot}} </p>
                     <p><strong>status battery</strong> : {{card.operationStatus}}</p>
@@ -32,8 +33,6 @@
                     <button mat-button>details</button>
                 </mat-card-actions>
             </mat-card>
-
-
         </div>
 
         <mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]">

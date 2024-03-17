@@ -1,7 +1,7 @@
 <div class="row mb-3">
     <div class="col-md-12">
         <div class="d-flex flex-row-reverse">
-            <button mat-raised-button color="primary-color" (click)="onClickAddWorkstation()" class="mx-2">
+            <button mat-raised-button color="primary-color" (click)="onClickAddWS()" class="mx-2">
                 <mat-icon>add</mat-icon>Add new workstation</button>
         </div>
     </div>
@@ -10,7 +10,7 @@
     <div class="col-12">
         <div class="mat-elevation-z8">
             <div class="table-container">
-                <table mat-table [dataSource]="dataSourceWorkstation" matSort>
+                <table mat-table [dataSource]="wsService.dataSource" matSort>
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="name">
@@ -66,14 +66,14 @@
                         <th mat-header-cell *matHeaderCellDef>Action</th>
                         <td mat-cell *matCellDef="let element">
                             <div class="d-flex flex-row">
-                                <button class="ml-2" mat-raised-button color="primary-color"
-                                    (click)=" onClickEditWorkstation(element)">
+                                <button class="ml-2" mat-raised-button color="primary-color"(click)=" onClickEditWS(element)">
                                     <mat-icon>edit</mat-icon>edit
                                 </button>
-                                <button class="ml-2" mat-raised-button color="primary-color"
-                                    (click)="onClickDeleteWorkstation(element.id)">
+                                <button class="ml-2" mat-raised-button color="primary-color"(click)="onClickDeleteWS(element.id)">
                                     <mat-icon>delete_forever</mat-icon>delete
                                 </button>
+                                <a class="ml-2" mat-raised-button color="primary-color"
+                                [routerLink]="['/workstation/tag', element.id]" ><mat-icon>info</mat-icon>details</a>
                             </div>
                         </td>
                     </ng-container>

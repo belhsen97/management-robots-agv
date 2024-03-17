@@ -8,7 +8,6 @@ import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { AddWorkstationComponent } from '../add-workstation/add-workstation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
-import { WorkstationDto } from 'src/app/core/store/models/Workstation/WorkstationDto.model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -23,12 +22,12 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
   @ViewChild("paginatorWorkstation") paginatorWorkstation  !: MatPaginator;
   @ViewChild(MatSort) sortWorkstation   !: MatSort;
   displayedColumnsWorkstation: string[] = ['name', 'enable', 'NRobot', 'NTag', 'action'];
-  dataSourceWorkstation !: MatTableDataSource<WorkstationDto>;
+  //dataSourceWorkstation !: MatTableDataSource<WorkstationDto>;
 
 
 
   constructor(private store: Store,
-    public workstationService: WorkstationService,
+    public wsService: WorkstationService,
     public tagService: TagService,
     private dialog: MatDialog){}
 
@@ -41,21 +40,20 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
     //   console.log( item);
     // });
     this.store.select(getValueSearchInput).subscribe(value => {
-      if (value === null || value === undefined || this.dataSourceWorkstation == undefined) { return; }
-      this.dataSourceWorkstation.filter = value;
+      if (value === null || value === undefined || this.wsService.dataSource == undefined) { return; }
+      this.wsService.dataSource.filter = value;
       console.log(value);
     });
 
-    this.dataSourceWorkstation = new MatTableDataSource<WorkstationDto>(this.workstationService.listWorkstations);
-    this.workstationService.getAll().subscribe(
+  
+    this.wsService.getAll().subscribe(
       (response) => {
-        this.workstationService.listWorkstations = response.body;
-        // this.workstationService.listWorkstations.forEach((workstation, index) => {workstation.no = 1+index;});
-        this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+        this.wsService.listWorkstations = response.body;
+        this.wsService.dataSource.data = this.wsService.listWorkstations;
       }
       , (error) => {
-        this.workstationService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus));
+        this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+        this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
         //this.workstationService.goToComponent("/sign-in");
       });
 
@@ -79,12 +77,12 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
 
   }
   ngAfterViewInit() {
-    this.dataSourceWorkstation.paginator = this.paginatorWorkstation;
-    this.dataSourceWorkstation.sort = this.sortWorkstation;
+    this.wsService.dataSource.paginator = this.paginatorWorkstation;
+    this.wsService.dataSource.sort = this.sortWorkstation;
   }
   ngOnDestroy(): void {
-    if (this.dataSourceWorkstation) {
-      this.dataSourceWorkstation.disconnect();
+    if (this.wsService.dataSource) {
+      this.wsService.dataSource.disconnect();
     }
   }
 
@@ -133,55 +131,55 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
 
 
 
-  onClickAddWorkstation(): void {
+  onClickAddWS(): void {
     const dialogRef = this.openPopupWorkStation(undefined, "Add New WorkStation");
     dialogRef.afterClosed().subscribe(result => {
       if (result == null) { return; }
       // Handle result from the dialog 
-      this.workstationService.insert(result).subscribe(
+      this.wsService.insert(result).subscribe(
         (response) => {
-          this.workstationService.workstation = response.body;
-          this.workstationService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
-          this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus));
+          this.wsService.workstation = response.body;
+          this.wsService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
+          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
           // this.workstationService.workstation.no =  this.workstationService.listWorkstations.length+1;
-          this.workstationService.listWorkstations.push(this.workstationService.workstation);
-          this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+          this.wsService.listWorkstations.push(this.wsService.workstation);
+          this.wsService.dataSource.data = this.wsService.listWorkstations;
         },
         (error: HttpErrorResponse) => {
-          if ((error.status === 406) || (error.status === 403)) { this.workstationService.msgReponseStatus = error.error; }
+          if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
           else {
-            this.workstationService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+            this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
           }
-          this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus)); console.log(error.status);
+          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus)); console.log(error.status);
         }
       );
     });
   }
 
 
-  onClickEditWorkstation(element: any): void {
+  onClickEditWS(element: any): void {
     const dialogRef = this.openPopupWorkStation(element, "Edit WorkStation", true);
     dialogRef.afterClosed().subscribe(result => {
       if (result == null) { return; }
       // Handle result from the dialog 
-      this.workstationService.update(element.id, result).subscribe(
+      this.wsService.update(element.id, result).subscribe(
         (response) => {
-          this.workstationService.workstation = response.body;
-          this.workstationService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
-          this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus));
+          this.wsService.workstation = response.body;
+          this.wsService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
+          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
 
-          const index = this.workstationService.listWorkstations.findIndex(element => element.id === this.workstationService.workstation.id);
-          if (index !== -1) { this.workstationService.listWorkstations[index] = this.workstationService.workstation; }
+          const index = this.wsService.listWorkstations.findIndex(element => element.id === this.wsService.workstation.id);
+          if (index !== -1) { this.wsService.listWorkstations[index] = this.wsService.workstation; }
           //   this.workstationService.listWorkstations.forEach((w) => { if(w.id === id) { w =   this.workstationService.workstation ;} });
 
-          this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+          this.wsService.dataSource.data = this.wsService.listWorkstations;
         },
         (error: HttpErrorResponse) => {
-          if ((error.status === 406) || (error.status === 403)) { this.workstationService.msgReponseStatus = error.error; }
+          if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
           else {
-            this.workstationService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+            this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
           }
-          this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus)); console.log(error.status);
+          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus)); console.log(error.status);
         }
       );
     });
@@ -189,22 +187,22 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
 
 
 
-  onClickDeleteWorkstation(id: any): void {
+  onClickDeleteWS(id: any): void {
     this.openDialogConfirmation('Confirmation', '  Would you want to delete work station equal ' + id + ' ?', '300ms', '500ms',
       () => {
-        this.workstationService.delete(id).subscribe(
+        this.wsService.delete(id).subscribe(
           (response) => {
-            this.workstationService.msgReponseStatus = response.body;
-            this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus));
-            this.workstationService.listWorkstations = this.workstationService.listWorkstations.filter(item => item.id !== id);
-            this.dataSourceWorkstation.data = this.workstationService.listWorkstations;
+            this.wsService.msgReponseStatus = response.body;
+            this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
+            this.wsService.listWorkstations = this.wsService.listWorkstations.filter(item => item.id !== id);
+            this.wsService.dataSource.data = this.wsService.listWorkstations;
           },
           (error: HttpErrorResponse) => {
-            if ((error.status === 406) || (error.status === 403)) { this.workstationService.msgReponseStatus = error.error; }
+            if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
             else {
-              this.workstationService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+              this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
             }
-            this.store.dispatch(ShowAlert(this.workstationService.msgReponseStatus)); console.log(error.status);
+            this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus)); console.log(error.status);
           }
         );
 

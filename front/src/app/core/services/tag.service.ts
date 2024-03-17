@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Service } from './globalservice.service';
 import { Observable } from 'rxjs';
 import { WorkstationDto } from '../store/models/Workstation/WorkstationDto.model';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,10 @@ import { WorkstationDto } from '../store/models/Workstation/WorkstationDto.model
 export class TagService extends Service {
 
     public  listTags : TagDto[]=[];
- 
     public workstation !: WorkstationDto;
     public tag : TagDto ={id:'',code:'',description:'',workstation:this.workstation};
+    dataSource : MatTableDataSource<TagDto> = new MatTableDataSource<TagDto>(this.listTags);
+
      constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
       super(http, router, activeRoute);
       this.randomDataTags();

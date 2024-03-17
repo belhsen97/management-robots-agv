@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Service } from './globalservice.service';
 import { TagDto } from '../store/models/Tag/TagDto.model';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class WorkstationService extends Service {
 
   public  listTags : TagDto[]=[];
   public listWorkstations  : WorkstationDto[] =[];
-  
+  dataSource : MatTableDataSource<WorkstationDto> = new MatTableDataSource<WorkstationDto>(this.listWorkstations);
 
   
   public workstation : WorkstationDto ={
@@ -46,6 +47,12 @@ export class WorkstationService extends Service {
       //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     })
      })
+  }
+  getById(id: any): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/workstation/${id}`,
+      { observe: 'response', headers: new HttpHeaders({  'Content-Type': 'application/json',
+        //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+      }) })
   }
   insert(Wd: WorkstationDto): Observable<HttpResponse<any>> {
     return this.http.post(`${this.url}/workstation`, Wd,
