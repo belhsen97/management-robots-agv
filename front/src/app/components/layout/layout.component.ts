@@ -14,7 +14,6 @@ export class LayoutComponent implements OnInit {
 
    ngOnInit(): void {
         this.userService.userDto = this.userService.getUserDto(); 
-           
    }
 
 }

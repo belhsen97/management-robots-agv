@@ -15,67 +15,36 @@ import { Service } from './globalservice.service';
 })
 export class UserService extends Service {
 
-
   public readonly FEMALE: Gender = Gender.FEMALE;
   public readonly MALE: Gender = Gender.MALE;
-  public userDto: UserDto = {
-    no: 1,
-    id: "1",
-    createdAt: new Date(),
-    username: "username",
-    password: "password",
-    code: "code",
-    role: Role.OPERATOR,
-    enabled: true,
-    firstname: "firstname",
-    lastname: "lastname",
-    matricule: "matricule",
-    phone: 12345678,
-    email: "email@exemple.com",
-    gender: Gender.MALE,
-    photo: {
-      id: "1",
-      fileName: "user",
-      downloadURL: "assets/images/user/user.png",
-      fileType: "png",
-      fileSize: 120,
-    }
-  };
-
-
-
-
-  public ListUsers: UserDto[] = [this.userDto, this.userDto, this.userDto, this.userDto, this.userDto, this.userDto];
-  private readonly listPathPermision = [
-    { role: Role.ADMIN, path: '/edit-user/**' },
-    { role: Role.MAINTENANCE, path: '/edit-user/**' },
-    { role: Role.OPERATOR, path: '/edit-user/**' },
-
-    { role: Role.MAINTENANCE, path: '/list-workstations/**' },
-    { role: Role.MAINTENANCE, path: '/list-workstations/**' }];
- 
-
-  public readonly listRole = [{ label: 'ADMIN', value: Role.ADMIN }, { label: 'MAINTENANCE', value: Role.MAINTENANCE }, { label: 'OPERATOR', value: Role.OPERATOR }];
-  public readonly listGender = [{ label: 'FEMALE', value: Gender.FEMALE }, { label: 'MALE', value: Gender.MALE }];
-  public photoUser: string = "assets/images/user/user-2.png";
-
-
   public readonly SUCCESSFUL: ReponseStatus = ReponseStatus.SUCCESSFUL;
   public readonly ERROR: ReponseStatus = ReponseStatus.ERROR;
   public readonly UNSUCCESSFUL: ReponseStatus = ReponseStatus.UNSUCCESSFUL;
 
+  public userDto: UserDto = {
+    no: 1,id: "1",createdAt: new Date(),username: "username",password: "password",code: "code",
+    role: Role.OPERATOR,enabled: true,firstname: "empty",lastname: "",matricule: "matricule",
+    phone: 12345678,email: "email@exemple.com",gender: Gender.MALE,
+    photo: {id: "1",fileName: "user",downloadURL: "assets/images/user/unkhow-user.jpg",fileType: "png",fileSize: 120}
+  };
 
+  public ListUsers: UserDto[] = [this.userDto];
 
+  private readonly listPathPermision = [
+    { role: Role.ADMIN, path: '/edit-user/**' },
+    { role: Role.MAINTENANCE, path: '/edit-user/**' },
+    { role: Role.OPERATOR, path: '/edit-user/**' },
+    { role: Role.MAINTENANCE, path: '/list-workstations/**' },
+    { role: Role.MAINTENANCE, path: '/list-workstations/**' }];
+
+  public readonly listRole = [{ label: 'ADMIN', value: Role.ADMIN }, { label: 'MAINTENANCE', value: Role.MAINTENANCE }, { label: 'OPERATOR', value: Role.OPERATOR }];
+  
+  public readonly listGender = [{ label: 'FEMALE', value: Gender.FEMALE }, { label: 'MALE', value: Gender.MALE }];
+  
 
 
 
   constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { super(http, router, activeRoute); }
-
-
-
-
-
-
 
   getAll(): Observable<HttpResponse<any>> {
     return this.http.get(`${this.url}/user`,
@@ -86,23 +55,26 @@ export class UserService extends Service {
     return this.http.get(`${this.url}/user/${id}`,
       { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
   }
+
   getByUsername(usename: string): Observable<HttpResponse<any>> {
     return this.http.get(`${this.url}/user/username/${usename}`,
       { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
   }
+
   // getByListUsernames(usenamesArray: string[]) : Observable<HttpResponse<any>>{
-  //               return this.http.get(`${this.url}/user-service/account/select-by-usernames/${usenamesArray.join(',')}`,
+  //               return this.http.get(`${this.url}/user/select-by-usernames/${usenamesArray.join(',')}`,
   //                                    {observe : 'response'})
   //             }
+
   update(id: string, user: UserDto): Observable<HttpResponse<any>> {
     return this.http.put(`${this.url}/user/${id}`, user,
       { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
   }
+
   delete(id: any): Observable<HttpResponse<any>> {
     return this.http.delete(`${this.url}/user/${id}`,
       { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
   }
-
 
   updatePhotoProfile(username: string, file: File): Observable<HttpResponse<any>> {
     const formData = new FormData();   // Create form data
@@ -110,10 +82,6 @@ export class UserService extends Service {
     return this.http.put(`${this.url}/user/photo-to-user/${username}`, formData,
       { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
   }
-
-
-
-
 
 
 
@@ -181,6 +149,19 @@ export class UserService extends Service {
 
 
 
+  
+
+  getUserDto(): UserDto {
+    const userDtoString = localStorage.getItem('UserDto');
+    const account = (userDtoString == null ? this.userDto : JSON.parse(userDtoString));
+    return account;
+  }
+  clearUserDto(): void { localStorage.removeItem('UserDto'); }
+  setUserDto(userDto: UserDto): void {
+    this.clearUserDto();
+    localStorage.setItem('UserDto', JSON.stringify(userDto));
+  }
+  clearAll(): void { this.clearAuthenticationRequest(); this.clearUserDto(); }
 
   isAuthenticated(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log('state.url: ', state.url);
@@ -189,12 +170,12 @@ export class UserService extends Service {
     console.log(this.isPathValid(pathFromRoot, this.listPathPermision));
     return true;//????????????????????????????????????????????????????????????????????????????????????
   }
-  private isPathValid(pathToCheck: string,listPathPermission:any): boolean {
+  private isPathValid(pathToCheck: string, listPathPermission: any): boolean {
     for (const pathPermission of listPathPermission) {
       const pathPattern = pathPermission.path.replace(/\*\*/g, '.*');
-      const regex = new RegExp(`^${pathPattern}$`); 
+      const regex = new RegExp(`^${pathPattern}$`);
 
-      if (regex.test(pathToCheck)&&this.getUserDto().role == pathPermission.role ) { 
+      if (regex.test(pathToCheck) && this.getUserDto().role == pathPermission.role) {
         return true;
       }
     }

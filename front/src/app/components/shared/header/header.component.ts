@@ -12,15 +12,15 @@ import { UserService } from 'src/app/core/services/user.service.ts.service';
 })
 export class HeaderComponent {
   constructor(private store: Store<AppStateModel> , public userService : UserService ){
-
   }
- 
+  state : boolean = false;
+
   onKeyupSearchInput($event:any):void{
    // console.log($event.target.value ); 
      this.store.dispatch(searchInput({ value:  $event.target.value}));
    }
 
-   state : boolean = false;
+  
    onClickMenuSideBar():void{
       this.state  = !this.state; 
       this.store.dispatch(openSidebar({ IsOpen:   this.state }));

@@ -66,15 +66,7 @@ export class Service {
 
 
 
-      getUserDto() : UserDto{
-        const userDtoString =   localStorage.getItem('UserDto'); 
-        const account = (  userDtoString == null ?  null :  JSON.parse(userDtoString)  ) ;
-        return account;}
-      clearUserDto() : void{  localStorage.removeItem( 'UserDto');  }
-      setUserDto(userDto:UserDto) :void{  this.clearUserDto();
-        localStorage.setItem('UserDto',JSON.stringify(userDto));}
-        
-      clearAll() :void{this.clearAuthenticationRequest();this.clearUserDto(); } 
+
 
 
       setToken(authResponseDto : AuthenticationResponseDto) :void
