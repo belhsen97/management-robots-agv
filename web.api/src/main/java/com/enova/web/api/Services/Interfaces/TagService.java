@@ -2,12 +2,14 @@ package com.enova.web.api.Services.Interfaces;
 
 import com.enova.web.api.Entitys.Robot;
 import com.enova.web.api.Entitys.Tag;
+import com.enova.web.api.Entitys.Trace;
 import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.ITagService;
+import com.enova.web.api.Services.ITraceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +21,12 @@ import java.util.Optional;
 public class TagService implements ITagService {
     private final TagRepository tagRepository;
     private final WorkstationRepository workstationRepository;
-
+    private final ITraceService traceService;
     @Autowired
-    public TagService(TagRepository tagRepository, WorkstationRepository workstationRepository) {
+    public TagService(TagRepository tagRepository, WorkstationRepository workstationRepository,ITraceService traceService) {
         this.tagRepository = tagRepository;
         this.workstationRepository = workstationRepository;
+        this.traceService = traceService;
     }
 
     @Override
@@ -49,6 +52,7 @@ public class TagService implements ITagService {
         t.setWorkstationName(w.isPresent() ? w.get().getName() : null);
         t = tagRepository.save(t);
         t.setWorkstation(w.get());
+        traceService.insert(Trace.builder().className("TagService").methodName("insert").description("add new Tag where is code = "+t.getCode()).build());
         return t;
     }
 
@@ -63,6 +67,7 @@ public class TagService implements ITagService {
         System.out.println(t.getWorkstation());
         t = tagRepository.save(t);
         t.setWorkstation(w.get());
+        traceService.insert(Trace.builder().className("TagService").methodName("update").description("update Tag where is code = "+t.getCode()).build());
         return t;
     }
 
@@ -70,12 +75,14 @@ public class TagService implements ITagService {
     public void delete(String id) {
         Tag t = this.selectById(id);
         tagRepository.delete(t);
+        traceService.insert(Trace.builder().className("TagService").methodName("delete").description("delete Tag where is code = "+t.getCode()).build());
     }
 
 
     @Override
     public void deleteAll() {
         this.tagRepository.deleteAll();
+        traceService.insert(Trace.builder().className("TagService").methodName("deleteAll").description("delete all Tag").build());
     }
 
 

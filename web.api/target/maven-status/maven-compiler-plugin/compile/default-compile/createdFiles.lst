@@ -1,4 +1,5 @@
 com\enova\web\api\appRunners\bean_ResetData.class
+com\enova\web\api\Aop\TraceAspect.class
 com\enova\web\api\Services\IFileService.class
 com\enova\web\api\Dtos\mail\BodyContent.class
 com\enova\web\api\Dtos\UserDto.class
@@ -10,7 +11,9 @@ com\enova\web\api\Entitys\Workstation$WorkstationBuilder.class
 com\enova\web\api\Libs\IGenericCRUD.class
 com\enova\web\api\Repositorys\WorkstationRepository.class
 com\enova\web\api\Enums\Connection.class
+com\enova\web\api\Controllers\TraceController.class
 com\enova\web\api\Services\Interfaces\FileService.class
+com\enova\web\api\Dtos\TraceDto$TraceDtoBuilder.class
 com\enova\web\api\Entitys\Robot$RobotBuilder.class
 com\enova\web\api\Dtos\mail\Attachment$AttachmentBuilder.class
 com\enova\web\api\Dtos\AuthenticationRequestDto$AuthenticationRequestDtoBuilder.class
@@ -22,8 +25,10 @@ com\enova\web\api\Enums\TypeStation.class
 com\enova\web\api\Services\Interfaces\WorkstationService.class
 com\enova\web\api\Entitys\Workstation.class
 com\enova\web\api\Dtos\MsgReponseStatus$MsgReponseStatusBuilder.class
+com\enova\web\api\Services\ITraceService.class
 com\enova\web\api\Securitys\ApplicationConfig.class
 com\enova\web\api\Services\Interfaces\AuthenticationService.class
+com\enova\web\api\Mappers\TraceMapper.class
 com\enova\web\api\Repositorys\TagRepository.class
 com\enova\web\api\Dtos\TagDto$TagDtoBuilder.class
 com\enova\web\api\Dtos\mail\Attachment.class
@@ -47,8 +52,10 @@ com\enova\web\api\Enums\TokenType.class
 com\enova\web\api\Controllers\UserController.class
 com\enova\web\api\Services\IRobotService.class
 com\enova\web\api\Dtos\AttachmentDto$AttachmentDtoBuilder.class
+com\enova\web\api\Aop\Trace.class
 com\enova\web\api\Enums\ModeRobot.class
 com\enova\web\api\Libs\MockMultipartFile.class
+com\enova\web\api\Entitys\Trace$TraceBuilder.class
 com\enova\web\api\Dtos\mail\BodyContent$BodyContentBuilder.class
 com\enova\web\api\Configures\GlobalConfigParameters.class
 com\enova\web\api\Services\Interfaces\UserService$2.class
@@ -58,12 +65,15 @@ com\enova\web\api\Services\ITagService.class
 com\enova\web\api\Entitys\Robot.class
 com\enova\web\api\Mappers\UserMapper.class
 com\enova\web\api\Repositorys\UserRepository.class
+com\enova\web\api\Entitys\Trace.class
 com\enova\web\api\Mappers\TagMapper.class
 com\enova\web\api\Dtos\mail\Msg$MsgBuilder.class
+com\enova\web\api\Dtos\TraceDto.class
 com\enova\web\api\Dtos\RobotDto.class
 com\enova\web\api\Exceptions\MethodArgumentNotValidException.class
 com\enova\web\api\Entitys\User.class
 com\enova\web\api\Services\IsmtpMailService.class
+com\enova\web\api\Services\Interfaces\TraceService.class
 com\enova\web\api\Services\Interfaces\UserService$1.class
 com\enova\web\api\Dtos\AuthenticationResponseDto.class
 com\enova\web\api\Dtos\RobotDto$RobotDtoBuilder.class
@@ -72,6 +82,7 @@ com\enova\web\api\Entitys\Token.class
 com\enova\web\api\Securitys\LogoutService.class
 com\enova\web\api\Services\Interfaces\SMTPMailService$1.class
 com\enova\web\api\Controllers\AuthenticationController.class
+com\enova\web\api\Repositorys\TraceRepository.class
 com\enova\web\api\Dtos\MsgReponseStatus.class
 com\enova\web\api\Dtos\WorkstationDto$WorkstationDtoBuilder.class
 com\enova\web\api\Enums\OperationStatus.class

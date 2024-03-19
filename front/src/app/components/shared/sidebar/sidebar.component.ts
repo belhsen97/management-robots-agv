@@ -17,8 +17,8 @@ export class SidebarComponent  implements OnInit {
 
   }
   ngOnInit(): void {
-    this.store.select(getStateSlidebare).subscribe(state => { 
-      this.hideSidebar = state;
-    });
+    // this.store.select(getStateSlidebare).subscribe(state => { 
+    //   this.hideSidebar = state;
+    // });
   }
 }

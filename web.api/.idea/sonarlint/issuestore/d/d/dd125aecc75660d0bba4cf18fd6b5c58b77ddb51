@@ -1,11 +1,6 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8Ê¡‡éâ1
 \
-java:S1118
-":Add a private constructor to hide the implicit public one.(â½Àûÿÿÿÿ8Ì¡‡éâ1
+java:S1118	":Add a private constructor to hide the implicit public one.(â½Àûÿÿÿÿ8Ì¡‡éâ1
 f
-java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8Î¡‡éâ1
-^
-java:S1128"<Remove this unused import 'com.enova.web.api.Dtos.RobotDto'.(®Ûå®ùÿÿÿÿ8¹»Òã1
-^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8¹»Òã1
+java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8Î¡‡éâ1

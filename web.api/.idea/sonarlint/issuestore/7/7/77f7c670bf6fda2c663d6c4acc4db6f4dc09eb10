@@ -1,36 +1,38 @@
 
-c	java:S112™"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8»ï×ëâ1
-h	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(ÛêÎøÿÿÿÿ8¼ï×ëâ1
+c	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(®İœş8©‹Ó¢å1
+h	java:S112›"FDefine and throw a dedicated exception instead of using a generic one.(ÛêÎøÿÿÿÿ8ª‹Ó¢å1
 …
-java:S1488œ"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8¼ï×ëâ1
-n	java:S101 "MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÿ¹»…ÿÿÿÿÿ8½ï×ëâ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¡ù“8¾ï×ëâ1
+java:S1488£"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8ª‹Ó¢å1
+n	java:S101!"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÿ¹»…ÿÿÿÿÿ8«‹Ó¢å1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¡ù“8«‹Ó¢å1
 ³
-java:S4449—"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8Üï×ëâ1
+java:S4449"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8µ‹Ó¢å1
 _
-java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
 _
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
+java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
 _
-java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
 _
-java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
+java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
 _
-java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
+java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
 _
-java:S6813+"BRemove this field injection and use constructor injection instead.(êæÄŞ8İï×ëâ1
+java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
+_
+java:S6813."BRemove this field injection and use constructor injection instead.(êæÄŞ8¶‹Ó¢å1
 S
-java:S6437T"6Revoke and change this password, as it is compromised.(´²•¯8ãï×ëâ1
-]	java:S125\"<This block of commented-out lines of code should be removed.(ˆÇßµüÿÿÿÿ8š‘Òã1
-]	java:S125~"<This block of commented-out lines of code should be removed.(ãÌí¶şÿÿÿÿ8æï×ëâ1
-Y	java:S125"<This block of commented-out lines of code should be removed.(Ä”­“8æï×ëâ1
-^	java:S125†"<This block of commented-out lines of code should be removed.(öŠò·øÿÿÿÿ8çï×ëâ1
+java:S6437X"6Revoke and change this password, as it is compromised.(´²•¯8½‹Ó¢å1
+]	java:S125c"<This block of commented-out lines of code should be removed.(ˆÇßµüÿÿÿÿ8¿‹Ó¢å1
+^	java:S125…"<This block of commented-out lines of code should be removed.(ãÌí¶şÿÿÿÿ8¿‹Ó¢å1
+Y	java:S125ˆ"<This block of commented-out lines of code should be removed.(Ä”­“8¿‹Ó¢å1
+^	java:S125"<This block of commented-out lines of code should be removed.(öŠò·øÿÿÿÿ8¿‹Ó¢å1
 A
-java:S2119¦"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8êï×ëâ1
-^	java:S125¹"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ8ëï×ëâ1
+java:S2119­"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8Ä‹Ó¢å1
+^	java:S125À"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ8Å‹Ó¢å1
 P
-java:S1128"3Remove this unused import 'java.io.BufferedReader'.(€é²Å8ëï×ëâ1
+java:S1128"3Remove this unused import 'java.io.BufferedReader'.(€é²Å8ß…Ô¢å1
 R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ëï×ëâ1
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ß…Ô¢å1
 S
-java:S1128"6Remove this unused import 'java.io.InputStreamReader'.(ãˆÎÉ8ëï×ëâ1
+java:S1128"6Remove this unused import 'java.io.InputStreamReader'.(ãˆÎÉ8ß…Ô¢å1

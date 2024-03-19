@@ -16,8 +16,20 @@ import { EmailComposeComponent } from './components/email/email-compose/email-co
 import { TableDashboardComponent } from './components/dashboard/table-dashboard/table-dashboard.component';
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
+import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
+import { TracingComponent } from './components/statistic/tracing/tracing.component';
 
 const routes: Routes = [
+  {
+    path: 'statistic',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'tracing',
+        component: TracingComponent
+      }
+    ]
+  },
   {
     path: 'dashboard',
     component: LayoutComponent,
@@ -92,6 +104,10 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListRobotsComponent
+      },
+      {
+        path: ':id',
+        component: DetailsRobotComponent
       }
     ]
   },
@@ -102,7 +118,11 @@ const routes: Routes = [
       {
         path: 'setting',
         component: GlobalSettingComponent
-      }
+      },
+      // {
+      //   path: 'notification',
+      //   component: NotificationComponent
+      // }
     ]
   },
   {

@@ -12,6 +12,8 @@ import com.enova.web.api.Services.IAuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,6 +69,12 @@ public class AuthenticationService implements IAuthenticationService {
                 .status(ReponseStatus.SUCCESSFUL)
                 .message("Successful to access account")
                 .build();
+    }
+    @Override
+    public String getUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) { return authentication.getName();}
+        return "Unknown";
     }
 }
 

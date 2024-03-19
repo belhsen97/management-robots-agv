@@ -3,6 +3,7 @@ package com.enova.web.api.appRunners;
 import com.enova.web.api.Entitys.*;
 import com.enova.web.api.Enums.*;
 import com.enova.web.api.Repositorys.RobotRepository;
+import com.enova.web.api.Repositorys.TraceRepository;
 import com.enova.web.api.Repositorys.UserRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IFileService;
@@ -42,6 +43,8 @@ public class bean_ResetData implements CommandLineRunner {
     ITagService iTagService;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    TraceRepository traceRepository;
 
     final Token token = Token.builder()
             .token("Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RmaTk3IiwiaWF0IjoxNzA5NDk0NTUyLCJleHAiOjE3MDk0OTU5OTJ9.8sxfA6qa8ijehu4GZJrnVaOQ5nCU9AXWYgtIQGAFsjs")
@@ -76,6 +79,7 @@ public class bean_ResetData implements CommandLineRunner {
             .enable(true)
             .build();
     Tag tag1 = Tag.builder().code("code-1").description("description").build();
+    Trace trace1 = Trace.builder().username(user.getUsername()).timestamp(new Date()).className("RobotService").methodName("insert").description("add new robot where is name = robot-1").build();
 
     @Override
     public void run(String... args) throws Exception {
@@ -88,6 +92,9 @@ public class bean_ResetData implements CommandLineRunner {
             user.addToken(token);
             userRepository.save(user);
         }
+        traceRepository.deleteAll();
+        traceRepository.save(trace1);
+
 
 //        workstationRepository.deleteAll();
 //        workstation1 = workstationRepository.save(workstation1);

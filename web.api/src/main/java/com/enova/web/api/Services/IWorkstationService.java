@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface IWorkstationService extends IGenericCRUD<Workstation,String> {
     public Workstation selectByName(String name);
-    public List<Tag> selectAllTags();
 }

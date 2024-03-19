@@ -30,7 +30,7 @@
                 <mat-card-actions>
                     <button mat-button (click)="onClickEdit(card)">edit</button>
                     <button mat-button (click)="onClickDelete(card.id)">delete</button>
-                    <button mat-button>details</button>
+                    <a mat-button     [routerLink]="['/robot-avg', card.name]" >details</a>
                 </mat-card-actions>
             </mat-card>
         </div>

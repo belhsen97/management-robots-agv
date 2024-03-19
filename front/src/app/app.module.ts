@@ -42,6 +42,8 @@ import { AddRobotComponent } from './components/robot/add-robot/add-robot.compon
 import { CommonModule } from '@angular/common';
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
+import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
+import { TracingComponent } from './components/statistic/tracing/tracing.component';
 
 @NgModule({
   declarations: [
@@ -71,8 +73,9 @@ import { DetailsWorkstationComponent } from './components/workstation/details-wo
     AddTagComponent,
     AddRobotComponent,
     ListTagsComponent,
-    DetailsWorkstationComponent
-        
+    DetailsWorkstationComponent,
+    DetailsRobotComponent,
+    TracingComponent
   ],
   imports: [
     CommonModule,

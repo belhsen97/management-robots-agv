@@ -2,12 +2,14 @@ package com.enova.web.api.Services.Interfaces;
 
 import com.enova.web.api.Entitys.Robot;
 import com.enova.web.api.Entitys.Tag;
+import com.enova.web.api.Entitys.Trace;
 import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
+import com.enova.web.api.Services.ITraceService;
 import com.enova.web.api.Services.IWorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,14 @@ public class WorkstationService implements IWorkstationService {
     private final WorkstationRepository workstationRepository;
     private final RobotRepository robotRepository;
     private final TagRepository tagRepository;
+    private final ITraceService traceService;
 
     @Autowired
-    public WorkstationService(WorkstationRepository workstationRepository, RobotRepository robotRepository, TagRepository tagRepository) {
+    public WorkstationService(WorkstationRepository workstationRepository, RobotRepository robotRepository, TagRepository tagRepository,ITraceService traceService) {
         this.workstationRepository = workstationRepository;
         this.robotRepository = robotRepository;
         this.tagRepository = tagRepository;
+        this.traceService = traceService;
     }
 
     @Override
@@ -86,8 +90,10 @@ public class WorkstationService implements IWorkstationService {
         }
         obj.setRobots(null);
         obj.setTags(null);
-        final Workstation w = this.workstationRepository.save(obj);
-        return this.selectById(w.getId());
+        Workstation w = this.workstationRepository.save(obj);
+        w = this.selectById(w.getId());
+        traceService.insert(Trace.builder().className("WorkstationService").methodName("insert").description("add new Workstation where is name = "+obj.getName()).build());
+        return w;
     }
 
     @Override
@@ -97,9 +103,6 @@ public class WorkstationService implements IWorkstationService {
         //if (w == null) {return null; }
 //        this.robotRepository.changeWorkstation(w.getName(), obj.getName());
 //        this.tagRepository.changeWorkstation(w.getName(), obj.getName());
-
-
-
         this.robotRepository.changeWorkstation(w.getName(), null);
         this.tagRepository.changeWorkstation(w.getName(), null);
         final boolean fullListRobots  = (obj.getRobots() == null && obj.getRobots().isEmpty()? false :true);
@@ -127,20 +130,14 @@ public class WorkstationService implements IWorkstationService {
             });
             // this.tagRepository.saveAll(obj.getTags());
         }
-
-
-
-
-
-
-
-
         w.setName(obj.getName());
         w.setEnable(obj.isEnable());
         w.setRobots(null);
         w.setTags(null);
         w = this.workstationRepository.save(w);
-        return this.selectById(w.getId());
+        w = this.selectById(w.getId());
+        traceService.insert(Trace.builder().className("WorkstationService").methodName("update").description("update Workstation where is name = "+w.getName()).build());
+        return w;
     }
 
     @Override
@@ -149,16 +146,13 @@ public class WorkstationService implements IWorkstationService {
         this.robotRepository.changeWorkstation(w.getName(), null);
         this.tagRepository.changeWorkstation(w.getName(), null);
         this.workstationRepository.delete(w);
+        traceService.insert(Trace.builder().className("WorkstationService").methodName("delete").description("delete Workstation where is name = "+w.getName()).build());
     }
 
     @Override
     public void deleteAll() {
         this.workstationRepository.deleteAll();
-    }
-
-    @Override
-    public List<Tag> selectAllTags() {
-        return null;//return workstationRepository.findAllTags();
+        traceService.insert(Trace.builder().className("WorkstationService").methodName("deleteAll").description("delete all Workstation").build());
     }
 }
 

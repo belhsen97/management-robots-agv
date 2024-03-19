@@ -11,12 +11,11 @@
 
 
 
-  #container {
+
+#container {
     min-height: 800px;
     width:100%;
 }
-
-
 .highcharts-figure,
 .highcharts-data-table table {
     min-width: 360px;

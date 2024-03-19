@@ -33,12 +33,22 @@ ng add @ngrx/store-devtools@16.2.0
 ng add @ngrx/router-store@16.2.0
 ng add @ngrx/effects@16.2.0
 ng add @angular/material
-ng add highcharts-angular
-ng add highcharts 
+ng add highcharts@11.4
 ```
 ### Back 
 Add in pom.xml this dependencies below.
 ```xml
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- AspectJ -->
+		<jjwt.version>0.11.5</jjwt.version>
+		<!-- javax mail -->
+		<javax.mail.version>1.6.2</javax.mail.version>
+		<!-- jsoup -->
+		<jsoup.version>1.17.2</jsoup.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,7 +71,7 @@ Add in pom.xml this dependencies below.
 			<!-- jsoup HTML parser library @ https://jsoup.org/ -->
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.17.2</version>
+			<version>${jsoup.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,7 +80,7 @@ Add in pom.xml this dependencies below.
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
-			<version>1.6.2</version>
+			<version>${javax.mail.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -85,17 +95,17 @@ Add in pom.xml this dependencies below.
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
+			<version>${jjwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.5</version>
+			<version>${jjwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.5</version>
+			<version>${jjwt.version}</version>
 		</dependency>
 	</dependencies>
 ```

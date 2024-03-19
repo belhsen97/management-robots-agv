@@ -2,12 +2,14 @@ package com.enova.web.api.Services.Interfaces;
 
 
 import com.enova.web.api.Entitys.Robot;
+import com.enova.web.api.Entitys.Trace;
 import com.enova.web.api.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IRobotService;
+import com.enova.web.api.Services.ITraceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +22,13 @@ public class RobotService implements IRobotService {
 
     private final RobotRepository robotRepository;
     private final WorkstationRepository workstationRepository;
+    private final ITraceService traceService;
 
     @Autowired
-    public RobotService(RobotRepository robotRepository,
-                        WorkstationRepository workstationRepository) {
+    public RobotService(RobotRepository robotRepository,WorkstationRepository workstationRepository,ITraceService traceService) {
         this.robotRepository = robotRepository;
         this.workstationRepository = workstationRepository;
+        this.traceService = traceService;
     }
 
     @Override
@@ -52,6 +55,7 @@ public class RobotService implements IRobotService {
         obj.setIdWorkstation(w.isPresent() ? w.get().getName() : null);
         obj = robotRepository.save(obj);
         obj.setWorkstation(w.get());
+        traceService.insert(Trace.builder().className("RobotService").methodName("insert").description("add new robot where is name = "+obj.getName()).build());
         return obj;
     }
 
@@ -72,6 +76,7 @@ public class RobotService implements IRobotService {
         r.setSpeed(obj.getSpeed());
         r = robotRepository.save(r);
         r.setWorkstation(w.get());
+        traceService.insert(Trace.builder().className("RobotService").methodName("update").description("update robot where is name = "+r.getName()).build());
         return r;
     }
 
@@ -80,10 +85,12 @@ public class RobotService implements IRobotService {
     public void delete(String id) {
         Robot r = this.selectById(id);
         robotRepository.delete(r);
+        traceService.insert(Trace.builder().className("RobotService").methodName("delete").description("delete robot where is name = "+r.getName()).build());
     }
 
     @Override
     public void deleteAll() {
         this.robotRepository.deleteAll();
+        traceService.insert(Trace.builder().className("RobotService").methodName("deleteAll").description("delete all robot").build());
     }
 }

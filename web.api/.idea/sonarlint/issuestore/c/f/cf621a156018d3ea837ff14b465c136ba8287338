@@ -1,8 +1,8 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8½ßÔêã1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿¤×şÿÿÿÿ8ÃßÔêã1
-o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñáäûÿÿÿÿ8ÄßÔêã1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿¤×şÿÿÿÿ8ÃßÔêã1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñáäûÿÿÿÿ8ÄßÔêã1
 b
-java:S1612"@Replace this lambda with method reference 'TagMapper::mapToDto'.(„‘û®ıÿÿÿÿ8ÆßÔêã1
-j	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ•˜œ8ÇßÔêã1
+java:S1612"@Replace this lambda with method reference 'TagMapper::mapToDto'.(„‘û®ıÿÿÿÿ8ÆßÔêã1
+j	java:S100""NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ•˜œ8ÇßÔêã1

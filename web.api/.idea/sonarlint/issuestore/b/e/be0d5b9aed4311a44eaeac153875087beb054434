@@ -1,14 +1,16 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8ÕÕ±Öã1
+h
+java:S11927"KDefine a constant instead of duplicating this literal "TagService" 4 times.(ŸüÜÉ8´¬—å1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8°Ì’å1
 d
-java:S36553"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûşÿÿÿÿ8æÕ±Öã1
+java:S3655E"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûşÿÿÿÿ8¿Ì’å1
 d
-java:S3655A"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûşÿÿÿÿ8æÕ±Öã1
+java:S36556"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(½èûşÿÿÿÿ8¿Ì’å1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éâ†Òşÿÿÿÿ8èÕ±Öã1
-L	java:S106?"+Replace this use of System.out by a logger.(ÙÚşÍÿÿÿÿÿ8ïÕ±Öã1
-W	java:S125S"<This block of commented-out lines of code should be removed.(•¡·&8ñÕ±Öã1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éâ†Òşÿÿÿÿ8ÁÌ’å1
+L	java:S106C"+Replace this use of System.out by a logger.(ÙÚşÍÿÿÿÿÿ8ÉÌ’å1
+W	java:S125Z"<This block of commented-out lines of code should be removed.(•¡·&8ËÌ’å1
 ^
-java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8²ûöêã1
+java:S1128"<Remove this unused import 'com.enova.web.api.Entitys.Robot'.(€ÙË¹ûÿÿÿÿ8ßó˜å1
 H
-java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8²ûöêã1
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8ßó˜å1

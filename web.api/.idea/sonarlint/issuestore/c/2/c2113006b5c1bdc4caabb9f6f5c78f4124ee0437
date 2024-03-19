@@ -1,9 +1,15 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8õØêã1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8äƒ¦‘å1
 d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÛ£ã8ûØêã1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïô¯Ÿ8ûØêã1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÛ£ã8öƒ¦‘å1
+j	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïô¯Ÿ8öƒ¦‘å1
 _
-java:S1612!"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8şØêã1
-o	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‘õ­øÿÿÿÿ8‚Øêã1
-j	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«øƒÎ8‚‚Øêã1
+java:S1612""BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8øƒ¦‘å1
+o	java:S100&"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‘õ­øÿÿÿÿ8ùƒ¦‘å1
+j	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«øƒÎ8úƒ¦‘å1
+Z
+java:S1128"8Remove this unused import 'com.enova.web.api.Aop.Trace'.(Í¨×úÿÿÿÿ8˜İÎ‘å1
+j
+java:S1128"MRemove this unused import 'org.springframework.security.core.Authentication'.(ñıÓ“8şƒ¦‘å1
+y
+java:S1128"\Remove this unused import 'org.springframework.security.core.context.SecurityContextHolder'.(ŒÄæë8ÿƒ¦‘å1

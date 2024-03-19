@@ -3,10 +3,16 @@
    <div id="sidebar-scrollbar">
       <nav class="iq-sidebar-menu">
          <ul id="iq-sidebar-toggle" class="iq-menu">
-            <!-- <li>
-               <a routerLink="/dashboard/charts" class="iq-waves-effect"><i
-                     class="la la-chart-area"></i><span>Dashbord</span></a>
-            </li> -->
+            <li>
+               <a href="#statistic-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
+                  aria-expanded="false">
+                  <i class="las la-chart-bar"></i><span>statistic</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul id="statistic-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                  <li class="ml-3"> <a routerLink="/statistic/tracing" class="iq-waves-effect">
+                     <i class="las la-binoculars"></i><span>tracing</span></a>
+                  </li>
+               </ul>
+            </li>
             <li>
                <a href="#dashbord-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
                   aria-expanded="false">

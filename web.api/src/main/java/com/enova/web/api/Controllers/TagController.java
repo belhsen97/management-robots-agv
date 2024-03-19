@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/tag")
 public class TagController {
     private final ITagService iService;
-
     @Autowired
     public TagController(@Qualifier("tag-service") ITagService iService) {
         this.iService = iService;

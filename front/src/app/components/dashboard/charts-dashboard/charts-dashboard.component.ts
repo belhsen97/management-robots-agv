@@ -104,9 +104,6 @@ export class ChartsDashboardComponent  implements OnInit {
         labels: { format: '{text}mm/s',align: 'left'},
         gridLineWidth: 0,  height: '50%',
     }
-
-
-
     , { // right y axis
        // linkedTo: 1,
         gridLineWidth: 0,
