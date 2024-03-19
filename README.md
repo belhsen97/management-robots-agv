@@ -42,7 +42,7 @@ Add in pom.xml this dependencies below.
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- AspectJ -->
+        <!--  json web token  -->
 		<jjwt.version>0.11.5</jjwt.version>
 		<!-- javax mail -->
 		<javax.mail.version>1.6.2</javax.mail.version>
