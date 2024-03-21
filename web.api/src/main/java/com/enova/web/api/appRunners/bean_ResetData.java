@@ -83,6 +83,9 @@ public class bean_ResetData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+//        System.out.println(FileService.defaultUserPhoto);
+//        final Attachment img =  this.saveAttachment(FileService.defaultUserPhoto);
+//        System.out.println(img.getFileName());
         Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
         if (userOptional.isEmpty()) {
             user.setPassword(passwordEncoder.encode("1234"));
@@ -94,38 +97,40 @@ public class bean_ResetData implements CommandLineRunner {
         }
         traceRepository.deleteAll();
         traceRepository.save(trace1);
+        System.out.println("finish add list of trace");
 
-
-//        workstationRepository.deleteAll();
-//        workstation1 = workstationRepository.save(workstation1);
-//        workstation2 = workstationRepository.save(workstation2);
-//        workstation3 = workstationRepository.save(workstation3);
-//        iTagService.deleteAll();
-//        for (int i = 1; i < 100; i++) {
-//            final Tag tag = Tag.builder()
-//                    .code("code-" + i)
-//                    .description("description-tag")
-//                    .workstationName(workstation1.getName())
-//                    .build();
-//            iTagService.insert(tag);
-//        }
-//        robotRepository.deleteAll();
-//        for (int i = 1; i < 26; i++) {
-//            final Robot robot = Robot.builder()
-//                    //.id(i)
-//                    .idWorkstation(workstation1.getName())
-//                    //.workstation(workstation1)
-//                    .name("robot-" + i)
-//                    .createdAt(new Date())
-//                    .connection(Connection.CONNECTED)
-//                    .modeRobot(ModeRobot.AUTO)
-//                    .statusRobot(StatusRobot.RUNNING)
-//                    .operationStatus(OperationStatus.PAUSE)
-//                    .levelBattery(100)
-//                    .speed(1.5)
-//                    .build();
-//            robotRepository.save(robot);
-//        }
+        workstationRepository.deleteAll();
+        workstation1 = workstationRepository.save(workstation1);
+        workstation2 = workstationRepository.save(workstation2);
+        workstation3 = workstationRepository.save(workstation3);
+        iTagService.deleteAll();
+        for (int i = 1; i < 100; i++) {
+            final Tag tag = Tag.builder()
+                    .code("code-" + i)
+                    .description("description-tag")
+                    .workstationName(workstation1.getName())
+                    .build();
+            iTagService.insert(tag);
+        }
+        System.out.println("finish add list of workstation");
+        robotRepository.deleteAll();
+        for (int i = 1; i < 26; i++) {
+            final Robot robot = Robot.builder()
+                    //.id(i)
+                    .idWorkstation(workstation1.getName())
+                    //.workstation(workstation1)
+                    .name("robot-" + i)
+                    .createdAt(new Date())
+                    .connection(Connection.CONNECTED)
+                    .modeRobot(ModeRobot.AUTO)
+                    .statusRobot(StatusRobot.RUNNING)
+                    .operationStatus(OperationStatus.PAUSE)
+                    .levelBattery(100)
+                    .speed(1.5)
+                    .build();
+            robotRepository.save(robot);
+        }
+        System.out.println("finish add list of robot");
         // robotRepository.updateWorkstation(workstation1.getName(),workstation3.getName());
         // System.out.println( );
         //  System.out.println(robotRepository.findAll().get(0).getWorkstation().getName());
@@ -178,7 +183,6 @@ public class bean_ResetData implements CommandLineRunner {
                 ip.append(".");
             }
         }
-
         return ip.toString();
     }
 

@@ -1,15 +1,15 @@
 <div class="row">
-    <div class="col-sm-12 mb-2">
-        <div class="iq-card-header d-flex justify-content-between">
-           <div class="iq-header-title">
-              <h4 class="card-title">Tracing</h4>
-           </div>
-           <button class="ml-2" mat-raised-button color="primary-color">
+   <div class="col-sm-12 mb-2">
+      <div class="iq-card-header d-flex justify-content-between">
+         <div class="iq-header-title">
+            <h4 class="card-title">Tracing</h4>
+         </div>
+         <button class="ml-2" mat-raised-button color="primary-color">
             <mat-icon>delete_forever</mat-icon>delete all</button>
-        </div>
-     </div>
-     <div class="col-sm-12">
-        <!-- <div class="iq-card"  *ngFor="let card of obs | async">
+      </div>
+   </div>
+   <div class="col-sm-12">
+      <!-- <div class="iq-card"  *ngFor="let card of obs | async">
            <div class="iq-card-body">
               <ul class="notification-list m-0 p-0">
                  <li class="d-flex align-items-center">
@@ -29,29 +29,39 @@
               </ul>
            </div>
         </div> -->
-        <mat-accordion>
-         <mat-expansion-panel  *ngFor="let trace of obs | async" class="mb-3">
-           <mat-expansion-panel-header>
-             <mat-panel-title>
-               <div class="user-img img-fluid mr-3">
-                  <img  [src]="trace.user.photo == null ? 'assets/images/user/unkhow-user.jpg'  : trace.user.photo.downloadURL" alt="story-img" class="rounded-circle avatar-40">
+      <mat-accordion>
+         <mat-expansion-panel *ngFor="let trace of obs | async" class="mb-3">
+            <mat-expansion-panel-header>
+               <mat-panel-title>
+                  <div class="user-img img-fluid mr-3">
+                     <img
+                        [src]="trace.user.photo == null ? 'assets/images/user/unkhow-user.jpg'  : trace.user.photo.downloadURL"
+                        alt="story-img" class="rounded-circle avatar-40">
+                  </div>
+                  {{ trace.username }} - {{ traceService.formatDateAgo(trace.timestamp)}}
+               </mat-panel-title>
+               <mat-panel-description>
+                  {{ trace.description }}
+               </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="ml-5" >
+               <div class="d-flex flex-row">
+                  <p>
+                     <strong>User :</strong> {{ trace.user.firstname }} {{ trace.user.lastname }}<br>
+                     <strong>matricule :</strong>{{ trace.user.matricule }}<br>
+                     <strong>phone :</strong>{{ trace.user.phone }}<br>
+                     <strong>email :</strong>{{ trace.user.email }}<br>
+                     <strong>User ID:</strong> {{ trace.user.id }} <br>
+                     <strong>User Created At:</strong> {{ trace.user.createdAt | date: 'medium' }} <br>
+                  </p>
+                  <p>
+                     <strong>Class Name:</strong> {{ trace.className }} <br>
+                     <strong>Method Name:</strong> {{ trace.methodName }} <br>
+                  </p>
                </div>
-               {{ trace.username }} - {{ traceService.formatDateAgo(trace.timestamp)}}
-             </mat-panel-title>
-             <mat-panel-description>
-               {{ trace.description }}
-             </mat-panel-description>
-           </mat-expansion-panel-header>
-           <p>
-             <strong>Class Name:</strong> {{ trace.className }} <br>
-             <strong>Method Name:</strong> {{ trace.methodName }} <br>
-             <strong>User:</strong> {{ trace.user.username }} <br>
-             <strong>User ID:</strong> {{ trace.user.id }} <br>
-             <strong>User Created At:</strong> {{ trace.user.createdAt | date: 'medium' }} <br>
-             <!-- Display other user details here -->
-           </p>
+            </div>
          </mat-expansion-panel>
-       </mat-accordion>       
-        <mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]"></mat-paginator>
-     </div>
+      </mat-accordion>
+      <mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]"></mat-paginator>
+   </div>
 </div>

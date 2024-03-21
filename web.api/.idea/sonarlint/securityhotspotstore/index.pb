@@ -177,3 +177,8 @@ b
 2src/main/java/com/enova/web/api/Mappers/vfdvd.java,0\c\0cbecc53688241ca0fd26baaaa1f8e21acee68d2
 h
 8src/main/java/com/enova/web/api/Mappers/TraceMapper.java,c\d\cde8799775eeef4187d649b95083cdb925cc844f
+8
+mvnw.cmd,1\f\1f1763f358c257ea3515417352b82b0165647ad1
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4

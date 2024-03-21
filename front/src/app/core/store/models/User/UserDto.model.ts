@@ -19,7 +19,7 @@ export interface UserDto {
     gender:Gender,
     photo:AttachementDto
 }
-export interface Users{
-   Userlist:UserDto[],
-   Errormessage:string
-}
+// export interface Users{
+//    Userlist:UserDto[],
+//    Errormessage:string
+// }
