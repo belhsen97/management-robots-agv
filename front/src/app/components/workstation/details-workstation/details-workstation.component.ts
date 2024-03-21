@@ -33,5 +33,4 @@ export class DetailsWorkstationComponent implements OnInit,OnDestroy   {
     });
   }
   ngOnDestroy(): void {if (this.routerSubscription) {this.routerSubscription.unsubscribe();}}
-
 }

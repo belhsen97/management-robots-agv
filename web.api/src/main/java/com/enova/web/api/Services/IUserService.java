@@ -16,10 +16,6 @@ public interface IUserService extends IGenericCRUD<User,String> {
     Attachment savePhotoToUser(MultipartFile file, String username ) throws Exception;
     Attachment getAttachmentbyId( String id );
     Attachment getAttachmentbyUsername ( String username );
-    MsgReponseStatus register(AuthenticationRequestDto request) throws IOException, MessagingException;
-
-
-
 
 
     MsgReponseStatus sendMailCodeForgotPassword(String username , String email) throws IOException, MessagingException;

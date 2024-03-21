@@ -58,7 +58,7 @@ const routes: Routes = [
       }
       ,
       {
-        path: 'tag/:id',
+        path: ':id',
         component: DetailsWorkstationComponent
       }
     ]

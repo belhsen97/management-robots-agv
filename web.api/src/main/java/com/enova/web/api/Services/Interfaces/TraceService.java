@@ -5,6 +5,7 @@ import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.TraceRepository;
 import com.enova.web.api.Services.IAuthenticationService;
 import com.enova.web.api.Services.ITraceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("trace-service")
+@RequiredArgsConstructor
 public class TraceService implements ITraceService {
     private final TraceRepository traceRepository;
     private final IAuthenticationService authService;
-
-    @Autowired
-    public TraceService(TraceRepository traceRepository,AuthenticationService  authService){
-        this.traceRepository = traceRepository;
-        this.authService = authService;
-    }
 
     @Override
     public List<Trace> selectAll() {

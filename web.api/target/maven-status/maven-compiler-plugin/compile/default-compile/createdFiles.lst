@@ -58,7 +58,6 @@ com\enova\web\api\Libs\MockMultipartFile.class
 com\enova\web\api\Entitys\Trace$TraceBuilder.class
 com\enova\web\api\Dtos\mail\BodyContent$BodyContentBuilder.class
 com\enova\web\api\Configures\GlobalConfigParameters.class
-com\enova\web\api\Services\Interfaces\UserService$2.class
 com\enova\web\api\Enums\StatusRobot.class
 com\enova\web\api\Services\IWorkstationService.class
 com\enova\web\api\Services\ITagService.class
@@ -85,6 +84,7 @@ com\enova\web\api\Controllers\AuthenticationController.class
 com\enova\web\api\Repositorys\TraceRepository.class
 com\enova\web\api\Dtos\MsgReponseStatus.class
 com\enova\web\api\Dtos\WorkstationDto$WorkstationDtoBuilder.class
+com\enova\web\api\Services\Interfaces\AuthenticationService$1.class
 com\enova\web\api\Enums\OperationStatus.class
 com\enova\web\api\Services\IAuthenticationService.class
 com\enova\web\api\Entitys\User$UserBuilder.class

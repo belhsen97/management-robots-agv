@@ -16,15 +16,24 @@ services:
     networks:
       - ennova-network
      
-  # web-api service      
+     
+  # MQTT X Web UI service
+  mqttx-web:
+    container_name: mqttx-web
+    image: emqx/mqttx-web
+    ports:
+      - "1883:80"
+    networks:
+      - ennova-network
+     
+     
+  web-api service      
   web-api:
     container_name: web-api
     image: "web-api:0.0.1"
     build: ./web.api
     ports:
       - "8089:8089"
-    # environment:
-      # - SPRING_DATA_MONGODB_URI=mongodb://root:root@mongodb:27017/management_robot_avg_db
     environment:
       - SPRING_DATA_MONGODB_HOST=mongodb
       - SPRING_DATA_MONGODB_PORT=27017
@@ -37,14 +46,10 @@ services:
       - MYAPP_SMTP_AUTH=true
       - MYAPP_SMTP_ENABLE_STARTTLS=true
       - MYAPP_SMTP_USERNAME=belhsenbachouch55@gmail.com
-      - MYAPP_SMTP_PASSWORD=???-your password-??
+      - MYAPP_SMTP_PASSWORD=your password
       - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
       - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/
       - MYAPP_PATH_RESOURCES=/app
-      # - MYAPP_FILE_FORGOT_PASSWORD_HTML=/app/user/html/forgot-password.html
-      # - MYAPP_FILE_CONFIRM_MAIL_HTML=/app/user/html/verify-mail-correct.html
-      # - MYAPP_FILE_UPDATE_NEW_USER_HTML=/app/user/html/update-new-user.html
-      # - MYAPP_FILE_DEFAULT_USER_PHOTO=/app/user/img/user.png
       - MYAPP_LINK_WEBPAGE=http://localhost:4200
       - MYAPP_LINK_LIST_USERS=http://localhost:4200/list-users
       - MYAPP_LINK_PATH_SIGNIN=/sign-in

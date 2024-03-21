@@ -11,6 +11,7 @@ import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.ITraceService;
 import com.enova.web.api.Services.IWorkstationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,19 +22,12 @@ import java.util.Optional;
 
 
 @Service("workstation-service")
+@RequiredArgsConstructor
 public class WorkstationService implements IWorkstationService {
     private final WorkstationRepository workstationRepository;
     private final RobotRepository robotRepository;
     private final TagRepository tagRepository;
     private final ITraceService traceService;
-
-    @Autowired
-    public WorkstationService(WorkstationRepository workstationRepository, RobotRepository robotRepository, TagRepository tagRepository,ITraceService traceService) {
-        this.workstationRepository = workstationRepository;
-        this.robotRepository = robotRepository;
-        this.tagRepository = tagRepository;
-        this.traceService = traceService;
-    }
 
     @Override
     public List<Workstation> selectAll() {

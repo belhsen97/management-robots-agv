@@ -61,6 +61,7 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
         this.userService.ListUsers.forEach((user, index) => {
           user.no = 1+index;
           user.createdAt = this.userService.toDate (user.createdAt.toString() );
+          if ( user.photo == null )  { user.photo = this.userService.defaultPhotoUser;}
       });
         this.dataSource.data =  this.userService.ListUsers ;
       }

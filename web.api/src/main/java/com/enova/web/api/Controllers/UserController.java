@@ -103,11 +103,6 @@ public class UserController {
     }
 
 
-    @PostMapping("/register")
-    public ResponseEntity<MsgReponseStatus> register(@Validated @RequestBody AuthenticationRequestDto request) throws MessagingException, IOException {
-        return new ResponseEntity<>(iUserService.register(request), HttpStatus.ACCEPTED);
-    }
-
 
     @PutMapping("/mail-code-forgot-password/{username}/{email}")
     public ResponseEntity<MsgReponseStatus> sendMailCodeForgotPassword(@PathVariable("username") String username, @PathVariable("email") String email) throws IOException, MessagingException {

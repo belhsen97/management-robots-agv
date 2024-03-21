@@ -10,6 +10,7 @@ import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.ITagService;
 import com.enova.web.api.Services.ITraceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +19,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("tag-service")
+@RequiredArgsConstructor
 public class TagService implements ITagService {
     private final TagRepository tagRepository;
     private final WorkstationRepository workstationRepository;
     private final ITraceService traceService;
-    @Autowired
-    public TagService(TagRepository tagRepository, WorkstationRepository workstationRepository,ITraceService traceService) {
-        this.tagRepository = tagRepository;
-        this.workstationRepository = workstationRepository;
-        this.traceService = traceService;
-    }
 
     @Override
     public List<Tag> selectAll() {

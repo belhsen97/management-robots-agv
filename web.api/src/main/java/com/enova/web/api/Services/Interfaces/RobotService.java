@@ -10,6 +10,7 @@ import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IRobotService;
 import com.enova.web.api.Services.ITraceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +19,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("robot-service")
+@RequiredArgsConstructor
 public class RobotService implements IRobotService {
 
     private final RobotRepository robotRepository;
     private final WorkstationRepository workstationRepository;
     private final ITraceService traceService;
-
-    @Autowired
-    public RobotService(RobotRepository robotRepository,WorkstationRepository workstationRepository,ITraceService traceService) {
-        this.robotRepository = robotRepository;
-        this.workstationRepository = workstationRepository;
-        this.traceService = traceService;
-    }
 
     @Override
     public List<Robot> selectAll() {

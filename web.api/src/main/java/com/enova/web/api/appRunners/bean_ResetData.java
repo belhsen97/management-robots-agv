@@ -51,7 +51,7 @@ public class bean_ResetData implements CommandLineRunner {
             .tokenType(TokenType.BEARER)
             .revoked(false).expired(false)
             .build();
-    final User user = User.builder()
+    User user = User.builder()
             .firstname("belhsen")
             .lastname("bachouch")
             .enabled(true)
@@ -89,11 +89,12 @@ public class bean_ResetData implements CommandLineRunner {
         Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
         if (userOptional.isEmpty()) {
             user.setPassword(passwordEncoder.encode("1234"));
-            final Attachment img = this.saveAttachment(FileService.defaultUserPhoto);
-            img.setId("12345678");
-            user.setPhoto(img);
             user.addToken(token);
-            userRepository.save(user);
+            user = userRepository.save(user);
+            final Attachment img = this.saveAttachment(FileService.defaultUserPhoto);
+            img.setId(user.getId());
+            user.setPhoto(img);
+            user = userRepository.save(user);
         }
         traceRepository.deleteAll();
         traceRepository.save(trace1);

@@ -21,7 +21,7 @@ export class WorkstationService extends Service {
     id:"1",
     name: "workstation 1" ,
     enable: true,
-    tags:[this.listTags[0],this.listTags[3]],
+    tags:[],
     robots: []
    };
 

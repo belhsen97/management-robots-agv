@@ -29,7 +29,6 @@ export class TracingComponent implements OnInit ,  AfterViewInit, OnDestroy {
     this.store.select(getValueSearchInput).subscribe(value => {
       if (value === null || value === undefined || this.dataSource == undefined ){return ; }
       this.dataSource.filter = value;
-      console.log(  value );
     });
 
     this.traceService.getAll().subscribe(

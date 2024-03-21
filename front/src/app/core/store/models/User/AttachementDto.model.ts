@@ -1,7 +1,7 @@
 export interface AttachementDto {
-    id: string ;
-    fileName: string ;
-    downloadURL: string ;
-    fileType: string ;
+    id: String ;
+    fileName: String ;
+    downloadURL: String ;
+    fileType: String ;
     fileSize: number;
 }

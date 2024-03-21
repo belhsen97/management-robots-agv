@@ -14,4 +14,8 @@ o	java:S1009"NRename this method name to match the regular expression '^[a-z][
 java:S1130T"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(õŒÜçüÿÿÿÿ8Î…Úêã1
 ‰
 java:S1130_"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(«×¶ó8Ğ…Úêã1
-k	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ë©¢8Õ…Úêã1
+k	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ë©¢8Õ…Úêã1
+b
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8¹Æ°öå1
+m
+java:S1128"PRemove this unused import 'org.springframework.validation.annotation.Validated'.(¸ÒÖƒ8¹Æ°öå1

@@ -35,18 +35,21 @@
                <mat-panel-title>
                   <div class="user-img img-fluid mr-3">
                      <img
-                        [src]="trace.user.photo == null ? 'assets/images/user/unkhow-user.jpg'  : trace.user.photo.downloadURL"
+                        [src]="trace.user == null ? 'assets/images/user/unkhow-user.jpg'  : trace.user.photo.downloadURL"
                         alt="story-img" class="rounded-circle avatar-40">
                   </div>
                   {{ trace.username }} - {{ traceService.formatDateAgo(trace.timestamp)}}
                </mat-panel-title>
                <mat-panel-description>
                   {{ trace.description }}
+                  <button  (click)="onClickDelete(trace.id)" class="ml-2" mat-raised-button color="primary-color">
+                     <mat-icon>delete</mat-icon>delete
+                   </button>
                </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="ml-5" >
                <div class="d-flex flex-row">
-                  <p>
+                  <p *ngIf="trace.user != null">
                      <strong>User :</strong> {{ trace.user.firstname }} {{ trace.user.lastname }}<br>
                      <strong>matricule :</strong>{{ trace.user.matricule }}<br>
                      <strong>phone :</strong>{{ trace.user.phone }}<br>

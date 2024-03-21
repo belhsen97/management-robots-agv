@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { Service } from './globalservice.service';
+import { AttachementDto } from '../store/models/User/AttachementDto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,13 @@ export class UserService extends Service {
   public readonly ERROR: ReponseStatus = ReponseStatus.ERROR;
   public readonly UNSUCCESSFUL: ReponseStatus = ReponseStatus.UNSUCCESSFUL;
 
+
+  public defaultPhotoUser  : AttachementDto= {id: "1",fileName: "user",downloadURL: "assets/images/user/unkhow-user.jpg",fileType: "png",fileSize: 120};
   public userDto: UserDto = {
     no: 1,id: "1",createdAt: new Date(),username: "username",password: "password",code: "code",
     role: Role.OPERATOR,enabled: true,firstname: "empty",lastname: "",matricule: "matricule",
     phone: 12345678,email: "email@exemple.com",gender: Gender.MALE,
-    photo: {id: "1",fileName: "user",downloadURL: "assets/images/user/unkhow-user.jpg",fileType: "png",fileSize: 120}
+    photo: this.defaultPhotoUser
   };
 
   public ListUsers: UserDto[] = [this.userDto];
@@ -87,7 +90,7 @@ export class UserService extends Service {
 
 
   register(authRequestDto: AuthenticationRequestDto): Observable<HttpResponse<any>> {
-    return this.http.post(`${this.url}/user/register`, authRequestDto,
+    return this.http.post(`${this.url}/authentication/register`, authRequestDto,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
   }
 

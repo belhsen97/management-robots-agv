@@ -16,6 +16,7 @@ import com.enova.web.api.Repositorys.UserRepository;
 import com.enova.web.api.Services.IFileService;
 import com.enova.web.api.Services.IUserService;
 import com.enova.web.api.Services.IsmtpMailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,20 +33,13 @@ import java.util.Optional;
 
 
 @Service("user-service")
+@RequiredArgsConstructor
 public class UserService implements IUserService {
 
     private final UserRepository userRepository;
     private final IFileService ifileService;
     private final IsmtpMailService ismtpMailService;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserService(UserRepository userRepository, IFileService ifileService, IsmtpMailService ismtpMailService, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.ifileService = ifileService;
-        this.ismtpMailService = ismtpMailService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public List<User> selectAll() {
@@ -70,7 +64,7 @@ public class UserService implements IUserService {
     public User insert(User object) {
         object.setCreatedAt(new Date());
         object.setRole(Roles.OPERATOR);
-        object.setEnabled(false);
+        object.setEnabled(true);
         return userRepository.save(object);
     }
 
@@ -139,42 +133,6 @@ public class UserService implements IUserService {
     public Attachment getAttachmentbyUsername(String username) {
         final User user = this.selectByUsername(username);
         return user.getPhoto();
-    }
-
-
-    @Override
-    public MsgReponseStatus register(AuthenticationRequestDto request) throws IOException, MessagingException {
-        if (userRepository.existsByUsername(request.getUsername())) {
-            throw new MethodArgumentNotValidException("other username found");
-        }
-        User user = User.builder()
-                .username(request.getUsername())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .build();
-        String formHTMLForNewUser = ifileService.Edit_ConfirmMailPage(user.getUsername());
-        String formHTMLForAdmin = ifileService.Edit_NewUser(user.getUsername(), user.getEmail());
-        final Msg msgForNewUser = Msg.builder().subject("Confirmation Address Mail")
-                .email(user.getEmail())
-                .text("body")
-                .bodyContents(new ArrayList<BodyContent>() {{
-                    add(BodyContent.builder().content(formHTMLForNewUser).type(TypeBody.HTML).build());
-                }}).build();
-//        this.ismtpMailService.connect();
-//        this.ismtpMailService.sendingMultiBodyContent(msgForNewUser);
-//        for ( User admin : userRepository.findUsersByRole(Roles.ADMIN)){
-//            final Msg msgForAdmin = Msg.builder().subject("New User Registration Notification")
-//                    .email(admin.getEmail())
-//                    .text("body")
-//                    .bodyContents(new ArrayList<BodyContent>(){{add(BodyContent.builder().content(formHTMLForAdmin).type(TypeBody.HTML).build());}}).build();
-//            this.ismtpMailService.sendingMultiBodyContent(msgForAdmin);
-//        }
-        this.insert(user);
-        return MsgReponseStatus.builder()
-                .title("Register User")
-                .status(ReponseStatus.SUCCESSFUL)
-                .datestamp(new Date())
-                .message("To complete next step you should verify confirmation mail").build();
     }
 
 

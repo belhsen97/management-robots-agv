@@ -1,6 +1,21 @@
 
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ
-]
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ּ‘Û
-E	java:S106,"+Replace this use of System.out by a logger.(ָÜיױרÿÿÿÿ
-E	java:S1063"+Replace this use of System.out by a logger.(ָÜיױרÿÿÿÿ
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8½קוצו1
+d
+java:S6830$"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ּ‘Û8ַקוצו1
+^
+java:S1854="ARemove this useless assignment to local variable "msgForNewUser".(‘‰ק8ָקוצו1
+a
+java:S1854<"DRemove this useless assignment to local variable "formHTMLForAdmin".(ÿ»©‏8ָקוצו1
+R
+java:S1481<"5Remove this unused "formHTMLForAdmin" local variable.(ÿ»©‏8Êקוצו1
+N
+java:S3599@",Use another way to initialize this instance.(שג¢אתÿÿÿÿ8ֻקוצו1
+{
+java:S1171@"YMove the contents of this initializer to a standard constructor or to field initializers.(שג¢אתÿÿÿÿ8ֻקוצו1
+O
+java:S1481="2Remove this unused "msgForNewUser" local variable.(‘‰ק8ּקוצו1
+W	java:S125C"<This block of commented-out lines of code should be removed.(ױ°‏8ּקוצו1
+L	java:S106q"+Replace this use of System.out by a logger.(ָÜיױרÿÿÿÿ8ֿקוצו1
+L	java:S106x"+Replace this use of System.out by a logger.(ָÜיױרÿÿÿÿ8׀קוצו1
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸־שÿÿÿÿ8ֽ־זצו1
