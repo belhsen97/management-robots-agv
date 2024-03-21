@@ -37,7 +37,7 @@ services:
       - MYAPP_SMTP_AUTH=true
       - MYAPP_SMTP_ENABLE_STARTTLS=true
       - MYAPP_SMTP_USERNAME=belhsenbachouch55@gmail.com
-      - MYAPP_SMTP_PASSWORD=myrxsnxvipttpqjb
+      - MYAPP_SMTP_PASSWORD=???-your password-??
       - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
       - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/
       - MYAPP_PATH_RESOURCES=/app
