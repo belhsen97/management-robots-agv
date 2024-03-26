@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Role } from '../store/models/User/Role.enum';
 import { Gender } from '../store/models/User/Gender.enum';
-import { AuthenticationRequestDto } from '../store/models/User/AuthenticationRequestDto.model';
+import { AuthenticationRequest } from '../store/models/User/AuthenticationRequest.model';
 import { ReponseStatus } from '../store/models/Global/ReponseStatus.enum';
-import { AuthenticationResponseDto } from '../store/models/User/AuthenticationResponseDto.model';
+import { AuthenticationResponse } from '../store/models/User/AuthenticationResponse.model';
 import { UserDto } from '../store/models/User/UserDto.model';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -89,18 +89,18 @@ export class UserService extends Service {
 
 
 
-  register(authRequestDto: AuthenticationRequestDto): Observable<HttpResponse<any>> {
+  register(authRequestDto: AuthenticationRequest): Observable<HttpResponse<any>> {
     return this.http.post(`${this.url}/authentication/register`, authRequestDto,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
   }
 
-  login(authRequest: AuthenticationRequestDto): Observable<HttpResponse<any>> {
+  login(authRequest: AuthenticationRequest): Observable<HttpResponse<any>> {
     return this.http.post(`${this.url}/authentication/authenticate`, authRequest, {
       observe: 'response'
       , headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     })
   }
-  saveLogin(authResponseDto: AuthenticationResponseDto, username: string): void {
+  saveLogin(authResponseDto: AuthenticationResponse, username: string): void {
     this.setToken(authResponseDto);
     this.getByUsername(username).subscribe(
       (response) => {

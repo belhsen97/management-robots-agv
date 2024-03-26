@@ -1,9 +1,9 @@
 
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Æž½»üÿÿÿÿ8§‡ýçâ1
 E
-java:S1948"#Make "robots" private or transient.(“‡ìÆúÿÿÿÿ8«‡ýçâ1
+java:S1948"#Make "robots" private or transient.(“‡ìÆúÿÿÿÿ8«‡ýçâ1
 C
-java:S1948 "&Make "tags" transient or serializable.(¦ª¾ô8«‡ýçâ1
-]	java:S125%"<This block of commented-out lines of code should be removed.(†Þ¨Úÿÿÿÿÿ8°‡ýçâ1
+java:S1948!"&Make "tags" transient or serializable.(¦ª¾ô8«‡ýçâ1
+]	java:S125&"<This block of commented-out lines of code should be removed.(†Þ¨Úÿÿÿÿÿ8°‡ýçâ1
 J
 java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX8þ¡Òžå1

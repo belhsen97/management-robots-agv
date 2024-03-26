@@ -1,9 +1,10 @@
 package com.enova.web.api.Services.Interfaces;
 
 
-import com.enova.web.api.Entitys.Robot;
-import com.enova.web.api.Entitys.Trace;
-import com.enova.web.api.Entitys.Workstation;
+import com.enova.web.api.Models.Responses.RobotData;
+import com.enova.web.api.Models.Entitys.Robot;
+import com.enova.web.api.Models.Entitys.Trace;
+import com.enova.web.api.Models.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotRepository;
@@ -11,7 +12,6 @@ import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.IRobotService;
 import com.enova.web.api.Services.ITraceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -39,7 +39,10 @@ public class RobotService implements IRobotService {
         }
         return r.get();
     }
-
+    @Override
+    public List<RobotData> SelectAllDataById(String id) {
+        return null;
+    }
     @Override
     public Robot insert(Robot obj) {
         if (robotRepository.findbyName(obj.getName()).isPresent()) {
@@ -88,4 +91,6 @@ public class RobotService implements IRobotService {
         this.robotRepository.deleteAll();
         traceService.insert(Trace.builder().className("RobotService").methodName("deleteAll").description("delete all robot").build());
     }
+
+
 }

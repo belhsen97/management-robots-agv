@@ -16,7 +16,7 @@
                         <label for="sign-in-input-username">Username</label>
                         <input type="text" placeholder="Enter username" class="form-control mb-0"
                          id="sign-in-input-username" name="sign-in-username"
-                         [(ngModel)]="userService.authRequestDto.username"  
+                         [(ngModel)]="userService.authRequest.username"  
                         #username="ngModel" required> 
                         <div class="invalid" *ngIf="signInForm.submitted || ( username.invalid && username.touched) " >
                             <p  *ngIf="username.errors?.['required']">Please enter a username in the text input.</p>
@@ -31,7 +31,7 @@
                         <span class="text-primary float-right cursor-pointer"  routerLink="/forgot-password" >Forgot password?</span>
                         <input type="password" placeholder="Enter Password" class="form-control mb-0"
                         id="sign-in-input-password" name="sign-in-password"
-                        [(ngModel)]="userService.authRequestDto.password"  
+                        [(ngModel)]="userService.authRequest.password"  
                         #password="ngModel" minlength="4" required>
                         <div class="invalid" *ngIf="signInForm.submitted || ( password.invalid && password.touched) " >
                             <p  *ngIf="password.errors?.['required']"> Please enter a password in the text input</p>

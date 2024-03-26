@@ -1,8 +1,9 @@
 package com.enova.web.api.Controllers;
 
-import com.enova.web.api.Dtos.AuthenticationRequestDto;
-import com.enova.web.api.Dtos.AuthenticationResponseDto;
-import com.enova.web.api.Dtos.MsgReponseStatus;
+
+import com.enova.web.api.Models.Requests.AuthenticationRequest;
+import com.enova.web.api.Models.Responses.AuthenticationResponse;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
 import com.enova.web.api.Services.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,12 +30,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<MsgReponseStatus> register(@Validated @RequestBody AuthenticationRequestDto request) throws MessagingException, IOException {
+    public ResponseEntity<MsgReponseStatus> register(@Validated @RequestBody AuthenticationRequest request) throws MessagingException, IOException {
         return new ResponseEntity<>(iService.register(request), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponseDto> authenticate(@RequestBody AuthenticationRequestDto request) throws Exception {
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) throws Exception {
         return ResponseEntity.ok(iService.authenticate(request));
     }
 

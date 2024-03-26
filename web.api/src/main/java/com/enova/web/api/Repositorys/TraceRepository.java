@@ -1,7 +1,7 @@
 package com.enova.web.api.Repositorys;
 
 
-import com.enova.web.api.Entitys.Trace;
+import com.enova.web.api.Models.Entitys.Trace;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

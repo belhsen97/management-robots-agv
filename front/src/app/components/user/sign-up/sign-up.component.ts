@@ -18,11 +18,11 @@ constructor(public userService : UserService,  private store: Store){}
 
 signUp(form: NgForm):void {
   if(!form.invalid){
-    this.userService.register(this.userService.authRequestDto).subscribe(
+    this.userService.register(this.userService.authRequest).subscribe(
       (response) => {     
         this.userService.msgReponseStatus = response.body;
         if ( this.userService.msgReponseStatus.status === this.userService.SUCCESSFUL ) 
-        { this.userService.goToComponent("success-sign-up/"+this.userService.authRequestDto.email);}
+        { this.userService.goToComponent("success-sign-up/"+this.userService.authRequest.email);}
         console.log(this.userService.msgReponseStatus);
       }
       ,

@@ -1,8 +1,6 @@
 package com.enova.web.api.Repositorys;
 
-import com.enova.web.api.Entitys.Robot;
-import com.enova.web.api.Entitys.Tag;
-import com.enova.web.api.Entitys.Workstation;
+import com.enova.web.api.Models.Entitys.Workstation;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

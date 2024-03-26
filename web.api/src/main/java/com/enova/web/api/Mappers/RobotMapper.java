@@ -1,8 +1,9 @@
 package com.enova.web.api.Mappers;
 
-import com.enova.web.api.Dtos.RobotDto;
-import com.enova.web.api.Dtos.WorkstationDto;
-import com.enova.web.api.Entitys.*;
+import com.enova.web.api.Models.Dtos.RobotDto;
+import com.enova.web.api.Models.Dtos.WorkstationDto;
+import com.enova.web.api.Models.Entitys.Robot;
+import com.enova.web.api.Models.Entitys.Workstation;
 
 public class RobotMapper {
     public static Robot mapToEntity(RobotDto r) {

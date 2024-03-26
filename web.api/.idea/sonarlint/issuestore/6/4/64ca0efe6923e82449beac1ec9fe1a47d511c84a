@@ -1,11 +1,0 @@
-
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·”ñ8´ú°å1
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹
-d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş‘­Â8è³°å1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌØ­Ó8è³°å1
-o	java:S100""NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó©äßøÿÿÿÿ8ë³°å1
-b
-java:S4684""@Replace this persistent entity with a simple POJO or DTO object.(ó©äßøÿÿÿÿ8¦¥¹å1
-]
-java:S4684'"@Replace this persistent entity with a simple POJO or DTO object.(´“8¦¥¹å1

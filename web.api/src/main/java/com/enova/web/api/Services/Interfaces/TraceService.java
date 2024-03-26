@@ -1,12 +1,11 @@
 package com.enova.web.api.Services.Interfaces;
 
-import com.enova.web.api.Entitys.Trace;
+import com.enova.web.api.Models.Entitys.Trace;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.TraceRepository;
 import com.enova.web.api.Services.IAuthenticationService;
 import com.enova.web.api.Services.ITraceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

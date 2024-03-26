@@ -1,21 +1,4 @@
 
-g	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(õŒÜçüÿÿÿÿ8«…Úêã1
-b	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(«×¶ó8«…Úêã1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8­…Úêã1
 i
-java:S6830$"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıíõùÿÿÿÿ8Å…Úêã1
-i	java:S100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õì#8Å…Úêã1
-c
-java:S1612+"AReplace this lambda with method reference 'UserMapper::mapToDto'.(ÑÕæ¿şÿÿÿÿ8Ç…Úêã1
-o	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÀÌîÿÿÿÿÿ8È…Úêã1
-j	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»‡Š8É…Úêã1
-o	java:S1009"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÏ¢äÿÿÿÿÿ8Ê…Úêã1
-
-java:S1130T"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(õŒÜçüÿÿÿÿ8Î…Úêã1
-‰
-java:S1130_"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(«×¶ó8Ğ…Úêã1
-k	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ë©¢8Õ…Úêã1
-b
-java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8¹Æ°öå1
-m
-java:S1128"PRemove this unused import 'org.springframework.validation.annotation.Validated'.(¸ÒÖƒ8¹Æ°öå1
+java:S6830&"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıíõùÿÿÿÿ8Å…Úêã1

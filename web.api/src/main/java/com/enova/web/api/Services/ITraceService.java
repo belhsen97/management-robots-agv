@@ -1,6 +1,5 @@
 package com.enova.web.api.Services;
 
-import com.enova.web.api.Entitys.Trace;
-import com.enova.web.api.Libs.IGenericCRUD;
+import com.enova.web.api.Models.Entitys.Trace;
 
 public interface ITraceService extends IGenericCRUD<Trace,String> { }

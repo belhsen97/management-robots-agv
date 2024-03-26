@@ -16,7 +16,7 @@ export class FormForgotPasswordComponent {
 
   onClickForgotPassword(form: NgForm):void {
     if (!form.invalid) { 
-      this.userService.sendMailCodeForgotPassword(this.userService.authRequestDto.username, this.userService.authRequestDto.email ).subscribe(
+      this.userService.sendMailCodeForgotPassword(this.userService.authRequest.username, this.userService.authRequest.email ).subscribe(
         (response) => {
           this.userService.msgReponseStatus = response.body;
           this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 

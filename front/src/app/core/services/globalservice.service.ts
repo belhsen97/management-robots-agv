@@ -3,16 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MsgReponseStatus } from '../store/models/Global/MsgReponseStatus.model';
 import { UserDto } from '../store/models/User/UserDto.model';
-import { AuthenticationResponseDto } from '../store/models/User/AuthenticationResponseDto.model';
+import { AuthenticationResponse } from '../store/models/User/AuthenticationResponse.model';
 import { ReponseStatus } from '../store/models/Global/ReponseStatus.enum';
-import { AuthenticationRequestDto } from '../store/models/User/AuthenticationRequestDto.model';
+import { AuthenticationRequest } from '../store/models/User/AuthenticationRequest.model';
 export class Service {
     protected url = `${environment.apiUrl}`;
     public msgReponseStatus  !: MsgReponseStatus ; 
 
 
-    public authResponseDto : AuthenticationResponseDto ={title : "",datestamp : new Date(),status : ReponseStatus.ERROR,message : "",token: "" }
-    public authRequestDto : AuthenticationRequestDto = {  username : "",  password : "" , email : "" };
+    public authResponse : AuthenticationResponse ={title : "",datestamp : new Date(),status : ReponseStatus.ERROR,message : "",token: "" }
+    public authRequest : AuthenticationRequest = {  username : "",  password : "" , email : "" };
 
 
     constructor(protected  http:HttpClient,
@@ -69,12 +69,12 @@ export class Service {
 
 
 
-      setToken(authResponseDto : AuthenticationResponseDto) :void
-      {this.clearAuthenticationRequest();localStorage.setItem('AuthenticationResponse',JSON.stringify(authResponseDto));}  
-      getAuthenticationRequest() : AuthenticationResponseDto{
+      setToken(authResponse : AuthenticationResponse) :void
+      {this.clearAuthenticationRequest();localStorage.setItem('AuthenticationResponse',JSON.stringify(authResponse));}  
+      getAuthenticationRequest() : AuthenticationResponse{
         const authenticationResponseString =   localStorage.getItem('AuthenticationResponse'); 
-        const authResponseDto = (  authenticationResponseString == null ?  this.authResponseDto :  JSON.parse(authenticationResponseString)  ) ;
-        return authResponseDto;} 
+        const authResponse = (  authenticationResponseString == null ?  this.authResponse :  JSON.parse(authenticationResponseString)  ) ;
+        return authResponse;} 
       clearAuthenticationRequest() : void{localStorage.removeItem( 'AuthenticationResponse');}
 
 

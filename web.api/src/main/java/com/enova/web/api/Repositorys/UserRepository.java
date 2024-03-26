@@ -1,8 +1,8 @@
 package com.enova.web.api.Repositorys;
 
 import com.enova.web.api.Enums.Roles;
-import com.enova.web.api.Entitys.Token;
-import com.enova.web.api.Entitys.User;
+import com.enova.web.api.Models.Entitys.Token;
+import com.enova.web.api.Models.Entitys.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

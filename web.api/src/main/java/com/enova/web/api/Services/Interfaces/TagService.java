@@ -1,9 +1,8 @@
 package com.enova.web.api.Services.Interfaces;
 
-import com.enova.web.api.Entitys.Robot;
-import com.enova.web.api.Entitys.Tag;
-import com.enova.web.api.Entitys.Trace;
-import com.enova.web.api.Entitys.Workstation;
+import com.enova.web.api.Models.Entitys.Tag;
+import com.enova.web.api.Models.Entitys.Trace;
+import com.enova.web.api.Models.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.TagRepository;
@@ -11,10 +10,8 @@ import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.ITagService;
 import com.enova.web.api.Services.ITraceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

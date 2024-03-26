@@ -1,7 +1,7 @@
 package com.enova.web.api.Exceptions;
 
-import com.enova.web.api.Dtos.MsgReponseStatus;
-import com.enova.web.api.Dtos.ReponseStatus;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
-import java.util.NoSuchElementException;
 
 
 @ControllerAdvice

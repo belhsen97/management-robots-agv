@@ -1,8 +1,8 @@
 package com.enova.web.api.Mappers;
 
-import com.enova.web.api.Dtos.AttachmentDto;
-import com.enova.web.api.Dtos.UserDto;
-import com.enova.web.api.Entitys.User;
+import com.enova.web.api.Models.Dtos.AttachmentDto;
+import com.enova.web.api.Models.Dtos.UserDto;
+import com.enova.web.api.Models.Entitys.User;
 
 public class UserMapper {
     public static User mapToEntity(UserDto userDto){

@@ -1,15 +1,16 @@
 package com.enova.web.api.Controllers;
 
-import com.enova.web.api.Aop.Trace;
-import com.enova.web.api.Dtos.*;
-import com.enova.web.api.Entitys.Robot;
+
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
+import com.enova.web.api.Models.Responses.RobotData;
+import com.enova.web.api.Models.Dtos.RobotDto;
+import com.enova.web.api.Models.Entitys.Robot;
 import com.enova.web.api.Mappers.RobotMapper;
 import com.enova.web.api.Services.IRobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -27,7 +28,6 @@ public class RobotController {
         this.iService = iService;
     }
 
-
     @GetMapping
     public List<RobotDto> SelectAll() {
         final List<Robot> list = iService.selectAll();
@@ -38,6 +38,16 @@ public class RobotController {
     public ResponseEntity<RobotDto> SelectBy(@PathVariable String id) {
         return ResponseEntity.ok(RobotMapper.mapToDto(iService.selectById(id)));
     }
+
+    @GetMapping("data-robot/{id}")
+    public List<RobotData> SelectAllDataById(@PathVariable String id) {
+        return iService.SelectAllDataById(id);
+    }
+
+
+
+
+
 
     @PostMapping
     public RobotDto Insert(@RequestBody RobotDto rd) {

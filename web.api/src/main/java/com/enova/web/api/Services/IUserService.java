@@ -1,11 +1,9 @@
 package com.enova.web.api.Services;
 
-import com.enova.web.api.Dtos.AuthenticationRequestDto;
-import com.enova.web.api.Dtos.MsgReponseStatus;
-import com.enova.web.api.Entitys.Attachment;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Models.Entitys.Attachment;
 import com.enova.web.api.Enums.Roles;
-import com.enova.web.api.Entitys.User;
-import com.enova.web.api.Libs.IGenericCRUD;
+import com.enova.web.api.Models.Entitys.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;

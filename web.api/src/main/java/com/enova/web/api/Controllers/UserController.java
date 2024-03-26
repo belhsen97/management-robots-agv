@@ -1,10 +1,14 @@
 package com.enova.web.api.Controllers;
 
 
-import com.enova.web.api.Dtos.*;
-import com.enova.web.api.Entitys.Attachment;
+
+import com.enova.web.api.Models.Dtos.AttachmentDto;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
+import com.enova.web.api.Models.Dtos.UserDto;
+import com.enova.web.api.Models.Entitys.Attachment;
 import com.enova.web.api.Enums.Roles;
-import com.enova.web.api.Entitys.User;
+import com.enova.web.api.Models.Entitys.User;
 import com.enova.web.api.Mappers.AttachmentMapper;
 import com.enova.web.api.Mappers.UserMapper;
 import com.enova.web.api.Services.IUserService;
@@ -13,10 +17,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,23 +40,23 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> SelectAll() {
+    public List<UserDto> selectAll() {
         List<User> users = iUserService.selectAll();
         return users.stream().map(user -> UserMapper.mapToDto(user)).collect(Collectors.toList());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDto> SelectBy(@PathVariable String id) {
+    public ResponseEntity<UserDto> selectBy(@PathVariable String id) {
         return ResponseEntity.ok(UserMapper.mapToDto(iUserService.selectById(id)));
     }
 
     @GetMapping("/username/{usename}")
-    public ResponseEntity<UserDto> SelectByUsername(@PathVariable String usename) {
+    public ResponseEntity<UserDto> selectByUsername(@PathVariable String usename) {
         return ResponseEntity.ok(UserMapper.mapToDto(iUserService.selectByUsername(usename)));
     }
 
     @PostMapping
-    public UserDto Insert(@RequestBody UserDto user) {
+    public UserDto insert(@RequestBody UserDto user) {
         return UserMapper.mapToDto(iUserService.insert(UserMapper.mapToEntity(user)));
     }
 
@@ -81,7 +83,7 @@ public class UserController {
     }
 
     @GetMapping("/get-photo-by-id/{userId}")
-    public ResponseEntity<Resource> downloadFilebyId(@PathVariable("userId") String userId) throws Exception {
+    public ResponseEntity<Resource> downloadPhotobyId(@PathVariable("userId") String userId) throws Exception {
         Attachment attachment = iUserService.getAttachmentbyId(userId);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(attachment.getFileType()))
@@ -92,7 +94,7 @@ public class UserController {
     }
 
     @GetMapping("/get-photo-by-username/{username}")
-    public ResponseEntity<Resource> downloadFilebyUsername(@PathVariable("username") String username) throws Exception {
+    public ResponseEntity<Resource> downloadPhotobyUsername(@PathVariable("username") String username) throws Exception {
         Attachment attachment = iUserService.getAttachmentbyUsername(username);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(attachment.getFileType()))
@@ -135,7 +137,7 @@ public class UserController {
 
 
     @PutMapping("/set-enable/{username}/{enabled}")
-    public ResponseEntity<MsgReponseStatus> ActivateUser(@PathVariable("username") String username, @PathVariable("enabled") boolean enabled) {
+    public ResponseEntity<MsgReponseStatus> activateUser(@PathVariable("username") String username, @PathVariable("enabled") boolean enabled) {
         return ResponseEntity.ok(iUserService.activateUser(username, enabled));
     }
 

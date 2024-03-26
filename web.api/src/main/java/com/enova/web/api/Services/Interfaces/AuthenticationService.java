@@ -1,16 +1,17 @@
 package com.enova.web.api.Services.Interfaces;
 
-import com.enova.web.api.Dtos.AuthenticationRequestDto;
-import com.enova.web.api.Dtos.AuthenticationResponseDto;
-import com.enova.web.api.Dtos.MsgReponseStatus;
-import com.enova.web.api.Dtos.ReponseStatus;
-import com.enova.web.api.Dtos.mail.BodyContent;
-import com.enova.web.api.Dtos.mail.Msg;
-import com.enova.web.api.Dtos.mail.TypeBody;
+
+import com.enova.web.api.Models.Requests.AuthenticationRequest;
+import com.enova.web.api.Models.Responses.AuthenticationResponse;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
+import com.enova.web.api.Models.Commons.mail.BodyContent;
+import com.enova.web.api.Models.Commons.mail.Msg;
+import com.enova.web.api.Models.Commons.mail.TypeBody;
 import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Enums.TokenType;
-import com.enova.web.api.Entitys.Token;
-import com.enova.web.api.Entitys.User;
+import com.enova.web.api.Models.Entitys.Token;
+import com.enova.web.api.Models.Entitys.User;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Repositorys.UserRepository;
 import com.enova.web.api.Securitys.JwtService;
@@ -18,7 +19,6 @@ import com.enova.web.api.Services.IAuthenticationService;
 import com.enova.web.api.Services.IFileService;
 import com.enova.web.api.Services.IsmtpMailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,6 +31,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 
 @Service("authentication-service")
@@ -44,7 +45,7 @@ public class AuthenticationService implements IAuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public MsgReponseStatus register(AuthenticationRequestDto request) throws IOException, MessagingException {
+    public MsgReponseStatus register(AuthenticationRequest request) throws IOException, MessagingException {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new MethodArgumentNotValidException("other username found");
         }
@@ -54,7 +55,7 @@ public class AuthenticationService implements IAuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .enabled(true)
+                .enabled(false)
                 .build();
         String formHTMLForNewUser = ifileService.Edit_ConfirmMailPage(user.getUsername());
         String formHTMLForAdmin = ifileService.Edit_NewUser(user.getUsername(), user.getEmail());
@@ -83,39 +84,25 @@ public class AuthenticationService implements IAuthenticationService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     @Transactional
-    public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) throws Exception {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()));
-        final User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new Exception("Error findByEmail"));
-        String jwtToken = jwtService.generateToken(user);
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception {
 
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
 
+        Optional<User> user = this.userRepository.findByUsername(request.getUsername());
+        if (user.isEmpty()) {
+            throw new Exception("Error found username =" + request.getUsername());
+        }
+        String jwtToken = jwtService.generateToken(user.get());
         //%%%%%%%%%   revokeAllUserTokens where isRevoked or isExpired  %%%%%%%%%%%%
-        Set<Token> validUserTokens = user.getTokens();
+        Set<Token> validUserTokens = user.get().getTokens();
         System.out.println(validUserTokens.size());
         if (!validUserTokens.isEmpty()) {
             validUserTokens.removeIf(token -> token.isRevoked() || token.isExpired()
                     // ||!jwtService.isTokenValid(token.getToken(), user)
             );
-            user.setTokens(validUserTokens);
+            user.get().setTokens(validUserTokens);
         }
         System.out.println(validUserTokens.size());
         //%%%%%%%%%   create new tocken where isRevoked or isExpired  %%%%%%%%%%%%
@@ -125,13 +112,9 @@ public class AuthenticationService implements IAuthenticationService {
                 .expired(false)
                 .revoked(false)
                 .build();
-        user.addToken(token);
-
-
-        userRepository.save(user);
-
-
-        return AuthenticationResponseDto.childBuilder()
+        user.get().addToken(token);
+        userRepository.save(user.get());
+        return AuthenticationResponse.childBuilder()
                 .token(jwtToken)
                 .title("Authentication")
                 .datestamp(new Date())

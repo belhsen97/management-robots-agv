@@ -1,12 +1,12 @@
 
 j
-java:S11925"MDefine a constant instead of duplicating this literal "RobotService" 4 times.(ËÇÆ«8°ï¦å1
+java:S11928"MDefine a constant instead of duplicating this literal "RobotService" 4 times.(ËÇÆ«8°ï¦å1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Óé¢å1
 d
-java:S36554"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(à£“éıÿÿÿÿ8Àé¶å1
+java:S36557"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(à£“éıÿÿÿÿ8Àé¶å1
 _
-java:S3655I"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(‘èæß8Àé¶å1
+java:S3655L"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(‘èæß8Àé¶å1
 i
 java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8äé¢å1
-u
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8¼ê¹öå1
+H
+java:S1168,"+Return an empty collection instead of null.(¥¹ï8¬Û¸Äç1

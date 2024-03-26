@@ -1,10 +1,10 @@
 package com.enova.web.api.Mappers;
 
 
-import com.enova.web.api.Dtos.TagDto;
-import com.enova.web.api.Dtos.WorkstationDto;
-import com.enova.web.api.Entitys.Tag;
-import com.enova.web.api.Entitys.Workstation;
+import com.enova.web.api.Models.Dtos.TagDto;
+import com.enova.web.api.Models.Dtos.WorkstationDto;
+import com.enova.web.api.Models.Entitys.Tag;
+import com.enova.web.api.Models.Entitys.Workstation;
 
 public class TagMapper {
     public static Tag mapToEntity(TagDto tdto) {

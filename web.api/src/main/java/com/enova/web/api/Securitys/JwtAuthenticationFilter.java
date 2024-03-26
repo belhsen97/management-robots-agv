@@ -1,8 +1,8 @@
 package com.enova.web.api.Securitys;
 
 
-import com.enova.web.api.Dtos.MsgReponseStatus;
-import com.enova.web.api.Dtos.ReponseStatus;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Repositorys.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;

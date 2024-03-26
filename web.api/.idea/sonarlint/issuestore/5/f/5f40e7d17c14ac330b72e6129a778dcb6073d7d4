@@ -1,21 +1,20 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8½÷åöå1
+g	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(‹³¡Áıÿÿÿÿ8éò£æ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8å—œæ1
 d
-java:S6830$"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì‘Û8Ç÷åöå1
+java:S6830%"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì‘Û8ó—œæ1
 ^
-java:S1854="ARemove this useless assignment to local variable "msgForNewUser".(‘‰÷8È÷åöå1
+java:S1854>"ARemove this useless assignment to local variable "msgForNewUser".(‘‰÷8ô—œæ1
 a
-java:S1854<"DRemove this useless assignment to local variable "formHTMLForAdmin".(ÿ»©ş8È÷åöå1
+java:S1854="DRemove this useless assignment to local variable "formHTMLForAdmin".(ÿ»©ş8ô—œæ1
 R
-java:S1481<"5Remove this unused "formHTMLForAdmin" local variable.(ÿ»©ş8Ê÷åöå1
+java:S1481="5Remove this unused "formHTMLForAdmin" local variable.(ÿ»©ş8ö—œæ1
 N
-java:S3599@",Use another way to initialize this instance.(ùâ¢àúÿÿÿÿ8Ë÷åöå1
+java:S3599A",Use another way to initialize this instance.(ùâ¢àúÿÿÿÿ8÷—œæ1
 {
-java:S1171@"YMove the contents of this initializer to a standard constructor or to field initializers.(ùâ¢àúÿÿÿÿ8Ë÷åöå1
+java:S1171A"YMove the contents of this initializer to a standard constructor or to field initializers.(ùâ¢àúÿÿÿÿ8÷—œæ1
 O
-java:S1481="2Remove this unused "msgForNewUser" local variable.(‘‰÷8Ì÷åöå1
-W	java:S125C"<This block of commented-out lines of code should be removed.(Õ°ş8Ì÷åöå1
-L	java:S106q"+Replace this use of System.out by a logger.(ÈÜéÕøÿÿÿÿ8Ï÷åöå1
-L	java:S106x"+Replace this use of System.out by a logger.(ÈÜéÕøÿÿÿÿ8Ğ÷åöå1
-u
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8ÍÎæöå1
+java:S1481>"2Remove this unused "msgForNewUser" local variable.(‘‰÷8ø—œæ1
+W	java:S125D"<This block of commented-out lines of code should be removed.(Õ°ş8ø—œæ1
+L	java:S106d"+Replace this use of System.out by a logger.(ÈÜéÕøÿÿÿÿ8û—œæ1
+L	java:S106k"+Replace this use of System.out by a logger.(ÈÜéÕøÿÿÿÿ8ü—œæ1

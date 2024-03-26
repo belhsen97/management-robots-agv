@@ -1,20 +1,18 @@
 
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‰ÜÙšıÿÿÿÿ8ÙÎ†â1
 C
-java:S1452"&Remove usage of generic wildcard type.(ãµÕé8èÎ†â1
+java:S1452"&Remove usage of generic wildcard type.(ãµÕé8èÎ†â1
 H
-java:S1452 "&Remove usage of generic wildcard type.(ÜÄïùÿÿÿÿ8ëÎ†â1
+java:S1452"&Remove usage of generic wildcard type.(ÜÄïùÿÿÿÿ8ëÎ†â1
 C
-java:S1452,"&Remove usage of generic wildcard type.(¸ãĞú8ìÎ†â1
+java:S1452+"&Remove usage of generic wildcard type.(¸ãĞú8ìÎ†â1
 N
-java:S1602.",Remove useless curly braces around statement(šôéûÿÿÿÿ8îÎ†â1
-X	java:S1251"<This block of commented-out lines of code should be removed.(˜ÑÅù8îÎ†â1
+java:S1602-",Remove useless curly braces around statement(šôéûÿÿÿÿ8îÎ†â1
+X	java:S1250"<This block of commented-out lines of code should be removed.(˜ÑÅù8îÎ†â1
 H
-java:S1452>"&Remove usage of generic wildcard type.(ª ¼„ıÿÿÿÿ8ğÎ†â1
-j	java:S100T"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ¼´8ñÎ†â1
+java:S1452="&Remove usage of generic wildcard type.(ª ¼„ıÿÿÿÿ8ğÎ†â1
+j	java:S100S"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ¼´8ñÎ†â1
 C
-java:S1452T"&Remove usage of generic wildcard type.(ñ¼´8Çÿ†â1
-X	java:S125H"<This block of commented-out lines of code should be removed.(·ùğì8¿â³â1
-]	java:S125a"<This block of commented-out lines of code should be removed.(©ßøÅûÿÿÿÿ8óÎ†â1
-_
-java:S1128"=Remove this unused import 'java.util.NoSuchElementException'.(®“ÿéúÿÿÿÿ8Áâ³â1
+java:S1452S"&Remove usage of generic wildcard type.(ñ¼´8Çÿ†â1
+X	java:S125G"<This block of commented-out lines of code should be removed.(·ùğì8¿â³â1
+]	java:S125`"<This block of commented-out lines of code should be removed.(©ßøÅûÿÿÿÿ8óÎ†â1

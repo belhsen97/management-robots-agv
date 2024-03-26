@@ -1,6 +1,6 @@
 <div class="row mb-5">
     <div class="col-md-12">
-        <div class="mat-elevation-z8">
+        <div class="mat-elevation-z1">
             <div class="table-container">
                 <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
                     <!-- Position Column -->
@@ -36,10 +36,10 @@
                     <ng-container matColumnDef="enabled">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>enabled</th>
                         <td mat-cell *matCellDef="let element">
-                            <button *ngIf="element.enabled" mat-raised-button color="primary-color"
+                            <button *ngIf="!element.enabled" mat-raised-button color="primary-color"
                                 (click)="onClickEnable(element.username , true )">
                                 <mat-icon>check_circle_outline</mat-icon>activate</button>
-                            <button *ngIf="!element.enabled" mat-raised-button color="primary-color"
+                            <button *ngIf="element.enabled" mat-raised-button color="primary-color"
                                 (click)="onClickEnable(element.username , false )">
                                 <mat-icon>highlight_off</mat-icon>deactivate</button>
                         </td>

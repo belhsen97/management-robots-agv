@@ -17,13 +17,13 @@ export class SignInComponent {
 
   signIn(form: NgForm):void {
     if(!form.invalid){
-      this.userService.login(this.userService.authRequestDto).subscribe(
+      this.userService.login(this.userService.authRequest).subscribe(
         (response) => { 
-          this.userService.authResponseDto = response.body; 
-          this.userService.msgReponseStatus = {title:this.userService.authResponseDto.title,datestamp:this.userService.authResponseDto.datestamp,status:this.userService.authResponseDto.status,message:this.userService.authResponseDto.message}; 
+          this.userService.authResponse = response.body; 
+          this.userService.msgReponseStatus = {title:this.userService.authResponse.title,datestamp:this.userService.authResponse.datestamp,status:this.userService.authResponse.status,message:this.userService.authResponse.message}; 
             if ( this.userService.msgReponseStatus.status === this.userService.SUCCESSFUL ) 
             {
-              this.userService.saveLogin( this.userService.authResponseDto,this.userService.authRequestDto.username );
+              this.userService.saveLogin( this.userService.authResponse,this.userService.authRequest.username );
             }
         }
         ,

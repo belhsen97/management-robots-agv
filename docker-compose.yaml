@@ -22,11 +22,32 @@ services:
     container_name: mqttx-web
     image: emqx/mqttx-web
     ports:
-      - "1883:80"
+      - "18084:80"
     networks:
       - ennova-network
-     
-     
+
+  # EMQX MQTT Broker service  https://github.com/emqx/emqx-rel/blob/master/deploy/docker/README.md
+  emqx:
+    image: emqx/emqx:latest
+    container_name: emqx
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8084:8084"
+      - "8883:8883"
+      - "18083:18083"
+    environment:
+      EMQX_NAME: iothost-org
+      EMQX_HOST: 127.0.0.1
+      # -u admin  -p public change to -p @E9M7Q7X47369%
+      # EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "@E9M7Q7X47369%"
+    volumes:
+      - emqx-data:/opt/emqx/data
+      - emqx-log:/opt/emqx/log
+      - emqx-etc:/opt/emqx/etc
+    networks:
+      - ennova-network
+
   web-api service      
   web-api:
     container_name: web-api
@@ -46,7 +67,7 @@ services:
       - MYAPP_SMTP_AUTH=true
       - MYAPP_SMTP_ENABLE_STARTTLS=true
       - MYAPP_SMTP_USERNAME=belhsenbachouch55@gmail.com
-      - MYAPP_SMTP_PASSWORD=your password
+      - MYAPP_SMTP_PASSWORD=??????????????????????????????????????????????????
       - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
       - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/
       - MYAPP_PATH_RESOURCES=/app
@@ -88,3 +109,58 @@ networks:
 volumes:
   web-api-src:
   mongodata:
+  # EMQX MQTT Broker volumes
+  emqx-data:
+  emqx-log:
+  emqx-etc:
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+# Persistence
+
+# If you want to persist the EMQX docker container, you need to keep the following directories:
+
+    # /opt/emqx/data
+    # /opt/emqx/etc
+    # /opt/emqx/log
+
+# Since data in these folders are partially stored under the /opt/emqx/data/mnesia/${node_name}, the user also needs to reuse the same node name to see the previous state. In detail, one needs to specify the two environment variables: EMQX_NAME and EMQX_HOST, EMQX_HOST set as 127.0.0.1 or network alias would be useful.
+
+# In if you use docker-compose, the configuration would look something like this:
+
+# volumes:
+  # vol-emqx-data:
+    # name: foo-emqx-data
+  # vol-emqx-etc:
+    # name: foo-emqx-etc
+  # vol-emqx-log:
+    # name: foo-emqx-log
+
+# services:
+  # emqx:
+    # image: emqx/emqx:latest
+    # restart: always
+    # environment:
+      # EMQX_NAME: foo_emqx
+      # EMQX_HOST: 127.0.0.1
+    # volumes:
+      # - vol-emqx-data:/opt/emqx/data
+      # - vol-emqx-etc:/opt/emqx/etc
+      # - vol-emqx-log:/opt/emqx/log
+
+# Note that /opt/emqx/etc contains some essential configuration files. 

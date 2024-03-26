@@ -79,15 +79,22 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
   }
 
   onClickEnable(username:any ,enable : boolean ):void{
-    console.log(username , enable);  
-    this.userService.enableUser(  this.userService.userDto.username ,  enable  ).subscribe(
+    console.log(username, enable)
+    this.userService.enableUser( username ,  enable  ).subscribe(
       (response) => {
         const msg : MsgReponseStatus = response.body;
         this.userService.msgReponseStatus = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-       }
+        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+   
+        const index = this.userService.ListUsers.findIndex(u => u.username === username);
+        if (index !== -1) {  this.userService.ListUsers[index].enabled =  enable;  } 
+        this.dataSource.data = this.userService.ListUsers;
+
+      }
       ,(error) => {
         this.userService.msgReponseStatus =  
         { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
+        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
       }) ; 
   }
 
@@ -96,14 +103,23 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
   onChangeRole(username:any , event: any) {
     const selectedRole = event.value;
     console.log(username,typeof selectedRole); 
-    this.userService.updateRole(  this.userService.userDto.username ,  selectedRole  ).subscribe(
+    this.userService.updateRole( username ,  selectedRole  ).subscribe(
       (response) => {
         const msg : MsgReponseStatus = response.body;
         this.userService.msgReponseStatus = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-       }
+        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+
+        console.log(typeof (event));
+        console.log(typeof (selectedRole));
+        const index = this.userService.ListUsers.findIndex(u => u.username === username);
+        if (index !== -1) {  this.userService.ListUsers[index].role =  event.value;  } 
+        this.dataSource.data = this.userService.ListUsers;
+
+      }
       ,(error) => {
         this.userService.msgReponseStatus =  
         { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
+        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
       }) ; 
   }
 

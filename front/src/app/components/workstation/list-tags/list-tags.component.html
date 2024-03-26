@@ -8,7 +8,7 @@
 </div>
 <div class="row mb-5">
     <div class="col-12">
-        <div class="mat-elevation-z8">
+        <div class="mat-elevation-z1">
             <div class="table-container">
                 <table mat-table [dataSource]="tagService.dataSource" matSort>
 
@@ -19,7 +19,11 @@
 
                     <ng-container matColumnDef="workstation">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>workstation</th>
-                        <td mat-cell *matCellDef="let element">{{ (element.workstation?element.workstation.name  : "vide") }}</td>
+                        <td mat-cell *matCellDef="let element">
+                            <a *ngIf="element.workstation"  [routerLink]="['/workstation', element.workstation.id]"  mat-button color="dark" aria-label="icon button for details robot">
+                                <mat-icon>zoom_in</mat-icon>{{element.workstation.name}}
+                            </a>
+                        </td>
                     </ng-container>
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef>Action</th>

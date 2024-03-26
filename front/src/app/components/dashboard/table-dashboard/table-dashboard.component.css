@@ -13,6 +13,8 @@
     width: 100%;
   }
   
+  .mat-column-name {
+  }
   .mat-column-statusRobot,
   .mat-column-modeRobot {
     max-width: 60px;

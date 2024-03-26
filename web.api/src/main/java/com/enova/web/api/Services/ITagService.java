@@ -1,8 +1,6 @@
 package com.enova.web.api.Services;
 
-import com.enova.web.api.Entitys.Tag;
-import com.enova.web.api.Entitys.Workstation;
-import com.enova.web.api.Libs.IGenericCRUD;
+import com.enova.web.api.Models.Entitys.Tag;
 
 public interface ITagService extends IGenericCRUD<Tag,String> {
 }

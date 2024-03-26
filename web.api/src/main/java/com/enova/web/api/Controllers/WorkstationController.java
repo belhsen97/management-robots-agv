@@ -1,7 +1,10 @@
 package com.enova.web.api.Controllers;
 
-import com.enova.web.api.Dtos.*;
-import com.enova.web.api.Entitys.Workstation;
+
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
+import com.enova.web.api.Models.Dtos.WorkstationDto;
+import com.enova.web.api.Models.Entitys.Workstation;
 import com.enova.web.api.Mappers.WorkstationMapper;
 import com.enova.web.api.Services.IWorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;

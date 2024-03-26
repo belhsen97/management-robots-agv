@@ -31,6 +31,7 @@ export class DetailsWorkstationComponent implements OnInit,OnDestroy   {
           this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
         }) ; 
     });
+    this.routerSubscription.unsubscribe();
   }
   ngOnDestroy(): void {if (this.routerSubscription) {this.routerSubscription.unsubscribe();}}
 }

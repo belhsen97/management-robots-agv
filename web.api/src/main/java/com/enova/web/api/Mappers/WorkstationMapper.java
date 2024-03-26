@@ -1,11 +1,11 @@
 package com.enova.web.api.Mappers;
 
-import com.enova.web.api.Dtos.RobotDto;
-import com.enova.web.api.Dtos.TagDto;
-import com.enova.web.api.Dtos.WorkstationDto;
-import com.enova.web.api.Entitys.Robot;
-import com.enova.web.api.Entitys.Tag;
-import com.enova.web.api.Entitys.Workstation;
+import com.enova.web.api.Models.Dtos.RobotDto;
+import com.enova.web.api.Models.Dtos.TagDto;
+import com.enova.web.api.Models.Dtos.WorkstationDto;
+import com.enova.web.api.Models.Entitys.Robot;
+import com.enova.web.api.Models.Entitys.Tag;
+import com.enova.web.api.Models.Entitys.Workstation;
 
 import java.util.ArrayList;
 import java.util.HashSet;

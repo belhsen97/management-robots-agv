@@ -1,8 +1,8 @@
 package com.enova.web.api.Mappers;
 
-import com.enova.web.api.Dtos.TraceDto;
-import com.enova.web.api.Dtos.UserDto;
-import com.enova.web.api.Entitys.Trace;
+import com.enova.web.api.Models.Dtos.TraceDto;
+import com.enova.web.api.Models.Dtos.UserDto;
+import com.enova.web.api.Models.Entitys.Trace;
 
 public class TraceMapper {
     public static TraceDto mapToDto(Trace t) {

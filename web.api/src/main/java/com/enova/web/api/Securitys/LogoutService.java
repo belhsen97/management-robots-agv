@@ -1,6 +1,6 @@
 package com.enova.web.api.Securitys;
 
-import com.enova.web.api.Entitys.Token;
+import com.enova.web.api.Models.Entitys.Token;
 import com.enova.web.api.Repositorys.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

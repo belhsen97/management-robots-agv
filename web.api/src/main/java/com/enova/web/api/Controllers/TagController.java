@@ -1,9 +1,9 @@
 package com.enova.web.api.Controllers;
 
-import com.enova.web.api.Dtos.MsgReponseStatus;
-import com.enova.web.api.Dtos.ReponseStatus;
-import com.enova.web.api.Dtos.TagDto;
-import com.enova.web.api.Entitys.Tag;
+import com.enova.web.api.Models.Responses.MsgReponseStatus;
+import com.enova.web.api.Enums.ReponseStatus;
+import com.enova.web.api.Models.Dtos.TagDto;
+import com.enova.web.api.Models.Entitys.Tag;
 import com.enova.web.api.Mappers.TagMapper;
 import com.enova.web.api.Services.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;

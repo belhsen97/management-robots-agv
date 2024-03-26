@@ -1,8 +1,8 @@
 package com.enova.web.api.Services.Interfaces;
 
-import com.enova.web.api.Dtos.mail.Attachment;
-import com.enova.web.api.Dtos.mail.BodyContent;
-import com.enova.web.api.Dtos.mail.Msg;
+import com.enova.web.api.Models.Commons.mail.Attachment;
+import com.enova.web.api.Models.Commons.mail.BodyContent;
+import com.enova.web.api.Models.Commons.mail.Msg;
 import com.enova.web.api.Services.IsmtpMailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
