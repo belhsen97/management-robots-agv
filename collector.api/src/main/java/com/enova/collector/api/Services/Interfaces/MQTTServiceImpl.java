@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Service
+@Service("mqtt-service")
 @RequiredArgsConstructor
 public class MQTTServiceImpl implements MQTTService {
-    private final int qos = 0;
+    private final int qos = 0;//https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/
     private final ObjectMapperService objectMapperService;
 
     private final MqttClient client;

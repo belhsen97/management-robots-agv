@@ -77,6 +77,7 @@ public class beanResetData implements CommandLineRunner {
 //        System.out.println(FileService.defaultUserPhoto);
 //        final Attachment img =  this.saveAttachment(FileService.defaultUserPhoto);
 //        System.out.println(img.getFileName());
+
         Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
         if (userOptional.isEmpty()) {
             user.setPassword(passwordEncoder.encode("1234"));

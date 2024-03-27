@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("object-mapper-service")
 public class ObjectMapperServiceImpl implements ObjectMapperService {
 
     private final ObjectMapper objectMapper;

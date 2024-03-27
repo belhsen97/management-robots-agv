@@ -1,4 +1,4 @@
-package com.enova.collector.api.Entitys;
+package com.enova.collector.api.Models.Entitys;
 
 
 

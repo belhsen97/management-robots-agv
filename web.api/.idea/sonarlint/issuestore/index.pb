@@ -184,3 +184,7 @@ n
 >src/main/java/com/enova/web/api/AppRunners/bean_ResetData.java,6\9\69d3ff8cef98c5349498d89cc9070b53fdb1f274
 m
 =src/main/java/com/enova/web/api/AppRunners/beanResetData.java,b\9\b93e2d429e80f53c2fe1e49cde4c0f6dc7fe1509
+o
+?src/main/java/com/enova/web/api/Models/Responses/RobotData.java,e\a\ea6fa4bf6c8f208fd0cc2a7ba340a4cf4483d6cc
+|
+Lsrc/main/java/com/enova/web/api/Models/Responses/AuthenticationResponse.java,f\6\f6b0b95a40634ea49a6a681b4e2841599b5c4371

@@ -1,7 +1,7 @@
 package com.enova.collector.api.Repositorys;
 
 
-import com.enova.collector.api.Entitys.Robot;
+import com.enova.collector.api.Models.Entitys.Robot;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -48,40 +48,40 @@ services:
     networks:
       - ennova-network
 
-  web-api service      
-  web-api:
-    container_name: web-api
-    image: "web-api:0.0.1"
-    build: ./web.api
-    ports:
-      - "8089:8089"
-    environment:
-      - SPRING_DATA_MONGODB_HOST=mongodb
-      - SPRING_DATA_MONGODB_PORT=27017
-      - SPRING_DATA_MONGODB_DATABASE=management_robot_avg_db
-      - SPRING_DATA_MONGODB_USERNAME=root
-      - SPRING_DATA_MONGODB_PASSWORD=root
-      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
-      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
-      - MYAPP_SMTP_HOST=smtp.gmail.com
-      - MYAPP_SMTP_AUTH=true
-      - MYAPP_SMTP_ENABLE_STARTTLS=true
-      - MYAPP_SMTP_USERNAME=belhsenbachouch55@gmail.com
-      - MYAPP_SMTP_PASSWORD=??????????????????????????????????????????????????
-      - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
-      - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/
-      - MYAPP_PATH_RESOURCES=/app
-      - MYAPP_LINK_WEBPAGE=http://localhost:4200
-      - MYAPP_LINK_LIST_USERS=http://localhost:4200/list-users
-      - MYAPP_LINK_PATH_SIGNIN=/sign-in
-      - MYAPP_LINK_PATH_UPDATE_PASSWORD_FORGOT=/update-password-forgot
-      - MYAPP_LINK_PATH_ERROR=/page-error
-    volumes:
-      - web-api-src:/app
-    depends_on:
-      - mongodb
-    networks:
-      - ennova-network
+  # web-api service      
+  # web-api:
+    # container_name: web-api
+    # image: "web-api:0.0.1"
+    # build: ./web.api
+    # ports:
+      # - "8089:8089"
+    # environment:
+      # - SPRING_DATA_MONGODB_HOST=mongodb
+      # - SPRING_DATA_MONGODB_PORT=27017
+      # - SPRING_DATA_MONGODB_DATABASE=management_robot_avg_db
+      # - SPRING_DATA_MONGODB_USERNAME=root
+      # - SPRING_DATA_MONGODB_PASSWORD=root
+      # - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      # - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      # - MYAPP_SMTP_HOST=smtp.gmail.com
+      # - MYAPP_SMTP_AUTH=true
+      # - MYAPP_SMTP_ENABLE_STARTTLS=true
+      # - MYAPP_SMTP_USERNAME=belhsenbachouch55@gmail.com
+      # - MYAPP_SMTP_PASSWORD=myrxsnxvipttpqjb
+      # - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
+      # - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/
+      # - MYAPP_PATH_RESOURCES=/app
+      # - MYAPP_LINK_WEBPAGE=http://localhost:4200
+      # - MYAPP_LINK_LIST_USERS=http://localhost:4200/list-users
+      # - MYAPP_LINK_PATH_SIGNIN=/sign-in
+      # - MYAPP_LINK_PATH_UPDATE_PASSWORD_FORGOT=/update-password-forgot
+      # - MYAPP_LINK_PATH_ERROR=/page-error
+    # volumes:
+      # - web-api-src:/app
+    # depends_on:
+      # - mongodb
+    # networks:
+      # - ennova-network
 
 
 
