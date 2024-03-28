@@ -1,5 +1,7 @@
 # SEBN-project ( PFE 2024 )
 
+# Note
+The project is not yet complete !
 
 # About
 Development Web Application to manage, control and monitor AGV robots.
@@ -7,9 +9,6 @@ Development Web Application to manage, control and monitor AGV robots.
 # Description
 it is a platform designe to manage the robots in the production line, managing typical elements such as system status, mission status, alerts and notifications, statistics, control mode, fleet management, etc., as well as the importance of real time as robots move simultaneously through the line on both the interaction and control sides, in order to guarantee maintenance time, and add or remove robots in the event of failure.
 In short, an AGV robot dashboard is designed to provide users with complete visibility of the AGV robot's operation and performance, as well as the tools to monitor it and react quickly if necessary.
-
-# Note
-The project is not yet complete !
 
 
 ## Built With
@@ -148,9 +147,9 @@ Add in pom.xml this dependencies below.
 
 
 ## Running ( on docker )
-Install docker on your machine then press in terminal below.
+1. Install docker on your machine then press in terminal below:
    ```bash
-   ...SEBN-project>docker-compose up -d
+   .../SEBN-project>docker-compose up -d
    [+] Running 4/4
    service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
    [+] Running 4/4
@@ -160,9 +159,9 @@ Install docker on your machine then press in terminal below.
     ✔ Container collector-api  Started  5.1s
     ...
    ```
-then you see all sevices are running.
+2. then you will see all sevices are running:
    ```bash
-SEBN-project>docker-compose ps
+.../SEBN-project>docker-compose ps
 NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS              PORTS
 collector-api       collector-api:0.0.1   "java -jar collector…"   collector-api       2 hours ago         Up 2 hours          0.0.0.0:8090->8090/tcp
 emqx                emqx/emqx:latest      "/usr/bin/docker-ent…"   emqx                2 hours ago         Up 2 hours          4370/tcp, 0.0.0.0:1883->1883/tcp, 0.0.0.0:8083-8084->8083-8084/tcp, 0.0.0.0:8883->8883/tcp, 0.0.0.0:18083->18083/tcp, 5369/tcp
@@ -171,10 +170,10 @@ mqttx-web           emqx/mqttx-web        "docker-entrypoint.s…"   mqttx-web  
     ...
    ```
    
-to stop all services press.
+3. to stop all services press:
 
    ```bash
-SEBN-project> docker-compose down
+.../SEBN-project> docker-compose down
 [+] Running 5/5
  ✔ Container collector-api              Removed    1.4s
  ✔ Container mqttx-web                  Removed    1.2s
