@@ -149,7 +149,7 @@ Add in pom.xml this dependencies below.
 ## Running ( on docker )
 1. Install docker on your machine then press in terminal below:
    ```bash
-   .../SEBN-project>docker-compose up -d
+   ...SEBN-project>docker-compose up -d
    [+] Running 4/4
    service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
    [+] Running 4/4
@@ -161,7 +161,7 @@ Add in pom.xml this dependencies below.
    ```
 2. then you will see all sevices are running:
    ```bash
-.../SEBN-project>docker-compose ps
+...SEBN-project>docker-compose ps
 NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS              PORTS
 collector-api       collector-api:0.0.1   "java -jar collector…"   collector-api       2 hours ago         Up 2 hours          0.0.0.0:8090->8090/tcp
 emqx                emqx/emqx:latest      "/usr/bin/docker-ent…"   emqx                2 hours ago         Up 2 hours          4370/tcp, 0.0.0.0:1883->1883/tcp, 0.0.0.0:8083-8084->8083-8084/tcp, 0.0.0.0:8883->8883/tcp, 0.0.0.0:18083->18083/tcp, 5369/tcp
@@ -173,7 +173,7 @@ mqttx-web           emqx/mqttx-web        "docker-entrypoint.s…"   mqttx-web  
 3. to stop all services press:
 
    ```bash
-.../SEBN-project> docker-compose down
+...SEBN-project> docker-compose down
 [+] Running 5/5
  ✔ Container collector-api              Removed    1.4s
  ✔ Container mqttx-web                  Removed    1.2s
