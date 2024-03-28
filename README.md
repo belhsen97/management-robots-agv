@@ -7,7 +7,7 @@ The project is not yet complete !
 Development Web Application to manage, control and monitor AGV robots.
 
 # Description
-it is a platform designe to manage the robots in the production line, managing typical elements such as system status, mission status, alerts and notifications, statistics, control mode, fleet management, etc., as well as the importance of real time as robots move simultaneously through the line on both the interaction and control sides, in order to guarantee maintenance time, and add or remove robots in the event of failure.
+It is a platform designe to manage the robots in the production line, managing typical elements such as system status, mission status, alerts and notifications, statistics, control mode, fleet management, etc., as well as the importance of real time as robots move simultaneously through the line on both the interaction and control sides, in order to guarantee maintenance time, and add or remove robots in the event of failure.
 In short, an AGV robot dashboard is designed to provide users with complete visibility of the AGV robot's operation and performance, as well as the tools to monitor it and react quickly if necessary.
 
 
@@ -34,7 +34,7 @@ ng add @ngrx/effects@16.2.0
 ng add @angular/material
 ng add highcharts@11.4
 ```
-### Back 
+### Service Web API 
 Add in pom.xml this dependencies below.
 ```xml
 	<properties>
@@ -108,6 +108,51 @@ Add in pom.xml this dependencies below.
 		</dependency>
 	</dependencies>
 ```
+### Collector API
+Add in pom.xml this dependencies below.
+```xml
+	<properties>
+		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!--  jackson  -->
+		<jackson.version>2.13.4</jackson.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mqtt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+	</dependencies>
+```
 
 
 
@@ -147,9 +192,9 @@ Add in pom.xml this dependencies below.
 
 
 ## Running ( on docker )
-1. Install docker on your machine then press in terminal below:
+ Install docker on your machine then press in terminal below:
    ```bash
-   ...SEBN-project>docker-compose up -d
+   .../SEBN-project>docker-compose up -d
    [+] Running 4/4
    service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
    [+] Running 4/4
@@ -159,9 +204,9 @@ Add in pom.xml this dependencies below.
     ✔ Container collector-api  Started  5.1s
     ...
    ```
-2. then you will see all sevices are running:
+ then you will see all sevices are running:
    ```bash
-...SEBN-project>docker-compose ps
+.../SEBN-project>docker-compose ps
 NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS              PORTS
 collector-api       collector-api:0.0.1   "java -jar collector…"   collector-api       2 hours ago         Up 2 hours          0.0.0.0:8090->8090/tcp
 emqx                emqx/emqx:latest      "/usr/bin/docker-ent…"   emqx                2 hours ago         Up 2 hours          4370/tcp, 0.0.0.0:1883->1883/tcp, 0.0.0.0:8083-8084->8083-8084/tcp, 0.0.0.0:8883->8883/tcp, 0.0.0.0:18083->18083/tcp, 5369/tcp
@@ -170,10 +215,9 @@ mqttx-web           emqx/mqttx-web        "docker-entrypoint.s…"   mqttx-web  
     ...
    ```
    
-3. to stop all services press:
-
+ to stop all services press:
    ```bash
-...SEBN-project> docker-compose down
+.../SEBN-project> docker-compose down
 [+] Running 5/5
  ✔ Container collector-api              Removed    1.4s
  ✔ Container mqttx-web                  Removed    1.2s
