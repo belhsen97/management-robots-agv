@@ -4,7 +4,7 @@ package com.enova.web.api.Controllers;
 import com.enova.web.api.Models.Requests.AuthenticationRequest;
 import com.enova.web.api.Models.Responses.AuthenticationResponse;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
-import com.enova.web.api.Services.IAuthenticationService;
+import com.enova.web.api.Services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -22,10 +22,10 @@ import java.io.IOException;
 @RequestMapping("/authentication")
 public class AuthenticationController {
 
-    private final IAuthenticationService iService;
+    private final AuthenticationService iService;
 
     @Autowired
-    public AuthenticationController(@Qualifier("authentication-service") IAuthenticationService iService) {
+    public AuthenticationController(@Qualifier("authentication-service") AuthenticationService iService) {
         this.iService = iService;
     }
 

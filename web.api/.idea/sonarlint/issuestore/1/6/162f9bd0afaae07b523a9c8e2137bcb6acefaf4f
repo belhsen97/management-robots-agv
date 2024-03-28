@@ -5,8 +5,8 @@ i	java:S116"TRename this field "smtp_auth" to match the regular expression '^
 s	java:S116 "^Rename this field "smtp_enableStarttls" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£”áñ
 r	java:S116""XRename this field "smtp_username" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆŠÃºúÿÿÿÿ
 r	java:S116$"XRename this field "smtp_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µôÖÅúÿÿÿÿ
-—
-java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ü€•ñ
+£
+java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Â»¤Ïùÿÿÿÿ8–¬Ï™è1
 b
 java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÒøÇüÿÿÿÿ
 [

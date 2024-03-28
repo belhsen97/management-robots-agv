@@ -1,0 +1,11 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8ßÛšè1
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óìõ•8ëÛšè1
+[
+java:S1155(">Use isEmpty() to check whether the collection is empty or not.(«ÇÖÚ8ïÛšè1
+j
+java:S6809)"MCall async methods via an injected dependency instead of directly via 'this'.(øİÒá8ä¯Áœè1
+[
+java:S1155,">Use isEmpty() to check whether the collection is empty or not.(ğ‰êã8ğÛšè1
+X	java:S125f"<This block of commented-out lines of code should be removed.(¢Ğ¬€8øÛšè1

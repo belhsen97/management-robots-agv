@@ -7,7 +7,7 @@ import com.enova.web.api.Models.Responses.RobotData;
 import com.enova.web.api.Models.Dtos.RobotDto;
 import com.enova.web.api.Models.Entitys.Robot;
 import com.enova.web.api.Mappers.RobotMapper;
-import com.enova.web.api.Services.IRobotService;
+import com.enova.web.api.Services.RobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/robot")
 public class RobotController {
-    private final IRobotService iService;
+    private final RobotService iService;
 
 
     @Autowired
-    public RobotController(@Qualifier("robot-service") IRobotService iService) {
+    public RobotController(@Qualifier("robot-service") RobotService iService) {
         this.iService = iService;
     }
 

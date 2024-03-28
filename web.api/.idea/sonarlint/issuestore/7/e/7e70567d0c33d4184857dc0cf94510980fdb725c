@@ -1,0 +1,15 @@
+
+g	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(‹³¡Áıÿÿÿÿ8éò£æ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8å—œæ1
+d
+java:S6830%"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì‘Û8ó—œæ1
+N
+java:S3599A",Use another way to initialize this instance.(ùâ¢àúÿÿÿÿ8÷—œæ1
+{
+java:S1171A"YMove the contents of this initializer to a standard constructor or to field initializers.(ùâ¢àúÿÿÿÿ8÷—œæ1
+I
+java:S3599I",Use another way to initialize this instance.(ºæÜ¿8³˜Ã›è1
+v
+java:S1171I"YMove the contents of this initializer to a standard constructor or to field initializers.(ºæÜ¿8³˜Ã›è1
+L	java:S106f"+Replace this use of System.out by a logger.(ÈÜéÕøÿÿÿÿ8î„œè1
+L	java:S106m"+Replace this use of System.out by a logger.(ÈÜéÕøÿÿÿÿ8õ¬°œè1

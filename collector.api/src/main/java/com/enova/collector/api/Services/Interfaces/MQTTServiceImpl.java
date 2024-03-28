@@ -10,6 +10,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -18,28 +19,25 @@ import javax.annotation.PreDestroy;
 public class MQTTServiceImpl implements MQTTService {
     private final int qos = 0;//https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/
     private final ObjectMapperService objectMapperService;
-
     private final MqttClient client;
-
-
     private final MqttConnectOptions mqttConnectOptions;
-
-
     private final CollectorCalback collectorCalback;
 
     @PostConstruct
     public void onCreate() throws MqttException {
         System.out.println("UserService Initialized");
-        if ( !client.isConnected()){
+        if (!client.isConnected()) {
             client.connect(mqttConnectOptions);
             System.out.println("client is connect");
         }
     }
+
     @Override
     public void subscribe(String topic) throws MqttException {
         client.setCallback(collectorCalback);
         client.subscribe(topic, qos);//"testtopic/#"
     }
+
     @Override
     public void publish(String topic, String message) throws MqttException {
         client.publish(topic, message.getBytes(), qos, false);
@@ -54,14 +52,12 @@ public class MQTTServiceImpl implements MQTTService {
     @PreDestroy
     public void onDestroy() throws MqttException {
         System.out.println("MQTTService Destroyed");
-        if ( client.isConnected()){
+        if (client.isConnected()) {
             client.disconnect();
             System.out.println("client is disconnect");
         }
     }
 }
-
-
 
 //        String content = "Hello MQTT";
 //        MqttMessage message = new MqttMessage(content.getBytes());

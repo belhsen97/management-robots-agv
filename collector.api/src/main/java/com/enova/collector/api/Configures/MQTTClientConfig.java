@@ -17,7 +17,7 @@ public class MQTTClientConfig {
     @Value("${mqtt.broker}")
     String broker = "tcp://broker.emqx.io:1883";
     @Value("${mqtt.topic}")
-    String topic = "testtopic/#";
+    public String topic = "testtopic/#";
     @Value("${mqtt.clean.session}")
     boolean cleanSession = true;
     @Value("${mqtt.connection.timeout}")
@@ -40,7 +40,7 @@ public class MQTTClientConfig {
     @Bean
     public MqttConnectOptions mqttConnectOptions() {
         MqttConnectOptions options = new MqttConnectOptions();
-        options.setCleanSession(true);
+        options.setCleanSession(cleanSession);
         options.setUserName(this.username);
         options.setPassword(this.password.toCharArray());
         options.setConnectionTimeout(this.connectionTimeout);

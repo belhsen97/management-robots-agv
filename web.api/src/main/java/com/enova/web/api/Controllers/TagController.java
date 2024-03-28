@@ -5,7 +5,7 @@ import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Dtos.TagDto;
 import com.enova.web.api.Models.Entitys.Tag;
 import com.enova.web.api.Mappers.TagMapper;
-import com.enova.web.api.Services.ITagService;
+import com.enova.web.api.Services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/tag")
 public class TagController {
-    private final ITagService iService;
+    private final TagService iService;
     @Autowired
-    public TagController(@Qualifier("tag-service") ITagService iService) {
+    public TagController(@Qualifier("tag-service") TagService iService) {
         this.iService = iService;
     }
 

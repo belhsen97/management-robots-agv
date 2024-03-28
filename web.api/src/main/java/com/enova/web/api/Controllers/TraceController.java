@@ -5,7 +5,7 @@ import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Dtos.TraceDto;
 import com.enova.web.api.Models.Entitys.Trace;
 import com.enova.web.api.Mappers.TraceMapper;
-import com.enova.web.api.Services.ITraceService;
+import com.enova.web.api.Services.TraceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/trace")
 public class TraceController {
-    private final ITraceService iService;
+    private final TraceService iService;
     @Autowired
-    public TraceController(@Qualifier("trace-service") ITraceService iService) {
+    public TraceController(@Qualifier("trace-service") TraceService iService) {
         this.iService = iService;
     }
 

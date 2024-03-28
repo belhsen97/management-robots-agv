@@ -6,7 +6,7 @@ import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Dtos.WorkstationDto;
 import com.enova.web.api.Models.Entitys.Workstation;
 import com.enova.web.api.Mappers.WorkstationMapper;
-import com.enova.web.api.Services.IWorkstationService;
+import com.enova.web.api.Services.WorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/workstation")
 public class WorkstationController {
-    private final IWorkstationService iService;
+    private final WorkstationService iService;
 
     @Autowired
-    public WorkstationController(@Qualifier("workstation-service") IWorkstationService iService) {
+    public WorkstationController(@Qualifier("workstation-service") WorkstationService iService) {
         this.iService = iService;
     }
 

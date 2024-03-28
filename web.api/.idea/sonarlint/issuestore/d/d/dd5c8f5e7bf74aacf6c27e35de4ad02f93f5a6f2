@@ -1,4 +1,12 @@
 
+g	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(ˆºÿúÿÿÿÿ8¼ßÁ›è1
+g	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(Ó‡´Êûÿÿÿÿ8½ßÁ›è1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8­…Úêã1
-i
-java:S6830&"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıíõùÿÿÿÿ8Å…Úêã1
+d
+java:S6830&"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Òª–8Å…Úêã1
+c
+java:S1612-"AReplace this lambda with method reference 'UserMapper::mapToDto'.(ÑÕæ¿şÿÿÿÿ8ÒßÁ›è1
+
+java:S1130V"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ˆºÿúÿÿÿÿ8×ßÁ›è1
+
+java:S1130a"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Ó‡´Êûÿÿÿÿ8ØßÁ›è1

@@ -1,8 +1,6 @@
 package com.enova.collector.api.Models.Entitys;
 
 
-
-
 import com.enova.collector.api.Enums.TypeProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

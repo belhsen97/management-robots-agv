@@ -11,7 +11,7 @@ import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Models.Entitys.User;
 import com.enova.web.api.Mappers.AttachmentMapper;
 import com.enova.web.api.Mappers.UserMapper;
-import com.enova.web.api.Services.IUserService;
+import com.enova.web.api.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
@@ -32,10 +32,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private final IUserService iUserService;
+    private final UserService iUserService;
 
     @Autowired
-    public UserController(@Qualifier("user-service") IUserService iUserService) {
+    public UserController(@Qualifier("user-service") UserService iUserService) {
         this.iUserService = iUserService;
     }
 

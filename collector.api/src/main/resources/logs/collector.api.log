@@ -1,0 +1,111 @@
+2024-03-28 04:12:21.258  INFO 34596 --- [main] com.enova.collector.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 34596 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api)
+2024-03-28 04:12:21.261  INFO 34596 --- [main] com.enova.collector.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-03-28 04:12:21.763  INFO 34596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-03-28 04:12:21.827  INFO 34596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 2 MongoDB repository interfaces.
+2024-03-28 04:12:21.880  INFO 34596 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-03-28 04:12:21.891  INFO 34596 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-03-28 04:12:22.066  INFO 34596 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:12:22.130  INFO 34596 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:12:22.397  INFO 34596 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-03-28 04:12:22.443  INFO 34596 --- [cluster-ClusterId{value='6604e016d0fb7d7ecd5e5aba', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:525}] to localhost:27017
+2024-03-28 04:12:22.443  INFO 34596 --- [cluster-rtt-ClusterId{value='6604e016d0fb7d7ecd5e5aba', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:526}] to localhost:27017
+2024-03-28 04:12:22.445  INFO 34596 --- [cluster-ClusterId{value='6604e016d0fb7d7ecd5e5aba', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16861700}
+2024-03-28 04:12:23.412  INFO 34596 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:12:23.413  INFO 34596 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 1 subscriber(s).
+2024-03-28 04:12:23.414  INFO 34596 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:12:23.422  INFO 34596 --- [main] com.enova.collector.api.Application      : Started Application in 2.527 seconds (JVM running for 3.588)
+2024-03-28 04:12:52.433  INFO 34596 --- [RobotExecutor-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:527}] to localhost:27017
+2024-03-28 04:13:13.695  INFO 34596 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:13:13.695  INFO 34596 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 0 subscriber(s).
+2024-03-28 04:13:13.696  INFO 34596 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:14:23.193  INFO 29112 --- [main] c.enova.collector.api.ApplicationTests   : Starting ApplicationTests using Java 11.0.18 on PC-001 with PID 29112 (started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api)
+2024-03-28 04:14:23.195  INFO 29112 --- [main] c.enova.collector.api.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2024-03-28 04:14:23.771  INFO 29112 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-03-28 04:14:23.990  INFO 29112 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 215 ms. Found 2 MongoDB repository interfaces.
+2024-03-28 04:14:24.053  INFO 29112 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-03-28 04:14:24.070  INFO 29112 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-03-28 04:14:24.330  INFO 29112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:14:24.477  INFO 29112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:14:25.783  INFO 29112 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-03-28 04:14:25.869  INFO 29112 --- [cluster-ClusterId{value='6604e0917d051007b075174f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:531}] to localhost:27017
+2024-03-28 04:14:25.869  INFO 29112 --- [cluster-rtt-ClusterId{value='6604e0917d051007b075174f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:532}] to localhost:27017
+2024-03-28 04:14:25.872  INFO 29112 --- [cluster-ClusterId{value='6604e0917d051007b075174f', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=34970900}
+2024-03-28 04:14:27.753  INFO 29112 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:14:27.755  INFO 29112 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 1 subscriber(s).
+2024-03-28 04:14:27.756  INFO 29112 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:14:27.764  INFO 29112 --- [main] c.enova.collector.api.ApplicationTests   : Started ApplicationTests in 4.974 seconds (JVM running for 6.184)
+2024-03-28 04:14:28.292  INFO 29112 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:14:28.293  INFO 29112 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 0 subscriber(s).
+2024-03-28 04:14:28.293  INFO 29112 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:26:13.035  INFO 25984 --- [main] com.enova.collector.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 25984 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api)
+2024-03-28 04:26:13.039  INFO 25984 --- [main] com.enova.collector.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-03-28 04:26:13.533  INFO 25984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-03-28 04:26:13.603  INFO 25984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 2 MongoDB repository interfaces.
+2024-03-28 04:26:13.646  INFO 25984 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-03-28 04:26:13.657  INFO 25984 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-03-28 04:26:13.807  INFO 25984 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:26:13.862  INFO 25984 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:26:14.127  INFO 25984 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-03-28 04:26:14.183  INFO 25984 --- [cluster-ClusterId{value='6604e356c225d022e94a1e4c', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:533}] to localhost:27017
+2024-03-28 04:26:14.183  INFO 25984 --- [cluster-rtt-ClusterId{value='6604e356c225d022e94a1e4c', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:534}] to localhost:27017
+2024-03-28 04:26:14.185  INFO 25984 --- [cluster-ClusterId{value='6604e356c225d022e94a1e4c', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16036500}
+2024-03-28 04:26:15.098  INFO 25984 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:26:15.098  INFO 25984 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 1 subscriber(s).
+2024-03-28 04:26:15.099  INFO 25984 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:26:15.107  INFO 25984 --- [main] com.enova.collector.api.Application      : Started Application in 2.434 seconds (JVM running for 3.508)
+2024-03-28 04:26:23.167  INFO 25984 --- [RobotExecutor-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:535}] to localhost:27017
+2024-03-28 04:28:14.214  INFO 25984 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:28:14.214  INFO 25984 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 0 subscriber(s).
+2024-03-28 04:28:14.215  INFO 25984 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:28:18.093  INFO 42376 --- [main] com.enova.collector.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 42376 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\collector.api)
+2024-03-28 04:28:18.095  INFO 42376 --- [main] com.enova.collector.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-03-28 04:28:18.594  INFO 42376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-03-28 04:28:18.654  INFO 42376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 2 MongoDB repository interfaces.
+2024-03-28 04:28:18.697  INFO 42376 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-03-28 04:28:18.707  INFO 42376 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-03-28 04:28:18.855  INFO 42376 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:28:18.911  INFO 42376 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-28 04:28:19.210  INFO 42376 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-03-28 04:28:19.262  INFO 42376 --- [cluster-rtt-ClusterId{value='6604e3d313a6b62badbb39c8', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:536}] to localhost:27017
+2024-03-28 04:28:19.262  INFO 42376 --- [cluster-ClusterId{value='6604e3d313a6b62badbb39c8', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:537}] to localhost:27017
+2024-03-28 04:28:19.264  INFO 42376 --- [cluster-ClusterId{value='6604e3d313a6b62badbb39c8', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=20448499}
+2024-03-28 04:28:20.182  INFO 42376 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:28:20.182  INFO 42376 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 1 subscriber(s).
+2024-03-28 04:28:20.183  INFO 42376 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-03-28 04:28:20.190  INFO 42376 --- [main] com.enova.collector.api.Application      : Started Application in 2.442 seconds (JVM running for 3.554)
+2024-03-28 04:28:25.806  INFO 42376 --- [RobotExecutor-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:538}] to localhost:27017
+2024-03-28 04:38:51.250  INFO 42376 --- [cluster-ClusterId{value='6604e3d313a6b62badbb39c8', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoNodeIsRecoveringException: Command failed with error 11600 (InterruptedAtShutdown): 'interrupted at shutdown' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "interrupted at shutdown", "code": 11600, "codeName": "InterruptedAtShutdown"}
+	at com.mongodb.internal.connection.ProtocolHelper.createSpecialException(ProtocolHelper.java:266) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:194) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:418) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:374) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:216) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-03-28 04:39:01.264  INFO 42376 --- [cluster-ClusterId{value='6604e3d313a6b62badbb39c8', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:180) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method) ~[na:na]
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:608) ~[na:na]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:107) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.4.2.jar:na]
+	... 4 common frames omitted
+
+2024-03-28 04:44:21.266  INFO 42376 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-03-28 04:44:21.266  INFO 42376 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 0 subscriber(s).
+2024-03-28 04:44:21.267  INFO 42376 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'

@@ -1,24 +1,22 @@
 
 p
-java:S1192Y"SDefine a constant instead of duplicating this literal "WorkstationService" 4 times.(Ïî8·–Ìå1
+java:S1192X"SDefine a constant instead of duplicating this literal "WorkstationService" 4 times.(Ïî8·–Ìå1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Ö¬Óã1
 c
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8Ö¬Óã1
-X	java:S125'"<This block of commented-out lines of code should be removed.(Í¶Æ«8 Ö¬Óã1
-]	java:S1257"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8¤Ö¬Óã1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8Ö¬Óã1
+X	java:S125&"<This block of commented-out lines of code should be removed.(Í¶Æ«8 Ö¬Óã1
+]	java:S1256"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8¤Ö¬Óã1
 J
-java:S1125<"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¥Ö¬Óã1
+java:S1125;"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¥Ö¬Óã1
 E
-java:S1125="(Remove the unnecessary boolean literals.(èõ¬—8¦Ö¬Óã1
-X	java:S125G"<This block of commented-out lines of code should be removed.(¹½´ü8©Ö¬Óã1
-]	java:S125S"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«Ö¬Óã1
-]	java:S125a"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8§õºå1
+java:S1125<"(Remove the unnecessary boolean literals.(èõ¬—8¦Ö¬Óã1
+X	java:S125F"<This block of commented-out lines of code should be removed.(¹½´ü8©Ö¬Óã1
+]	java:S125R"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«Ö¬Óã1
+]	java:S125`"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8§õºå1
 J
-java:S1125f"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¨õºå1
+java:S1125e"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¨õºå1
 E
-java:S1125g"(Remove the unnecessary boolean literals.(èõ¬—8ĞµµÓã1
-X	java:S125q"<This block of commented-out lines of code should be removed.(¹½´ü8ªõºå1
-]	java:S125}"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«õºå1
-^	java:S125œ"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8®õºå1
-u
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8Ÿñ½öå1
+java:S1125f"(Remove the unnecessary boolean literals.(èõ¬—8ĞµµÓã1
+X	java:S125p"<This block of commented-out lines of code should be removed.(¹½´ü8ªõºå1
+]	java:S125|"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«õºå1
+^	java:S125›"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8®õºå1
