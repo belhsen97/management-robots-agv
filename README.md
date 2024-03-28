@@ -21,7 +21,7 @@ The project is not yet complete !
 * [![Java][Java.io]][Java-url]
 * [![Spring Boot][Spring-Boot.io]][Spring-Boot-url]
 * [![mongodb][mongodb.com]][mongodb-url]
-
+* [![docker][docker.com]][docker-url]
 
 ## Installation
 ### Front
@@ -112,7 +112,8 @@ Add in pom.xml this dependencies below.
 
 
 
-## Running
+## Running ( on windows )
+
 
 ### Database
 > [!NOTE]
@@ -146,7 +147,42 @@ Add in pom.xml this dependencies below.
    ```
 
 
+## Running ( on docker )
+Install docker on your machine then press in terminal below.
+   ```bash
+   ...SEBN-project>docker-compose up -d
+   [+] Running 4/4
+   service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+   [+] Running 4/4
+    ✔ Container mqttx-web      Started  2.5s
+    ✔ Container emqx           Started  3.7s
+    ✔ Container mongodb        Started  2.1s
+    ✔ Container collector-api  Started  5.1s
+    ...
+   ```
+then you see all sevices are running.
+   ```bash
+SEBN-project>docker-compose ps
+NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS              PORTS
+collector-api       collector-api:0.0.1   "java -jar collector…"   collector-api       2 hours ago         Up 2 hours          0.0.0.0:8090->8090/tcp
+emqx                emqx/emqx:latest      "/usr/bin/docker-ent…"   emqx                2 hours ago         Up 2 hours          4370/tcp, 0.0.0.0:1883->1883/tcp, 0.0.0.0:8083-8084->8083-8084/tcp, 0.0.0.0:8883->8883/tcp, 0.0.0.0:18083->18083/tcp, 5369/tcp
+mongodb             mongo:latest          "docker-entrypoint.s…"   mongodb             2 hours ago         Up 2 hours          0.0.0.0:27017->27017/tcp
+mqttx-web           emqx/mqttx-web        "docker-entrypoint.s…"   mqttx-web           2 hours ago         Up 2 hours          0.0.0.0:18084->80/tcp
+    ...
+   ```
+   
+to stop all services press.
 
+   ```bash
+SEBN-project> docker-compose down
+[+] Running 5/5
+ ✔ Container collector-api              Removed    1.4s
+ ✔ Container mqttx-web                  Removed    1.2s
+ ✔ Container mongodb                    Removed    0.8s
+ ✔ Container emqx                       Removed    3.5s
+ ✔ Network sebn-project_ennova-network  Removed    0.9s
+    ...
+   ```
 
 
 
@@ -168,3 +204,5 @@ Add in pom.xml this dependencies below.
 [Spring-Boot-url]: https://spring.io/projects/spring-boot
 [mongodb.com]: https://img.shields.io/badge/Mongodb%20v6.0-4DA53F?style=for-the-badge&logo=mongodb&logoColor=white
 [mongodb-url]: https://www.mongodb.com/
+[docker.com]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[docker-url]: https://www.docker.com/
