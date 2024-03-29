@@ -73,7 +73,7 @@ services:
       - MQTT_CONNECTION_TIMEOUT=60
       - MQTT_KEEPALIVE_INTERVAL=60
       - MQTT_TOPIC=robot/#
-      - MQTT_CLIENTID=subscribe_client
+      - MQTT_CLIENTID=collector-service
       - MQTT_USER_USERNAME=test
       - MQTT_USER_PASSWORD=test
     volumes:

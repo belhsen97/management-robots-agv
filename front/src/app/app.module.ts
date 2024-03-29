@@ -44,7 +44,11 @@ import { ListTagsComponent } from './components/workstation/list-tags/list-tags.
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
 import { TracingComponent } from './components/statistic/tracing/tracing.component';
+import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
+import { environment } from 'src/environments/environment';
 
+
+//export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,8 +97,10 @@ import { TracingComponent } from './components/statistic/tracing/tracing.compone
     StoreModule.forRoot(AppState),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), 
     StoreRouterConnectingModule.forRoot({serializer : DashbordRouterSerializer}), BrowserAnimationsModule ,// include n number of reducer  / 25 max records clicking events 
-    EffectsModule.forRoot([AppEffects])
-  
+    EffectsModule.forRoot([AppEffects]),
+
+    
+    MqttModule.forRoot(environment.mqttClientConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
