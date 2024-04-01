@@ -5,6 +5,7 @@ import com.enova.web.api.Models.Dtos.WorkstationDto;
 import com.enova.web.api.Models.Entitys.Robot;
 import com.enova.web.api.Models.Entitys.Workstation;
 
+
 public class RobotMapper {
     public static Robot mapToEntity(RobotDto r) {
         final Workstation w =  r.getWorkstation() == null ? null : WorkstationMapper.mapToEntity(r.getWorkstation()) ;

@@ -7,6 +7,7 @@ import  exportingInit  from "highcharts/modules/exporting";
 import  exportDataInit  from "highcharts/modules/export-data";
 import  accessibilityInit  from "highcharts/modules/accessibility";
 import { RobotService } from 'src/app/core/services/robot.service';
+import { robotState } from 'src/app/core/store/states/Robot.state';
 
 dataInit(Highcharts);
 seriesLabelInit(Highcharts);
@@ -57,7 +58,7 @@ constructor(public robotService: RobotService){
         top: '0%',height: '75%', //,  height: '50%', 
         //alternateGridColor: '#FDFFD5',
         plotLines: [{
-            value: this.robotService.settingRobot.speed.max,
+            value: robotState.settingRobot.speed.max,
             color: 'red',
             dashStyle: 'shortDash',
             width: 2,
@@ -69,7 +70,7 @@ constructor(public robotService: RobotService){
             }
         },
         {
-            value: this.robotService.settingRobot.speed.min,
+            value: robotState.settingRobot.speed.min,
             color: 'red',
             dashStyle: 'shortDash',
             width: 2,
@@ -190,7 +191,7 @@ constructor(public robotService: RobotService){
                   tooltip: {
                     pointFormatter: function (this: Highcharts.Point) {
                         return '<span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + this.y + '</b><br/>' +
-                            'Type: ' + (this.category === 'WAITING' ? 'WAITING' :this.category === 'RUNNING' ? 'RUNNING' : 'INACTIVE' );
+                            'Type: ' + (this.y === 0 ? 'WAITING' :this.y === 1 ? 'RUNNING' : 'INACTIVE' );
                     }
 
       }

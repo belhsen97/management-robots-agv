@@ -100,7 +100,7 @@ import { environment } from 'src/environments/environment';
     EffectsModule.forRoot([AppEffects]),
 
     
-    MqttModule.forRoot(environment.mqttClientConfig)
+   MqttModule.forRoot(environment.mqttClientConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

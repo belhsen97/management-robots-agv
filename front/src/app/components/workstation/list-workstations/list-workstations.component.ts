@@ -12,6 +12,11 @@ import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.en
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TagService } from 'src/app/core/services/tag.service';
+import { tagState } from 'src/app/core/store/states/Tag.state';
+import { WorkstationDto } from 'src/app/core/store/models/Workstation/WorkstationDto.model';
+import {  wsState } from 'src/app/core/store/states/Worstation.state';
+import { RobotService } from 'src/app/core/services/robot.service';
+import { robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({
   selector: 'app-list-workstations',
@@ -22,13 +27,15 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
   @ViewChild("paginatorWorkstation") paginatorWorkstation  !: MatPaginator;
   @ViewChild(MatSort) sortWorkstation   !: MatSort;
   displayedColumnsWorkstation: string[] = ['name', 'enable', 'NRobot', 'NTag', 'action'];
+  
+  dataSource : MatTableDataSource<WorkstationDto> = new MatTableDataSource<WorkstationDto>();
   //dataSourceWorkstation !: MatTableDataSource<WorkstationDto>;
 
 
 
   constructor(private store: Store,
     public wsService: WorkstationService,
-    public tagService: TagService,
+    public tagService: TagService, public robotsService: RobotService,
     private dialog: MatDialog){}
 
 
@@ -40,16 +47,16 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
     //   console.log( item);
     // });
     this.store.select(getValueSearchInput).subscribe(value => {
-      if (value === null || value === undefined || this.wsService.dataSource == undefined) { return; }
-      this.wsService.dataSource.filter = value;
+      if (value === null || value === undefined || this.dataSource == undefined) { return; }
+      this.dataSource.filter = value;
       console.log(value);
     });
 
   
     this.wsService.getAll().subscribe(
       (response) => {
-        this.wsService.listWorkstations = response.body;
-        this.wsService.dataSource.data = this.wsService.listWorkstations;
+        wsState.listWorkstations = response.body;
+        this.dataSource.data = wsState.listWorkstations;
       }
       , (error) => {
         this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
@@ -64,7 +71,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
 
     this.tagService.getAll().subscribe(
       (response) => {
-        this.tagService.listTags = response.body;
+        tagState.listTags = response.body;
       }
       , (error) => {
         this.tagService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
@@ -73,16 +80,25 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
       });
 
 
+this.robotsService.getAll().subscribe(
+  (response) => {
+    robotState.listRobots = response.body;
+  }
+  , (error) => {
+    this.robotsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+    this.store.dispatch(ShowAlert(this.robotsService.msgReponseStatus));
+    //this.workstationService.goToComponent("/sign-in");
+  });
 
 
   }
   ngAfterViewInit() {
-    this.wsService.dataSource.paginator = this.paginatorWorkstation;
-    this.wsService.dataSource.sort = this.sortWorkstation;
+    this.dataSource.paginator = this.paginatorWorkstation;
+    this.dataSource.sort = this.sortWorkstation;
   }
   ngOnDestroy(): void {
-    if (this.wsService.dataSource) {
-      this.wsService.dataSource.disconnect();
+    if (this.dataSource) {
+      this.dataSource.disconnect();
     }
   }
 
@@ -138,12 +154,12 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
       // Handle result from the dialog 
       this.wsService.insert(result).subscribe(
         (response) => {
-          this.wsService.workstation = response.body;
+          wsState.workstation = response.body;
           this.wsService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
           this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
           // this.workstationService.workstation.no =  this.workstationService.listWorkstations.length+1;
-          this.wsService.listWorkstations.push(this.wsService.workstation);
-          this.wsService.dataSource.data = this.wsService.listWorkstations;
+          wsState.listWorkstations.push(wsState.workstation);
+          this.dataSource.data = wsState.listWorkstations;
         },
         (error: HttpErrorResponse) => {
           if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
@@ -164,15 +180,15 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
       // Handle result from the dialog 
       this.wsService.update(element.id, result).subscribe(
         (response) => {
-          this.wsService.workstation = response.body;
+          wsState.workstation = response.body;
           this.wsService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
           this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
 
-          const index = this.wsService.listWorkstations.findIndex(element => element.id === this.wsService.workstation.id);
-          if (index !== -1) { this.wsService.listWorkstations[index] = this.wsService.workstation; }
+          const index = wsState.listWorkstations.findIndex(element => element.id === wsState.workstation.id);
+          if (index !== -1) { wsState.listWorkstations[index] = wsState.workstation; }
           //   this.workstationService.listWorkstations.forEach((w) => { if(w.id === id) { w =   this.workstationService.workstation ;} });
 
-          this.wsService.dataSource.data = this.wsService.listWorkstations;
+          this.dataSource.data = wsState.listWorkstations;
         },
         (error: HttpErrorResponse) => {
           if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
@@ -194,8 +210,8 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
           (response) => {
             this.wsService.msgReponseStatus = response.body;
             this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
-            this.wsService.listWorkstations = this.wsService.listWorkstations.filter(item => item.id !== id);
-            this.wsService.dataSource.data = this.wsService.listWorkstations;
+            wsState.listWorkstations = wsState.listWorkstations.filter(item => item.id !== id);
+            this.dataSource.data = wsState.listWorkstations;
           },
           (error: HttpErrorResponse) => {
             if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }

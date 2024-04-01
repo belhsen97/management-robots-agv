@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ShowAlert, openSidebar, searchInput } from 'src/app/core/store/Global/App.Action';
-import { AppStateModel } from 'src/app/core/store/Global/AppState.Model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { UserService } from 'src/app/core/services/user.service.ts.service';
+import { GlobalStateModel } from 'src/app/core/store/states/Gloabal.state';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/core/services/user.service.ts.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private store: Store<AppStateModel> , public userService : UserService ){
+  constructor(private store: Store<GlobalStateModel> , public userService : UserService ){
   }
   state : boolean = false;
 

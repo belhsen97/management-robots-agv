@@ -11,12 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.io.Serializable;
 
 @Controller
 @RequestMapping("/authentication")
@@ -39,6 +38,18 @@ public class AuthenticationController {
         return ResponseEntity.ok(iService.authenticate(request));
     }
 
-
-
+//https://www.emqx.io/docs/en/latest/access-control/authz/http.html
+//    @PostMapping("/authenticate-robot")
+//    public   ResponseEntity<result> authenticateRobot(@RequestBody AuthenticationRequest request) throws Exception {
+//
+//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+//        System.out.println(request);
+//        return ResponseEntity.ok(
+//                new result()
+//        );
+//    }
+//     class result implements Serializable {
+//
+//         public String result = "allow";  //   "result": "allow" | "deny" | "ignore" // Default `"ignore"`
+//     }
 }

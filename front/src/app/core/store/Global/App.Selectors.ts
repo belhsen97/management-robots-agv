@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store"; 
-import { AppStateModel } from "./AppState.Model";
+import { GlobalStateModel } from "../states/Gloabal.state";
 
-const getAppstate=createFeatureSelector<AppStateModel>('app');
+const getAppstate=createFeatureSelector<GlobalStateModel>('app');
 
 export const getStateSlidebare=createSelector(getAppstate,(state)=>{return state.IsOpen;});
 

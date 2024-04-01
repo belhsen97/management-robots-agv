@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { GlobalState } from "./Gloabal.state"; 
+import { GlobalState } from "../states/Gloabal.state"; 
 import { ShowAlert, openSidebar, searchInput } from "./App.Action";
 
 const _AppReducer = createReducer(GlobalState,

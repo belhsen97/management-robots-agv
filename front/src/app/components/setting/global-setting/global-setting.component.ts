@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RobotService } from 'src/app/core/services/robot.service';
+import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({
   selector: 'app-global-setting',
@@ -8,13 +9,11 @@ import { RobotService } from 'src/app/core/services/robot.service';
   styleUrls: ['./global-setting.component.css']
 })
 export class GlobalSettingComponent {
-
-constructor(public robotService: RobotService){
-
-}
+  robotState !: RobotState;
+constructor(){this.robotState  = robotState;}
  onSubmitForm(form: NgForm):void {
   console.log(form.invalid);
-  console.log(this.robotService.settingRobot);
+  console.log(this.robotState.settingRobot);
   }
 
 

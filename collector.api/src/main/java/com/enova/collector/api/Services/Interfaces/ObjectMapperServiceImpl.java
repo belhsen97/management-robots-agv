@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 @Service("object-mapper-service")
 @RequiredArgsConstructor
 public class ObjectMapperServiceImpl implements ObjectMapperService {

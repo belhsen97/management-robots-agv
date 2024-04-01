@@ -4,7 +4,7 @@
     <!-- <div class="flex-row"> -->
     <mat-form-field class="example-full-width">
       <mat-label>Name</mat-label>
-      <input type="text" matInput [(ngModel)]="workstationService.workstation.name" #namee="ngModel"
+      <input type="text" matInput [(ngModel)]="wsState.workstation.name" #namee="ngModel"
         name="workstation-name" placeholder="Ex. pat@example.com" required />
       <mat-hint>Errors appear instantly!</mat-hint>
       <!-- <mat-error   *ngIf="(namee.errors?.['required']">Name is <strong>required</strong></mat-error> -->
@@ -50,7 +50,7 @@
     </mat-form-field> -->
     </div>
 
-    <mat-button-toggle-group [(ngModel)]="workstationService.workstation.enable" name="workstation-enable"
+    <mat-button-toggle-group [(ngModel)]="wsState.workstation.enable" name="workstation-enable"
       aria-label="Font Style">
       <mat-button-toggle [value]="true">enable</mat-button-toggle>
       <mat-button-toggle [value]="false">disable</mat-button-toggle>
@@ -58,18 +58,18 @@
 
     <mat-form-field>
       <mat-label>Tags</mat-label>
-      <mat-select multiple [(ngModel)]="workstationService.workstation.tags" name="workstation-tags" #tags="ngModel"
+      <mat-select multiple [(ngModel)]="wsState.workstation.tags" name="workstation-tags" #tags="ngModel"
         [compareWith]="compareTags">
-        <mat-option *ngFor="let tag of tagService.listTags" [value]="tag">{{ tag.code }}</mat-option>
+        <mat-option *ngFor="let tag of tagState.listTags" [value]="tag">{{ tag.code }}</mat-option>
       </mat-select>
     </mat-form-field>
 
 
     <mat-form-field>
       <mat-label>Robots</mat-label>
-      <mat-select multiple [(ngModel)]="workstationService.workstation.robots" name="workstation-robots"
+      <mat-select multiple [(ngModel)]="wsState.workstation.robots" name="workstation-robots"
         #robots="ngModel" [compareWith]="compareRobots">
-        <mat-option *ngFor="let robot of robotService.listRobots" [value]="robot">{{ robot.name }}</mat-option>
+        <mat-option *ngFor="let robot of robotState.listRobots" [value]="robot">{{ robot.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     <!-- 

@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { RobotService } from 'src/app/core/services/robot.service';
+import { robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({
   selector: 'app-table-dashboard',
@@ -25,7 +26,7 @@ export class TableDashboardComponent implements OnInit , AfterViewInit{
 
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<RobotDto>(this.robotService.listRobots);
+    this.dataSource = new MatTableDataSource<RobotDto>(robotState.listRobots);
     this.store.select(getValueSearchInput).subscribe(value => {
       if (value === null || value === undefined || this.dataSource == undefined ){return ; }
       this.dataSource.filter = value;
@@ -35,8 +36,6 @@ export class TableDashboardComponent implements OnInit , AfterViewInit{
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-
-    
     // var timeinterval = setInterval(() => {
     //     console.log("refresh table data");
     //   this.robotService.randomDataRobots();
@@ -60,7 +59,7 @@ export class TableDashboardComponent implements OnInit , AfterViewInit{
     return (value < 20 ? 'cell-danger' : value >= 20 && value < 80 ? 'cell-warning' :'cell-steady');
   }
   cellColorSpeed(value:number):string{
-    return (value > this.robotService.settingRobot.speed.max || value < this.robotService.settingRobot.speed.min ? 'cell-danger' : 'cell-steady');
+    return (value > robotState.settingRobot.speed.max || value < robotState.settingRobot.speed.min ? 'cell-danger' : 'cell-steady');
   }
 }
 

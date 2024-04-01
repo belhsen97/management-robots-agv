@@ -33,7 +33,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BeanStartup implements CommandLineRunner {
-     final   UserRepository userRepository;
+     final UserRepository userRepository;
      final WorkstationRepository workstationRepository;
      final RobotRepository robotRepository;
      final FileService ifileService;
@@ -112,7 +112,7 @@ public class BeanStartup implements CommandLineRunner {
         }
         log.info("finish add list of workstation");
         robotRepository.deleteAll();
-        for (int i = 1; i < 26; i++) {
+        for (int i = 1; i <= 50; i++) {
             final Robot robot = Robot.builder()
                     //.id(i)
                     .idWorkstation(workstation1.getName())
@@ -147,7 +147,14 @@ public class BeanStartup implements CommandLineRunner {
 //        }
 //        System.out.println(userRepository.findByUsername( "belhsen97").get().getPhoto().getId());
 //        System.out.println( userRepository.findUsersByRole(Roles.ADMIN).size());
+
+
+
+
     }
+
+
+
 
 
      Attachment saveAttachment(String pathFile) throws Exception {

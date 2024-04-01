@@ -15,15 +15,15 @@ import java.util.Properties;
 @Configuration
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SMTPMailConfig {
-    @Value("${myApp.smtp.host}")
+    @Value("${mail.smtp.host}")
     String host ; // SMTP server hostname
-    @Value("${myApp.smtp.auth}")
+    @Value("${mail.smtp.auth}")
     boolean enableAuth   ;
-    @Value("${myApp.smtp.enableStarttls}")
+    @Value("${mail.smtp.enableStarttls}")
     boolean enableStarttls  ;
-    @Value("${myApp.smtp.username}")
+    @Value("${mail.smtp.username}")
     public String username;
-    @Value("${myApp.smtp.password}")
+    @Value("${mail.smtp.password}")
     String password;//change accordingly
 
     @Bean

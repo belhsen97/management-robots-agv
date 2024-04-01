@@ -1,8 +1,10 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8äƒ¦‘å1
-d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÛ£ã8öƒ¦‘å1
-j	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïô¯Ÿ8Ğ®¬æ1
-o	java:S100&"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‘õ­øÿÿÿÿ8ùƒ¦‘å1
-j	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Åå¥­8ª¶³¬æ1
-j	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«øƒÎ8úƒ¦‘å1
+i
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ÖÌ“øÿÿÿÿ8öƒ¦‘å1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïô¯Ÿ8Ğ®¬æ1
+_
+java:S1612!"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8ÇÔèé1
+o	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‘õ­øÿÿÿÿ8ùƒ¦‘å1
+j	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Åå¥­8ª¶³¬æ1
+j	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«øƒÎ8úƒ¦‘å1

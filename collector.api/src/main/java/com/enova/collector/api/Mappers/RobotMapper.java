@@ -3,15 +3,14 @@ package com.enova.collector.api.Mappers;
 import com.enova.collector.api.Models.Entitys.Robot;
 import com.enova.collector.api.Models.Entitys.RobotProperty;
 import com.enova.collector.api.Enums.*;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Component
+
 public class RobotMapper {
-    public List<RobotProperty> convertToRobotPropertyList(Robot robot) {
+    public static List<RobotProperty> convertToRobotPropertyList(Robot robot) {
         List<RobotProperty> robotProperties = new ArrayList<>();
         if (robot == null) {
             return robotProperties;
@@ -70,7 +69,7 @@ public class RobotMapper {
         return robotProperties;
     }
 
-    public Robot convertToRobot(List<RobotProperty> robotProperties) {
+    public static Robot convertToRobot(List<RobotProperty> robotProperties) {
         Robot robot = new Robot();
         if (robotProperties == null && robotProperties.isEmpty()) {
             return robot;
@@ -100,4 +99,20 @@ public class RobotMapper {
         }
         return robot;
     }
+
+    public List<Robot> convertToListRobot(List<RobotProperty> robotProperties) {
+        List<Robot> list = new ArrayList<>();
+        String name =  robotProperties.get(0).getName() ;
+        for (RobotProperty property : robotProperties) {
+
+
+
+
+
+
+        }
+        return list;
+    }
+
+
 }

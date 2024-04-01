@@ -3,6 +3,7 @@ package com.enova.collector.api.AppRunners;
 
 import com.enova.collector.api.Configures.MQTTClientConfig;
 import com.enova.collector.api.Services.MQTTService;
+import com.enova.collector.api.Services.RobotService;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +25,8 @@ public class BeanStartup implements CommandLineRunner {
         } catch (MqttException e) {
             e.printStackTrace();
         }
+
+
     }
 
 

@@ -13,6 +13,8 @@ import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.en
 import { ShowAlert } from 'src/app/core/store/Global/App.Action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TagService } from 'src/app/core/services/tag.service';
+import { tagState } from 'src/app/core/store/states/Tag.state';
+import { wsState } from 'src/app/core/store/states/Worstation.state';
 
 @Component({
   selector: 'app-list-tags',
@@ -24,7 +26,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sortTag   !: MatSort;
   displayedColumnsTag : string[] = [ 'code', 'workstation','action']; 
 
-
+  dataSource : MatTableDataSource<TagDto> = new MatTableDataSource<TagDto>();
 
   constructor( private store: Store,
     public workstationService:WorkstationService,
@@ -40,8 +42,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
     //   console.log( item);
     // });
     this.store.select(getValueSearchInput).subscribe(value => {
-      if (value === null || value === undefined || this.tagService.dataSource == undefined ){return ; }
-      this.tagService.dataSource.filter = value;
+      if (value === null || value === undefined || this.dataSource == undefined ){return ; }
+      this.dataSource.filter = value;
       console.log(value);
     });
 
@@ -51,7 +53,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
 
     this.workstationService.getAll().subscribe(
       (response) => { 
-        this.workstationService.listWorkstations = response.body; 
+        wsState.listWorkstations = response.body; 
       }
       ,(error) => {
         this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -59,11 +61,11 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
         //this.workstationService.goToComponent("/sign-in");
       }) ;
 
-    this.tagService.dataSource= new MatTableDataSource<TagDto>(this.tagService.listTags);
+    this.dataSource= new MatTableDataSource<TagDto>(tagState.listTags);
     this.tagService.getAll().subscribe(
       (response) => { 
-        this.tagService.listTags = response.body; 
-        this.tagService.dataSource.data =    this.tagService.listTags ;
+        tagState.listTags = response.body; 
+        this.dataSource.data =    tagState.listTags ;
       }
       ,(error) => {
         this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -75,8 +77,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
 
       this.tagService.getAll().subscribe(
       (response) => { 
-        this.tagService.listTags = response.body; 
-        this.tagService.dataSource.data =    this.tagService.listTags ;
+        tagState.listTags = response.body; 
+        this.dataSource.data =    tagState.listTags ;
       }
       ,(error) => {
         this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -85,12 +87,12 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       }) ;
   }
   ngAfterViewInit() {
-    this.tagService.dataSource.paginator = this.paginatorTag;
-    this.tagService.dataSource.sort = this.sortTag;
+    this.dataSource.paginator = this.paginatorTag;
+    this.dataSource.sort = this.sortTag;
   }
   ngOnDestroy(): void {
-    if (this.tagService.dataSource) {
-      this.tagService.dataSource.disconnect();
+    if (this.dataSource) {
+      this.dataSource.disconnect();
     }
   }
 
@@ -162,11 +164,11 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       dialogRef.afterClosed().subscribe(result => {if (result==null){ return;}
       this.tagService.insert(result).subscribe(
         (response) => { 
-          this.tagService.tag = response.body; 
+          tagState.tag = response.body; 
           this.tagService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
           this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
-          this.tagService.listTags.push(  this.tagService.tag );
-          this.tagService.dataSource.data = this.tagService.listTags;
+          tagState.listTags.push(  tagState.tag );
+          this.dataSource.data = tagState.listTags;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
@@ -183,15 +185,15 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       dialogRef.afterClosed().subscribe(result => {if (result==null){ return;}
       this.tagService.update(tag.id,result).subscribe(
         (response) => { 
-          this.tagService.tag = response.body; 
+          tagState.tag = response.body; 
           this.tagService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
           this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
 
-          const index = this.tagService.listTags.findIndex(tag => tag.id === this.tagService.tag.id);
-          if (index !== -1) {  this.tagService.listTags[index] =  this.tagService.tag;  } 
+          const index = tagState.listTags.findIndex(tag => tag.id === tagState.tag.id);
+          if (index !== -1) {  tagState.listTags[index] =  tagState.tag;  } 
         //   this.tagService.listTags.forEach((w) => { if(w.id === id) { w =   this.tagService.workstation ;} });
 
-          this.tagService.dataSource.data = this.tagService.listTags;
+          this.dataSource.data = tagState.listTags;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
@@ -214,8 +216,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
           (response) => { 
             this.tagService.msgReponseStatus = response.body; 
             this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
-            this.tagService.listTags = this.tagService.listTags.filter(item => item.id !== id);
-            this.tagService.dataSource.data = this.tagService.listTags;
+            tagState.listTags = tagState.listTags.filter(item => item.id !== id);
+            this.dataSource.data = tagState.listTags;
           },
           (error:HttpErrorResponse) => {
             if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }

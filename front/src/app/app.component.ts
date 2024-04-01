@@ -16,12 +16,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userService.userDto = this.userService.getUserDto();
     // this.mqttClientService.createConnection();
-    this.mqttClientService.doSubscribe();
-    //this.mqttClientService.doPublish();
+    //this.mqttClientService.subscribe();
+    //this.mqttClientService.publish();
   }
 
   ngOnDestroy(): void {
-    this.mqttClientService.destroyConnection();
+    this.mqttClientService.closeSubscribe();
+    this.mqttClientService.disconnect();
   }
 
 }

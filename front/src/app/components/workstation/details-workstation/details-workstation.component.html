@@ -1,26 +1,26 @@
 <div class="row mb-5">
-    <h2 class="d-inline-block">{{ wsService.workstation.name }} <span> {{ wsService.workstation.enable ? 'is enabled' : 'is disabled' }}</span></h2> 
+    <h2 class="d-inline-block">{{ wsState.workstation.name }} <span> {{ wsState.workstation.enable ? 'is enabled' : 'is disabled' }}</span></h2> 
 
 
     <div class="col-sm-12">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
            <div class="iq-card-header d-flex justify-content-between">
               <div class="iq-header-title">
-                 <h4 class="card-title">List Tags ({{wsService.workstation.tags.length}})</h4>
+                 <h4 class="card-title">List Tags ({{wsState.workstation.tags.length}})</h4>
               </div>
               <div class="iq-card-header-toolbar d-flex align-items-center">
                 <a routerLink="/workstation/tags">View All</a>
              </div>
            </div>
-           <div *ngIf="wsService.workstation.tags.length>0"  class="iq-card-body" >
+           <div *ngIf="wsState.workstation.tags.length>0"  class="iq-card-body" >
               <ul id="new-music" class="d-flex  m-0 p-0  custom-list-inline"  >
-                 <li class="col-md-3" *ngFor="let cardTag of   wsService.workstation.tags" >
+                 <li class="col-md-3" *ngFor="let cardTag of   wsState.workstation.tags" >
                     <mat-card class="example-card" >
                         <mat-card-header>
                             <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
                             <div   mat-card-avatar class="header-image-tag"></div>
                             <mat-card-title>{{cardTag.code}}</mat-card-title>
-                            <mat-card-subtitle>{{wsService.workstation.name}}</mat-card-subtitle>
+                            <mat-card-subtitle>{{wsState.workstation.name}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
                             <p><strong>Description</strong> : {{cardTag.description}}</p>
@@ -40,21 +40,21 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
            <div class="iq-card-header d-flex justify-content-between">
               <div class="iq-header-title">
-                 <h4 class="card-title">List Robots ({{wsService.workstation.robots.length}})</h4>
+                 <h4 class="card-title">List Robots ({{wsState.workstation.robots.length}})</h4>
               </div>
               <div class="iq-card-header-toolbar d-flex align-items-center">
                 <a routerLink="/robot-avg/list">View All</a>
              </div>
            </div>
-           <div *ngIf="wsService.workstation.robots.length>0"   class="iq-card-body">
+           <div *ngIf="wsState.workstation.robots.length>0"   class="iq-card-body">
               <ul id="new-music" class="d-flex  m-0 p-0  custom-list-inline"    >
-                 <li class="col-md-3" *ngFor="let card of   wsService.workstation.robots">
+                 <li class="col-md-3" *ngFor="let card of   wsState.workstation.robots">
                     <mat-card class="example-card" >
                         <mat-card-header>
                             <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
                             <div   mat-card-avatar class="header-image-robot"></div>
                             <mat-card-title>{{card.name}}</mat-card-title>
-                            <mat-card-subtitle>{{wsService.workstation.name}}</mat-card-subtitle>
+                            <mat-card-subtitle>{{wsState.workstation.name}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
                             <p><strong>created</strong> : {{ wsService.formatDateAgo(card.createdAt)}}</p>

@@ -4,18 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Service } from './globalservice.service';
 import { Observable } from 'rxjs';
-import { WorkstationDto } from '../store/models/Workstation/WorkstationDto.model';
-import { MatTableDataSource } from '@angular/material/table';
+import { tagState } from '../store/states/Tag.state';
+import { wsState } from '../store/states/Worstation.state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TagService extends Service {
 
-    public  listTags : TagDto[]=[];
-    public workstation !: WorkstationDto;
-    public tag : TagDto ={id:'',code:'',description:'',workstation:this.workstation};
-    dataSource : MatTableDataSource<TagDto> = new MatTableDataSource<TagDto>(this.listTags);
+
 
      constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
       super(http, router, activeRoute);
@@ -58,11 +55,11 @@ export class TagService extends Service {
   randomDataTags(): void {
     for (var i = 0; i < 100; i++) {
       const count = i + 1;
-      this.listTags[i] = {
+      tagState.listTags[i] = {
         id: count.toString(),
         code: this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString(),
         description : "tag description "+count ,
-        workstation: this.workstation
+        workstation: wsState.workstation
       };
     }
   }

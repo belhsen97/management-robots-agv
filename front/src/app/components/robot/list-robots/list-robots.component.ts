@@ -13,6 +13,8 @@ import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
+import { robotState } from 'src/app/core/store/states/Robot.state';
+import { wsState } from 'src/app/core/store/states/Worstation.state';
 
 @Component({
   selector: 'app-list-robots',
@@ -33,20 +35,20 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
   ngOnInit() {
    this.dataSourceRobot = new MatTableDataSource<RobotDto>();
 
-   this.store.select(getValueSearchInput).subscribe(value => {
+  this.store.select(getValueSearchInput).subscribe(value => {
     if (value === null || value === undefined || this.dataSourceRobot == undefined) { return; }
     this.dataSourceRobot.filter = value;
     console.log(value);
   });
 
 
-    this.dataSourceRobot.data = this.robotService.listRobots;
+    this.dataSourceRobot.data = robotState.listRobots;
     this.obs = this.dataSourceRobot.connect();
     this.robotService.getAll().subscribe(
       (response) => { 
-        this.robotService.listRobots = response.body;
-        this.robotService.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
-        this.dataSourceRobot.data =    this.robotService.listRobots ;
+        robotState.listRobots = response.body;
+        robotState.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
+        this.dataSourceRobot.data =    robotState.listRobots ;
       }
       ,(error) => {
         this.robotService.msgReponseStatus =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -58,7 +60,7 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
 
       this.workstationService.getAll().subscribe(
         (response) => { 
-          this.workstationService.listWorkstations = response.body; 
+          wsState.listWorkstations = response.body; 
         }
         ,(error) => {
           this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -90,11 +92,12 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
       if (result == null) { return; }
       this.robotService.insert(result).subscribe(
         (response) => { 
-          this.robotService.robot = response.body; 
+          robotState.robot = response.body; 
+          robotState.robot.createdAt =   this.robotService.toDate(    robotState.robot.createdAt.toString());
           this.robotService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
           this.store.dispatch( ShowAlert(  this.robotService.msgReponseStatus) ); 
-          this.robotService.listRobots.push(  this.robotService.robot );
-          this.dataSourceRobot.data = this.robotService.listRobots;
+          robotState.listRobots.push(  robotState.robot );
+          this.dataSourceRobot.data = robotState.listRobots;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {   this.robotService.msgReponseStatus = error.error; }
@@ -112,15 +115,15 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
       if (result == null) { return; }
       this.robotService.update(robot.id,result).subscribe(
         (response) => { 
-          this.robotService.robot = response.body; 
+          robotState.robot = response.body; 
+          robotState.robot.createdAt =   this.robotService.toDate(    robotState.robot.createdAt.toString());
           this.robotService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
           this.store.dispatch( ShowAlert(  this.robotService.msgReponseStatus) ); 
-
-          const index = this.robotService.listRobots.findIndex(robot => robot.id === this.robotService.robot.id);
-          if (index !== -1) {  this.robotService.listRobots[index] =  this.robotService.robot;  } 
+          const index = robotState.listRobots.findIndex(robot => robot.id === robotState.robot.id);
+          if (index !== -1) {    robotState.listRobots[index] =  robotState.robot;  } 
         //   this.robotService.listRobots.forEach((w) => { if(w.id === id) { w =   this.robotService.workstation ;} });
 
-          this.dataSourceRobot.data = this.robotService.listRobots;
+          this.dataSourceRobot.data = robotState.listRobots;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {   this.robotService.msgReponseStatus = error.error; }
@@ -139,8 +142,8 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
           (response) => {
             this.robotService.msgReponseStatus = response.body;
             this.store.dispatch(ShowAlert(this.robotService.msgReponseStatus));
-            this.robotService.listRobots = this.robotService.listRobots.filter(item => item.id !== id);
-            this.dataSourceRobot.data = this.robotService.listRobots;
+            robotState.listRobots = robotState.listRobots.filter(item => item.id !== id);
+            this.dataSourceRobot.data = robotState.listRobots;
           },
           (error: HttpErrorResponse) => {
             if ((error.status === 406) || (error.status === 403)) { this.robotService.msgReponseStatus = error.error; }

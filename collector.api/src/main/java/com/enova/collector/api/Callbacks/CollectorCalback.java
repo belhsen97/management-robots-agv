@@ -30,14 +30,14 @@ public class CollectorCalback implements MqttCallback {
     @Async
     @Override
     public void messageArrived(String topic, MqttMessage message) {
-        System.out.println("topic: " + topic);
-        System.out.println("Qos: " + message.getQos());
+//        System.out.println("topic: " + topic);
+//        System.out.println("Qos: " + message.getQos());
         //System.out.println("message content: " + new String(message.getPayload()));
         //listenerManager.handleMessage(topic, message.getPayload());
         // System.out.println("Async task started "+topic);
         try {
             final Robot r = objMapperService.fromJson(new String(message.getPayload()), Robot.class);
-            System.out.println(r);
+//            System.out.println(r);
             final Robot rDB = robotService.selectByName(r.getName());
             robotService.updateRobot(rDB, r);
             robotService.insertDataPropertys(r);

@@ -1,4 +1,7 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8òã¢öå1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8Öó‰ëè1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¯´çüÿÿÿÿ8úã¢öå1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¯´çüÿÿÿÿ8ßó‰ëè1
+X	java:S125+"<This block of commented-out lines of code should be removed.(Öä–¹8œÒáëè1
+S
+java:S1128"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ8œÒáëè1

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RobotService } from 'src/app/core/services/robot.service';
+import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({
   selector: 'app-panel-robot',
@@ -7,5 +8,6 @@ import { RobotService } from 'src/app/core/services/robot.service';
   styleUrls: ['./panel-robot.component.css']
 })
 export class PanelRobotComponent {
-  constructor(public  robotService : RobotService) {}
+  robotState !: RobotState;
+  constructor() {  this.robotState  = robotState;}
 }

@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 public class RobotController {
     private final RobotService iService;
 
-
     @Autowired
     public RobotController(@Qualifier("robot-service") RobotService iService) {
         this.iService = iService;

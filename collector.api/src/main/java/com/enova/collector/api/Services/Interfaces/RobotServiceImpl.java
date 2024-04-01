@@ -21,10 +21,10 @@ public class RobotServiceImpl implements RobotService {
 
     private final RobotRepository robotRepository;
     private final RobotPropertyRepository robotPropertyRepository;
-    private final RobotMapper robotMapper;
+
     @Override
     public void insertDataPropertys( Robot robot) {
-        final List<RobotProperty> listPropertys = robotMapper.convertToRobotPropertyList(robot);
+        final List<RobotProperty> listPropertys = RobotMapper.convertToRobotPropertyList(robot);
 
         for (RobotProperty property : listPropertys) {
             /*if (robotPropertyRepository.countByType(property.getType()) == 0) {
@@ -41,6 +41,12 @@ public class RobotServiceImpl implements RobotService {
                 robotPropertyRepository.save(property);
             }
         }
+    }
+
+
+    @Override
+    public List<RobotProperty>  selectDataPropertys( ) {
+       return robotPropertyRepository.findAll();
     }
     @Override
     public void  updateRobot( Robot r,  Robot ru) {
@@ -65,7 +71,6 @@ public class RobotServiceImpl implements RobotService {
     @Override
     public Robot selectByName( String name) {
         Optional<Robot> r = this.robotRepository.findbyName(name);
-        System.out.println(r.isPresent());
         if (r.isEmpty()) {
             throw new RessourceNotFoundException("Cannot found robot by id = " + name);
         }

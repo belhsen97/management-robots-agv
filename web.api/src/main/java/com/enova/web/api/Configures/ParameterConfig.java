@@ -1,20 +1,26 @@
 package com.enova.web.api.Configures;
 
 
-import com.enova.web.api.Services.Interfaces.FileServiceImpl;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
 @Configuration
 public class ParameterConfig {
+
+    @Value("${emqx.admin.username}")
+    public String brokerUsername;
+    @Value("${emqx.admin.password}")
+    public String brokerPassword;
+    @Value("${emqx.url.authentication}")
+    public String brokerurl;
+
     @Value("${myApp.file.forgotPassword_HTML}")
     public String file_forgotPassword_HTML;
     @Value("${myApp.file.ConfirmMail_HTML}")
     public String file_ConfirmMail_HTML;
-
 
     @Value("${myApp.file.UpdateNewUser_HTML}")
     public String link_UpdateNewUser_HTML;
