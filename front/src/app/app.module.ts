@@ -12,7 +12,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
 import { ListUsersComponent } from './components/user/list-users/list-users.component';
 import { StoreModule } from '@ngrx/store';
-import { AppState } from './core/store/App.state'; 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {   DashbordRouterSerializer } from './core/store/Router/DashbordRouterSerializer';
@@ -26,7 +25,7 @@ import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormForgotPasswordComponent } from './components/user/form-forgot-password/form-forgot-password.component';
-import { AppEffects } from './core/store/Global/App.Effects';
+import { GlobalEffects } from './core/store/effects/Global.Effects';
 import { EffectsModule } from '@ngrx/effects';
 import { SuccessSignUpComponent } from './components/user/success-sign-up/success-sign-up.component';
 import { ChartsDashboardComponent } from './components/dashboard/charts-dashboard/charts-dashboard.component';
@@ -46,6 +45,8 @@ import { DetailsRobotComponent } from './components/robot/details-robot/details-
 import { TracingComponent } from './components/statistic/tracing/tracing.component';
 import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 import { environment } from 'src/environments/environment';
+import { AppReducer } from './core/store/App.Reducer';
+import { MqttEffects } from './core/store/effects/Mqtt.Effect';
 
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
@@ -94,10 +95,10 @@ import { environment } from 'src/environments/environment';
     
     MaterialModule,
      
-    StoreModule.forRoot(AppState),
+    StoreModule.forRoot(AppReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), 
     StoreRouterConnectingModule.forRoot({serializer : DashbordRouterSerializer}), BrowserAnimationsModule ,// include n number of reducer  / 25 max records clicking events 
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([GlobalEffects/*,MqttEffects*/]),
 
     
    MqttModule.forRoot(environment.mqttClientConfig)

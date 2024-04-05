@@ -238,3 +238,7 @@ x
 Hsrc/main/java/com/enova/web/api/Repositorys/RobotPropertyRepository.java,8\d\8db67210d2e372f053d2839789dbd56144390a50
 a
 1src/main/java/com/enova/web/api/Enums/Gender.java,9\0\90ef12c555a2a8d0a46a13087b1a4e2e91e638ea
+j
+:src/main/java/com/enova/web/api/Services/IGenericCRUD.java,1\9\1930ad8f72907cb83859c4bee2666535557674d7
+k
+;src/main/java/com/enova/web/api/Enums/ResultStatusAuth.java,1\d\1de580bd0bc644a862f6358064843ef00dd2b508

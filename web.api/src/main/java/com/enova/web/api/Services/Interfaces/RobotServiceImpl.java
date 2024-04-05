@@ -65,13 +65,13 @@ public class RobotServiceImpl implements RobotService {
         r.setName(obj.getName());
         r.setIdWorkstation(w.isPresent() ? w.get().getName() : r.getIdWorkstation());
         r.setNotice(obj.getNotice());
-        //remove it cause reel time !!!!!!!!!!!!!
-        r.setConnection(obj.getConnection());
         r.setStatusRobot(obj.getStatusRobot());
         r.setModeRobot(obj.getModeRobot());
         r.setOperationStatus(obj.getOperationStatus());
-        r.setLevelBattery(obj.getLevelBattery());
-        r.setSpeed(obj.getSpeed());
+        //remove it cause reel time !!!!!!!!!!!!!
+        //r.setConnection(obj.getConnection());
+        //r.setLevelBattery(obj.getLevelBattery());
+        //r.setSpeed(obj.getSpeed());
         r = robotRepository.save(r);
         r.setWorkstation(w.get());
         traceService.insert(Trace.builder().className("RobotService").methodName("update").description("update robot where is name = "+r.getName()).build());

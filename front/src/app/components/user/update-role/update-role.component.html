@@ -16,7 +16,7 @@
                         <select class="form-control" id="pi-current-state-input"
                                 name="edit-global-account-pi-state" [(ngModel)]="currentRole" #stateregion="ngModel" required > 
                            <optgroup label="24 States of tunisian"> 
-                              <option *ngFor="let optionRole of userService.listRole" [value]="optionRole.value" [selected] = "optionRole?.value === currentRole">{{ optionRole.label }}</option> 
+                              <option *ngFor="let optionRole of userState.listRole" [value]="optionRole.value" [selected] = "optionRole?.value === currentRole">{{ optionRole.label }}</option> 
                           </optgroup>
                         </select>
                      </div>

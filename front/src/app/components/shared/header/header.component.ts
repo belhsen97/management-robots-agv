@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ShowAlert, openSidebar, searchInput } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert, openSidebar, searchInput } from 'src/app/core/store/actions/Global.Action';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { UserService } from 'src/app/core/services/user.service.ts.service';
-import { GlobalStateModel } from 'src/app/core/store/states/Gloabal.state';
+import { GlobalState, globalState } from 'src/app/core/store/states/Global.state';
+import { UserState, userState } from 'src/app/core/store/states/User.state';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,8 @@ import { GlobalStateModel } from 'src/app/core/store/states/Gloabal.state';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private store: Store<GlobalStateModel> , public userService : UserService ){
-  }
+  userState !: UserState;
+  constructor(private store: Store<GlobalState> , public userService : UserService ){ this.userState = userState;   }
   state : boolean = false;
 
   onKeyupSearchInput($event:any):void{
@@ -28,12 +29,13 @@ export class HeaderComponent {
 
    onClickSignOut():void{
     this.userService.logout().subscribe(
-      (response) => {   
+      (response) => {
+        //userState.userDto = defaultUserDto;
         this.userService.clearAll();  
         this.userService.goToComponent('sign-in');}
       ,(error) => {
-        this.userService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
       }) ;
    }
 }

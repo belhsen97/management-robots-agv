@@ -56,7 +56,7 @@
                                 <mat-label>Role</mat-label>
                                 <mat-select [(value)]="element.role" (selectionChange)="onChangeRole(element.username,$event)"
                                     panelClass="my-select-panel-class">
-                                    <mat-option *ngFor="let optionRole of userService.listRole"
+                                    <mat-option *ngFor="let optionRole of userState.listRole"
                                         [value]="optionRole?.value">{{optionRole.label}}</mat-option>
                                 </mat-select>
                             </mat-form-field>

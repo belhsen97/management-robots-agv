@@ -5,10 +5,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TraceService } from 'src/app/core/services/trace.service';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
-import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
+import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { TraceDto } from 'src/app/core/store/models/Trace/TraceDto.model';
+import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-tracing',
@@ -39,8 +40,8 @@ export class TracingComponent implements OnInit ,  AfterViewInit, OnDestroy {
         this.dataSource.data =  this.traceService.listTraces ;
       }
       ,(error) => {
-        this.traceService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(  this.traceService.msgReponseStatus) ); 
+        this.traceService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert(  this.traceService.msgResponseStatus ) ); 
         //this.traceService.goToComponent("/sign-in");
       }) ;
   }
@@ -48,17 +49,17 @@ export class TracingComponent implements OnInit ,  AfterViewInit, OnDestroy {
   onClickDelete(id: any): void {
         this.traceService.delete(id).subscribe(
           (response) => {
-            this.traceService.msgReponseStatus = response.body;
-            this.store.dispatch(ShowAlert(this.traceService.msgReponseStatus));
+            this.traceService.msgResponseStatus  = response.body;
+            this.store.dispatch(ShowAlert( this.traceService.msgResponseStatus ));
             this.traceService.listTraces = this.traceService.listTraces.filter(item => item.id !== id);
             this.dataSource.data = this.traceService.listTraces;
           },
           (error: HttpErrorResponse) => {
-            if ((error.status === 406) || (error.status === 403)) { this.traceService.msgReponseStatus = error.error; }
+            if ((error.status === 406) || (error.status === 403)) {  this.traceService.msgResponseStatus  = error.error; }
             else {
-              this.traceService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+              this.traceService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
             }
-            this.store.dispatch(ShowAlert(this.traceService.msgReponseStatus)); console.log(error.status);
+            this.store.dispatch(ShowAlert( this.traceService.msgResponseStatus )); console.log(error.status);
           }
         );
   }

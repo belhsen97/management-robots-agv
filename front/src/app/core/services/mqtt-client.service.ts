@@ -1,32 +1,72 @@
-import { Injectable } from '@angular/core';
-import {IMqttMessage,IMqttServiceOptions,MqttService, IPublishOptions} from 'ngx-mqtt';
+import { EventEmitter, Injectable } from '@angular/core';
+import {IMqttMessage,IMqttServiceOptions,MqttService, IPublishOptions, IOnConnectEvent, IOnErrorEvent} from 'ngx-mqtt';
 import { IClientSubscribeOptions } from 'mqtt-browser';
-import { Subscription } from 'rxjs';
+import { EMPTY, Observable, Observer, Subscription, of } from 'rxjs';
 import { Publish } from '../store/models/Mqtt/Publish.model';
 import { Subscribe } from '../store/models/Mqtt/Subscribe.model';
-import { mqttState } from '../store/states/Mqtt.state';
-
+import { MQTTState, mqttState } from '../store/states/Mqtt.state';
+import { Store } from '@ngrx/store';
+import { connectionFailure, connectionSuccess } from '../store/actions/Mqtt.Action';
+import { Packet } from 'mqtt-packet';
 @Injectable({ providedIn: 'root' })
 export class MqttClientService {  //   source : https://www.emqx.com/en/blog/how-to-use-mqtt-in-angular
 
-  private curSubscription: Subscription | undefined;
+  public curSubscription: Subscription | undefined;
   client: MqttService | undefined;
 
 
-  constructor(private _mqttService: MqttService) { this.client = this._mqttService; }
+  constructor(private _mqttService: MqttService,  /*  private store: Store<MQTTState>*/) { this.client = this._mqttService; }
+
+  connect(options: IMqttServiceOptions): Observable<void> {
+    return new Observable(observer => {
+      try { 
+        this.client?.connect(options);
+        observer.next();
+        observer.complete();
+      } catch (error) {
+        observer.error(error);
+      }
+    });
+  }
+  disconnect() : Observable<void> {   return new Observable(observer => {
+    try {
+      this.client?.disconnect(true)
+      observer.next();
+      observer.complete();
+      console.log('MQTT --> Successfully disconnected!')
+    } catch (error: any) {
+      console.log('MQTT --> Disconnect failed', error.toString())
+      observer.error(error);
+    }
+  })}
 
 
+  onConnect(): EventEmitter<IOnConnectEvent>{ return  this._mqttService.onConnect;}
+  onClose(): EventEmitter<void>{ return  this._mqttService.onClose;}
+  onMessage(): EventEmitter<Packet>{ return  this._mqttService.onMessage;}
+  onError():  EventEmitter<IOnErrorEvent> { return  this._mqttService.onError;}
+  
+  publish(publish : Publish) {
+    const { topic, qos, payload } = publish
+    this.client?.unsafePublish(topic, payload, { qos } as IPublishOptions)
+  }
+  subscribe(subscribe: Subscribe): Observable<IMqttMessage> | undefined {
+    const { topic, qos } = subscribe;
+      return this.client?.observe(topic, { qos } as IClientSubscribeOptions);
+  }
+  closeSubscribe(curSubscription: Subscription | undefined) {
+    curSubscription?.unsubscribe();
+  }
 
 
-
-  connect() {
+  connectmqtt() {
     // Connection string, which allows the protocol to specify the connection method to be used
     // ws Unencrypted WebSocket connection
     // wss Encrypted WebSocket connection
     // mqtt Unencrypted TCP connection
     // mqtts Encrypted TCP connection
     try {
-      this.client?.connect(mqttState.connection as IMqttServiceOptions)
+      this.client?.connect(mqttState.cnxClientConfig as IMqttServiceOptions)
     } catch (error) {
       console.log('MQTT --> mqtt.connect error', error);
     }
@@ -44,31 +84,10 @@ export class MqttClientService {  //   source : https://www.emqx.com/en/blog/how
     })
   }
 
-  subscribe(subscribe : Subscribe) {
-    const { topic, qos } = subscribe
-    this.curSubscription = this.client?.observe(topic, { qos } as IClientSubscribeOptions).subscribe((message: IMqttMessage) => {
-      mqttState.subscribeSuccess = true
-      console.log('MQTT --> Subscribe to topics res', message.payload.toString())
-    })
-  }
-
-  closeSubscribe() {this.curSubscription?.unsubscribe(); mqttState.subscribeSuccess = false;}
 
 
-  publish(publish : Publish) {
-    const { topic, qos, payload } = publish
-    this.client?.unsafePublish(topic, payload, { qos } as IPublishOptions)
-  }
 
 
-  disconnect() {
-    try {
-      this.client?.disconnect(true)
-      mqttState.isConnection = false
-      console.log('MQTT --> Successfully disconnected!')
-    } catch (error: any) {
-      console.log('MQTT --> Disconnect failed', error.toString())
-    }
-  }
+
 
 }

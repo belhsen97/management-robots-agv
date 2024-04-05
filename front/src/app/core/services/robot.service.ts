@@ -18,8 +18,8 @@ export class RobotService extends Service {
 
   constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
     super(http, router, activeRoute); 
-    this.randomDataRobots();
-    this.refreshValuesPanelRobot();
+   // this.randomDataRobots();
+   // this.refreshValuesPanelRobot();
   }
 
 
@@ -80,7 +80,7 @@ export class RobotService extends Service {
   }
   public refreshValuesPanelRobot(): void {
     robotState.panelRobot.count = robotState.listRobots.length;
-    robotState.panelRobot.connected = robotState.listRobots.filter(robot => {return robot.connection == Connection.DISCONNECTED}).length;
+    robotState.panelRobot.connected = robotState.listRobots.filter(robot => {return robot.connection == Connection.CONNECTED}).length;
     robotState.panelRobot.auto = robotState.listRobots.filter(robot => {return robot.modeRobot == ModeRobot.AUTO }).length;
     robotState.panelRobot.operationStatus = robotState.listRobots.filter(robot => {return robot.operationStatus == OperationStatus.EMS || robot.operationStatus == OperationStatus.PAUSE  }).length;
     robotState.panelRobot.running  = robotState.listRobots.filter(robot => {return robot.statusRobot == StatusRobot.RUNNING }).length;

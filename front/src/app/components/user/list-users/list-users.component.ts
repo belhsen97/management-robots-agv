@@ -4,14 +4,16 @@ import { getrouterinfo } from 'src/app/core/store/Router/Router.Seletor';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator'; 
 import { MatSort } from '@angular/material/sort';
-import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import {   UserDto } from 'src/app/core/store/models/User/UserDto.model'; 
 import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
-import { MsgReponseStatus } from 'src/app/core/store/models/Global/MsgReponseStatus.model';
+import { MsgResponseStatus } from 'src/app/core/store/models/Global/MsgResponseStatus.model';
+import { UserState, userState } from 'src/app/core/store/states/User.state';
+import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-users',
@@ -35,8 +37,8 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
   dataSource:any;
 
   expandedElement !: UserDto | null;
-
-  constructor( private store: Store ,  public userService : UserService ) {}
+  userState !: UserState;
+  constructor( private store: Store ,  public userService : UserService ) {this.userState = userState;}
 
 
   ngOnInit(): void {
@@ -52,22 +54,22 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
       console.log(  value );
     });
 
-    this.dataSource = new MatTableDataSource<UserDto>(this.userService.ListUsers);
+    this.dataSource = new MatTableDataSource<UserDto>(userState.ListUsers);
 
 
     this.userService.getAll().subscribe(
       (response) => { 
-        this.userService.ListUsers = response.body; 
-        this.userService.ListUsers.forEach((user, index) => {
+        userState.ListUsers = response.body; 
+        userState.ListUsers.forEach((user, index) => {
           user.no = 1+index;
           user.createdAt = this.userService.toDate (user.createdAt.toString() );
-          if ( user.photo == null )  { user.photo = this.userService.defaultPhotoUser;}
+          if ( user.photo == null )  { user.photo = userState.defaultPhotoUser;}
       });
-        this.dataSource.data =  this.userService.ListUsers ;
+        this.dataSource.data =  userState.ListUsers ;
       }
       ,(error) => {
-        this.userService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
         this.userService.goToComponent("/sign-in");
       }) ;
  
@@ -82,19 +84,19 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
     console.log(username, enable)
     this.userService.enableUser( username ,  enable  ).subscribe(
       (response) => {
-        const msg : MsgReponseStatus = response.body;
-        this.userService.msgReponseStatus = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        const msg : MsgResponseStatus = response.body;
+        this.userService.msgResponseStatus  = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
+        this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
    
-        const index = this.userService.ListUsers.findIndex(u => u.username === username);
-        if (index !== -1) {  this.userService.ListUsers[index].enabled =  enable;  } 
-        this.dataSource.data = this.userService.ListUsers;
+        const index = userState.ListUsers.findIndex(u => u.username === username);
+        if (index !== -1) {  userState.ListUsers[index].enabled =  enable;  } 
+        this.dataSource.data = userState.ListUsers;
 
       }
       ,(error) => {
-        this.userService.msgReponseStatus =  
+        this.userService.msgResponseStatus  =  
         { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
-        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
       }) ; 
   }
 
@@ -105,21 +107,21 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
     console.log(username,typeof selectedRole); 
     this.userService.updateRole( username ,  selectedRole  ).subscribe(
       (response) => {
-        const msg : MsgReponseStatus = response.body;
-        this.userService.msgReponseStatus = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        const msg : MsgResponseStatus = response.body;
+        this.userService.msgResponseStatus  = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
+        this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
 
         console.log(typeof (event));
         console.log(typeof (selectedRole));
-        const index = this.userService.ListUsers.findIndex(u => u.username === username);
-        if (index !== -1) {  this.userService.ListUsers[index].role =  event.value;  } 
-        this.dataSource.data = this.userService.ListUsers;
+        const index = userState.ListUsers.findIndex(u => u.username === username);
+        if (index !== -1) {  userState.ListUsers[index].role =  event.value;  } 
+        this.dataSource.data = userState.ListUsers;
 
       }
       ,(error) => {
-        this.userService.msgReponseStatus =  
+        this.userService.msgResponseStatus  =  
         { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
-        this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
       }) ; 
   }
 

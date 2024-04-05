@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { pipe, exhaustMap, map } from "rxjs"
-import { EmptyAction, ShowAlert } from "./App.Action";
-import { MsgReponseStatus } from "../models/Global/MsgReponseStatus.model";
+import { EmptyAction, ShowAlert } from "../actions/Global.Action";
+import { MsgResponseStatus } from "../models/Global/MsgResponseStatus.model";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 
 @Injectable()
-export class AppEffects {
+export class GlobalEffects {
 
     constructor(private action$: Actions, private _snackbar: MatSnackBar) {
 
@@ -28,7 +28,7 @@ export class AppEffects {
         )
     );
 
-    ShowsnackbarAlert( msg :  MsgReponseStatus) {
+    ShowsnackbarAlert( msg :  MsgResponseStatus) {
         const _class =  ( msg.status == ReponseStatus.SUCCESSFUL ? 'green-snackbar' : msg.status == ReponseStatus.UNSUCCESSFUL ? 'yellow-snackbar' : 'red-snackbar');
         return this._snackbar.open(msg.title +" : "+ msg.message + " at " + msg.datestamp.toLocaleString(), 'OK', {
             verticalPosition: 'bottom',

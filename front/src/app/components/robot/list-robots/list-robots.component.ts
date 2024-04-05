@@ -7,14 +7,15 @@ import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { RobotService } from 'src/app/core/services/robot.service';
 import { AddRobotComponent } from '../add-robot/add-robot.component';
 import { Store } from '@ngrx/store';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import { robotState } from 'src/app/core/store/states/Robot.state';
 import { wsState } from 'src/app/core/store/states/Worstation.state';
+import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-robots',
@@ -44,6 +45,7 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
 
     this.dataSourceRobot.data = robotState.listRobots;
     this.obs = this.dataSourceRobot.connect();
+   // this.dataSourceRobot.data =    robotState.listRobots ;
     this.robotService.getAll().subscribe(
       (response) => { 
         robotState.listRobots = response.body;
@@ -51,8 +53,8 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
         this.dataSourceRobot.data =    robotState.listRobots ;
       }
       ,(error) => {
-        this.robotService.msgReponseStatus =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(    this.robotService.msgReponseStatus) ); 
+        this.robotService.msgResponseStatus  =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
         //this.robotService.goToComponent("/sign-in");
       }) ;
 
@@ -63,8 +65,8 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
           wsState.listWorkstations = response.body; 
         }
         ,(error) => {
-          this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-          this.store.dispatch( ShowAlert(    this.workstationService.msgReponseStatus) ); 
+          this.robotService.msgResponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+          this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
           //this.workstationService.goToComponent("/sign-in");
         }) ;
 
@@ -94,17 +96,17 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
         (response) => { 
           robotState.robot = response.body; 
           robotState.robot.createdAt =   this.robotService.toDate(    robotState.robot.createdAt.toString());
-          this.robotService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
-          this.store.dispatch( ShowAlert(  this.robotService.msgReponseStatus) ); 
+          this.robotService.msgResponseStatus  = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
+          this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
           robotState.listRobots.push(  robotState.robot );
           this.dataSourceRobot.data = robotState.listRobots;
         },
         (error:HttpErrorResponse) => {
-          if ((error.status === 406 )||(error.status === 403 )) {   this.robotService.msgReponseStatus = error.error; }
+          if ((error.status === 406 )||(error.status === 403 )) { this.robotService.msgResponseStatus  = error.error; }
           else {
-            this.robotService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+            this.robotService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
           }
-          this.store.dispatch( ShowAlert(  this.robotService.msgReponseStatus) );  console.log(error.status) ;
+          this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) );  console.log(error.status) ;
         }  
         );
     });
@@ -117,8 +119,8 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
         (response) => { 
           robotState.robot = response.body; 
           robotState.robot.createdAt =   this.robotService.toDate(    robotState.robot.createdAt.toString());
-          this.robotService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
-          this.store.dispatch( ShowAlert(  this.robotService.msgReponseStatus) ); 
+          this.robotService.msgResponseStatus  = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
+          this.store.dispatch( ShowAlert(   this.robotService.msgResponseStatus ) ); 
           const index = robotState.listRobots.findIndex(robot => robot.id === robotState.robot.id);
           if (index !== -1) {    robotState.listRobots[index] =  robotState.robot;  } 
         //   this.robotService.listRobots.forEach((w) => { if(w.id === id) { w =   this.robotService.workstation ;} });
@@ -126,11 +128,11 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
           this.dataSourceRobot.data = robotState.listRobots;
         },
         (error:HttpErrorResponse) => {
-          if ((error.status === 406 )||(error.status === 403 )) {   this.robotService.msgReponseStatus = error.error; }
+          if ((error.status === 406 )||(error.status === 403 )) {  this.robotService.msgResponseStatus = error.error; }
           else {
-            this.robotService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+            this.robotService.msgResponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
           }
-          this.store.dispatch( ShowAlert(  this.robotService.msgReponseStatus) );  console.log(error.status) ;
+          this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) );  console.log(error.status) ;
         }  
         );
     });
@@ -140,17 +142,17 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
       () => {
         this.robotService.delete(id).subscribe(
           (response) => {
-            this.robotService.msgReponseStatus = response.body;
-            this.store.dispatch(ShowAlert(this.robotService.msgReponseStatus));
+            this.robotService.msgResponseStatus  = response.body;
+            this.store.dispatch(ShowAlert( this.robotService.msgResponseStatus ));
             robotState.listRobots = robotState.listRobots.filter(item => item.id !== id);
             this.dataSourceRobot.data = robotState.listRobots;
           },
           (error: HttpErrorResponse) => {
-            if ((error.status === 406) || (error.status === 403)) { this.robotService.msgReponseStatus = error.error; }
+            if ((error.status === 406) || (error.status === 403)) {  this.robotService.msgResponseStatus  = error.error; }
             else {
-              this.robotService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+              this.robotService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
             }
-            this.store.dispatch(ShowAlert(this.robotService.msgReponseStatus)); console.log(error.status);
+            this.store.dispatch(ShowAlert( this.robotService.msgResponseStatus )); console.log(error.status);
           }
         );
 

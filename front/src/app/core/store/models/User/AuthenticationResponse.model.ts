@@ -1,5 +1,5 @@
-import { MsgReponseStatus } from "../Global/MsgReponseStatus.model";
+import { MsgResponseStatus } from "../Global/MsgResponseStatus.model";
 
-export interface AuthenticationResponse extends MsgReponseStatus{
+export interface AuthenticationResponse extends MsgResponseStatus{
     token : string; 
 }

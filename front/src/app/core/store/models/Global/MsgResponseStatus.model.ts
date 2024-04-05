@@ -1,5 +1,5 @@
 import { ReponseStatus } from "./ReponseStatus.enum";
-export interface MsgReponseStatus { 
+export interface MsgResponseStatus { 
     title : string ;
     datestamp : Date ;
     status : ReponseStatus ;

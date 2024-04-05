@@ -3,13 +3,15 @@ import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AttachementDto } from 'src/app/core/store/models/User/AttachementDto.model';
 import { Gender } from 'src/app/core/store/models/User/Gender.enum';
-import { MsgReponseStatus } from 'src/app/core/store/models/Global/MsgReponseStatus.model';
+import { MsgResponseStatus } from 'src/app/core/store/models/Global/MsgResponseStatus.model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { Role } from 'src/app/core/store/models/User/Role.enum';
 import { UserService } from 'src/app/core/services/user.service.ts.service';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
+import { UserState, userState } from 'src/app/core/store/states/User.state';
+import { globalState } from 'src/app/core/store/states/Global.state';
 
 
 
@@ -20,7 +22,8 @@ import { ShowAlert } from 'src/app/core/store/Global/App.Action';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  constructor(public userService : UserService  , private store: Store , public dialog: MatDialog){}
+  userState !: UserState;
+  constructor(public userService : UserService  , private store: Store , public dialog: MatDialog){this.userState = userState;}
    ngOnInit(): void { 
     }
 
@@ -54,16 +57,16 @@ export class EditUserComponent implements OnInit {
   }
   onYesNoEventUploadImgPersonalInformation($event:any):void {this.stateMsgBoxUploadImg = $event ;} 
 uploadImageProfile($event:File):void {
-  this.userService.updatePhotoProfile(  this.userService.userDto.username , $event ).subscribe(
+  this.userService.updatePhotoProfile(  this.userState.userDto.username , $event ).subscribe(
     (response) => {
       const photo_Profile : AttachementDto = response.body;
-      this.userService.userDto.photo =  photo_Profile;
-      this.userService.setUserDto(this.userService.userDto);
+      this.userState.userDto.photo =  photo_Profile;
+      this.userService.setUserDto(this.userState.userDto);
      }
     ,(error) => { 
-      this.userService.msgReponseStatus =  
+      this.userService.msgResponseStatus  =  
       { title : "Error", datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message};
-      this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+      this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
     }) ;
 }
 
@@ -77,15 +80,15 @@ onClickOnUploadRolePersonalInformation():void {
 onYesNoEventUploadRolePersonalInformation($event:any):void {this.stateMsgBoxUploadRolePersonalInformation = $event ;} 
 updateRoleProfile($event:Role):void {
   console.log($event);
-   this.userService.updateRoleWithPermission(  this.userService.userDto.username ,  this.userService.userDto.role , $event ).subscribe(
+   this.userService.updateRoleWithPermission(  this.userState.userDto.username ,  this.userState.userDto.role , $event ).subscribe(
     (response) => {
-      const msg : MsgReponseStatus = response.body;
-      this.userService.msgReponseStatus =  
+      const msg : MsgResponseStatus = response.body;
+      this.userService.msgResponseStatus =  
       { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
 
      }
     ,(error) => {
-      this.userService.msgReponseStatus =  
+      this.userService.msgResponseStatus =  
       { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
     }) ; 
 }
@@ -95,22 +98,22 @@ updateRoleProfile($event:Role):void {
 
 
 //Personal Information
-onCheckRadioGenderOption(gender:Gender):void {this.userService.userDto.gender = gender ;}
+onCheckRadioGenderOption(gender:Gender):void {this.userState.userDto.gender = gender ;}
 onClickOnSubmitPersonalInformation(form: NgForm):void { 
    if(  !form.invalid ){
     this.openDialogConfirmation('Confirmation', '  Would you want to change you Personal Information ?','300ms', '500ms',
     () => { 
 
-      this.userService.update( this.userService.userDto .id,this.userService.userDto) .subscribe(
+      this.userService.update( this.userState.userDto .id,this.userState.userDto) .subscribe(
         (response) => {     
-          this.userService.userDto = response.body;
-          this.userService.setUserDto(this.userService.userDto);
-          this.userService.msgReponseStatus =    { title : "Success",   datestamp: new Date() ,status : ReponseStatus.SUCCESSFUL , message : "updated !"}
-          this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+          this.userState.userDto = response.body;
+          this.userService.setUserDto(this.userState.userDto);
+          this.userService.msgResponseStatus  =    { title : "Success",   datestamp: new Date() ,status : ReponseStatus.SUCCESSFUL , message : "updated !"}
+          this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
         }
         ,(error) => {
-          this.userService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-          this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+          this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+          this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
         }) ;
 
     });
@@ -132,13 +135,13 @@ onClickSubmitUpdatePassword(form: NgForm):void {
     this.openDialogConfirmation('Confirmation', 'Do you want to change you Password ?','300ms', '500ms',
     () => { 
 
-    this.userService.updatePassword( this.userService.userDto.username,this.currentPassword,this.newPassword) .subscribe(
+    this.userService.updatePassword( this.userState.userDto.username,this.currentPassword,this.newPassword) .subscribe(
       (response) => {
-        this.userService.msgReponseStatus = response.body;
+        this.userService.msgResponseStatus  = response.body;
       }
       ,(error) => {
-        this.userService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-          this.store.dispatch( ShowAlert(  this.userService.msgReponseStatus) ); 
+        this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+          this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
       }) ;
 
     });

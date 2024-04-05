@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { RobotService } from 'src/app/core/services/robot.service';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { Connection } from 'src/app/core/store/models/Robot/Connection.enum';
 import { ModeRobot } from 'src/app/core/store/models/Robot/ModeRobot.enum';

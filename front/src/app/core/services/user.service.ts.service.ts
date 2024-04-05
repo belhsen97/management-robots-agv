@@ -1,51 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Role } from '../store/models/User/Role.enum';
-import { Gender } from '../store/models/User/Gender.enum';
 import { AuthenticationRequest } from '../store/models/User/AuthenticationRequest.model';
-import { ReponseStatus } from '../store/models/Global/ReponseStatus.enum';
 import { AuthenticationResponse } from '../store/models/User/AuthenticationResponse.model';
 import { UserDto } from '../store/models/User/UserDto.model';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from './globalservice.service';
-import { AttachementDto } from '../store/models/User/AttachementDto.model';
+import { userState } from '../store/states/User.state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService extends Service {
-
-  public readonly FEMALE: Gender = Gender.FEMALE;
-  public readonly MALE: Gender = Gender.MALE;
-  public readonly SUCCESSFUL: ReponseStatus = ReponseStatus.SUCCESSFUL;
-  public readonly ERROR: ReponseStatus = ReponseStatus.ERROR;
-  public readonly UNSUCCESSFUL: ReponseStatus = ReponseStatus.UNSUCCESSFUL;
-
-
-  public defaultPhotoUser  : AttachementDto= {id: "1",fileName: "user",downloadURL: "assets/images/user/unkhow-user.jpg",fileType: "png",fileSize: 120};
-  public userDto: UserDto = {
-    no: 1,id: "1",createdAt: new Date(),username: "username",password: "password",code: "code",
-    role: Role.OPERATOR,enabled: true,firstname: "empty",lastname: "",matricule: "matricule",
-    phone: 12345678,email: "email@exemple.com",gender: Gender.MALE,
-    photo: this.defaultPhotoUser
-  };
-
-  public ListUsers: UserDto[] = [this.userDto];
-
-  private readonly listPathPermision = [
-    { role: Role.ADMIN, path: '/edit-user/**' },
-    { role: Role.MAINTENANCE, path: '/edit-user/**' },
-    { role: Role.OPERATOR, path: '/edit-user/**' },
-    { role: Role.MAINTENANCE, path: '/list-workstations/**' },
-    { role: Role.MAINTENANCE, path: '/list-workstations/**' }];
-
-  public readonly listRole = [{ label: 'ADMIN', value: Role.ADMIN }, { label: 'MAINTENANCE', value: Role.MAINTENANCE }, { label: 'OPERATOR', value: Role.OPERATOR }];
-  
-  public readonly listGender = [{ label: 'FEMALE', value: Gender.FEMALE }, { label: 'MALE', value: Gender.MALE }];
-  
-
-
 
   constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { super(http, router, activeRoute); }
 
@@ -63,7 +29,10 @@ export class UserService extends Service {
     return this.http.get(`${this.url}/user/username/${usename}`,
       { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
   }
-
+  getByAuthenticate(): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/user/authenticate`,
+      { observe: 'response', headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) })
+  }
   // getByListUsernames(usenamesArray: string[]) : Observable<HttpResponse<any>>{
   //               return this.http.get(`${this.url}/user/select-by-usernames/${usenamesArray.join(',')}`,
   //                                    {observe : 'response'})
@@ -104,9 +73,9 @@ export class UserService extends Service {
     this.setToken(authResponseDto);
     this.getByUsername(username).subscribe(
       (response) => {
-        this.userDto = response.body;
-        this.setUserDto(this.userDto);
-        console.log(this.userDto);
+        userState.userDto = response.body;
+        this.setUserDto(userState.userDto);
+        console.log(userState.userDto);
         //this.goToComponent('user/profile/'+this.userDto.username); // ??????????????????
         this.goToComponent('/dashboard/table'); // ??????????????????
       }
@@ -156,7 +125,7 @@ export class UserService extends Service {
 
   getUserDto(): UserDto {
     const userDtoString = localStorage.getItem('UserDto');
-    const account = (userDtoString == null ? this.userDto : JSON.parse(userDtoString));
+    const account = (userDtoString == null ? userState.userDto : JSON.parse(userDtoString));
     return account;
   }
   clearUserDto(): void { localStorage.removeItem('UserDto'); }
@@ -166,23 +135,6 @@ export class UserService extends Service {
   }
   clearAll(): void { this.clearAuthenticationRequest(); this.clearUserDto(); }
 
-  isAuthenticated(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('state.url: ', state.url);
-    const pathFromRoot = route.pathFromRoot.map(route => route.url.join('/')).join('/');
-    console.log('Full path: ', pathFromRoot);
-    console.log(this.isPathValid(pathFromRoot, this.listPathPermision));
-    return true;//????????????????????????????????????????????????????????????????????????????????????
-  }
-  private isPathValid(pathToCheck: string, listPathPermission: any): boolean {
-    for (const pathPermission of listPathPermission) {
-      const pathPattern = pathPermission.path.replace(/\*\*/g, '.*');
-      const regex = new RegExp(`^${pathPattern}$`);
 
-      if (regex.test(pathToCheck) && this.getUserDto().role == pathPermission.role) {
-        return true;
-      }
-    }
-    return false;
-  }
 
 }

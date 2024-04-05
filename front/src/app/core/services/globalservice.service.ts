@@ -1,14 +1,17 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { MsgReponseStatus } from '../store/models/Global/MsgReponseStatus.model';
-import { UserDto } from '../store/models/User/UserDto.model';
+import { MsgResponseStatus } from '../store/models/Global/MsgResponseStatus.model';
 import { AuthenticationResponse } from '../store/models/User/AuthenticationResponse.model';
 import { ReponseStatus } from '../store/models/Global/ReponseStatus.enum';
 import { AuthenticationRequest } from '../store/models/User/AuthenticationRequest.model';
 export class Service {
+
+
+
+
     protected url = `${environment.apiUrl}`;
-    public msgReponseStatus  !: MsgReponseStatus ; 
+    public msgResponseStatus  !: MsgResponseStatus ; 
 
 
     public authResponse : AuthenticationResponse ={title : "",datestamp : new Date(),status : ReponseStatus.ERROR,message : "",token: "" }

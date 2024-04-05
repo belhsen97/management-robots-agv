@@ -60,39 +60,3 @@ export const robotState: RobotState = {
     robot: robot,
     listRobots: listRobots
 };
-
-
-/*
-export const robot: RobotDto = {
-    id: "",
-    createdAt: new Date(),
-    name: "",
-    statusRobot: StatusRobot.RUNNING,
-    modeRobot: ModeRobot.MANUAL,
-    notice: "",
-    connection: Connection.CONNECTED,
-    operationStatus: OperationStatus.PAUSE,
-    levelBattery: 0,
-    speed: 0,
-    workstation: workstation
-};
-
-export const listRobots: RobotDto[] = [];
-
-export const settingRobot: SettingRobot = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
-
-export const panelRobot: PanelRobot = { count: 20, connected: 10, running: 20, operationStatus: 10, auto: 10 }
-
-export const typeConnection: readonly { label: string; value: Connection }[] = [
-    { label: 'CONNECTED', value: Connection.CONNECTED },
-    { label: 'DISCONNECTED', value: Connection.DISCONNECTED }];
-export const ListModeRobot: readonly { label: string; value: ModeRobot }[] = [
-    { label: 'AUTO', value: ModeRobot.AUTO },
-    { label: 'MANUAL', value: ModeRobot.MANUAL }];
-export const ListOperationStatus: readonly { label: string; value: OperationStatus }[] = [
-    { label: 'EMS', value: OperationStatus.EMS },
-    { label: 'PAUSE', value: OperationStatus.PAUSE }];
-export const ListStatusRobot: readonly { label: string; value: StatusRobot }[] = [
-    { label: 'WAITING', value: StatusRobot.WAITING },
-    { label: 'RUNNING', value: StatusRobot.RUNNING },
-    { label: 'INACTIVE', value: StatusRobot.INACTIVE }];*/

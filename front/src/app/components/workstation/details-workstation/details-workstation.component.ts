@@ -2,10 +2,11 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { getRouterId } from 'src/app/core/store/Router/Router.Seletor';
-import { MsgReponseStatus } from 'src/app/core/store/models/Global/MsgReponseStatus.model';
+import { MsgResponseStatus } from 'src/app/core/store/models/Global/MsgResponseStatus.model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
+import { globalState } from 'src/app/core/store/states/Global.state';
 import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.state';
 
 @Component({
@@ -30,8 +31,8 @@ export class DetailsWorkstationComponent implements OnInit,OnDestroy   {
           console.log(this.wsState.workstation );
          }
         ,(error) => {
-          this.wsService.msgReponseStatus =  { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
-          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
+          this.wsService.msgResponseStatus  =  { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
+          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
         }) ; 
     });
     this.routerSubscription.unsubscribe();

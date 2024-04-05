@@ -3,13 +3,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { AddWorkstationComponent } from '../add-workstation/add-workstation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TagService } from 'src/app/core/services/tag.service';
 import { tagState } from 'src/app/core/store/states/Tag.state';
@@ -17,6 +17,7 @@ import { WorkstationDto } from 'src/app/core/store/models/Workstation/Workstatio
 import {  wsState } from 'src/app/core/store/states/Worstation.state';
 import { RobotService } from 'src/app/core/services/robot.service';
 import { robotState } from 'src/app/core/store/states/Robot.state';
+import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-workstations',
@@ -59,8 +60,8 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
         this.dataSource.data = wsState.listWorkstations;
       }
       , (error) => {
-        this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
+        this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+        this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
         //this.workstationService.goToComponent("/sign-in");
       });
 
@@ -74,8 +75,8 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
         tagState.listTags = response.body;
       }
       , (error) => {
-        this.tagService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        this.store.dispatch(ShowAlert(this.tagService.msgReponseStatus));
+        this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+        this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
         //this.workstationService.goToComponent("/sign-in");
       });
 
@@ -85,8 +86,8 @@ this.robotsService.getAll().subscribe(
     robotState.listRobots = response.body;
   }
   , (error) => {
-    this.robotsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-    this.store.dispatch(ShowAlert(this.robotsService.msgReponseStatus));
+    this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+    this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
     //this.workstationService.goToComponent("/sign-in");
   });
 
@@ -155,18 +156,18 @@ this.robotsService.getAll().subscribe(
       this.wsService.insert(result).subscribe(
         (response) => {
           wsState.workstation = response.body;
-          this.wsService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
-          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
+          this.wsService.msgResponseStatus  = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
+          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
           // this.workstationService.workstation.no =  this.workstationService.listWorkstations.length+1;
           wsState.listWorkstations.push(wsState.workstation);
           this.dataSource.data = wsState.listWorkstations;
         },
         (error: HttpErrorResponse) => {
-          if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
+          if ((error.status === 406) || (error.status === 403)) { this.wsService.msgResponseStatus  = error.error; }
           else {
-            this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+            this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
           }
-          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus)); console.log(error.status);
+          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
         }
       );
     });
@@ -181,8 +182,8 @@ this.robotsService.getAll().subscribe(
       this.wsService.update(element.id, result).subscribe(
         (response) => {
           wsState.workstation = response.body;
-          this.wsService.msgReponseStatus = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
-          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
+          this.wsService.msgResponseStatus  = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
+          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
 
           const index = wsState.listWorkstations.findIndex(element => element.id === wsState.workstation.id);
           if (index !== -1) { wsState.listWorkstations[index] = wsState.workstation; }
@@ -191,11 +192,11 @@ this.robotsService.getAll().subscribe(
           this.dataSource.data = wsState.listWorkstations;
         },
         (error: HttpErrorResponse) => {
-          if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
+          if ((error.status === 406) || (error.status === 403)) { this.wsService.msgResponseStatus  = error.error; }
           else {
-            this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+            this.wsService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
           }
-          this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus)); console.log(error.status);
+          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
         }
       );
     });
@@ -208,17 +209,17 @@ this.robotsService.getAll().subscribe(
       () => {
         this.wsService.delete(id).subscribe(
           (response) => {
-            this.wsService.msgReponseStatus = response.body;
-            this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus));
+            this.wsService.msgResponseStatus = response.body;
+            this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
             wsState.listWorkstations = wsState.listWorkstations.filter(item => item.id !== id);
             this.dataSource.data = wsState.listWorkstations;
           },
           (error: HttpErrorResponse) => {
-            if ((error.status === 406) || (error.status === 403)) { this.wsService.msgReponseStatus = error.error; }
+            if ((error.status === 406) || (error.status === 403)) { this.wsService.msgResponseStatus = error.error; }
             else {
-              this.wsService.msgReponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+              this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
             }
-            this.store.dispatch(ShowAlert(this.wsService.msgReponseStatus)); console.log(error.status);
+            this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
           }
         );
 

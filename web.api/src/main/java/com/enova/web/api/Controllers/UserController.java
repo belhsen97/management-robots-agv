@@ -11,6 +11,7 @@ import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Models.Entitys.User;
 import com.enova.web.api.Mappers.AttachmentMapper;
 import com.enova.web.api.Mappers.UserMapper;
+import com.enova.web.api.Services.AuthenticationService;
 import com.enova.web.api.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,10 +34,13 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class UserController {
     private final UserService iUserService;
-
+    private final AuthenticationService authService;
     @Autowired
-    public UserController(@Qualifier("user-service") UserService iUserService) {
+    public UserController(@Qualifier("user-service") UserService iUserService,
+                          @Qualifier("authentication-service") AuthenticationService authService
+                          ) {
         this.iUserService = iUserService;
+        this.authService = authService;
     }
 
     @GetMapping
@@ -54,7 +58,10 @@ public class UserController {
     public ResponseEntity<UserDto> selectByUsername(@PathVariable String usename) {
         return ResponseEntity.ok(UserMapper.mapToDto(iUserService.selectByUsername(usename)));
     }
-
+    @GetMapping("/authenticate")
+    public ResponseEntity<UserDto> selectByAuth() {
+        return ResponseEntity.ok(UserMapper.mapToDto(iUserService.selectByUsername(authService.getUsername())));
+    }
     @PostMapping
     public UserDto insert(@RequestBody UserDto user) {
         return UserMapper.mapToDto(iUserService.insert(UserMapper.mapToEntity(user)));

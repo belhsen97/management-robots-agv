@@ -28,18 +28,18 @@
           <li>
             <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
               <div class="photo-profile-container rounded-circle mr-3">
-                <img  [src]="userService.userDto.photo == null ? 'assets/images/user/unkhow-user.jpg'  : userService.userDto.photo.downloadURL" class="img-fluid " alt="user">
+                <img  [src]="userState.userDto.photo == null ? 'assets/images/user/unkhow-user.jpg'  : userState.userDto.photo.downloadURL" class="img-fluid " alt="user">
                 <!-- <img  [src]="this.accountService.photoProfile"  class="img-fluid rounded-circle mr-3" alt="user">-->
               </div>
               <div class="caption">
-                <h6 class="mb-0 line-height">{{ userService.userDto.firstname == null || userService.userDto.lastname == null ? "" : userService.userDto.firstname +" "+userService.userDto.lastname}}</h6>
+                <h6 class="mb-0 line-height">{{ userState.userDto.firstname == null || userState.userDto.lastname == null ? "" : userState.userDto.firstname +" "+userState.userDto.lastname}}</h6>
               </div>
             </a>
             <div class="iq-sub-dropdown iq-user-dropdown">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 " >
                   <div class="bg-primary p-3 line-height" >
-                    <h5 class="mb-0 text-white line-height">Hello {{ userService.userDto.firstname == null || userService.userDto.lastname == null ? "" : userService.userDto.firstname +" "+userService.userDto.lastname}}</h5>
+                    <h5 class="mb-0 text-white line-height">Hello {{ userState.userDto.firstname == null || userState.userDto.lastname == null ? "" : userState.userDto.firstname +" "+userState.userDto.lastname}}</h5>
                     <span class="text-white font-size-12">Available</span>
                   </div>
                   <a routerLink="/user/profile" class="iq-sub-card iq-bg-primary-hover">

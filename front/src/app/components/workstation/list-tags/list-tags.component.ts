@@ -3,18 +3,19 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { getValueSearchInput } from 'src/app/core/store/Global/App.Selectors'; 
+import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors'; 
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { TagDto } from 'src/app/core/store/models/Tag/TagDto.model';
 import { AddTagComponent } from '../add-tag/add-tag.component';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
-import { ShowAlert } from 'src/app/core/store/Global/App.Action';
+import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TagService } from 'src/app/core/services/tag.service';
 import { tagState } from 'src/app/core/store/states/Tag.state';
 import { wsState } from 'src/app/core/store/states/Worstation.state';
+import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-tags',
@@ -56,8 +57,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
         wsState.listWorkstations = response.body; 
       }
       ,(error) => {
-        this.workstationService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(    this.workstationService.msgReponseStatus) ); 
+        this.tagService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert(this.tagService.msgResponseStatus ) ); 
         //this.workstationService.goToComponent("/sign-in");
       }) ;
 
@@ -68,8 +69,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
         this.dataSource.data =    tagState.listTags ;
       }
       ,(error) => {
-        this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(    this.tagService.msgReponseStatus) ); 
+        this.tagService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert(this.tagService.msgResponseStatus ) ); 
         //this.workstationService.goToComponent("/sign-in");
       }) ;
  
@@ -81,8 +82,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
         this.dataSource.data =    tagState.listTags ;
       }
       ,(error) => {
-        this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(    this.tagService.msgReponseStatus) ); 
+        this.tagService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+        this.store.dispatch( ShowAlert( this.tagService.msgResponseStatus) ); 
         //this.workstationService.goToComponent("/sign-in");
       }) ;
   }
@@ -165,17 +166,17 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       this.tagService.insert(result).subscribe(
         (response) => { 
           tagState.tag = response.body; 
-          this.tagService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
-          this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
+          this.tagService.msgResponseStatus  = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
+          this.store.dispatch( ShowAlert(this.tagService.msgResponseStatus ) ); 
           tagState.listTags.push(  tagState.tag );
           this.dataSource.data = tagState.listTags;
         },
         (error:HttpErrorResponse) => {
-          if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
+          if ((error.status === 406 )||(error.status === 403 )) { this.tagService.msgResponseStatus  = error.error; }
           else {
-            this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+            this.tagService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
           }
-          this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) );  console.log(error.status) ;
+          this.store.dispatch( ShowAlert(this.tagService.msgResponseStatus ) );  console.log(error.status) ;
         }  
         );
     } );
@@ -186,8 +187,8 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       this.tagService.update(tag.id,result).subscribe(
         (response) => { 
           tagState.tag = response.body; 
-          this.tagService.msgReponseStatus = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
-          this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
+          this.tagService.msgResponseStatus  = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
+          this.store.dispatch( ShowAlert(this.tagService.msgResponseStatus ) ); 
 
           const index = tagState.listTags.findIndex(tag => tag.id === tagState.tag.id);
           if (index !== -1) {  tagState.listTags[index] =  tagState.tag;  } 
@@ -196,11 +197,11 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
           this.dataSource.data = tagState.listTags;
         },
         (error:HttpErrorResponse) => {
-          if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
+          if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgResponseStatus  = error.error; }
           else {
-            this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+            this.tagService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
           }
-          this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) );  console.log(error.status) ;
+          this.store.dispatch( ShowAlert(this.tagService.msgResponseStatus ) );  console.log(error.status) ;
         }  
         );
     } );
@@ -214,17 +215,17 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
       () => { 
         this.tagService.delete(id).subscribe(
           (response) => { 
-            this.tagService.msgReponseStatus = response.body; 
-            this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) ); 
+            this.tagService.msgResponseStatus  = response.body; 
+            this.store.dispatch( ShowAlert(  this.tagService.msgResponseStatus ) ); 
             tagState.listTags = tagState.listTags.filter(item => item.id !== id);
             this.dataSource.data = tagState.listTags;
           },
           (error:HttpErrorResponse) => {
-            if ((error.status === 406 )||(error.status === 403 )) {   this.tagService.msgReponseStatus = error.error; }
+            if ((error.status === 406 )||(error.status === 403 )) {  this.tagService.msgResponseStatus  = error.error; }
             else {
-              this.tagService.msgReponseStatus =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+              this.tagService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
             }
-            this.store.dispatch( ShowAlert(  this.tagService.msgReponseStatus) );  console.log(error.status) ;
+            this.store.dispatch( ShowAlert(  this.tagService.msgResponseStatus ) );  console.log(error.status) ;
           }  
           );
       });

@@ -50,7 +50,7 @@
                                 <div class="col">
                                    <div class="profile-img-edit">
                                      <div class="photo-profile-container circle">
-                                      <img   [src]="userService.userDto.photo == null ? 'assets/images/user/user.png'  : userService.userDto.photo.downloadURL" alt="profile-pic">
+                                      <img   [src]="userState.userDto.photo == null ? 'assets/images/user/user.png'  : userState.userDto.photo.downloadURL" alt="profile-pic">
                                      </div>
                                       <div (click) ="onClickOnUploadPersonalInformation()" class="p-image">
                                          <i class="ri-pencil-line upload-button"></i>
@@ -70,7 +70,7 @@
                                 <div class="form-group col-sm-6">
                                    <label for="pi-current-firstname-input">First Name:</label>
                                    <input type="text" class="form-control" id="pi-current-firstname-input" value="alex"
-                                   [(ngModel)]="userService.userDto.firstname"  name="edit-global-account-pi-firstname"
+                                   [(ngModel)]="userState.userDto.firstname"  name="edit-global-account-pi-firstname"
                                       #firstname="ngModel" required> 
                                    <div class="invalid" *ngIf="PersonalInformationForm.submitted || ( firstname.invalid && firstname.touched) " >
                                         <p  *ngIf="firstname.errors?.['required']">Please enter a firstname in the text input.</p>
@@ -82,7 +82,7 @@
                                 <div class="form-group col-sm-6">
                                    <label for="pi-current-lastname-input">Last Name:</label>
                                    <input type="text" class="form-control" id="pi-current-lastname-input" value="Jhon"
-                                   [(ngModel)]="userService.userDto.lastname"  name="edit-global-account-pi-lastname"
+                                   [(ngModel)]="userState.userDto.lastname"  name="edit-global-account-pi-lastname"
                                    #lastname="ngModel" required> 
                                    <div class="invalid" *ngIf="PersonalInformationForm.submitted || ( lastname.invalid && lastname.touched) " >
                                      <p  *ngIf="lastname.errors?.['required']">Please enter a lastname in the text input.</p>
@@ -94,7 +94,7 @@
                                 <div class="form-group col-sm-6">
                                    <label for="pi-current-username-input">User Name:</label>
                                    <input type="text" class="form-control" id="pi-current-username-input" value="Bni@01"
-                                   [(ngModel)]="userService.userDto.username"  name="edit-global-account-pi-username"
+                                   [(ngModel)]="userState.userDto.username"  name="edit-global-account-pi-username"
                                    #username="ngModel" required> 
                                    <div class="invalid" *ngIf="PersonalInformationForm.submitted || ( username.invalid && username.touched) " >
                                      <p  *ngIf="username.errors?.['required']">Please enter a username in the text input.</p>
@@ -110,28 +110,28 @@
                                 <div class="form-group col-sm-6">
                                    <label class="d-block">Gender:</label>
                                    <div class="custom-control custom-radio custom-control-inline">
-                                      <input type="radio" [(ngModel)]="userService.userDto.gender" 
-                                      value="{{ userService.MALE }}" required
-                                      [checked]="userService.userDto.gender === userService.MALE" id="pi-current-gender-male-input" name="edit-global-account-pi-gender" class="custom-control-input">
+                                      <input type="radio" [(ngModel)]="userState.userDto.gender" 
+                                      value="{{ userState.gender.male }}" required
+                                      [checked]="userState.userDto.gender === userState.gender.male" id="pi-current-gender-male-input" name="edit-global-account-pi-gender" class="custom-control-input">
                                       <label class="custom-control-label" for="pi-current-gender-male-input"> Male </label>
                                    </div>
                                    <div class="custom-control custom-radio custom-control-inline">
-                                      <input type="radio" [(ngModel)]="userService.userDto.gender" 
-                                      value="{{ userService.FEMALE }}" required
-                                      [checked]="userService.userDto.gender === userService.FEMALE" id="pi-current-gender-female-input" name="edit-global-account-pi-gender" class="custom-control-input">
+                                      <input type="radio" [(ngModel)]="userState.userDto.gender" 
+                                      value="{{ userState.gender.female }}" required
+                                      [checked]="userState.userDto.gender === userState.gender.female" id="pi-current-gender-female-input" name="edit-global-account-pi-gender" class="custom-control-input">
                                       <label class="custom-control-label" for="pi-current-gender-female-input"> Female </label>
                                    </div>
-                                   <div class="invalid" *ngIf="PersonalInformationForm.submitted && (!userService.userDto.gender) " >
-                                     <p  *ngIf="!userService.userDto.gender">Please check one of two Genders.</p>
+                                   <div class="invalid" *ngIf="PersonalInformationForm.submitted && (!userState.userDto.gender) " >
+                                     <p  *ngIf="!userState.userDto.gender">Please check one of two Genders.</p>
                                    </div> 
-                                   <div class="valid" *ngIf="userService.userDto.gender" >
+                                   <div class="valid" *ngIf="userState.userDto.gender" >
                                      <p >Gender validate.</p>
                                    </div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                   <label for="pi-current-matricule-input">matricule :</label>
                                   <input type="text" class="form-control" id="pi-current-matricule-input"
-                                  [(ngModel)]="userService.userDto.matricule"  name="edit-global-account-pi-matricule"
+                                  [(ngModel)]="userState.userDto.matricule"  name="edit-global-account-pi-matricule"
                                   #matricule="ngModel"   required> 
                                   <div class="invalid" *ngIf="PersonalInformationForm.submitted || ( matricule.invalid && matricule.touched) " >
                                     <p  *ngIf="matricule.errors?.['required']">Please enter a matricule in the text input.</p>
@@ -151,7 +151,7 @@
                                 <div class="form-group col-sm-6">
                                     <label for="mc-phone-input">Contact Number:</label> 
                                     <input type="number" class="form-control" id="mc-phone-input"
-                                           [(ngModel)]="userService.userDto.phone"  name="edit-global-account-mc-phone"
+                                           [(ngModel)]="userState.userDto.phone"  name="edit-global-account-mc-phone"
                                            #phone="ngModel" pattern="[0-9]{8}"  required> 
                                     <div class="invalid" *ngIf="PersonalInformationForm.submitted || ( phone.invalid && phone.touched) " >
                                         <p  *ngIf="phone.errors?.['required']">Please enter a phone in the text input.</p>
@@ -165,7 +165,7 @@
                                     <label for="mc-email-input">Email:</label>
                                     <input type="text" class="form-control" 
                                            id="mc-email-input" name="edit-global-account-mc-email"
-                                           [(ngModel)]="userService.userDto.email"  
+                                           [(ngModel)]="userState.userDto.email"  
                                            #email="ngModel" pattern="^[a-z0-9\.]+@+[a-z0-9]+\.+[a-z]{2,3}$"  required>
                                     <div class="invalid" *ngIf="PersonalInformationForm.submitted || ( email.invalid && email.touched) " >
                                             <p  *ngIf="email.errors?.['required']"> Please enter a email in the text input</p>
