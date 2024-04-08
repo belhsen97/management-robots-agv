@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getrouterinfo } from 'src/app/core/store/Router/Router.Seletor';
+import { getrouterinfo } from 'src/app/core/store/selectors/Router.Seletor';
 
 @Component({
   selector: 'app-success-sign-up',

@@ -3,43 +3,56 @@
     background-color: var(--navy-blue);
   }
   
-  
   .table-container {
     overflow-x: auto;
   }
   
   
-  table {
+  .table {
     width: 100%;
   }
-  
+
+  mat-header-cell, mat-cell {
+    vertical-align: middle; 
+  }
+
   .mat-column-name {
-    max-width: 100px;
+
+    width: 100px;
+
+  }
+  .mat-column-view {
+    width: 96px;
   }
   .mat-column-statusRobot,
   .mat-column-modeRobot {
-    max-width: 60px;
+    width: 100px;
   }
   
   .mat-column-connection {
-    max-width: 100px;
+    width: 120px;
   }
   
   .mat-column-operationStatus {
-    max-width: 77px;
+    max-width: 80px;
   }
   
   
   .mat-column-levelBattery,
   .mat-column-speed {
-    max-width: 150px;
+    /*max-width: 150px;*/
     text-align: center;
     font-weight: 500;
     font-size: 15px;
+
+ 
   }
-  
-  
-  
+
+  td {
+    vertical-align: middle; /* Center align content vertically */
+  }
+ 
+
   .cell-danger {
     background-color: var(--danger);
   }

@@ -12,9 +12,7 @@ import {  wsState } from '../store/states/Worstation.state';
 export class WorkstationService extends Service {
 
    constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
-    super(http, router, activeRoute);
-    
-    //this.randomDataWorkstations();
+    super(http, router, activeRoute);//this.randomDataWorkstations();
   }
 
 
@@ -50,12 +48,6 @@ export class WorkstationService extends Service {
        //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
       })
   }
-
-
-
-
-
-
   randomDataWorkstations(): void {
     for (var i = 0; i < 2; i++) {
       const count = i + 1;
@@ -68,6 +60,4 @@ export class WorkstationService extends Service {
       };
     }
   }
-
-
 }

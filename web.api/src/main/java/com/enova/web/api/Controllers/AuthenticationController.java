@@ -1,6 +1,5 @@
 package com.enova.web.api.Controllers;
 
-import com.enova.web.api.Enums.StatusRobotAuth;
 import com.enova.web.api.Models.Requests.AuthenticationRequest;
 import com.enova.web.api.Models.Responses.AuthenticationResponse;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
@@ -37,14 +36,4 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) throws Exception {
         return ResponseEntity.ok(iService.authenticate(request));
     }
-
-//https://www.emqx.io/docs/en/latest/access-control/authz/http.html
-    @PostMapping("/authenticate-robot")
-    public   ResponseEntity<result> authenticateRobot(@RequestBody AuthenticationRequest request) throws Exception {
-        System.out.println(request);
-        return ResponseEntity.ok( new result());
-    }
-     class result implements Serializable {
-         public StatusRobotAuth result = StatusRobotAuth.allow;  //   "result": "allow" | "deny" | "ignore" // Default `"ignore"`
-     }
 }

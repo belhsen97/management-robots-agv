@@ -23,8 +23,14 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Robot implements Serializable {
     @Id
+    @Setter(AccessLevel.NONE)
     String id;
+    @Setter(AccessLevel.NONE)
     String name;
+    @Setter(AccessLevel.NONE)
+    String notice;
+    @Setter(AccessLevel.NONE)
+    String nameWorkstation;
     Connection connection;
     StatusRobot statusRobot;
     ModeRobot modeRobot;
@@ -32,6 +38,7 @@ public class Robot implements Serializable {
     Date createdAt;
     int levelBattery;  // real time  %
     double speed; // real time   m/s
-    String notice;
-    String idWorkstation;
+    public void setSpeed(double speed) {
+        this.speed = Math.round(speed * 10.0) / 10.0;
+    }
 }

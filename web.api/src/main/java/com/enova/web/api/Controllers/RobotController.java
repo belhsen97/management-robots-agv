@@ -1,6 +1,7 @@
 package com.enova.web.api.Controllers;
 
 
+import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
 import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Responses.RobotData;
@@ -11,10 +12,13 @@ import com.enova.web.api.Services.RobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,22 +32,32 @@ public class RobotController {
     }
 
     @GetMapping
-    public List<RobotDto> SelectAll() {
+    public List<RobotDto> GetAll() {
         final List<Robot> list = iService.selectAll();
         return list.stream().map(r -> RobotMapper.mapToDto(r)).collect(Collectors.toList());
     }
-//    @Trace(message = "selectionner tous les rebots")
+
+
     @GetMapping("{id}")
-    public ResponseEntity<RobotDto> SelectBy(@PathVariable String id) {
+    public ResponseEntity<RobotDto> GetBy(@PathVariable String id) {
         return ResponseEntity.ok(RobotMapper.mapToDto(iService.selectById(id)));
     }
 
-    @GetMapping("data-robot/{id}")
-    public List<RobotData> SelectAllDataById(@PathVariable String id) {
-        return iService.SelectAllDataById(id);
+    @Async("get-robot-data")
+    @GetMapping("/all/data")
+    public CompletableFuture<List<RobotData>> getAllRobotData() {
+        //System.out.println("Execute method with configured executor - "+ Thread.currentThread().getName());
+        final  List<RobotData> list  = RobotMapper.mapToRobotData(iService.selectAllDataPropertys());
+        return CompletableFuture.completedFuture(list);
     }
 
-
+    @Async("get-robot-data")
+    @GetMapping("{name}/data/all")
+    public CompletableFuture<RobotData> GetRobotDataByName(@PathVariable String name) {
+        final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
+        final  RobotData r  = RobotMapper.mapToRobotData(name , list);
+        return CompletableFuture.completedFuture(r);
+    }
 
 
 

@@ -18,6 +18,7 @@ import { ListTagsComponent } from './components/workstation/list-tags/list-tags.
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
 import { TracingComponent } from './components/statistic/tracing/tracing.component';
+import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'charts',
         component: ChartsDashboardComponent
+      },
+      {
+        path: 'stock/:name',
+        component: StockChartComponent
       }
     ]
   },

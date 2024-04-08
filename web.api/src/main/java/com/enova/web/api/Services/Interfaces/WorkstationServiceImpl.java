@@ -65,7 +65,7 @@ public class WorkstationServiceImpl implements WorkstationService {
                 if (robotOptional.isPresent()){robot = robotOptional.get();}
                 else{ robot.setCreatedAt(new Date());}
                 robot.setWorkstation(null);
-                robot.setIdWorkstation(obj.getName());
+                robot.setNameWorkstation(obj.getName());
                 this.robotRepository.save(robot);
             });
             //this.robotRepository.saveAll(obj.getRobots());
@@ -107,7 +107,7 @@ public class WorkstationServiceImpl implements WorkstationService {
                 if (robotOptional.isPresent()){robot = robotOptional.get();}
                 else{ robot.setCreatedAt(new Date());}
                 robot.setWorkstation(null);
-                robot.setIdWorkstation(obj.getName());
+                robot.setNameWorkstation(obj.getName());
                 this.robotRepository.save(robot);
             });
             //this.robotRepository.saveAll(obj.getRobots());

@@ -3,6 +3,7 @@ package com.enova.web.api.AppRunners;
 
 import com.enova.web.api.Configures.ParameterConfig;
 import com.enova.web.api.Enums.*;
+import com.enova.web.api.Mappers.RobotMapper;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.TraceRepository;
 import com.enova.web.api.Repositorys.UserRepository;
@@ -82,6 +83,8 @@ public class BeanStartup implements CommandLineRunner {
 //        final Attachment img =  this.saveAttachment(FileService.defaultUserPhoto);
 //        System.out.println(img.getFileName());
 
+
+
         Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
         if (userOptional.isEmpty()) {
             user.setPassword(passwordEncoder.encode("1234"));
@@ -93,42 +96,40 @@ public class BeanStartup implements CommandLineRunner {
             user = userRepository.save(user);
             log.info("finish add user : "+user.getUsername());
         }
-        traceRepository.deleteAll();
-        traceRepository.save(trace1);
-        log.info("finish add list of trace");
-
-        workstationRepository.deleteAll();
-        workstation1 = workstationRepository.save(workstation1);
-        workstation2 = workstationRepository.save(workstation2);
-        workstation3 = workstationRepository.save(workstation3);
-        iTagService.deleteAll();
-        for (int i = 1; i < 100; i++) {
-            final Tag tag = Tag.builder()
-                    .code("code-" + i)
-                    .description("description-tag")
-                    .workstationName(workstation1.getName())
-                    .build();
-            iTagService.insert(tag);
-        }
-        log.info("finish add list of workstation");
-        robotRepository.deleteAll();
-        for (int i = 1; i <= 50; i++) {
-            final Robot robot = Robot.builder()
-                    //.id(i)
-                    .idWorkstation(workstation1.getName())
-                    //.workstation(workstation1)
-                    .name("robot-" + i)
-                    .createdAt(new Date())
-                    .connection(Connection.CONNECTED)
-                    .modeRobot(ModeRobot.AUTO)
-                    .statusRobot(StatusRobot.RUNNING)
-                    .operationStatus(OperationStatus.PAUSE)
-                    .levelBattery(100)
-                    .speed(1.5)
-                    .build();
-            robotRepository.save(robot);
-        }
-        log.info("finish add list of robot");
+//        traceRepository.deleteAll();
+//        traceRepository.save(trace1);
+//        log.info("finish add list of trace");
+//
+//        workstationRepository.deleteAll();
+//        workstation1 = workstationRepository.save(workstation1);
+//        workstation2 = workstationRepository.save(workstation2);
+//        workstation3 = workstationRepository.save(workstation3);
+//        iTagService.deleteAll();
+//        for (int i = 1; i < 100; i++) {
+//            final Tag tag = Tag.builder()
+//                    .code("code-" + i)
+//                    .description("description-tag")
+//                    .workstationName(workstation1.getName())
+//                    .build();
+//            iTagService.insert(tag);
+//        }
+//        log.info("finish add list of workstation");
+//        robotRepository.deleteAll();
+//        for (int i = 1; i <= 50; i++) {
+//            final Robot robot = Robot.builder()
+//                    .nameWorkstation(workstation1.getName())
+//                    .name("robot-" + i)
+//                    .createdAt(new Date())
+//                    .connection(Connection.CONNECTED)
+//                    .modeRobot(ModeRobot.AUTO)
+//                    .statusRobot(StatusRobot.RUNNING)
+//                    .operationStatus(OperationStatus.PAUSE)
+//                    .levelBattery(100)
+//                    .speed(1.5)
+//                    .build();
+//            robotRepository.save(robot);
+//        }
+//        log.info("finish add list of robot");
         // robotRepository.updateWorkstation(workstation1.getName(),workstation3.getName());
         // System.out.println( );
         //  System.out.println(robotRepository.findAll().get(0).getWorkstation().getName());

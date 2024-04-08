@@ -14,8 +14,8 @@ import { ListUsersComponent } from './components/user/list-users/list-users.comp
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import {   DashbordRouterSerializer } from './core/store/Router/DashbordRouterSerializer';
-import { MaterialModule } from './Material.Module';
+import {   DashbordRouterSerializer } from './core/store/routers/DashbordRouterSerializer';
+import { MaterialModule } from './Material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListRobotsComponent } from './components/robot/list-robots/list-robots.component';
 import { GlobalSettingComponent } from './components/setting/global-setting/global-setting.component';
@@ -47,6 +47,8 @@ import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 import { environment } from 'src/environments/environment';
 import { AppReducer } from './core/store/App.Reducer';
 import { MqttEffects } from './core/store/effects/Mqtt.Effect';
+import { GaugeChartComponent } from './components/dashboard/details/gauge-chart/gauge-chart.component';
+import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
 
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
@@ -80,7 +82,9 @@ import { MqttEffects } from './core/store/effects/Mqtt.Effect';
     ListTagsComponent,
     DetailsWorkstationComponent,
     DetailsRobotComponent,
-    TracingComponent
+    TracingComponent,
+    GaugeChartComponent,
+    StockChartComponent
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
-import { getRouterId } from 'src/app/core/store/Router/Router.Seletor';
+import { getRouterId } from 'src/app/core/store/selectors/Router.Seletor';
 import { MsgResponseStatus } from 'src/app/core/store/models/Global/MsgResponseStatus.model';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { globalState } from 'src/app/core/store/states/Global.state';

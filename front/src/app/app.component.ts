@@ -39,13 +39,12 @@ robot !: RobotDto ;
       (response) => { 
          robotState.listRobots = response.body;
          robotState.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
+         robotState.dataSource!.data = robotState.listRobots ;
       }
        ,(error) => {
          this.robotService.msgResponseStatus  =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
          this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
-         //this.robotService.goToComponent("/sign-in");
        }) ;
-
 
     this.  mqttClientService.connect(mqttState.cnxClientConfig);
 
@@ -84,6 +83,7 @@ robot !: RobotDto ;
 
   ngOnDestroy(): void {
     this.mqttClientService.disconnect();
+    if (robotState.dataSource!) {  robotState.dataSource!.disconnect(); }
   }
 
 }

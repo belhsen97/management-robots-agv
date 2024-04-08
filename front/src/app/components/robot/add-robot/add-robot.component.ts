@@ -18,9 +18,8 @@ import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.
 export class AddRobotComponent implements OnInit {
   robotState !: RobotState;
   wsState !: WorkstationState;
-  constructor(public workstationService: WorkstationService,
-    public dialogRef: MatDialogRef<AddRobotComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { 
+  constructor(public workstationService: WorkstationService,public dialogRef: MatDialogRef<AddRobotComponent>,
+     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.robotState  = robotState; this.wsState  = wsState;
     }
   ngOnInit(): void {

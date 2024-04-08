@@ -53,7 +53,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
           this.sendingWithDocuments(  msg );
       }
     }
-    @Async
+    @Async("mail-smtp")
     public void sendingMultiBodyContent( Msg msg ) throws MessagingException  {
             // create and send the email with attachment
             Message message = new MimeMessage(session);

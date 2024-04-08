@@ -58,7 +58,7 @@ constructor(public robotService: RobotService){
         top: '0%',height: '75%', //,  height: '50%', 
         //alternateGridColor: '#FDFFD5',
         plotLines: [{
-            value: robotState.settingRobot.speed.max,
+            value: robotState.settingRobot!.speed.max,
             color: 'red',
             dashStyle: 'shortDash',
             width: 2,
@@ -70,7 +70,7 @@ constructor(public robotService: RobotService){
             }
         },
         {
-            value: robotState.settingRobot.speed.min,
+            value: robotState.settingRobot!.speed.min,
             color: 'red',
             dashStyle: 'shortDash',
             width: 2,
@@ -87,6 +87,7 @@ constructor(public robotService: RobotService){
        // linkedTo: 1,
         title: { enabled: true,  text: "Battery Level" },
         gridLineWidth: 0,   crosshair: true,
+        endOnTick: false, // over limit y axis
         opposite: false,
         labels: {format: '{value:.,0f}%', align: 'right', x: -3},
         top: '0%',height: '75%',//top: '50%',height: '50%',

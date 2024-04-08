@@ -1,12 +1,14 @@
 package com.enova.web.api.Services.Interfaces;
 
 
+import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Responses.RobotData;
 import com.enova.web.api.Models.Entitys.Robot;
 import com.enova.web.api.Models.Entitys.Trace;
 import com.enova.web.api.Models.Entitys.Workstation;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
+import com.enova.web.api.Repositorys.RobotPropertyRepository;
 import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.RobotService;
@@ -23,6 +25,7 @@ import java.util.Optional;
 public class RobotServiceImpl implements RobotService {
 
     private final RobotRepository robotRepository;
+    private final RobotPropertyRepository robotPropertyRepository;
     private final WorkstationRepository workstationRepository;
     private final TraceService traceService;
 
@@ -39,18 +42,26 @@ public class RobotServiceImpl implements RobotService {
         }
         return r.get();
     }
+
+
     @Override
-    public List<RobotData> SelectAllDataById(String id) {
-        return null;
+    public List<RobotProperty> selectAllDataPropertys() {
+         return robotPropertyRepository.findAll();
     }
+
+    @Override
+    public List<RobotProperty> selectAllDataPropertysByName(String name) {
+        return robotPropertyRepository.findAllByName(name);
+    }
+
     @Override
     public Robot insert(Robot obj) {
         if (robotRepository.findbyName(obj.getName()).isPresent()) {
             throw new MethodArgumentNotValidException("other Robot found equal " + obj.getName());
         }
         obj.setCreatedAt(new Date());
-        Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
-        obj.setIdWorkstation(w.isPresent() ? w.get().getName() : null);
+        Optional<Workstation> w = workstationRepository.findbyName(obj.getNameWorkstation());
+        obj.setNameWorkstation(w.isPresent() ? w.get().getName() : null);
         obj = robotRepository.save(obj);
         obj.setWorkstation(w.get());
         traceService.insert(Trace.builder().className("RobotService").methodName("insert").description("add new robot where is name = "+obj.getName()).build());
@@ -60,10 +71,10 @@ public class RobotServiceImpl implements RobotService {
     @Override
     public Robot update(String id, Robot obj) {
         Robot r = this.selectById(id);
-        Optional<Workstation> w = workstationRepository.findbyName(obj.getIdWorkstation());
+        Optional<Workstation> w = workstationRepository.findbyName(obj.getNameWorkstation());
         r.setWorkstation(null);
         r.setName(obj.getName());
-        r.setIdWorkstation(w.isPresent() ? w.get().getName() : r.getIdWorkstation());
+        r.setNameWorkstation(w.isPresent() ? w.get().getName() : r.getNameWorkstation());
         r.setNotice(obj.getNotice());
         r.setStatusRobot(obj.getStatusRobot());
         r.setModeRobot(obj.getModeRobot());

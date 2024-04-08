@@ -1,10 +1,7 @@
 package com.enova.web.api.Models.Responses;
 
 
-import com.enova.web.api.Enums.Connection;
-import com.enova.web.api.Enums.ModeRobot;
-import com.enova.web.api.Enums.OperationStatus;
-import com.enova.web.api.Enums.StatusRobot;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,16 +12,9 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RobotData {
-    String id;
     String name;
-
-    int timestamp; //number of milliseconds
-    Connection connection;
-    StatusRobot statusRobot;
-    ModeRobot modeRobot;
-    OperationStatus operationStatus;
-
-
-    Object[][] serieSpeed = {{1647523800000L, 140.785},};
-    Object[][] serieBattery = { {1647523800000L,90.5},};
+    Object[][] speed ;//= {{1647437400000L, 8.59},};
+    Object[][] battery ;//= { {1647523800000L,90.5},};
+    Object[][] statusRobot ;//= { {1647523800000L,0},}; //0 eq WAITING or 1 eq RUNNING or 2  eq INACTIVE
+    Object[][] operationStatus ;//= { {1647523800000L,0},}; //0 eq NORMAL or 1 eq EMS or 2  eq PAUSE
 }

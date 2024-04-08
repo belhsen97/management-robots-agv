@@ -4,7 +4,6 @@
       <div class="col-6">
         <app-panel-robot></app-panel-robot>
       </div>
-
       <div class="col-6 d-flex flex-column justify-content-center align-items-center">
         <div>
           <button (click)="onClickStopAllRobot()" mat-raised-button color="primary-color" class="mr-2">
@@ -25,71 +24,60 @@
   <div class="col">
     <div class="mat-elevation-z1">
       <div class="table-container">
-        <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
           <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
-
-          <!-- Position Column -->
+                      
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
             <td mat-cell *matCellDef="let element">
               <a [routerLink]="['/robot-avg', element.name]" mat-button color="dark"
-                aria-label="icon button for details robot">
-                <mat-icon>timeline</mat-icon>{{ element.name }}
-              </a>
+                aria-label="icon button for details robot">{{ element.name }}</a>
             </td>
           </ng-container>
 
-          <!-- Name Column -->
+          <ng-container matColumnDef="view">
+            <th mat-header-cell *matHeaderCellDef>view</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex flex-row">
+                <a [routerLink]="['/dashboard/stock/', element.name]" mat-icon-button aria-label="Stock">
+                  <mat-icon>timeline</mat-icon>
+                </a>
+                <button mat-icon-button aria-label="Gauge" (click)="openPopupRobotGuage(element.name)">
+                  <mat-icon>av_timer</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="statusRobot">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.statusRobot }}
-            </td>
+            <td mat-cell *matCellDef="let element">{{ element.statusRobot }}</td>
           </ng-container>
 
-          <!-- Weight Column -->
           <ng-container matColumnDef="modeRobot">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Mode</th>
             <td mat-cell *matCellDef="let element">{{ element.modeRobot }}</td>
           </ng-container>
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="connection">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              connection
-            </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>connection</th>
             <td mat-cell *matCellDef="let element">{{ element.connection }}</td>
           </ng-container>
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="operationStatus">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              Operation Status
-            </th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.operationStatus }}
-            </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Operation Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.operationStatus }}</td>
           </ng-container>
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="levelBattery">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              levelBattery
-            </th>
-            <td [ngClass]="cellColorLevelBattery(element.levelBattery)" mat-cell *matCellDef="let element">
-              {{ element.levelBattery }}
-            </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>levelBattery</th>
+            <td [ngClass]="cellColorLevelBattery(element.levelBattery)" mat-cell *matCellDef="let element">{{ element.levelBattery }}</td>
           </ng-container>
-
-          <!-- Symbol Column -->
           <ng-container matColumnDef="speed">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>speed</th>
-            <td [ngClass]="cellColorSpeed(element.speed)" mat-cell *matCellDef="let element">
-              {{ element.speed }}
-            </td>
+            <td [ngClass]="cellColorSpeed(element.speed)" mat-cell *matCellDef="let element">{{ element.speed }}</td>
           </ng-container>
-
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>

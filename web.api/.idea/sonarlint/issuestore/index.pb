@@ -242,3 +242,11 @@ j
 :src/main/java/com/enova/web/api/Services/IGenericCRUD.java,1\9\1930ad8f72907cb83859c4bee2666535557674d7
 k
 ;src/main/java/com/enova/web/api/Enums/ResultStatusAuth.java,1\d\1de580bd0bc644a862f6358064843ef00dd2b508
+j
+:src/main/java/com/enova/web/api/Services/RobotService.java,6\b\6b1a4db0b7843e7624b0713a8ce8486131edfe72
+s
+Csrc/main/java/com/enova/web/api/Services/AuthenticationService.java,5\3\53671a1479166e772365f477c4a90f97ae8c8472
+p
+@src/main/java/com/enova/web/api/Services/WorkstationService.java,b\9\b9e36450fb0c2484eefae6539c2107bc3246d398
+d
+4src/main/java/com/enova/web/api/Enums/TokenType.java,8\d\8d02b3d39f73dd55948ffcf36878f8e83a05b826

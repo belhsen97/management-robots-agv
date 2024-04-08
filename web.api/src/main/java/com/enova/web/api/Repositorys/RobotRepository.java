@@ -11,27 +11,27 @@ import java.util.Optional;
 
 @Repository
 public interface RobotRepository extends MongoRepository<Robot, String> {
-    //[ { { from: "workstation",localField: "idWorkstation", foreignField: "name",as: "workstation",},},
-    // {  { workstation: {$arrayElemAt: ["$workstation", 0],}, }, },{ $project: {      "idWorkstation": 0   }  }]
+    //[ { { from: "workstation",localField: "nameWorkstation", foreignField: "name",as: "workstation",},},
+    // {  { workstation: {$arrayElemAt: ["$workstation", 0],}, }, },{ $project: {      "nameWorkstation": 0   }  }]
     @Aggregation(pipeline = {
-            "{ $lookup: { from: 'workstation', localField: 'idWorkstation', foreignField: 'name', as: 'workstation' } }",
+            "{ $lookup: { from: 'workstation', localField: 'nameWorkstation', foreignField: 'name', as: 'workstation' } }",
             "{ $addFields: { 'workstation': { $arrayElemAt: ['$workstation', 0] } } }",
-            "{ $project: { 'idWorkstation': 0 } }"
+            "{ $project: { 'nameWorkstation': 0 } }"
     })
     List<Robot> findAll();
 
     //[ {$match: { "_id": ObjectId("65eae5122991ca2ee794d601") } },
-    //    { $lookup: {   from: 'workstation', localField: 'idWorkstation', foreignField: 'name',   as: 'workstation'  } },
+    //    { $lookup: {   from: 'workstation', localField: 'nameWorkstation', foreignField: 'name',   as: 'workstation'  } },
     //    { $addFields: {    "workstation": { $arrayElemAt: ["$workstation", 0] }  } }]
     @Aggregation(pipeline = {
             "{ $match: { '_id': ObjectId(?0) } }",
-            "{ $lookup: { from: 'workstation', localField: 'idWorkstation', foreignField: 'name', as: 'workstation' } }",
+            "{ $lookup: { from: 'workstation', localField: 'nameWorkstation', foreignField: 'name', as: 'workstation' } }",
             "{ $addFields: { 'workstation': { $arrayElemAt: ['$workstation', 0] } } }"
     })
     Optional<Robot> findById(String id);
 
-    @Query(value = "{ 'idWorkstation' : ?0 }")
-    List<Robot> findAllByIdWorkstation(String idWorstation);
+    @Query(value = "{ 'nameWorkstation' : ?0 }")
+    List<Robot> findAllByNameWorkstation(String nameWorstation);
 
 
 
@@ -42,9 +42,9 @@ public interface RobotRepository extends MongoRepository<Robot, String> {
 
 
     default void changeWorkstation (String oldName ,String newName) {
-        List<Robot> rbs =    this.findAllByIdWorkstation(oldName);
+        List<Robot> rbs =    this.findAllByNameWorkstation(oldName);
         if(rbs.isEmpty()){   return ;  }
-        rbs.forEach(robot -> robot.setIdWorkstation(newName));
+        rbs.forEach(robot -> robot.setNameWorkstation(newName));
         this.saveAll(rbs);
     }
 }

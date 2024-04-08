@@ -1,3 +1,3 @@
 package com.enova.collector.api.Enums;
 
-public enum OperationStatus {EMS,PAUSE}
+public enum OperationStatus {NORMAL,EMS,PAUSE}

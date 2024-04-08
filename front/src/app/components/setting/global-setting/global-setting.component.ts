@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RobotService } from 'src/app/core/services/robot.service';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({

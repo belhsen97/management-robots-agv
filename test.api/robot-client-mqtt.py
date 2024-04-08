@@ -17,12 +17,13 @@ client_id = f'robot-mqtt-{random.randint(0, 10000)}'
 username = 'test'
 password = 'test'
 robot_name = 'robot'
-msg_count = 0
+
 
 
 class RobotAVG:
     client: mqtt_client
-    robot_data = {#"id": "robot_id_" + str(msg_count),
+    msg_count = 0
+    robot_data = {#"id": "robot_id_" ,
             "name": "robot",
             "connection": "DISCONNECTED",
             "statusRobot": "RUNNING",

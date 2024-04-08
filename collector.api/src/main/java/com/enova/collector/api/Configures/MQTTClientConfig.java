@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Configuration
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MQTTClientConfig {
@@ -34,6 +37,8 @@ public class MQTTClientConfig {
 
     @Bean
     public MqttClient mqttClient() throws MqttException {
+        String formattedDate = new SimpleDateFormat("HH-mm-ssSSS").format(new Date());
+        clientid += "-" + formattedDate;
         return new MqttClient(broker, clientid, new MemoryPersistence());
     }
 

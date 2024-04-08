@@ -1,4 +1,5 @@
 com\enova\web\api\Aop\TraceAspect.class
+com\enova\web\api\Controllers\AuthenticationController$result.class
 com\enova\web\api\Models\Entitys\Trace$TraceBuilder.class
 com\enova\web\api\Mappers\RobotMapper.class
 com\enova\web\api\Models\Dtos\TraceDto.class
@@ -25,6 +26,7 @@ com\enova\web\api\Models\Commons\mail\Msg.class
 com\enova\web\api\Models\Dtos\RobotDto.class
 com\enova\web\api\Models\Dtos\AttachmentDto$AttachmentDtoBuilder.class
 com\enova\web\api\Mappers\TraceMapper.class
+com\enova\web\api\Repositorys\RobotPropertyRepository.class
 com\enova\web\api\Models\Dtos\AttachmentDto.class
 com\enova\web\api\Models\Responses\AuthenticationResponse.class
 com\enova\web\api\Repositorys\TagRepository.class
@@ -67,6 +69,8 @@ com\enova\web\api\Libs\MockMultipartFile.class
 com\enova\web\api\Services\Interfaces\SMTPMailServiceImpl.class
 com\enova\web\api\Models\Commons\mail\Attachment$AttachmentBuilder.class
 com\enova\web\api\Services\IGenericCRUD.class
+com\enova\web\api\Enums\StatusRobotAuth.class
+com\enova\web\api\Models\Entitys\RobotProperty.class
 com\enova\web\api\Enums\StatusRobot.class
 com\enova\web\api\Models\Requests\AuthenticationRequest.class
 com\enova\web\api\AppRunners\BeanStartup.class
@@ -85,8 +89,10 @@ com\enova\web\api\Services\Interfaces\UserServiceImpl.class
 com\enova\web\api\Models\Entitys\Workstation.class
 com\enova\web\api\Services\Interfaces\AuthenticationServiceImpl.class
 com\enova\web\api\Services\Interfaces\UserServiceImpl$1.class
+com\enova\web\api\Models\Entitys\RobotProperty$RobotPropertyBuilder.class
 com\enova\web\api\Securitys\LogoutService.class
 com\enova\web\api\Services\TagService.class
+com\enova\web\api\Enums\TypeProperty.class
 com\enova\web\api\Controllers\AuthenticationController.class
 com\enova\web\api\Repositorys\TraceRepository.class
 com\enova\web\api\Models\Entitys\Robot.class

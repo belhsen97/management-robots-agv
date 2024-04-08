@@ -12,6 +12,8 @@ import { mqttState } from 'src/app/core/store/states/Mqtt.state';
 import { IMqttMessage } from 'ngx-mqtt';
 import { Subscription, interval } from 'rxjs';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { GaugeChartComponent } from '../details/gauge-chart/gauge-chart.component';
 
 @Component({
   selector: 'app-table-dashboard',
@@ -20,23 +22,25 @@ import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 })
 export class TableDashboardComponent implements OnInit , AfterViewInit , OnDestroy{
   private timerSubscription: Subscription | undefined;
-  displayedColumns: string[] = ['name', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed'];
-  dataSource:any;
+  displayedColumns: string[] = ['name','view', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed'];
+  dataSource: MatTableDataSource<RobotDto>;
   @ViewChild(MatSort) sort  !: MatSort;
-
-  constructor(private store:Store ,public robotService:RobotService , public mqttClientService :MqttClientService){}
+  constructor(private store:Store ,public robotService:RobotService , public mqttClientService :MqttClientService,  private dialog: MatDialog){
+      this.dataSource = robotState.dataSource!;
+    }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<RobotDto>(robotState.listRobots);
+    //this.dataSource = new MatTableDataSource<RobotDto>(robotState.listRobots);
     this.store.select(getValueSearchInput).subscribe(value => {
-      if (value === null || value === undefined || this.dataSource == undefined ){return ; }
-      this.dataSource.filter = value;
+      if (value === null || value === undefined ||     robotState.dataSource! == undefined ){return ; }
+      robotState.dataSource!.filter = value;
       console.log(  value );
     });
 
 
     this.mqttClientService.curSubscription = this.mqttClientService.subscribe(mqttState.subscribe)?.subscribe((message: IMqttMessage) => {
       //console.log('MQTT --> Subscribe to topics res', message.payload.toString())
+      
        const  updateRobot : RobotDto =JSON.parse(message.payload.toString());
       const index = robotState.listRobots.findIndex(robot => robot.name === updateRobot.name);
      // console.log( index); 
@@ -50,15 +54,14 @@ export class TableDashboardComponent implements OnInit , AfterViewInit , OnDestr
        } 
 
    })
-
-
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    robotState.dataSource!.sort = this.sort;
+
 
     this.timerSubscription = interval(1000).subscribe(() => {
-       this.dataSource.data = robotState.listRobots;
+      robotState.dataSource!.data = robotState.listRobots;
         this.robotService.refreshValuesPanelRobot();
       });
 
@@ -72,15 +75,17 @@ export class TableDashboardComponent implements OnInit , AfterViewInit , OnDestr
  ngOnDestroy(): void {
   this.mqttClientService.closeSubscribe( this.mqttClientService.curSubscription);
   this.timerSubscription?.unsubscribe();
+  if (this.dataSource) {  this.dataSource.disconnect(); }
+  robotState.dataSource!.paginator = null;
  }
+
+
 
  onClickStopAllRobot():void{
   const robot  = { statusRobot : StatusRobot.INACTIVE};
   const publish : Publish ={   topic : "topic/robot/control/all" , qos : 0 ,payload :  JSON.stringify(robot) };
   this.mqttClientService.publish(publish );
  }
-  
- 
  onClickStartAllRobot():void{
    const robot  = { statusRobot : StatusRobot.RUNNING};
    const publish : Publish ={   topic : "topic/robot/control/all" , qos : 0 ,payload :  JSON.stringify(robot) };
@@ -94,8 +99,19 @@ export class TableDashboardComponent implements OnInit , AfterViewInit , OnDestr
     return (value < 20 ? 'cell-danger' : value >= 20 && value < 80 ? 'cell-warning' :'cell-steady');
   }
   cellColorSpeed(value:number):string{
-    return (value > robotState.settingRobot.speed.max || value < robotState.settingRobot.speed.min ? 'cell-danger' : 'cell-steady');
+    return (value > robotState.settingRobot!.speed.max || value < robotState.settingRobot!.speed.min ? 'cell-danger' : 'cell-steady');
   }
+
+
+  openPopupRobotGuage(name: string = "" ) {
+    const dialogRef = this.dialog.open(GaugeChartComponent, {
+      //height: '500px',
+      width: '400px',
+      data: {name: name}
+    });
+    return dialogRef;
+  }
+
 }
 
 

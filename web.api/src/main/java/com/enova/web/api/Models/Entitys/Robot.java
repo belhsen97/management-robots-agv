@@ -35,7 +35,7 @@ public class Robot implements Serializable {
     int levelBattery;  // real time  %
     double speed ; // real time   m/s
     String notice;
-    String idWorkstation;
+    String nameWorkstation;
 
     @JsonIgnore
     Workstation workstation;

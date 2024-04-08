@@ -15,7 +15,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import { robotState } from 'src/app/core/store/states/Robot.state';
 import { wsState } from 'src/app/core/store/states/Worstation.state';
-import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-robots',
@@ -25,32 +24,34 @@ import { globalState } from 'src/app/core/store/states/Global.state';
 export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
   @ViewChild("paginator") paginatorRobot!: MatPaginator;
   obs!: Observable<any>;
-  dataSourceRobot !: MatTableDataSource<RobotDto>;
+  dataSource !: MatTableDataSource<RobotDto>;
 
   constructor(private store: Store,
     public workstationService:WorkstationService,
     private changeDetectorRef: ChangeDetectorRef,
     public  robotService : RobotService,
-    private dialog: MatDialog ){}
+    private dialog: MatDialog ){  
+     // this.dataSource = robotState.dataSource!;
+    }
 
   ngOnInit() {
-   this.dataSourceRobot = new MatTableDataSource<RobotDto>();
+  this.dataSource = new MatTableDataSource<RobotDto>();
 
   this.store.select(getValueSearchInput).subscribe(value => {
-    if (value === null || value === undefined || this.dataSourceRobot == undefined) { return; }
-    this.dataSourceRobot.filter = value;
+    if (value === null || value === undefined || this.dataSource == undefined) { return; }
+    this.dataSource.filter = value;
     console.log(value);
   });
 
 
-    this.dataSourceRobot.data = robotState.listRobots;
-    this.obs = this.dataSourceRobot.connect();
+    //this.dataSource.data = robotState.listRobots;
+    this.obs = this.dataSource.connect();
    // this.dataSourceRobot.data =    robotState.listRobots ;
-    this.robotService.getAll().subscribe(
+   this.robotService.getAll().subscribe(
       (response) => { 
         robotState.listRobots = response.body;
         robotState.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
-        this.dataSourceRobot.data =    robotState.listRobots ;
+        this.dataSource.data =    robotState.listRobots ;
       }
       ,(error) => {
         this.robotService.msgResponseStatus  =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
@@ -74,13 +75,11 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
 
   }
   ngAfterViewInit() {
-    this.dataSourceRobot.paginator = this.paginatorRobot;
+    this.dataSource.paginator = this.paginatorRobot;
     this.changeDetectorRef.detectChanges(); 
   }
   ngOnDestroy() {
-    if (this.dataSourceRobot) {
-      this.dataSourceRobot.disconnect();
-    }
+    if (this.dataSource) {this.dataSource.disconnect(); robotState.dataSource!.paginator = null;}
   }
 
 
@@ -99,7 +98,7 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
           this.robotService.msgResponseStatus  = {title:"Message",datestamp:new Date(),status:ReponseStatus.SUCCESSFUL,message:"success add new workstation"}; 
           this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
           robotState.listRobots.push(  robotState.robot );
-          this.dataSourceRobot.data = robotState.listRobots;
+          this.dataSource.data = robotState.listRobots;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) { this.robotService.msgResponseStatus  = error.error; }
@@ -125,7 +124,7 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
           if (index !== -1) {    robotState.listRobots[index] =  robotState.robot;  } 
         //   this.robotService.listRobots.forEach((w) => { if(w.id === id) { w =   this.robotService.workstation ;} });
 
-          this.dataSourceRobot.data = robotState.listRobots;
+          this.dataSource.data = robotState.listRobots;
         },
         (error:HttpErrorResponse) => {
           if ((error.status === 406 )||(error.status === 403 )) {  this.robotService.msgResponseStatus = error.error; }
@@ -145,7 +144,7 @@ export class ListRobotsComponent implements OnInit ,  AfterViewInit, OnDestroy {
             this.robotService.msgResponseStatus  = response.body;
             this.store.dispatch(ShowAlert( this.robotService.msgResponseStatus ));
             robotState.listRobots = robotState.listRobots.filter(item => item.id !== id);
-            this.dataSourceRobot.data = robotState.listRobots;
+            this.dataSource.data = robotState.listRobots;
           },
           (error: HttpErrorResponse) => {
             if ((error.status === 406) || (error.status === 403)) {  this.robotService.msgResponseStatus  = error.error; }

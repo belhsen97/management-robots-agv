@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface RobotRepository extends MongoRepository<Robot, String> {
-    @Query(value = "{ 'idWorkstation' : ?0 }")
-    List<Robot> findAllByIdWorkstation(String idWorstation);
+    @Query(value = "{ 'nameWorkstation' : ?0 }")
+    List<Robot> findAllByNameWorkstation(String nameWorstation);
 
     @Query(value = "{ 'name' : ?0 }")
     Optional<Robot> findbyName(String name);

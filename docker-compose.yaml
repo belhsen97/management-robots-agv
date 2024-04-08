@@ -45,8 +45,53 @@ services:
       - emqx-data:/opt/emqx/data
       - emqx-log:/opt/emqx/log
       - emqx-etc:/opt/emqx/etc
+    # depends_on:
+      # - driveless-api
     networks:
       - ennova-network
+
+
+
+  # driveless-api service      
+  driveless-api:
+    container_name: driveless-api
+    image: "driveless-api:0.0.1"
+    build: ./driveless.api
+    ports:
+      - "8088:8088"
+    environment:
+      - SERVER_SERVLET_CONTEXT_PATH=/management-robot-avg/driveless
+
+      - MYAPP_PATH_RESOURCES=/app
+      
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=management_robot_avg_db
+      - SPRING_DATA_MONGODB_USERNAME=root
+      - SPRING_DATA_MONGODB_PASSWORD=root
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      
+      - MQTT_BROKER=tcp://emqx:1883
+      - MQTT_CLEAN_SESSION=true
+      - MQTT_CONNECTION_TIMEOUT=60
+      - MQTT_KEEPALIVE_INTERVAL=60
+      - MQTT_TOPIC=topic/robot/data/#
+      - MQTT_CLIENTID=driveless-service
+      - MQTT_USER_USERNAME=test
+      - MQTT_USER_PASSWORD=test
+    volumes:
+      - driveless-api-src:/app
+    depends_on:
+      - mongodb
+      - emqx
+    networks:
+      - ennova-network
+
+
+
+
+
 
 
 
@@ -72,7 +117,7 @@ services:
       # - MQTT_CLEAN_SESSION=true
       # - MQTT_CONNECTION_TIMEOUT=60
       # - MQTT_KEEPALIVE_INTERVAL=60
-      # - MQTT_TOPIC=robot/#
+      # - MQTT_TOPIC=topic/robot/data/#
       # - MQTT_CLIENTID=collector-service
       # - MQTT_USER_USERNAME=test
       # - MQTT_USER_PASSWORD=test
@@ -108,7 +153,7 @@ services:
       # - MAIL_SMTP_AUTH=true
       # - MAIL_SMTP_ENABLE_STARTTLS=true
       # - MAIL_SMTP_USERNAME=belhsenbachouch55@gmail.com
-      # - MAIL_SMTP_PASSWORD=
+      # - MAIL_SMTP_PASSWORD=myrxsnxvipttpqjb
       
       # - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
       # - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/
@@ -150,6 +195,7 @@ networks:
 volumes:
   web-api-src:
   collector-api-src:
+  driveless-api-src:
   mongodata:
   # EMQX MQTT Broker volumes
   emqx-data:
