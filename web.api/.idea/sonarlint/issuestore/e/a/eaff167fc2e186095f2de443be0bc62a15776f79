@@ -1,7 +1,13 @@
 
 j
-java:S1192C"MDefine a constant instead of duplicating this literal "RobotService" 4 times.(ËÇÆ«8°ï¦å1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Óé¢å1
+java:S1192P"MDefine a constant instead of duplicating this literal "RobotService" 4 times.(ËÇÆ«8¾ó®‘ì1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Àó®‘ì1
+d
+java:S3655O"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(à£“éıÿÿÿÿ8Êó®‘ì1
+_
+java:S3655d"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(‘èæß8Êó®‘ì1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8äé¢å1
-]	java:S125S"<This block of commented-out lines of code should be removed.(çˆ‚ûÿÿÿÿ8‰œ»Ûê1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8Ìó®‘ì1
+]	java:S125`"<This block of commented-out lines of code should be removed.(çˆ‚ûÿÿÿÿ8Ñó®‘ì1
+p
+java:S1128"NRemove this unused import 'com.enova.web.api.Models.Responses.RobotDataChart'.(À‘˜ãıÿÿÿÿ8û×‡ëí1

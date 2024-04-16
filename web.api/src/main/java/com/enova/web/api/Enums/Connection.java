@@ -10,4 +10,12 @@ public enum Connection {
     public int getValue() {
         return value;
     }
+    public static  int parseValue(String str)  {
+        switch (str.toUpperCase()) {
+            case "CONNECTED":
+                return CONNECTED.getValue();
+            default:
+                return DISCONNECTED.getValue();
+        }
+    }
 }

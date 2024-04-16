@@ -2,8 +2,10 @@
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8ó¶Üêã1
 i
 java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æŸ˜Öıÿÿÿÿ8ø¶Üêã1
-o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùå²Òøÿÿÿÿ8ø¶Üêã1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ªõÿÿÿÿÿ8ø¶Üêã1
 e
 java:S1612!"HReplace this lambda with method reference 'WorkstationMapper::mapToDto'.(áñ«„8âó£Ûê1
 o	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×æÖèúÿÿÿÿ8ü¶Üêã1
-o	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È¼¹şÿÿÿÿ8ü¶Üêã1
+o	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«ÅšŸøÿÿÿÿ8ü¶Üêã1
+o	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÁáúşÿÿÿÿ8ÿòß³î1
+j	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8æ£à³î1

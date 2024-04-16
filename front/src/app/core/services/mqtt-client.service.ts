@@ -15,7 +15,7 @@ export class MqttClientService {  //   source : https://www.emqx.com/en/blog/how
   client: MqttService | undefined;
 
 
-  constructor(private _mqttService: MqttService,  /*  private store: Store<MQTTState>*/) { this.client = this._mqttService; }
+  constructor(private _mqttService: MqttService) { this.client = this._mqttService; }
 
   connect(options: IMqttServiceOptions): Observable<void> {
     return new Observable(observer => {
@@ -83,11 +83,5 @@ export class MqttClientService {  //   source : https://www.emqx.com/en/blog/how
       console.log(`MQTT --> Received message ${packet.payload.toString()} from topic ${packet.topic}`)
     })
   }
-
-
-
-
-
-
 
 }

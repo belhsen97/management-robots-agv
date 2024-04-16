@@ -25,13 +25,13 @@ public class TraceController {
     }
 
     @GetMapping
-    public List<TraceDto> SelectAll() {
+    public List<TraceDto> GetAll() {
         final List<Trace> list = iService.selectAll();
         return list.stream().map(t -> TraceMapper.mapToDto(t)).collect(Collectors.toList());
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<MsgReponseStatus> delete(@PathVariable String id) {
+    public ResponseEntity<MsgReponseStatus> Delete(@PathVariable String id) {
         iService.delete(id);
         return ResponseEntity.ok(MsgReponseStatus.builder()
                 .status(ReponseStatus.SUCCESSFUL)
@@ -40,7 +40,7 @@ public class TraceController {
                 .datestamp(new Date()).build());
     }
     @DeleteMapping
-    public ResponseEntity<MsgReponseStatus> delete() {
+    public ResponseEntity<MsgReponseStatus> DeleteAll() {
         iService.selectAll();
         return ResponseEntity.ok(MsgReponseStatus.builder()
                 .status(ReponseStatus.SUCCESSFUL)

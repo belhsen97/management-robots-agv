@@ -1,54 +1,0 @@
-
-a
-java:S1192("FDefine a constant instead of duplicating this literal "UTF-8" 4 times.(Ì£¦¶ıÿÿÿÿ
-f	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂËø€
-f	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Š‚è
-f	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„æì£
-f	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—×ß¤
-k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥®ˆÆşÿÿÿÿ
-f	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“›‚Í
-z
-java:S1104"dMake link_forgotPassword_HTML a static final constant or non-public and provide accessors if needed.(¤ü÷ÿ
-v
-java:S1104"aMake link_ConfirmMail_HTML a static final constant or non-public and provide accessors if needed.(óìÌ
-y
-java:S1104"cMake link_UpdateNewUser_HTML a static final constant or non-public and provide accessors if needed.(úÎŸç
-r
-java:S1104"\Make defaultUserPhoto a static final constant or non-public and provide accessors if needed.(­‘ğ°
-s
-java:S1104"XMake pageHomeLink a static final constant or non-public and provide accessors if needed.(¡ÌŠåùÿÿÿÿ
-x
-java:S1104"]Make pageListUsersLink a static final constant or non-public and provide accessors if needed.(š·•øşÿÿÿÿ
-l
-java:S1104"VMake pathSignIn a static final constant or non-public and provide accessors if needed.(˜õÖ¯
-x
-java:S1104"bMake pathLinkPasswordForgot a static final constant or non-public and provide accessors if needed.(‘¤¤…
-k
-java:S1104 "UMake pathError a static final constant or non-public and provide accessors if needed.(ÅË²Ù
-T
-java:S1444">Make this "public static link_forgotPassword_HTML" field final(¤ü÷ÿ
-P
-java:S1444";Make this "public static link_ConfirmMail_HTML" field final(óìÌ
-S
-java:S1444"=Make this "public static link_UpdateNewUser_HTML" field final(úÎŸç
-L
-java:S1444"6Make this "public static defaultUserPhoto" field final(­‘ğ°
-M
-java:S1444"2Make this "public static pageHomeLink" field final(¡ÌŠåùÿÿÿÿ
-R
-java:S1444"7Make this "public static pageListUsersLink" field final(š·•øşÿÿÿÿ
-F
-java:S1444"0Make this "public static pathSignIn" field final(˜õÖ¯
-R
-java:S1444"<Make this "public static pathLinkPasswordForgot" field final(‘¤¤…
-E
-java:S1444 "/Make this "public static pathError" field final(ÅË²Ù
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ
-y
-java:S3008"cRename this field "link_forgotPassword_HTML" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ü÷ÿ
-u
-java:S3008"`Rename this field "link_ConfirmMail_HTML" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óìÌ
-x
-java:S3008"bRename this field "link_UpdateNewUser_HTML" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÎŸç
-]
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û›×¶

@@ -1,6 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ãó¸à
-W
-java:S1128":Remove this unused import 'com.enova.web.api.Entitys.Tag'.(ñ˜ó8âÛİå1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8âÛİå1

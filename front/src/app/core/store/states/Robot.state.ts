@@ -4,10 +4,10 @@ import { StatusRobot } from '../models/Robot/StatusRobot.enum';
 import { OperationStatus } from '../models/Robot/OperationStatus.enum';
 import { RobotDto } from '../models/Robot/RobotDto.model';
 import { SettingRobot } from '../models/Robot/SettingRobot.model';
-import { PanelRobot } from '../models/Robot/PanelRobot.model';
+import { CountRobotsProperties } from '../models/Robot/CountRobotsProperties.model';
 import { wsState } from './Worstation.state';
 import { MatTableDataSource } from '@angular/material/table';
-import { RobotData } from '../models/Robot/RobotData.model';
+import { RobotDataChart } from '../models/Robot/RobotDataChart.model';
 
 export interface RobotState {
     typeConnection?: ReadonlyArray<{ label: string; value: Connection }>;
@@ -15,20 +15,25 @@ export interface RobotState {
     listOperationStatus?: ReadonlyArray<{ label: string; value: OperationStatus }>;
     listStatusRobot?: ReadonlyArray<{ label: string; value: StatusRobot }>;
     settingRobot?: SettingRobot;
-    panelRobot?: PanelRobot;
+    count?: CountRobotsProperties;
     dataSource?: MatTableDataSource<RobotDto>;
-    robotData?:RobotData;
+    robotDataChart:RobotDataChart;
     robot: RobotDto;
-    listRobotsData?:RobotData[];
+    listRobotsData?:RobotDataChart[];
     listRobots: RobotDto[];
+    errorMessage?:String;
 }
 
-const robotData: RobotData = {
+const robotDataChart: RobotDataChart = {
     name: "robot-1",
-    speed: [[1647437400000, 8.59],[1647523800000, 7.5]],
-    battery: [[1647437400000, 90.5],[1647523800000, 80.0]],
-    statusRobot:[[1647437400000, 0],[1647523800000, 1]],
-    operationStatus:[[1647437400000, 0],[1647523800000, 1]]
+    speed: [ [1712298068943,9.0]],
+    battery: [ [1712298068943,9.0]],
+    statusRobot:[[1712298362571,0]],
+    operationStatus:[[1712298362571,0]],
+    connectionPlotBand:[{from: 1647437400000, to: 1647523800000 ,text : "text" }],
+    connectionPlotLine:[{value: 1647437400000,text : "Disconnected" }],
+    modePlotBand:[{from: 1647437400000, to: 1647523800000 ,text : "text" }],
+    modePlotLine:[{value: 1647437400000,text : "AUTO" }]
 };
 const robot: RobotDto = {
     id: "",
@@ -44,9 +49,10 @@ const robot: RobotDto = {
     workstation: wsState.workstation
 };
 const listRobots: RobotDto[] = [];
-const listRobotsData: RobotData[] = [];
+const listRobotsData: RobotDataChart[] = [];
 const settingRobot: SettingRobot = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
-const panelRobot: PanelRobot = { count: 20, connected: 10, running: 20, operationStatus: 10, auto: 10 }
+const panelRobot: CountRobotsProperties = { count: 0, connected: 0,disconnected:0, running: 0,waiting:0,inactive:0,
+    normal: 0,ems: 0,pause: 0, auto: 0,manual:0}
 const typeConnection: readonly { label: string; value: Connection }[] = [
     { label: 'CONNECTED', value: Connection.CONNECTED },
     { label: 'DISCONNECTED', value: Connection.DISCONNECTED }];
@@ -67,10 +73,11 @@ export const robotState: RobotState = {
     listOperationStatus: ListOperationStatus,
     listStatusRobot: ListStatusRobot,
     settingRobot: settingRobot,
-    panelRobot: panelRobot,
+    count: panelRobot,
     dataSource : new MatTableDataSource<RobotDto>(),
     robot: robot,
-    robotData : robotData,
+    robotDataChart : robotDataChart,
     listRobotsData:listRobotsData,
-    listRobots: listRobots
+    listRobots: listRobots,
+    errorMessage:""
 };

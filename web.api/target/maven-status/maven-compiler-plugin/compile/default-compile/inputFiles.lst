@@ -24,6 +24,7 @@ C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\sr
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\Interfaces\TagServiceImpl.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Enums\Roles.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\Interfaces\RobotServiceImpl.java
+C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Responses\RobotDataChart.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Entitys\Workstation.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Controllers\TagController.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Repositorys\RobotRepository.java
@@ -46,7 +47,6 @@ C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\sr
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\Interfaces\WorkstationServiceImpl.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Repositorys\WorkstationRepository.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Exceptions\IOException.java
-C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Enums\StatusRobotAuth.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\SmtpMailService.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Entitys\Tag.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Securitys\JwtService.java
@@ -56,11 +56,11 @@ C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\sr
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Entitys\Attachment.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Repositorys\RobotPropertyRepository.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\UserService.java
+C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Responses\PlotBand.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Responses\AuthenticationResponse.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Dtos\TagDto.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\Interfaces\FileServiceImpl.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Controllers\RobotController.java
-C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Responses\RobotData.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\RobotService.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Controllers\WorkstationController.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Configures\ParameterConfig.java
@@ -80,6 +80,7 @@ C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\sr
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Securitys\AuthenticationConfig.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Services\FileService.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Exceptions\RessourceNotFoundException.java
+C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Responses\PlotLine.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Mappers\AttachmentMapper.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Models\Entitys\Token.java
 C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\src\main\java\com\enova\web\api\Mappers\WorkstationMapper.java

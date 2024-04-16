@@ -16,8 +16,6 @@ import { tagState } from 'src/app/core/store/states/Tag.state';
 import { WorkstationDto } from 'src/app/core/store/models/Workstation/WorkstationDto.model';
 import {  wsState } from 'src/app/core/store/states/Worstation.state';
 import { RobotService } from 'src/app/core/services/robot.service';
-import { robotState } from 'src/app/core/store/states/Robot.state';
-import { globalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-workstations',
@@ -79,18 +77,6 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
         this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
         //this.workstationService.goToComponent("/sign-in");
       });
-
-
-this.robotsService.getAll().subscribe(
-  (response) => {
-    robotState.listRobots = response.body;
-  }
-  , (error) => {
-    this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-    this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
-    //this.workstationService.goToComponent("/sign-in");
-  });
-
 
   }
   ngAfterViewInit() {

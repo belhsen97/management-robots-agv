@@ -28,7 +28,7 @@ public class WorkstationController {
     }
 
     @GetMapping
-    public List<WorkstationDto> SelectAll() {
+    public List<WorkstationDto> GetAll() {
         final List<Workstation> list = iService.selectAll();
         return list.stream().map(w -> WorkstationMapper.mapToDto(w)).collect(Collectors.toList());
     }
@@ -39,17 +39,17 @@ public class WorkstationController {
     }
 
     @PostMapping
-    public WorkstationDto Insert(@RequestBody WorkstationDto wd) {
+    public WorkstationDto Add(@RequestBody WorkstationDto wd) {
         return WorkstationMapper.mapToDto(iService.insert(WorkstationMapper.mapToEntity(wd)));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<WorkstationDto> update(@PathVariable String id, @RequestBody WorkstationDto wd) {
+    public ResponseEntity<WorkstationDto> Update(@PathVariable String id, @RequestBody WorkstationDto wd) {
         return ResponseEntity.ok(WorkstationMapper.mapToDto(iService.update(id, WorkstationMapper.mapToEntity(wd))));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<MsgReponseStatus> delete(@PathVariable String id) {
+    public ResponseEntity<MsgReponseStatus> Delete(@PathVariable String id) {
         iService.delete(id);
         return ResponseEntity.ok(MsgReponseStatus.builder()
                 .status(ReponseStatus.SUCCESSFUL)

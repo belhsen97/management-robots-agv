@@ -49,6 +49,7 @@ import { AppReducer } from './core/store/App.Reducer';
 import { MqttEffects } from './core/store/effects/Mqtt.Effect';
 import { GaugeChartComponent } from './components/dashboard/details/gauge-chart/gauge-chart.component';
 import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
+import { RobotEffects } from './core/store/effects/Robot.Effect';
 
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
@@ -99,10 +100,15 @@ import { StockChartComponent } from './components/dashboard/details/stock-chart/
     
     MaterialModule,
      
-    StoreModule.forRoot(AppReducer),
+    StoreModule.forRoot(AppReducer , {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), 
     StoreRouterConnectingModule.forRoot({serializer : DashbordRouterSerializer}), BrowserAnimationsModule ,// include n number of reducer  / 25 max records clicking events 
-    EffectsModule.forRoot([GlobalEffects/*,MqttEffects*/]),
+    EffectsModule.forRoot([GlobalEffects, RobotEffects/*,MqttEffects*/]),
 
     
    MqttModule.forRoot(environment.mqttClientConfig)

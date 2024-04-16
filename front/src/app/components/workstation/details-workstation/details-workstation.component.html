@@ -6,13 +6,13 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
            <div class="iq-card-header d-flex justify-content-between">
               <div class="iq-header-title">
-                 <h4 class="card-title">List Tags ({{wsState.workstation.tags.length}})</h4>
+                 <h4 class="card-title">List Tags ({{wsState.workstation.tags!.length}})</h4>
               </div>
               <div class="iq-card-header-toolbar d-flex align-items-center">
                 <a routerLink="/workstation/tags">View All</a>
              </div>
            </div>
-           <div *ngIf="wsState.workstation.tags.length>0"  class="iq-card-body" >
+           <div *ngIf="wsState.workstation.tags!.length>0"  class="iq-card-body" >
               <ul id="new-music" class="d-flex  m-0 p-0  custom-list-inline"  >
                  <li class="col-md-3" *ngFor="let cardTag of   wsState.workstation.tags" >
                     <mat-card class="example-card" >
@@ -40,13 +40,13 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
            <div class="iq-card-header d-flex justify-content-between">
               <div class="iq-header-title">
-                 <h4 class="card-title">List Robots ({{wsState.workstation.robots.length}})</h4>
+                 <h4 class="card-title">List Robots ({{wsState.workstation.robots!.length}})</h4>
               </div>
               <div class="iq-card-header-toolbar d-flex align-items-center">
                 <a routerLink="/robot-avg/list">View All</a>
              </div>
            </div>
-           <div *ngIf="wsState.workstation.robots.length>0"   class="iq-card-body">
+           <div *ngIf="wsState.workstation.robots!.length>0"   class="iq-card-body">
               <ul id="new-music" class="d-flex  m-0 p-0  custom-list-inline"    >
                  <li class="col-md-3" *ngFor="let card of   wsState.workstation.robots">
                     <mat-card class="example-card" >

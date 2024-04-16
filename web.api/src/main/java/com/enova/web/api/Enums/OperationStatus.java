@@ -11,4 +11,14 @@ public enum OperationStatus {
     public int getValue() {
         return value;
     }
+    public static  int parseValue(String str)  {
+        switch (str.toUpperCase()) {
+            case "PAUSE":
+                return PAUSE.getValue();
+            case "EMS":
+                return EMS.getValue();
+            default:
+                return NORMAL.getValue();
+        }
+    }
 }

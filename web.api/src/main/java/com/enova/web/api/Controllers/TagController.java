@@ -25,23 +25,23 @@ public class TagController {
     }
 
     @GetMapping
-    public List<TagDto> SelectAll() {
+    public List<TagDto> GetAll() {
         final List<Tag> list = iService.selectAll();
         return list.stream().map(t -> TagMapper.mapToDto(t)).collect(Collectors.toList());
     }
 
     @PostMapping
-    public TagDto Insert(@RequestBody TagDto t) {
+    public TagDto Add(@RequestBody TagDto t) {
         return TagMapper.mapToDto(iService.insert(TagMapper.mapToEntity(t)));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TagDto> update(@PathVariable("id") String id, @RequestBody TagDto t) {
+    public ResponseEntity<TagDto> Update(@PathVariable("id") String id, @RequestBody TagDto t) {
         return ResponseEntity.ok(TagMapper.mapToDto(iService.update(id, TagMapper.mapToEntity(t))));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<MsgReponseStatus> delete(@PathVariable String id) {
+    public ResponseEntity<MsgReponseStatus> Delete(@PathVariable String id) {
         iService.delete(id);
         return ResponseEntity.ok(MsgReponseStatus.builder()
                 .status(ReponseStatus.SUCCESSFUL)

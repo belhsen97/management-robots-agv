@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> selectAll() {
+    public List<UserDto> GetAll() {
         List<User> users = iUserService.selectAll();
         return users.stream().map(user -> UserMapper.mapToDto(user)).collect(Collectors.toList());
     }
@@ -63,17 +63,17 @@ public class UserController {
         return ResponseEntity.ok(UserMapper.mapToDto(iUserService.selectByUsername(authService.getUsername())));
     }
     @PostMapping
-    public UserDto insert(@RequestBody UserDto user) {
+    public UserDto Add(@RequestBody UserDto user) {
         return UserMapper.mapToDto(iUserService.insert(UserMapper.mapToEntity(user)));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<UserDto> update(@PathVariable String id, @RequestBody UserDto user) {
+    public ResponseEntity<UserDto> Update(@PathVariable String id, @RequestBody UserDto user) {
         return ResponseEntity.ok(UserMapper.mapToDto(iUserService.update(id, UserMapper.mapToEntity(user))));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<MsgReponseStatus> delete(@PathVariable String id) {
+    public ResponseEntity<MsgReponseStatus> Delete(@PathVariable String id) {
         iUserService.delete(id);
         return ResponseEntity.ok(MsgReponseStatus.builder()
                 .status(ReponseStatus.SUCCESSFUL)

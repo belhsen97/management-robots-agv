@@ -11,14 +11,10 @@
         <div class="mat-elevation-z1">
             <div class="table-container">
                 <table mat-table [dataSource]="dataSource" matSort>
-
-                    <!-- Name Column -->
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
                         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
                     </ng-container>
-
-                    <!-- Symbol Column -->
                     <ng-container matColumnDef="enable">
                         <th mat-header-cell *matHeaderCellDef>enable</th>
                         <td mat-cell *matCellDef="let element">
@@ -26,8 +22,6 @@
                             <mat-icon class="icon-disable" *ngIf="!element.enable">highlight_off</mat-icon>
                         </td>
                     </ng-container>
-
-
                     <ng-container matColumnDef="NRobot">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>NRobot</th>
                         <td mat-cell *matCellDef="let element">{{ element.robots.length }}</td>
@@ -36,32 +30,6 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>NTag</th>
                         <td mat-cell *matCellDef="let element">{{ element.tags.length }}</td>
                     </ng-container>
-
-
-                    <!-- Weight Column -->
-                    <!-- <ng-container matColumnDef="status">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
-                        <td mat-cell *matCellDef="let element">
-                            <mat-form-field>
-                                <mat-label>Status</mat-label>
-                                <mat-select [(value)]="element.status" (selectionChange)="onChangeStatus(element.id,$event)"
-                                    panelClass="my-select-panel-class">
-                                    <mat-option *ngFor="let optionStatus of workstationService.listStatusStation"
-                                        [value]="optionStatus?.value">{{optionStatus.label}}</mat-option>
-                                </mat-select>
-                            </mat-form-field> -->
-                    <!-- <div class="form-group">
-                        <label for="pi-current-state-input">Roles :</label>
-                        <select class="form-control" id="pi-current-state-input"
-                                name="edit-global-account-pi-state" [(ngModel)]="element.role" #stateregion="ngModel" required > 
-                           <optgroup label="24 States of tunisian"> 
-                              <option *ngFor="let optionRole of userService.listRole" [value]="optionRole.value" [selected] = "optionRole?.value === element.role">{{ optionRole.label }}</option> 
-                          </optgroup>
-                        </select>
-                     </div> -->
-                    <!-- </td>
-                    </ng-container> -->
-                    <!-- Action Column -->
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef>Action</th>
                         <td mat-cell *matCellDef="let element">

@@ -5,8 +5,8 @@ import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { Connection } from 'src/app/core/store/models/Robot/Connection.enum';
 import { ModeRobot } from 'src/app/core/store/models/Robot/ModeRobot.enum';
 import { OperationStatus } from 'src/app/core/store/models/Robot/OperationStatus.enum';
+import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
-import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.state';
 
 
@@ -16,16 +16,20 @@ import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.
   styleUrls: ['./add-robot.component.css']
 })
 export class AddRobotComponent implements OnInit {
-  robotState !: RobotState;
+  robot!:RobotDto;
   wsState !: WorkstationState;
   constructor(public workstationService: WorkstationService,public dialogRef: MatDialogRef<AddRobotComponent>,
      @Inject(MAT_DIALOG_DATA) public data: any) { 
-      this.robotState  = robotState; this.wsState  = wsState;
+       this.wsState  = wsState;
     }
   ngOnInit(): void {
-
-     if (this.data.element != undefined) { robotState.robot = this.data.element; return ;} 
-     robotState.robot  = {
+     if (this.data.element != undefined) {
+      this.robot  = {
+        id: this.data.element.id,createdAt: this.data.element.createdAt,name: this.data.element.name,statusRobot: this.data.element.statusRobot,modeRobot: this.data.element.modeRobot,notice: this.data.element.notice,connection: this.data.element.connection,operationStatus: this.data.element.operationStatus,levelBattery: this.data.element.levelBattery,speed: this.data.element.speed,workstation: this.data.element.workstation};
+      
+      
+      return;} 
+      this.robot  = {
       id: "",
       createdAt: new Date(),
       name: "",
@@ -38,6 +42,6 @@ export class AddRobotComponent implements OnInit {
     }
   compareWorkstation(w1: any, w2: any): boolean { return w1 && w2 ? w1.id === w2.id : w1 === w2; }
   closepopup() { this.dialogRef.close(null); }
-  onSubmitForm(form: NgForm): void { if (!form.invalid) { this.dialogRef.close(robotState.robot); } }
+  onSubmitForm(form: NgForm): void { if (!form.invalid) { this.dialogRef.close(this.robot); } }
 }
 

@@ -5,7 +5,7 @@ import { StatusRobot } from '../store/models/Robot/StatusRobot.enum';
 import { OperationStatus } from '../store/models/Robot/OperationStatus.enum';
 import { RobotDto } from '../store/models/Robot/RobotDto.model';
 import { Service } from './globalservice.service';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { robotState } from '../store/states/Robot.state';
@@ -31,9 +31,21 @@ export class RobotService extends Service {
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
-  getbyNameAllData(name:String): Observable<HttpResponse<any>> {
+  getAllDataByName(name:String): Observable<HttpResponse<any>> {
     return this.http.get(`${this.url}/robot/${name}/data/all`,
       { observe: 'response', 
+      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
+     })
+  }
+  geAllDataByNameAndUnixDatetime(name:String, queryParams: any): Observable<HttpResponse<any>> {
+    let params = new HttpParams();
+    if (queryParams) {
+        Object.keys(queryParams).forEach(key => {
+            params = params.append(key, queryParams[key]);
+        });
+    }
+    return this.http.get(`${this.url}/robot/${name}/data/unix-timestamp`,
+      { observe: 'response', params: params,
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
@@ -43,7 +55,7 @@ export class RobotService extends Service {
         //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     }) })
   }
-  update(id: string, r: RobotDto): Observable<HttpResponse<any>> {
+  update(id: String, r: RobotDto): Observable<HttpResponse<any>> {
     return this.http.put(`${this.url}/robot/${id}`, r,
       { observe: 'response',
        headers: new HttpHeaders({'Content-Type': 'application/json',
@@ -84,11 +96,4 @@ export class RobotService extends Service {
       };
     }
   }
-  public refreshValuesPanelRobot(): void {
-    robotState.panelRobot!.count = robotState.listRobots.length;
-    robotState.panelRobot!.connected = robotState.listRobots.filter(robot => {return robot.connection == Connection.CONNECTED}).length;
-    robotState.panelRobot!.auto = robotState.listRobots.filter(robot => {return robot.modeRobot == ModeRobot.AUTO }).length;
-    robotState.panelRobot!.operationStatus = robotState.listRobots.filter(robot => {return robot.operationStatus == OperationStatus.EMS || robot.operationStatus == OperationStatus.PAUSE  }).length;
-    robotState.panelRobot!.running  = robotState.listRobots.filter(robot => {return robot.statusRobot == StatusRobot.RUNNING }).length;
-    }
 }

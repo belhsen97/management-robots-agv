@@ -6,7 +6,9 @@ import com.enova.web.api.Models.Dtos.WorkstationDto;
 import com.enova.web.api.Models.Entitys.Robot;
 import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Entitys.Workstation;
-import com.enova.web.api.Models.Responses.RobotData;
+import com.enova.web.api.Models.Responses.PlotBand;
+import com.enova.web.api.Models.Responses.PlotLine;
+import com.enova.web.api.Models.Responses.RobotDataChart;
 
 import java.util.*;
 
@@ -18,6 +20,7 @@ public class RobotMapper {
         return Robot.builder()
                 .createdAt(r.getCreatedAt())
                 .name(r.getName())
+                .notice(r.getNotice())
                 .statusRobot(r.getStatusRobot())
                 .modeRobot(r.getModeRobot())
                 .connection(r.getConnection())
@@ -37,6 +40,7 @@ public class RobotMapper {
                 .id(r.getId())
                 .createdAt(r.getCreatedAt())
                 .name(r.getName())
+                .notice(r.getNotice())
                 .statusRobot(r.getStatusRobot())
                 .modeRobot(r.getModeRobot())
                 .connection(r.getConnection())
@@ -79,7 +83,7 @@ public class RobotMapper {
         return robot;
     }
 
-    public static List<RobotData> mapToRobotData(List<RobotProperty> properties) {
+    public static List<RobotDataChart> mapToRobotData(List<RobotProperty> properties) {
         if (properties.isEmpty()) {
             return Collections.emptyList();
         }
@@ -89,7 +93,7 @@ public class RobotMapper {
             propertyMap.computeIfAbsent(property.getName(), k -> new ArrayList<>()).add(property);
         }
 
-        List<RobotData> robotDataList = new ArrayList<>();
+        List<RobotDataChart> robotDataList = new ArrayList<>();
         for (Map.Entry<String, List<RobotProperty>> entry : propertyMap.entrySet()) {
             String name = entry.getKey();
             List<RobotProperty> props = entry.getValue();
@@ -100,21 +104,83 @@ public class RobotMapper {
     }
 
 
-    public static RobotData mapToRobotData(String name, List<RobotProperty> properties) {
+    public static RobotDataChart mapToRobotData(String name, List<RobotProperty> properties) {
         List<Object[]> speedList = new ArrayList<>();
         List<Object[]> batteryList = new ArrayList<>();
         List<Object[]> statusList = new ArrayList<>();
         List<Object[]> operationStatusList = new ArrayList<>();
+        List<Object[]> connectionList = new ArrayList<>();
+        List<PlotBand> connectionPlotBandList = new ArrayList<>();
+        List<PlotBand> modePlotBandList = new ArrayList<>();
+        List<PlotLine> connectionPlotLineList = new ArrayList<>();
+        List<PlotLine> modePlotLineList = new ArrayList<>();
 
-        Object[] data = new Object[5];
+
+        Connection verifyCNX = Connection.DISCONNECTED;
+        ModeRobot verifyMode = ModeRobot.MANUAL;
+
+        PlotBand plotBandCnx = PlotBand.builder().text("connection").build();
+        PlotBand plotBandmode = PlotBand.builder().text("mode").build();
+
+        Object[] data = new Object[7];
         data[0] = new Date().getTime();
+        plotBandCnx.setFrom(data[0]);
+        plotBandmode.setFrom(data[0]);
         data[1] = Double.NaN;
         data[2] = Double.NaN;
-        data[3] =  StatusRobot.INACTIVE.getValue();
-        data[4] =  OperationStatus.NORMAL.getValue();
+        data[3] = StatusRobot.INACTIVE.getValue();
+        data[4] = OperationStatus.NORMAL.getValue();
+        data[5] = Connection.CONNECTED.getValue();
+        data[6] = ModeRobot.MANUAL.getValue();
         for (RobotProperty property : properties) {
             data[0] = property.getTimestamp().getTime();
             switch (property.getType()) {
+                case MODE_ROBOT:
+                    data[6] = ModeRobot.parseValue(property.getValue());
+                    if (!verifyMode.equals(ModeRobot.valueOf(property.getValue()))) {
+                        verifyMode = ModeRobot.valueOf(property.getValue());
+                    }
+                    if (verifyMode.equals(ModeRobot.MANUAL) ){
+                        plotBandmode.setFrom(data[0]);
+                        modePlotLineList.add(PlotLine.builder().text("MANUAL").value(data[0]).build() );
+                    }
+                    if (verifyMode.equals(ModeRobot.AUTO) ){
+                        plotBandmode.setTo(data[0]);
+                        modePlotLineList.add(PlotLine.builder().text("AUTO").value(data[0]).build() );
+                        modePlotBandList.add(PlotBand.builder()
+                                .from(plotBandmode.getFrom())
+                                .to(plotBandmode.getTo())
+                                .text(plotBandmode.getText())
+                                .build());
+                    }
+                    break;
+                case CONNECTION:
+                    data[5] = Connection.parseValue(property.getValue());
+                    connectionList.add(new Object[]{data[0], data[5]});
+                    if (!verifyCNX.equals(Connection.valueOf(property.getValue()))) {
+                        verifyCNX = Connection.valueOf(property.getValue());
+                    }
+                    if (verifyCNX.equals(Connection.DISCONNECTED) ){
+                        plotBandCnx.setFrom(data[0]);
+
+
+                        connectionPlotLineList.add(PlotLine.builder().text("DISCONNECTED").value(data[0]).build() );
+
+                    }
+                    if (verifyCNX.equals(Connection.CONNECTED) ){
+                        plotBandCnx.setTo(data[0]);
+                        connectionPlotLineList.add(PlotLine.builder().text("CONNECTED").value(data[0]).build() );
+
+                        connectionPlotBandList.add(PlotBand.builder()
+                                .from(plotBandCnx.getFrom())
+                                .to(plotBandCnx.getTo())
+                                .text(plotBandCnx.getText())
+                                .build());
+                     }
+                    break;
+
+
+
                 case SPEED:
                     data[1] = parseDoubleValue(property.getValue());
                     speedList.add(new Object[]{data[0], data[1]});
@@ -124,11 +190,11 @@ public class RobotMapper {
                     batteryList.add(new Object[]{data[0], data[2]});
                     break;
                 case STATUS_ROBOT:
-                    data[3] =  parseStatusValue(property.getValue());
+                    data[3] = StatusRobot.parseValue(property.getValue());
                     statusList.add(new Object[]{data[0], data[3]});
                     break;
                 case OPERATION_STATUS:
-                    data[4] = parseOperationStatusValue(property.getValue());
+                    data[4] = OperationStatus.parseValue(property.getValue());
                     operationStatusList.add(new Object[]{data[0], data[4]});
                     break;
             }
@@ -138,12 +204,34 @@ public class RobotMapper {
             batteryList.add(new Object[]{data[0], data[2]});
             statusList.add(new Object[]{data[0], data[3]});
             operationStatusList.add(new Object[]{data[0], data[4]});
+            if (verifyCNX.equals(Connection.DISCONNECTED) ){
+                plotBandCnx.setTo(data[0]);
+                connectionPlotBandList.add(PlotBand.builder().from(plotBandCnx.getFrom()).to(plotBandCnx.getTo()).build());
+            }
+            if (verifyMode.equals(ModeRobot.MANUAL) ){
+                plotBandmode.setTo(data[0]);
+                modePlotBandList.add(PlotBand.builder().from(plotBandmode.getFrom()).to(plotBandmode.getTo()).build());
+            }
         }
         Object[][] speedArray = speedList.toArray(new Object[0][]);
         Object[][] batteryArray = batteryList.toArray(new Object[0][]);
         Object[][] statusArray = statusList.toArray(new Object[0][]);
         Object[][] operationStatusArray = operationStatusList.toArray(new Object[0][]);
-        return new RobotData(name, speedArray, batteryArray, statusArray, operationStatusArray);
+        PlotBand[] connectionPlotBandsArray = connectionPlotBandList.toArray(new PlotBand[0]);
+        PlotBand[] modenPlotBandsArray = modePlotBandList.toArray(new PlotBand[0]);
+        PlotLine[] connectionPlotLinesArray = connectionPlotLineList.toArray(new PlotLine[0]);
+        PlotLine[] modePlotLineArray = modePlotLineList.toArray(new PlotLine[0]);
+        return RobotDataChart.builder()
+                .name(name)
+                .speed(speedArray)
+                .battery(batteryArray)
+                .statusRobot(statusArray)
+                .operationStatus(operationStatusArray)
+                .connectionPlotBand(connectionPlotBandsArray)
+                .modePlotBand(modenPlotBandsArray)
+                .connectionPlotLine(connectionPlotLinesArray)
+                .modePlotLine(modePlotLineArray)
+                .build();
     }
 
     private static double parseDoubleValue(String str) {
@@ -153,21 +241,52 @@ public class RobotMapper {
             return Double.NaN;
         }
     }
-
-    private static int parseStatusValue(String str) {
+    private static Connection parseConnection(String str) {
         try {
-            return StatusRobot.valueOf(str).getValue();
+            return  Connection.valueOf(str);
         } catch (IllegalArgumentException e) {
-            return StatusRobot.INACTIVE.getValue();
+            return  Connection.DISCONNECTED;
         }
     }
-
-    private static int parseOperationStatusValue(String str) {
-        try {
-            return OperationStatus.valueOf(str).getValue();
-        } catch (IllegalArgumentException e) {
-            return OperationStatus.NORMAL.getValue();
-        }
-    }
-
 }
+
+
+
+
+
+            /*if (property.getType().equals(TypeProperty.CONNECTION)) {
+                data[5] = Connection.parseValue(property.getValue());
+                connectionList.add(new Object[]{data[0], data[5]});
+
+                verifyCNX = parseConnection(property.getValue());
+                if ( verifyCNX.equals(Connection.DISCONNECTED )){
+                    speedList.add(new Object[]{data[0], null});
+                    batteryList.add(new Object[]{data[0], null});
+                    statusList.add(new Object[]{data[0], null});
+                    operationStatusList.add(new Object[]{data[0], null});}
+                else if ( verifyCNX.equals(Connection.CONNECTED )) {
+                    speedList.add(new Object[]{data[0], data[1]});
+                    batteryList.add(new Object[]{data[0], data[2]});
+                    statusList.add(new Object[]{data[0], data[3]});
+                    operationStatusList.add(new Object[]{data[0], data[4]});}
+            }
+
+            if (verifyCNX.equals(Connection.DISCONNECTED)) {
+                continue; }
+
+            if (property.getType().equals(TypeProperty.SPEED)) {
+                data[1] = parseDoubleValue(property.getValue());
+                speedList.add(new Object[]{data[0], data[1]});
+            }
+            if (property.getType().equals(TypeProperty.LEVEL_BATTERY)) {
+                data[2] = parseDoubleValue(property.getValue());
+                batteryList.add(new Object[]{data[0], data[2]});
+            }
+            if (property.getType().equals(TypeProperty.STATUS_ROBOT)) {
+                data[3] = StatusRobot.parseValue(property.getValue());
+                statusList.add(new Object[]{data[0], data[3]});
+            }
+            if (property.getType().equals(TypeProperty.STATUS_ROBOT)) {
+                data[4] = OperationStatus.parseValue(property.getValue());
+                operationStatusList.add(new Object[]{data[0], data[4]});
+            }*/

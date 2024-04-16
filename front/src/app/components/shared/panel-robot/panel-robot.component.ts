@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { RobotService } from 'src/app/core/services/robot.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { CountRobotsProperties } from 'src/app/core/store/models/Robot/CountRobotsProperties.model';
+import { getCountRobotsProperties } from 'src/app/core/store/selectors/Robot.Selector';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({
@@ -7,7 +10,12 @@ import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
   templateUrl: './panel-robot.component.html',
   styleUrls: ['./panel-robot.component.css']
 })
-export class PanelRobotComponent {
-  robotState !: RobotState;
-  constructor() {  this.robotState  = robotState;}
+export class PanelRobotComponent  implements OnInit , OnDestroy {
+  robotsCount !: CountRobotsProperties;
+  private getCountRobotsPropertiestSub !: Subscription | undefined;
+  constructor(private storeRobot: Store<RobotState>) {  this.robotsCount  = robotState.count!;}
+  ngOnInit(): void {
+    this.storeRobot.select(getCountRobotsProperties).subscribe(item => {   this.robotsCount = item!; });
+  }
+  ngOnDestroy() {if (this.getCountRobotsPropertiestSub) {this.getCountRobotsPropertiestSub.unsubscribe();}}
 }

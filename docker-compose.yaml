@@ -153,7 +153,7 @@ services:
       # - MAIL_SMTP_AUTH=true
       # - MAIL_SMTP_ENABLE_STARTTLS=true
       # - MAIL_SMTP_USERNAME=belhsenbachouch55@gmail.com
-      # - MAIL_SMTP_PASSWORD=myrxsnxvipttpqjb
+      # - MAIL_SMTP_PASSWORD=-------------------
       
       # - MYAPP_LINK_GLOBAL_BACKEND=http://localhost:8089
       # - MYAPP_LINK_PATH_ATTACHMENT_DOWNLOAD=/user/get-photo-by-id/

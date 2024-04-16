@@ -1,13 +1,19 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MqttClientService } from "../../services/mqtt-client.service";
 import { Injectable } from "@angular/core";
-import { EMPTY, Observable, catchError, filter, from, map, mergeMap, of, switchMap, take, tap } from "rxjs";
+import { EMPTY, Observable, catchError, exhaustMap, filter, from, map, mergeMap, of, switchMap, take, tap } from "rxjs";
 import { IMqttMessage, MqttService } from "ngx-mqtt";
 import { connectMQTT, connectionClosed, connectionFailure, connectionSuccess, desconnectMQTT, onSubscribeMQTT, subscribeFailure, subscribeMQTT, subscribeSuccess } from "../actions/Mqtt.Action";
+import { RobotDto } from "../models/Robot/RobotDto.model";
+import { refreshRobotssuccess, updateRobotsuccess } from "../actions/Robot.Action";
+import { RobotState } from "../states/Robot.state";
+import { Store } from "@ngrx/store";
+import { ShowAlert } from "../actions/Global.Action";
+import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 
 @Injectable()
 export class MqttEffects {
-    constructor(private actions$: Actions, private mqttClientService: MqttClientService ) { }
+    constructor(private actions$: Actions, private mqttClientService: MqttClientService,   private store: Store<RobotState>  ) { }
 
     connectMQTTEffect$ = createEffect(() => this.actions$.pipe(
       ofType(connectMQTT),
@@ -27,25 +33,30 @@ export class MqttEffects {
         );
       })
     ));
-   /* subscribeMQTTEffect$ = createEffect(() => this.actions$.pipe(
-      ofType(subscribeMQTT),
-      switchMap((action) => {
-        const result = this.mqttClientService.subscribe(action.subscribe);
-      if (result) {
-        return result.pipe(
-          map((message) => onSubscribeMQTT({  msg: message  })),
-          catchError(error => of(connectionFailure({ error })))
-        );
-      } else {
-        // If subscribe returns undefined, emit an action indicating failure
-        return of(connectionFailure({ error: 'Subscribe failed' }));
-      }
-    })
-  ));*/
 
 
+// subscribeToMQTTTopic = createEffect(() =>
+// this.actions$.pipe(
+//     ofType(subscribeMQTT),
+//     switchMap(action =>   
+//        this.mqttClientService.subscribe(action.subscribe)!.pipe(
+//         map(message => {
+//           const updateRobot = JSON.parse(message.payload.toString());
+//           return refreshRobotsuccess({ robotinput : updateRobot });
+//         }),
+//             catchError((error) => 
+//             {
+//               return of(connectionFailure({ error: 'Subscribe failed' }));
+//             }
+//             )
+//         )
+//      )
+// )
+// );
+ 
 
-    onConnectEffect$ = createEffect(() => this.mqttClientService.onConnect().pipe(
+
+    /*onConnectEffect$ = createEffect(() => this.mqttClientService.onConnect().pipe(
       tap(() => console.log('MQTT --> Connection succeeded!')), map(() => connectionSuccess())
     ), { dispatch: true });
   
@@ -56,7 +67,7 @@ export class MqttEffects {
     onCloseEffect$ = createEffect(() => this.mqttClientService.onClose().pipe(
       tap(() => console.log('MQTT --> Connection closed.')),
       map(() => connectionClosed())
-    ), { dispatch: true });
+    ), { dispatch: true });*/
     // onMessageEffect$ = createEffect(() => this.mqttClientService.onMessage().pipe(
     //   map(packet => messageReceived({ payload: packet.payload.toString(), topic: packet.topic }))
     // ));

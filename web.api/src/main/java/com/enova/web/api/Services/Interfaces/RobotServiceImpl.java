@@ -2,7 +2,7 @@ package com.enova.web.api.Services.Interfaces;
 
 
 import com.enova.web.api.Models.Entitys.RobotProperty;
-import com.enova.web.api.Models.Responses.RobotData;
+import com.enova.web.api.Models.Responses.RobotDataChart;
 import com.enova.web.api.Models.Entitys.Robot;
 import com.enova.web.api.Models.Entitys.Trace;
 import com.enova.web.api.Models.Entitys.Workstation;
@@ -44,16 +44,29 @@ public class RobotServiceImpl implements RobotService {
     }
 
 
+
     @Override
     public List<RobotProperty> selectAllDataPropertys() {
          return robotPropertyRepository.findAll();
     }
-
+    @Override
+    public List<RobotProperty> selectDataPropertysByTimestampBetween(Date start, Date end) {
+        return robotPropertyRepository.findByTimestampBetween(start, end);
+    }
     @Override
     public List<RobotProperty> selectAllDataPropertysByName(String name) {
         return robotPropertyRepository.findAllByName(name);
     }
-
+    @Override
+    public List<RobotProperty> selectDataPropertysByNameAndDateTimes(String name, Date start, Date end) {
+        return robotPropertyRepository.findByNameAndTimestampBetween( name,  start,  end);
+    }
+    @Override
+    public List<RobotProperty> selectDataPropertysByNameAndUnixTimestamps(String name, Long startUnixTimestamp, Long endUnixTimestamp){
+        final Date start = new Date(startUnixTimestamp);
+        final Date end = new Date(endUnixTimestamp);
+        return robotPropertyRepository.findByNameAndTimestampBetween( name,  start,  end);
+    }
     @Override
     public Robot insert(Robot obj) {
         if (robotRepository.findbyName(obj.getName()).isPresent()) {

@@ -14,15 +14,16 @@
 
   mat-header-cell, mat-cell {
     vertical-align: middle; 
+    
   }
 
   .mat-column-name {
-
     width: 100px;
-
+ 
   }
   .mat-column-view {
     width: 96px;
+    
   }
   .mat-column-statusRobot,
   .mat-column-modeRobot {
@@ -35,6 +36,7 @@
   
   .mat-column-operationStatus {
     max-width: 80px;
+    text-align: center;
   }
   
   
@@ -44,8 +46,6 @@
     text-align: center;
     font-weight: 500;
     font-size: 15px;
-
- 
   }
 
   td {
@@ -64,3 +64,4 @@
   .cell-warning {
     background-color: var(--warning);
   }
+

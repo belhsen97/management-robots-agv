@@ -1,7 +1,6 @@
 mat-card {
     display: inline-block;
-}
-
+} 
 .mat-mdc-raised-button.mat-primary-color {
     color: white;
     background-color: var(--navy-blue);

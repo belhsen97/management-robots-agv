@@ -69,7 +69,7 @@
       <mat-label>Robots</mat-label>
       <mat-select multiple [(ngModel)]="wsState.workstation.robots" name="workstation-robots"
         #robots="ngModel" [compareWith]="compareRobots">
-        <mat-option *ngFor="let robot of robotState.listRobots" [value]="robot">{{ robot.name }}</mat-option>
+        <mat-option *ngFor="let robot of listRobot" [value]="robot">{{ robot.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     <!-- 

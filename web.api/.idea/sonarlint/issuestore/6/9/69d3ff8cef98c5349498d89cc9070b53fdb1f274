@@ -1,15 +1,0 @@
-
-c	java:S112™"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8»Ø›æ1
-h	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(ÛêÎøÿÿÿÿ8ß°ûÂç1
-…
-java:S1488œ"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8¼Ø›æ1
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÿ¹»…ÿÿÿÿÿ8½Ø›æ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñæÊ8¾Ø›æ1
-³
-java:S4449—"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8±ûÂç1
-X	java:S125M"<This block of commented-out lines of code should be removed.(Ä„ù«8ÕØ›æ1
-S
-java:S6437R"6Revoke and change this password, as it is compromised.(´²•¯8ÖØ›æ1
-X	java:S125"<This block of commented-out lines of code should be removed.(• «ú8ÜØ›æ1
-A
-java:S2119¥"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8áØ›æ1

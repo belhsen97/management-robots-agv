@@ -13,9 +13,11 @@ import {  selectIsConnected } from './core/store/selectors/Mqtt.selector';
 import * as mqtt from 'mqtt';
 import { environment } from 'src/environments/environment';
 import { RobotService } from './core/services/robot.service';
-import { robotState } from './core/store/states/Robot.state';
+import { RobotState, robotState } from './core/store/states/Robot.state';
 import { ShowAlert } from './core/store/actions/Global.Action';
 import { ReponseStatus } from './core/store/models/Global/ReponseStatus.enum';
+import { loadRobots, refreshRobots } from './core/store/actions/Robot.Action';
+import { getListRobot } from './core/store/selectors/Robot.Selector';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,25 +30,32 @@ robot !: RobotDto ;
       // isConnectedsubscribe !: Subscription;
       // onSubcribe !: Subscription;
 
-  constructor(public mqttClientService: MqttClientService,public userService: UserService , public robotService: RobotService,
-    private store: Store<MQTTState>
+  constructor(public mqttClientService: MqttClientService,public userService: UserService,
+    public robotService: RobotService,
+    private storeMqtt: Store<MQTTState>,
+    private storeRobot: Store<RobotState>
   ) 
   { }
 
   ngOnInit(): void {
-    userState.userDto = this.userService.getUserDto();
-    this.robotService.getAll().subscribe(
-      (response) => { 
-         robotState.listRobots = response.body;
-         robotState.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
-         robotState.dataSource!.data = robotState.listRobots ;
-      }
-       ,(error) => {
-         this.robotService.msgResponseStatus  =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-         this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
-       }) ;
+    this.storeRobot.dispatch(loadRobots());
 
-    this.  mqttClientService.connect(mqttState.cnxClientConfig);
+
+
+
+    // userState.userDto = this.userService.getUserDto();
+    // this.robotService.getAll().subscribe(
+    //   (response) => { 
+    //      robotState.listRobots = response.body;
+    //      robotState.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
+    //      robotState.dataSource!.data = robotState.listRobots ;
+    //   }
+    //    ,(error) => {
+    //      this.robotService.msgResponseStatus  =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
+    //      this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
+    //    }) ;
+
+    // this.  mqttClientService.connect(mqttState.cnxClientConfig);
 
 
 
@@ -62,7 +71,9 @@ robot !: RobotDto ;
     //   console.log('MQTT --> Subscribe to topics res', message.payload.toString())
     //  });
 
-    // this.store.dispatch(subscribeMQTT({subscribe:mqttState.subscribe}));
+    //  this.storeRobot.dispatch(refreshRobot({subscribe:mqttState.subscribe}));
+
+
     //this.store.dispatch(desconnectMQTT());
 
  /*this.  mqttClientService.subscribe(mqttState.subscribe) ;*/
@@ -82,8 +93,7 @@ robot !: RobotDto ;
   }
 
   ngOnDestroy(): void {
-    this.mqttClientService.disconnect();
-    if (robotState.dataSource!) {  robotState.dataSource!.disconnect(); }
+    this.mqttClientService.disconnect(); 
   }
 
 }

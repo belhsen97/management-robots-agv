@@ -1,11 +1,35 @@
-<mat-card>
+<!-- <mat-card>
     <mat-card-content>
         <h4>
-            <strong class="mr-3">Robots({{robotState.panelRobot!.count}}) :</strong>
-            <span class="mr-3">Connected: {{robotState.panelRobot!.connected}}</span>
-            <span class="mr-3">Running: {{robotState.panelRobot!.running}}</span>
-            <span class="mr-3">EMS/PAUSE: {{robotState.panelRobot!.operationStatus}}</span>
-            <span>Auto: {{robotState.panelRobot!.auto}}</span>
+            <strong class="mr-3">Robots({{robotsCount.count}}) :</strong>
+            <span class="mr-3">Connected: {{robotsCount.connected}}</span>
+            <span class="mr-3">Running: {{robotsCount.running}}</span>
+            <span class="mr-3">EMS/PAUSE: {{robotsCount.operationStatus}}</span>
+            <span>Auto: {{robotsCount.auto}}</span>
         </h4>
     </mat-card-content>
-</mat-card>
+</mat-card> -->
+<div class="overlay-container">
+    <mat-accordion class="overlay-accordion">
+      <mat-expansion-panel> <!--hideToggle-->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong class="mr-0">Robots ({{robotsCount.count}}) :</strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            <span class="mr-2">Connected : {{robotsCount.connected}}</span>
+            <span class="mr-2">Running : {{robotsCount.running}}</span>
+            <span class="mr-2">Auto : {{robotsCount.auto}}</span>
+            <span class="mr-0">Nomal : {{robotsCount.normal}}</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <span class="mr-2">Disconnected : {{robotsCount.disconnected}}</span>
+        <span class="mr-2">Waiting : {{robotsCount.waiting}}</span>
+        <span class="mr-2">Inactive: {{robotsCount.inactive}}</span>
+        <span class="mr-2">Manual : {{robotsCount.manual}}</span>
+        <span class="mr-2">EMS : {{robotsCount.ems}}</span>
+        <span class="mr-0">Pause : {{robotsCount.pause}}</span>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  

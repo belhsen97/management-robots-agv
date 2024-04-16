@@ -4,7 +4,7 @@
         <!-- <div class="flex-row"> -->
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input type="text" matInput [(ngModel)]="robotState.robot.name" #name="ngModel" name="robot-name"
+            <input type="text" matInput [(ngModel)]="robot.name" #name="ngModel" name="robot-name"
                 placeholder="Ex. 460247808139" required>
             <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
             <!-- <mat-error   *ngIf="(name.errors?.['required']">name is <strong>required</strong></mat-error> -->
@@ -15,7 +15,7 @@
 
         <mat-form-field>
             <mat-label>Workstations</mat-label>
-            <mat-select [(ngModel)]="robotState.robot.workstation" name="robot-workstation" #workstation="ngModel"
+            <mat-select [(ngModel)]="robot.workstation" name="robot-workstation" #workstation="ngModel"
                 [compareWith]="compareWorkstation">
                 <mat-option *ngFor="let wOption of wsState.listWorkstations" [value]="wOption">{{
                     wOption.name }}</mat-option>
@@ -24,7 +24,7 @@
 
         <mat-form-field>
             <mat-label>Notice</mat-label>
-            <textarea [(ngModel)]="robotState.robot.notice" #notice="ngModel" name="robot-notice" matInput
+            <textarea [(ngModel)]="robot.notice" #notice="ngModel" name="robot-notice" matInput
                 placeholder="Ex. notice robot ..."></textarea>
         </mat-form-field>
 

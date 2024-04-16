@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./email-compose.component.css']
 })
 export class EmailComposeComponent {
+  constructor(
+  ) 
+  { }
+
+
 
 }

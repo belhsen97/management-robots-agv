@@ -10,4 +10,13 @@ public enum ModeRobot {
     public int getValue() {
         return value;
     }
+
+    public static  int parseValue(String str)  {
+        switch (str.toUpperCase()) {
+            case "AUTO":
+                return AUTO.getValue();
+            default:
+                return MANUAL.getValue();
+        }
+    }
 }

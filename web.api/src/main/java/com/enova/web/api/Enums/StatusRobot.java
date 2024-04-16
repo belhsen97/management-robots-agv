@@ -1,6 +1,5 @@
 package com.enova.web.api.Enums;
 
-//public enum StatusRobot {WAITING,RUNNING,INACTIVE}
 public enum StatusRobot {
     INACTIVE(0),
     WAITING(1),
@@ -11,6 +10,17 @@ public enum StatusRobot {
     }
     public int getValue() {
         return value;
+    }
+
+    public static  int parseValue(String str)  {
+        switch (str.toUpperCase()) {
+            case "RUNNING":
+                return RUNNING.getValue();
+            case "WAITING":
+                return WAITING.getValue();
+            default:
+                return INACTIVE.getValue();
+        }
     }
 }
 
