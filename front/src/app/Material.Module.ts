@@ -23,6 +23,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
     exports: [
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
         MatInputModule,
         MatSelectModule,
@@ -36,7 +37,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        MatButtonToggleModule,
         MatExpansionModule,
         MatTabsModule,
         MatSliderModule,

@@ -79,12 +79,6 @@ public class BeanStartup implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        System.out.println(FileService.defaultUserPhoto);
-//        final Attachment img =  this.saveAttachment(FileService.defaultUserPhoto);
-//        System.out.println(img.getFileName());
-
-
-
         Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
         if (userOptional.isEmpty()) {
             user.setPassword(passwordEncoder.encode("1234"));
@@ -120,7 +114,7 @@ public class BeanStartup implements CommandLineRunner {
 //                    .nameWorkstation(workstation1.getName())
 //                    .name("robot-" + i)
 //                    .createdAt(new Date())
-//                    .connection(Connection.CONNECTED)
+//                    .connection(Connection.DISCONNECTED)
 //                    .modeRobot(ModeRobot.AUTO)
 //                    .statusRobot(StatusRobot.RUNNING)
 //                    .operationStatus(OperationStatus.PAUSE)

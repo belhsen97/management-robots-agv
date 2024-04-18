@@ -27,10 +27,10 @@
 	--gray-dark: #343a40;
 	--primary: #007bff;
 	--secondary: #6c757d;
-	--success: #8FE9C6;/*#28a745;*/
+	--success: #338D62;/*#28a745;*/
 	--info: #17a2b8;
-	--warning: #F5EDA2;/*#ffc107;*/
-	--danger: #F59098;/*#dc3545;*/
+	--warning: #DCC902;/*#ffc107;*/
+	--danger: #CE2C40;/*#dc3545;*/
 	--light: #f8f9fa;
 	--dark: #343a40;
 }

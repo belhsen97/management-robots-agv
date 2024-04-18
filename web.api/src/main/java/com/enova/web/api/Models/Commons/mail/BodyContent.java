@@ -1,5 +1,6 @@
 package com.enova.web.api.Models.Commons.mail;
 
+import com.enova.web.api.Enums.TypeBody;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 @Builder

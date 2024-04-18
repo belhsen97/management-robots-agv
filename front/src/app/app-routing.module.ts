@@ -111,7 +111,7 @@ const routes: Routes = [
         component: ListRobotsComponent
       },
       {
-        path: ':id',
+        path: ':name',
         component: DetailsRobotComponent
       }
     ]

@@ -1,15 +1,13 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8¬ëí1
-j
-java:S22599"MA "NullPointerException" could be thrown; "robotProperties" is nullable here.(ÒÔ±Ä8¤ëí1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8úœƒ…ï1
 W
-java:S1118":Add a private constructor to hide the implicit public one.(®â¤Ğ8¦ëí1
+java:S1118":Add a private constructor to hide the implicit public one.(®â¤Ğ8É¼……ï1
 f
-java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8¨ëí1
+java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8Çƒ…ï1
 t
-java:S3776k"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ôì‰¬ùÿÿÿÿ8´ëí1
-Y	java:S125"<This block of commented-out lines of code should be removed.(üÿ„º8Äëí1
+java:S3776l"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ôì‰¬ùÿÿÿÿ8Ğƒ…ï1
+Y	java:S125‚"<This block of commented-out lines of code should be removed.(üÿ„º8Úƒ…ï1
 W
-java:S1144ô"4Remove this unused private "parseConnection" method.(Ïæßëúÿÿÿÿ8Äëí1
+java:S1144õ"4Remove this unused private "parseConnection" method.(Ïæßëúÿÿÿÿ8Ûƒ…ï1
 é
-java:S6541k"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 118 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 25 to 6.(ôì‰¬ùÿÿÿÿ8Åëí1
+java:S6541l"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 118 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 25 to 6.(ôì‰¬ùÿÿÿÿ8Üƒ…ï1

@@ -1,7 +1,8 @@
 <div class="row mb-3">
     <div class="col-md-12">
-        <div class="d-flex flex-row-reverse">
-            <button mat-raised-button color="primary-color" (click)="onClickAddTag()" class="mx-2">
+        <div class="d-flex flex-row">
+            <app-panel-robot></app-panel-robot>
+            <button (click)="onClickAdd()" class="ml-auto mt-auto mb-auto" mat-raised-button color="primary-color">
                 <mat-icon>add</mat-icon>Add new tag</button>
         </div>
     </div>
@@ -30,11 +31,11 @@
                         <td mat-cell *matCellDef="let element">
                             <div class="d-flex flex-row">
                                 <button class="ml-2" mat-raised-button color="primary-color"
-                                    (click)="onClickEditTag(element)">
+                                    (click)="onClickEdit(element)">
                                     <mat-icon>edit</mat-icon>edit
                                 </button>
                                 <button class="ml-2" mat-raised-button color="primary-color"
-                                    (click)="onClickDeleteTag(element.id)">
+                                    (click)="onClickDelete(element.id)">
                                     <mat-icon>delete_forever</mat-icon>delete
                                 </button>
                             </div>

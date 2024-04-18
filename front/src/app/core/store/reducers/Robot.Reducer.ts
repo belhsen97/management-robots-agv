@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 
-import { robotState } from "../states/Robot.state";
+
 import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess } from "../actions/Robot.Action";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { Connection } from "../models/Robot/Connection.enum";
@@ -9,6 +9,7 @@ import { OperationStatus } from "../models/Robot/OperationStatus.enum";
 import { StatusRobot } from "../models/Robot/StatusRobot.enum";
 import { CountRobotsProperties } from "../models/Robot/CountRobotsProperties.model";
 import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
+import { robotState } from "../states/Robot.state";
 
 const _robotReducer = createReducer(robotState,
     on(loadRobots, (state) => {
@@ -113,13 +114,13 @@ const _robotReducer = createReducer(robotState,
     }),
     on(addRobotsuccess,(state,action)=>{
         const _robot={...action.robotinput};
-        _robot.createdAt =  new Date (  robotState.robot.createdAt.toString());
+        _robot.createdAt =  new Date (  state.robot.createdAt.toString());
         return{ ...state,   listRobots:[...state.listRobots,_robot]
         }
     }),
     on(updateRobotsuccess ,(state,action)=>{
         const _robot={...action.robotinput};
-        _robot.createdAt =  new Date (  robotState.robot.createdAt.toString());
+        _robot.createdAt =  new Date (  state.robot.createdAt.toString());
         const updatedRobot=state.listRobots.map((r:RobotDto)=>{return _robot.id===r.id?_robot:r;});
         return{  ...state, listRobots:[...updatedRobot]}
     }),
@@ -144,13 +145,13 @@ const _robotReducer = createReducer(robotState,
     }),
     on(refreshRobotsuccess ,(state,action)=>{
         const _robot={...action.robotinput};
-        const index = state.listRobots.findIndex(robot => robot.name === action.robotinput.name);
+        const index = state.listRobots.findIndex(robot => robot.name === _robot.name);
         if (index !== -1) {
-            _robot.notice =  robotState.listRobots[index].notice; 
-            _robot.id = robotState.listRobots[index].id; 
-            _robot.workstation = robotState.listRobots[index].workstation;
+            _robot.notice =  state.listRobots[index].notice; 
+            _robot.id = state.listRobots[index].id; 
+            _robot.workstation = state.listRobots[index].workstation;
          }
-
+   
 
         return{  ...state, robot:_robot }
     }),

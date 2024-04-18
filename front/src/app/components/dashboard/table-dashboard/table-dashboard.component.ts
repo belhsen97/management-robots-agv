@@ -25,6 +25,7 @@ import { refreshPannelRobot, refreshRobots, stopRefreshRobots } from 'src/app/co
 export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   private timerSubscription: Subscription | undefined;
   private getValueSearchInputSub !: Subscription | undefined;
+  private getListRobotSub !: Subscription | undefined;
   displayedColumns: string[] = ['name', 'view', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed'];
   dataSource !: MatTableDataSource<RobotDto>;
   @ViewChild(MatSort) sort  !: MatSort;
@@ -43,11 +44,10 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
 
     this.storeRobot.dispatch(refreshRobots({ subscribe: mqttState.subscribe }));
 
-    this.storeRobot.select(getListRobot).pipe(throttleTime(1000)).subscribe(item => {
+    this.getListRobotSub = this.storeRobot.select(getListRobot).subscribe(item => {
       robotState.listRobots = item;
       console.log("getListRobot")
-      this.dataSource!.data = robotState.listRobots;
-      this.storeRobot.dispatch(refreshPannelRobot());
+     
     }
     );
 
@@ -69,17 +69,18 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    /*this.timerSubscription = interval(1000).subscribe(() => {  
-      this.dataSource!.data = robotState.listRobots;
+    this.timerSubscription = interval(1000).subscribe(() => {  
+      this.dataSource.data = robotState.listRobots;
       this.storeRobot.dispatch(refreshPannelRobot());
-    }); */
+    }); 
   }
   ngOnDestroy(): void {
     //this.mqttClientService.closeSubscribe( this.mqttClientService.curSubscription);
-    this.storeRobot.dispatch(stopRefreshRobots());
+    this.storeRobot.dispatch(stopRefreshRobots()); 
     this.timerSubscription?.unsubscribe();
     if (this.dataSource) { this.dataSource.disconnect(); } //robotState.dataSource!.paginator = null;
     if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); }
+    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe(); }
   }
 
 

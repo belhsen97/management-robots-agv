@@ -1,20 +1,83 @@
 <div class="row mb-3">
     <div class="col-12">
                 <div class="d-flex flex-row-reverse">
-                    <button (click)="onClickRefresh()" mat-raised-button color="primary-color" class="mr-2">
-                        <mat-icon>cached</mat-icon>Refresh</button>
+                    <!-- <button (click)="onClickRefresh()" mat-raised-button color="primary-color" class="mr-2">
+                        <mat-icon>cached</mat-icon>Refresh</button> -->
+                        <mat-button-toggle-group name="ingredients" aria-label="Ingredients" aria-label="blue" multiple>
+                            <mat-button-toggle value="CONNECTION">CONNECTION</mat-button-toggle>
+                            <mat-button-toggle value="STATUS_ROBOT">STATUS_ROBOT</mat-button-toggle>
+                            <mat-button-toggle value="MODE_ROBOT">MODE_ROBOT</mat-button-toggle>
+                            <mat-button-toggle value="OPERATION_STATUS">OPERATION_STATUS</mat-button-toggle>
+                            <mat-button-toggle value="LEVEL_BATTERY">LEVEL_BATTERY</mat-button-toggle>
+                            <mat-button-toggle value="SPEED">SPEED</mat-button-toggle>
+                          </mat-button-toggle-group>
                 </div>
     </div>
 </div>
 <div class="row mb-3">
-    <div class="col-12">
-         <figure class="highcharts-figure">
-            <div id="container-stock-chart-robot"></div>
-            <p class="highcharts-description">
-                Basic line chart showing trends in a dataset. This chart includes the
-                <code>series-label</code> module, which adds a label to each line for
-                enhanced readability.
-            </p>
+    <div class="col-6">
+        <figure class="highcharts-figure">
+            <div id="container-pie-chart-robot-details"></div>
+            <!-- <p class="highcharts-description">
+                Pie charts are very popular for showing a compact overview of a
+                composition or comparison. While they can be harder to read than
+                column charts, they remain a popular choice for small datasets.
+            </p> -->
         </figure>
     </div>
+
+
+
+    <div class="col-6">
+
+
+
+        <div class="mat-elevation-z1">
+            <div class="table-container">
+              <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
+                <!--- Note that these columns can be defined in any order.
+                            The actual rendered columns are set as a property on the row definition" -->
+                            
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{ element.name }}
+                  </mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="statusRobot">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{ element.statusRobot }}</mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="modeRobot">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Mode</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{ element.modeRobot }}</mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="connection">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>connection</mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <mat-icon class="icon-success" *ngIf="element.connection == 'CONNECTED'">wifi</mat-icon>
+                    <mat-icon class="icon-danger" *ngIf="!(element.connection == 'CONNECTED')">wifi_off</mat-icon>
+                  </mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="operationStatus">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Operation Status</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{ element.operationStatus }}</mat-cell>
+                </ng-container>
+      
+
+                <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true" ></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+              </mat-table>
+            </div>
+          </div>
+
+
+
+    </div>
+
+
+
 </div>

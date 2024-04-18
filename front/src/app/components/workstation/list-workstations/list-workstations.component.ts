@@ -134,7 +134,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
 
 
 
-  onClickAddWS(): void {
+  onClickAdd(): void {
     const dialogRef = this.openPopupWorkStation(undefined, "Add New WorkStation");
     dialogRef.afterClosed().subscribe(result => {
       if (result == null) { return; }
@@ -160,7 +160,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
   }
 
 
-  onClickEditWS(element: any): void {
+  onClickEdit(element: any): void {
     const dialogRef = this.openPopupWorkStation(element, "Edit WorkStation", true);
     dialogRef.afterClosed().subscribe(result => {
       if (result == null) { return; }
@@ -190,7 +190,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
 
 
 
-  onClickDeleteWS(id: any): void {
+  onClickDelete(id: any): void {
     this.openDialogConfirmation('Confirmation', '  Would you want to delete work station equal ' + id + ' ?', '300ms', '500ms',
       () => {
         this.wsService.delete(id).subscribe(

@@ -160,7 +160,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
 
 
 
-    onClickAddTag():void{
+    onClickAdd():void{
       const dialogRef =   this.openPopupTag(undefined, "Add New Tag");
       dialogRef.afterClosed().subscribe(result => {if (result==null){ return;}
       this.tagService.insert(result).subscribe(
@@ -181,7 +181,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
         );
     } );
     }
-    onClickEditTag(tag :any ):void{
+    onClickEdit(tag :any ):void{
       const dialogRef =  this.openPopupTag(tag,"Edit Tag",true);
       dialogRef.afterClosed().subscribe(result => {if (result==null){ return;}
       this.tagService.update(tag.id,result).subscribe(
@@ -210,7 +210,7 @@ export class ListTagsComponent implements OnInit , AfterViewInit, OnDestroy {
 
 
 
-    onClickDeleteTag(id:any ):void{
+    onClickDelete(id:any ):void{
       this.openDialogConfirmation('Confirmation', '  Would you want to delete Tag equal '+id+' ?','300ms', '500ms',
       () => { 
         this.tagService.delete(id).subscribe(

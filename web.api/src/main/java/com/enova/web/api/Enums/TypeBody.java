@@ -1,4 +1,4 @@
-package com.enova.web.api.Models.Commons.mail;
+package com.enova.web.api.Enums;
 
 public enum TypeBody {
     PDF("application/pdf"),

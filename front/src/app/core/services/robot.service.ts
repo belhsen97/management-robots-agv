@@ -31,20 +31,20 @@ export class RobotService extends Service {
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
-  getAllDataByName(name:String): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot/${name}/data/all`,
+  getAllDataChartByName(name:String): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot/${name}/data-chart/all`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
-  geAllDataByNameAndUnixDatetime(name:String, queryParams: any): Observable<HttpResponse<any>> {
+  geAllDataChartByNameAndUnixDatetime(name:String, queryParams: any): Observable<HttpResponse<any>> {
     let params = new HttpParams();
     if (queryParams) {
         Object.keys(queryParams).forEach(key => {
             params = params.append(key, queryParams[key]);
         });
     }
-    return this.http.get(`${this.url}/robot/${name}/data/unix-timestamp`,
+    return this.http.get(`${this.url}/robot/${name}/data-chart/unix-timestamp`,
       { observe: 'response', params: params,
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })

@@ -1,20 +1,21 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8ãŠƒ‘ì1
-†
-java:S4144J"iUpdate this method so that its implementation is not identical to "GetDatabyNameBetweenDates" on line 64.(ËÚšØ8ÿ†û©í1
+
+java:S4144R"nUpdate this method so that its implementation is not identical to "GetDataChartbyNameBetweenDates" on line 72.(¾¦¬şÿÿÿÿ8ÿ†û©í1
 i
 java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ÖÌ“øÿÿÿÿ8ïŠƒ‘ì1
 j	java:S100$"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂŸ±¹8ïŠƒ‘ì1
 _
 java:S1612&"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8Ñ­Š™í1
 j	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷Óä”8ñŠƒ‘ì1
-]	java:S1252"<This block of commented-out lines of code should be removed.(¨«™Ìûÿÿÿÿ8òŠƒ‘ì1
-i	java:S1009"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Îåû?8òŠƒ‘ì1
-j	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿øş8ËÅ‘ì1
-j	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÚšØ8Ö·ß‘ì1
-o	java:S100T"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚Ã§´üÿÿÿÿ8”î©í1
-o	java:S100]"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»éºÔıÿÿÿÿ8óŠƒ‘ì1
-j	java:S100b"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÖ”®8’©Ç‘ì1
-j	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8ôÎÇ‘ì1
+o	java:S1001"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±–€šÿÿÿÿÿ8òŠƒ‘ì1
+]	java:S1259"<This block of commented-out lines of code should be removed.(¨«™Ìûÿÿÿÿ8òŠƒ‘ì1
+o	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥Ô„£şÿÿÿÿ8ˆÛÑ„ï1
+j	java:S100H"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È¬ò¸8ËÅ‘ì1
+o	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾¦¬şÿÿÿÿ8Ö·ß‘ì1
+o	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®€¤ıùÿÿÿÿ8Ö·¾Úî1
+o	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»éºÔıÿÿÿÿ8÷Ö§Úî1
+j	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÖ”®8øÖ§Úî1
+j	java:S100q"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8ùÖ§Úî1
 M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8†·ªí1
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ÛÑ„ï1

@@ -43,11 +43,11 @@ export class RobotEffects {
         )
     );
 
-    _loadDataRobotByName = createEffect(() => this.action$
+    _loadDataChartRobotByName = createEffect(() => this.action$
         .pipe(
             ofType(loadDataRobotChartbyName),
             exhaustMap((action) => {
-                return this.service.getAllDataByName(action.name).pipe(
+                return this.service.getAllDataChartByName(action.name).pipe(
                     map((response) => { return loadDataRobotChartSuccess({ robotDataChart: response.body as RobotDataChart }); }),
                     catchError((_error) =>
                         of(
@@ -64,11 +64,11 @@ export class RobotEffects {
             })
         )
     );
-    _loadDataRobotByNameAndUnixDatetime = createEffect(() => this.action$
+    _loadDataChartRobotByNameAndUnixDatetime = createEffect(() => this.action$
         .pipe(
             ofType(loadDataRobotChartByNameAndUnixDatetime),
             exhaustMap((action) => {
-                return this.service.geAllDataByNameAndUnixDatetime(action.name, {start:action.start,end:action.end}).pipe(
+                return this.service.geAllDataChartByNameAndUnixDatetime(action.name, {start:action.start,end:action.end}).pipe(
                     map((response) => { return loadDataRobotChartSuccess({ robotDataChart: response.body as RobotDataChart }); }),
                     catchError((_error) =>
                         of(

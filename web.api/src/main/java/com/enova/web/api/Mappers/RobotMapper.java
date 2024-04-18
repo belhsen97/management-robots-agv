@@ -32,9 +32,7 @@ public class RobotMapper {
     }
 
     public static RobotDto mapToDto(Robot r) {
-        if (r == null) {
-            return null;
-        }
+        if (r == null) {  return null; }
         final WorkstationDto w = r.getWorkstation() == null ? null : WorkstationMapper.mapToDto(r.getWorkstation());
         return RobotDto.builder()
                 .id(r.getId())
@@ -82,6 +80,9 @@ public class RobotMapper {
         }
         return robot;
     }
+
+
+
 
     public static List<RobotDataChart> mapToRobotData(List<RobotProperty> properties) {
         if (properties.isEmpty()) {
