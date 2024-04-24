@@ -1,82 +1,111 @@
 <div class="row mb-3">
-    <div class="col-12">
-                <div class="d-flex flex-row-reverse">
-                    <!-- <button (click)="onClickRefresh()" mat-raised-button color="primary-color" class="mr-2">
+  <div class="col-12">
+    <div class="d-flex flex-row">
+      <app-range-date></app-range-date>
+
+      <!-- <button (click)="onClickRefresh()" mat-raised-button color="primary-color" class="mr-2">
                         <mat-icon>cached</mat-icon>Refresh</button> -->
-                        <mat-button-toggle-group name="ingredients" aria-label="Ingredients" aria-label="blue" multiple>
-                            <mat-button-toggle value="CONNECTION">CONNECTION</mat-button-toggle>
-                            <mat-button-toggle value="STATUS_ROBOT">STATUS_ROBOT</mat-button-toggle>
-                            <mat-button-toggle value="MODE_ROBOT">MODE_ROBOT</mat-button-toggle>
-                            <mat-button-toggle value="OPERATION_STATUS">OPERATION_STATUS</mat-button-toggle>
-                            <mat-button-toggle value="LEVEL_BATTERY">LEVEL_BATTERY</mat-button-toggle>
-                            <mat-button-toggle value="SPEED">SPEED</mat-button-toggle>
-                          </mat-button-toggle-group>
-                </div>
+      <mat-button-toggle-group (click)="onToggleButtonClickTypeProperty()" [(ngModel)]="typeProperty" name="ingredients"
+        aria-label="Ingredients" aria-label="blue"> <!-- multiple-->
+        <mat-button-toggle value="CONNECTION">CONNECTION</mat-button-toggle>
+        <mat-button-toggle value="STATUS_ROBOT">STATUS_ROBOT</mat-button-toggle>
+        <mat-button-toggle value="MODE_ROBOT">MODE_ROBOT</mat-button-toggle>
+        <mat-button-toggle value="OPERATION_STATUS">OPERATION_STATUS</mat-button-toggle>
+        <mat-button-toggle value="LEVEL_BATTERY">LEVEL_BATTERY</mat-button-toggle>
+        <mat-button-toggle value="SPEED">SPEED</mat-button-toggle>
+      </mat-button-toggle-group>
+
+    
+      <div class="example-selected-value">Selected value: {{typeProperty}}</div>
+
+
+
+      
     </div>
+  </div>
 </div>
 <div class="row mb-3">
-    <div class="col-6">
+  <div class="col-7">
+    <div class="row">
+      <mat-card class="example-card">
+        <mat-card-header>
+            <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{robot.name}}</mat-card-title>
+            <mat-card-subtitle>{{robot.workstation.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <table>
+            <tr>
+              <td><strong>created</strong></td>
+              <td>{{  robot.createdAt | dateAgo }}</td>
+              <td><strong>Status</strong></td>
+              <td>{{  robot.statusRobot }}</td>
+            </tr>
+            <tr> 
+              <td><strong>Mode</strong></td>
+              <td>{{  robot.modeRobot }}</td>
+              <td><strong>status operation</strong></td>
+              <td> {{robot.operationStatus}} </td>
+            </tr>
+            <tr> 
+              <td><strong>Notice</strong></td>
+              <td colspan="3">{{  robot.notice }}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+             <button mat-button (click)="onClickEdit(robot)"><mat-icon>edit</mat-icon>edit</button>
+            <button mat-button (click)="onClickDelete(robot.id)"><mat-icon>delete_forever</mat-icon>delete</button> 
+        </mat-card-actions>
+    </mat-card>
+    </div>
+    <div class="row">
+      <div class="col-12">
         <figure class="highcharts-figure">
-            <div id="container-pie-chart-robot-details"></div>
-            <!-- <p class="highcharts-description">
-                Pie charts are very popular for showing a compact overview of a
-                composition or comparison. While they can be harder to read than
-                column charts, they remain a popular choice for small datasets.
-            </p> -->
+          <div id="container-pie-chart-robot-details"></div>
         </figure>
+      </div>
     </div>
 
-
-
-    <div class="col-6">
-
-
-
-        <div class="mat-elevation-z1">
-            <div class="table-container">
-              <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
-                <!--- Note that these columns can be defined in any order.
-                            The actual rendered columns are set as a property on the row definition" -->
-                            
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{ element.name }}
-                  </mat-cell>
-                </ng-container>
-      
-                <ng-container matColumnDef="statusRobot">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{ element.statusRobot }}</mat-cell>
-                </ng-container>
-      
-                <ng-container matColumnDef="modeRobot">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Mode</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{ element.modeRobot }}</mat-cell>
-                </ng-container>
-      
-                <ng-container matColumnDef="connection">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>connection</mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    <mat-icon class="icon-success" *ngIf="element.connection == 'CONNECTED'">wifi</mat-icon>
-                    <mat-icon class="icon-danger" *ngIf="!(element.connection == 'CONNECTED')">wifi_off</mat-icon>
-                  </mat-cell>
-                </ng-container>
-      
-                <ng-container matColumnDef="operationStatus">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Operation Status</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{ element.operationStatus }}</mat-cell>
-                </ng-container>
-      
-
-                <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true" ></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-              </mat-table>
-            </div>
-          </div>
+  </div>
 
 
 
+  <div class="col-5">
+    <div class="mat-elevation-z1">
+      <div class="table-container">
+        <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
+
+          <ng-container matColumnDef="timestamp">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>timestamp</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.timestamp | dateFormat }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>type</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.type }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>value</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.value }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="operationStatus">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Operation Status</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.operationStatus }}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+      </div>
+      <mat-paginator #paginatorRobotProperty [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
     </div>
+  </div>
 
 
 

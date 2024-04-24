@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { EMPTY, Observable, Subscription, catchError, concatMap, exhaustMap, map, mergeMap, of, switchMap, takeUntil, tap } from "rxjs"
 import { RobotService } from "../../services/robot.service";
-import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChartbyName, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadDataRobotChartByNameAndUnixDatetime } from "../actions/Robot.Action";
+import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChartbyName, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadDataRobotChartByNameAndUnixDatetime, loadDataRobotPropertybyName, loadDataRobotPropertySuccess, loadRobotByName, loadRobotsuccess } from "../actions/Robot.Action";
 import { ShowAlert } from "../actions/Global.Action";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { RobotDto } from "../models/Robot/RobotDto.model";
@@ -11,20 +11,21 @@ import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 import { MqttClientService } from "../../services/mqtt-client.service";
 import { connectionFailure } from "../actions/Mqtt.Action";
 import { IMqttMessage } from "ngx-mqtt";
+import { RobotProperty } from "../models/Robot/RobotProperty.model";
 
 
 @Injectable()
 export class RobotEffects {
     constructor(private action$: Actions, private service: RobotService, private mqttClientService: MqttClientService, private _snackbar: MatSnackBar) { }
 
-    _loadRobot = createEffect(() => this.action$
+    _loadRobots = createEffect(() => this.action$
         .pipe(
             ofType(loadRobots),
             exhaustMap((action) => {
                 return this.service.getAll().pipe(
                     // map((response) => {return loadRobotsuccess({ listRobots: response.body as RobotDto[]  });}),
                     concatMap((response) => [
-                        loadRobotsuccess({ listRobots: response.body as RobotDto[] }),
+                        loadAllRobotsuccess({ listRobots: response.body as RobotDto[] }),
                         refreshPannelRobot()]
                     ),
                     catchError((_error) =>
@@ -43,6 +44,49 @@ export class RobotEffects {
         )
     );
 
+    _loadRobotbyName = createEffect(() => this.action$
+    .pipe(
+        ofType(loadRobotByName),
+        exhaustMap((action) => {
+            return this.service.getByName(action.name).pipe(
+                map((response) => {return loadRobotsuccess({ robotinput: response.body as RobotDto  });}),
+                catchError((_error) =>
+                    of(
+                        loadRobotfail({ errorMessage: _error }),
+                        ShowAlert({
+                            title: "Error",
+                            datestamp: new Date(),
+                            status: ReponseStatus.ERROR,
+                            message: _error
+                        })
+                    )
+                )
+            );
+        })
+    )
+);
+
+    _loadDataRobotPropertyByName = createEffect(() => this.action$
+    .pipe(
+        ofType(loadDataRobotPropertybyName),
+        exhaustMap((action) => {
+            return this.service.GetAllPropertyByName(action.name).pipe(
+                map((response) => { return loadDataRobotPropertySuccess({ listRobotPropertys: response.body as RobotProperty[] }); }),
+                catchError((_error) =>
+                    of(
+                        loadRobotfail({ errorMessage: _error }),
+                        ShowAlert({
+                            title: "Error",
+                            datestamp: new Date(),
+                            status: ReponseStatus.ERROR,
+                            message: _error
+                        })
+                    )
+                )
+            );
+        })
+    )
+);
     _loadDataChartRobotByName = createEffect(() => this.action$
         .pipe(
             ofType(loadDataRobotChartbyName),

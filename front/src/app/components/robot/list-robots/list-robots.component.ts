@@ -31,7 +31,6 @@ export class ListRobotsComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private store: Store,
     private workstationService: WorkstationService,
     private changeDetectorRef: ChangeDetectorRef,
-    public robotService: RobotService,
     private storeRobot: Store<RobotState>,
     private dialog: MatDialog) { }
 
@@ -57,8 +56,8 @@ export class ListRobotsComponent implements OnInit, AfterViewInit, OnDestroy {
         wsState.listWorkstations = response.body;
       }
       , (error) => {
-        this.robotService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        this.store.dispatch(ShowAlert(this.robotService.msgResponseStatus));
+        this.workstationService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
+        this.store.dispatch(ShowAlert(this.workstationService.msgResponseStatus));
       });
   }
 
@@ -76,38 +75,7 @@ export class ListRobotsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.storeRobot.dispatch(addRobot({ robotinput: result }));
     });
   }
-  onClickEdit(robot: any): void {
-    const dialogRef = this.openPopupRobot("Edit Robot", robot, true);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == null) { return; }
-      this.storeRobot.dispatch(updateRobot({ id: robot.id, robotinput: result }));
-    });
-  }
-  onClickDelete(id: any): void {
-    this.openDialogConfirmation('Confirmation', '  Would you want to delete work station equal ' + id + ' ?', '300ms', '500ms',
-      () => {
-        this.storeRobot.dispatch(deleteRobot({ id: id }));
-      });
-  }
 
-
-  //Msg box
-  openDialogConfirmation(title: string, message: string, enterAnimationDuration: string,
-    exitAnimationDuration: string, callback: () => void): void {
-    const dialogRef = this.dialog.open(MessageBoxConfirmationComponent, {
-      width: '400px',
-      // height: '400px',
-      data: { title: title, message: message },
-      enterAnimationDuration,
-      exitAnimationDuration,
-      disableClose: false
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        callback();
-      }
-    });
-  }
   openPopupRobot(title: any, element: any = undefined, isedit = false) {
     const dialogRef = this.dialog.open(AddRobotComponent, {
       width: '40%',

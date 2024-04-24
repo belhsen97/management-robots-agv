@@ -10,7 +10,6 @@ import { ListWorkstationsComponent } from './components/workstation/list-worksta
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { FormForgotPasswordComponent } from './components/user/form-forgot-password/form-forgot-password.component';
 import { SuccessSignUpComponent } from './components/user/success-sign-up/success-sign-up.component';
-import { ChartsDashboardComponent } from './components/dashboard/charts-dashboard/charts-dashboard.component';
 import { EditUserComponent } from './components/user/edit-user/edit-user.component';
 import { EmailComposeComponent } from './components/email/email-compose/email-compose.component';
 import { TableDashboardComponent } from './components/dashboard/table-dashboard/table-dashboard.component';
@@ -19,6 +18,7 @@ import { DetailsWorkstationComponent } from './components/workstation/details-wo
 import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
 import { TracingComponent } from './components/statistic/tracing/tracing.component';
 import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
+import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
 
 const routes: Routes = [
   {
@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path: 'tracing',
         component: TracingComponent
+      },
+      {
+        path: 'charts',
+        component: ChartsRobotsStatisticComponent
       }
     ]
   },
@@ -38,10 +42,6 @@ const routes: Routes = [
       {
         path: 'table',
         component: TableDashboardComponent
-      },
-      {
-        path: 'charts',
-        component: ChartsDashboardComponent
       },
       {
         path: 'stock/:name',

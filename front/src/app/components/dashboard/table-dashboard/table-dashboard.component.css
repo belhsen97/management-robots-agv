@@ -15,15 +15,12 @@
 
 
 mat-header-cell, mat-cell {
-
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-
   vertical-align: middle;
   max-height: 45px;
-
 }
 
 .mat-column-modeRobot, .mat-column-connection {

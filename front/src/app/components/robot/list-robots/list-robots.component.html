@@ -3,8 +3,9 @@
         <div class="d-flex flex-row">
             <app-panel-robot></app-panel-robot>
             <button (click)="onClickAdd()" class="ml-auto mt-auto mb-auto" mat-raised-button color="primary-color">
-                <mat-icon>add</mat-icon>Add new robot</button>
-
+                <mat-icon>add</mat-icon>
+                Add new robot
+            </button>
         </div>
     </div>
 </div>
@@ -17,15 +18,13 @@
             <mat-card-subtitle>{{card.workstation.name}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <p><strong>created</strong> : {{ robotService.formatDateAgo(card.createdAt)}}</p>
+            <p><strong>created</strong> : {{  card.createdAt   | dateAgo }}</p>
             <p><strong>Status</strong> : {{card.statusRobot}}</p>
             <p><strong>Mode</strong> : {{card.modeRobot}} </p>
             <p><strong>status battery</strong> : {{card.operationStatus}}</p>
             <!-- <p><strong>Type Func</strong> : {{card.typeFunction}}</p> -->
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button (click)="onClickEdit(card)">edit</button>
-            <button mat-button (click)="onClickDelete(card.id)">delete</button>
             <a mat-button [routerLink]="['/robot-avg/', card.name]">details</a>
         </mat-card-actions>
     </mat-card>

@@ -36,8 +36,13 @@ public interface RobotRepository extends MongoRepository<Robot, String> {
 
 
 
-    @Query(value = "{ 'name' : ?0 }")
-    Optional<Robot> findbyName(String name);
+    //@Query(value = "{ 'name' : ?0 }")
+    @Aggregation(pipeline = {
+            "{ $match: { 'name': ?0 } }",
+            "{ $lookup: { from: 'workstation', localField: 'nameWorkstation', foreignField: 'name', as: 'workstation' } }",
+            "{ $addFields: { 'workstation': { $arrayElemAt: ['$workstation', 0] } } }"
+    })
+    Optional<Robot> findByName(String name);
 
 
 

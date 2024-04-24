@@ -1,3 +1,7 @@
+ 
+
+
+
 .example-card {
     max-width: 250px;
     margin: 10px;
@@ -19,7 +23,11 @@
     background-size: cover;
   }
 
-
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+  }
 
 
 .custom-list-inline{

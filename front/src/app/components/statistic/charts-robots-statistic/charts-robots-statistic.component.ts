@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
- 
+
+
+
 @Component({
-  selector: 'app-charts-dashboard',
-  templateUrl: './charts-dashboard.component.html',
-  styleUrls: ['./charts-dashboard.component.css']
+  selector: 'app-charts-robots-statistic',
+  templateUrl: './charts-robots-statistic.component.html',
+  styleUrls: ['./charts-robots-statistic.component.css']
 })
-export class ChartsDashboardComponent  implements OnInit {
+export class ChartsRobotsStatisticComponent  implements OnInit {
   ngOnInit(): void {
     //    Highcharts.chart('container',this.cchart);
 
@@ -214,4 +216,3 @@ export class ChartsDashboardComponent  implements OnInit {
 
 
 
- 

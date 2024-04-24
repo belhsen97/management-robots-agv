@@ -17,9 +17,7 @@ import { wsState } from '../store/states/Worstation.state';
 export class RobotService extends Service {
 
   constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
-    super(http, router, activeRoute); 
-   // this.randomDataRobots();
-   // this.refreshValuesPanelRobot();
+    super(http, router, activeRoute);  
   }
 
 
@@ -31,6 +29,25 @@ export class RobotService extends Service {
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
+  getById(id:string): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot/${id}`,
+      { observe: 'response', 
+      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
+     })
+  }
+  getByName(name:string): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot/name/${name}`,
+      { observe: 'response', 
+      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
+     })
+  }
+  GetAllPropertyByName(name:String): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot/${name}/property/all`,
+      { observe: 'response', 
+      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
+     })
+  }
+
   getAllDataChartByName(name:String): Observable<HttpResponse<any>> {
     return this.http.get(`${this.url}/robot/${name}/data-chart/all`,
       { observe: 'response', 

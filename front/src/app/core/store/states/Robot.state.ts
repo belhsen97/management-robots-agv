@@ -8,6 +8,7 @@ import { CountRobotsProperties } from '../models/Robot/CountRobotsProperties.mod
 import { wsState } from './Worstation.state';
 import { MatTableDataSource } from '@angular/material/table';
 import { RobotDataChart } from '../models/Robot/RobotDataChart.model';
+import { RobotProperty } from '../models/Robot/RobotProperty.model';
 
 export interface RobotState {
     typeConnection?: ReadonlyArray<{ label: string; value: Connection }>;
@@ -19,6 +20,7 @@ export interface RobotState {
     dataSource?: MatTableDataSource<RobotDto>;
     robotDataChart:RobotDataChart;
     robot: RobotDto;
+    listRobotPropertys?: RobotProperty[]
     listRobotsData?:RobotDataChart[];
     listRobots: RobotDto[];
     errorMessage?:String;

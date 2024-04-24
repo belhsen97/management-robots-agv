@@ -1,9 +1,9 @@
 package com.enova.web.api.Models.Responses;
 
-
 import com.enova.web.api.Enums.TypeProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
 import java.util.Date;
 
 
@@ -12,11 +12,13 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RobotPropertyResponse {
+public class RobotData {
     String name;
-    long timestamp;
+    private long from;
+    private long to;
+    Date timestamp;
     TypeProperty type;
     String value;
+    //not complete 
 }

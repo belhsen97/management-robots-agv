@@ -61,7 +61,7 @@ public class WorkstationServiceImpl implements WorkstationService {
         final boolean fullListTags = (obj.getTags() == null && obj.getTags().isEmpty()? false :true);
         if (fullListRobots) {
             obj.getRobots().forEach(robot -> {
-                Optional<Robot> robotOptional =   this.robotRepository.findbyName(robot.getName());
+                Optional<Robot> robotOptional =   this.robotRepository.findByName(robot.getName());
                 if (robotOptional.isPresent()){robot = robotOptional.get();}
                 else{ robot.setCreatedAt(new Date());}
                 robot.setWorkstation(null);
@@ -103,7 +103,7 @@ public class WorkstationServiceImpl implements WorkstationService {
         final boolean fullListTags = (obj.getTags() == null && obj.getTags().isEmpty()? false :true);
         if (fullListRobots) {
             obj.getRobots().forEach(robot -> {
-                Optional<Robot> robotOptional =   this.robotRepository.findbyName(robot.getName());
+                Optional<Robot> robotOptional =   this.robotRepository.findByName(robot.getName());
                 if (robotOptional.isPresent()){robot = robotOptional.get();}
                 else{ robot.setCreatedAt(new Date());}
                 robot.setWorkstation(null);

@@ -63,9 +63,7 @@
                             <p><strong>status battery</strong> : {{card.operationStatus}}</p>
                         </mat-card-content>
                         <mat-card-actions>
-                            <button mat-button>edit</button>
-                            <button mat-button>delete</button>
-                            <a   [routerLink]="['/robot-avg', card.name]"  mat-button>details</a>
+                           <a mat-button [routerLink]="['/robot-avg/', card.name]">details</a>
                         </mat-card-actions>
                     </mat-card>
                  </li>

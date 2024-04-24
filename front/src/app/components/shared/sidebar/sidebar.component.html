@@ -4,70 +4,100 @@
       <nav class="iq-sidebar-menu">
          <ul id="iq-sidebar-toggle" class="iq-menu">
             <li>
-               <a href="#statistic-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
-                  aria-expanded="false">
-                  <i class="las la-chart-bar"></i><span>statistic</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-               <ul id="statistic-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                  <li class="ml-3"> <a routerLink="/statistic/tracing" class="iq-waves-effect">
-                     <i class="las la-binoculars"></i><span>tracing</span></a>
-                  </li>
-               </ul>
-            </li>
-            <li>
-               <a href="#dashbord-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
-                  aria-expanded="false">
-                  <i class="las la-chart-area"></i><span>Dashbord</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <a href="#dashbord-collapse" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                  <i class="las la-chart-area"></i>
+                  <span>Dashbord</span>
+                  <i class="ri-arrow-right-s-line iq-arrow-right"></i>
+               </a>
                <ul id="dashbord-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                  <li class="ml-3"> <a routerLink="/dashboard/charts" class="iq-waves-effect">
-                     <i class="la la-chart-line"></i><span>charts</span></a>
-                  </li>
-                  <li class="ml-3"> <a routerLink="/dashboard/table" class="iq-waves-effect">
-                     <i class="la la-table"></i><span>Table</span></a>
+                  <li class="ml-3"> 
+                     <a routerLink="/dashboard/table" class="iq-waves-effect">
+                     <i class="la la-table"></i><span>Table</span>
+                  </a>
                   </li>
                </ul>
             </li>
-
-
-
-
             <li>
-               <a href="#workstation-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
-                  aria-expanded="false">
-                  <i class="las la-table"></i><span>workstation</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <a href="#statistic-collapse" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                  <i class="las la-chart-bar"></i>
+                  <span>statistic</span>
+                  <i class="ri-arrow-right-s-line iq-arrow-right"></i>
+               </a>
+               <ul id="statistic-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                  <li class="ml-3">
+                     <a routerLink="/statistic/charts" class="iq-waves-effect">
+                        <i class="la la-chart-line"></i><span>charts</span>
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a routerLink="/robot-avg/list" class="iq-waves-effect">
+                  <i class="las la-robot"></i>
+                  <span>Robots</span>
+               </a>
+            </li>
+            <li>
+               <a routerLink="/global/setting" class="iq-waves-effect">
+                  <i class="las la-cog"></i>
+                  <span>Settings</span>
+               </a>
+            </li>
+            <li>
+               <a href="#workstation-collapse" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                  <i class="las la-table"></i>
+                  <span>workstation</span>
+                  <i class="ri-arrow-right-s-line iq-arrow-right"></i>
+               </a>
                <ul id="workstation-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                  <li class="ml-3"> <a routerLink="/workstation/list" class="iq-waves-effect">
-                     <i class="la la-table"></i><span>List Workstations</span></a>
+                  <li class="ml-3">
+                     <a routerLink="/workstation/list" class="iq-waves-effect">
+                     <i class="la la-table"></i>
+                     <span>List Workstations</span>
+                  </a>
                   </li>
                   <li class="ml-3"> <a routerLink="/workstation/tags" class="iq-waves-effect">
-                     <i class="la la-table"></i><span>List Tags</span></a>
+                     <i class="la la-table"></i>
+                     <span>List Tags</span>
+                  </a>
                   </li>
                </ul>
             </li>
 
-
             <li>
-               <a href="#profile-account-collapse" class="iq-waves-effect collapsed" data-toggle="collapse"
-                  aria-expanded="false">
-                  <i class="las la-user"></i><span>User</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <a href="#profile-account-collapse" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                  <i class="las la-user"></i>
+                  <span>User</span>
+                  <i class="ri-arrow-right-s-line iq-arrow-right"></i>
+               </a>
                <ul id="profile-account-collapse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                  <li class="ml-3"><a routerLink="/user/list"><i class="las la-users"></i>List users</a></li>
-                  <li class="ml-3"><a routerLink="/user/edit"><i class="ri-edit-line"></i>Edit</a></li>
+                  <li class="ml-3">
+                     <a routerLink="/user/list"><i class="las la-users"></i>List users</a>
+                  </li>
+                  <li class="ml-3"> 
+                     <a routerLink="/statistic/tracing" class="iq-waves-effect">
+                     <i class="las la-binoculars"></i><span>tracing</span>
+                  </a>
+                  </li>
+                  <li class="ml-3"><a routerLink="/user/edit">
+                     <i class="ri-edit-line"></i>Edit</a>
+                  </li>
                   <li class="ml-3"><a routerLink="/forgot-password"><i class="ri-lock-line"></i>Forgot-Password</a></li>
                </ul>
             </li>
             <li>
-               <a routerLink="/robot-avg/list" class="iq-waves-effect"><i class="las la-robot"></i><span>Robots</span></a>
-            </li>
-            <li>
-               <a routerLink="/global/setting" class="iq-waves-effect"><i
-                     class="las la-cog"></i><span>Settings</span></a>
-            </li>
-            <li>
-               <a href="#mailbox" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i
-                     class="ri-mail-line"></i><span>Email</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <a href="#mailbox" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                  <i class="ri-mail-line"></i>
+                  <span>Email</span>
+                  <i class="ri-arrow-right-s-line iq-arrow-right"></i>
+               </a>
                <ul id="mailbox" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                  <!--<li><a href="app/index.html"><i class="ri-inbox-line"></i>Inbox</a></li>-->
-                  <li><a routerLink="/mail/compose" ><i class="ri-edit-line"></i>Compose</a></li>
+                  <li>
+                     <a routerLink="/mail/compose" >
+                        <i class="ri-edit-line"></i>
+                        Compose
+                     </a>
+                     </li>
                </ul>
             </li>
          </ul>

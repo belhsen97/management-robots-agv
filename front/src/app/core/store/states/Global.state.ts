@@ -6,16 +6,32 @@ export interface GlobalState{
     keySearch:any;
     ReponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }>;
     msgResponseStatus  : MsgResponseStatus;
+    rangeDate:RangeDate;
+}
+export interface RangeDate{
+    min:Date;
+    max:Date;
+    limit:number;
 }
 
-const listResponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }> =
- { successful: ReponseStatus.SUCCESSFUL,error: ReponseStatus.ERROR,unsuccessful: ReponseStatus.UNSUCCESSFUL};
+const rangeDate : RangeDate = {
+    min: new Date(2020, 6, 1),
+    max: new Date(2020, 6, 3),
+    limit: new Date(2016, 6, 13).getTime()-new Date(2016, 6, 13).getTime(),
+};
 
-var   defaultmsgReponseStatus:  MsgResponseStatus = { 
-    title : "Error",   datestamp: new Date(),status : ReponseStatus.SUCCESSFUL , message : ""};
+const listResponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }> ={ successful: ReponseStatus.SUCCESSFUL,error: ReponseStatus.ERROR,unsuccessful: ReponseStatus.UNSUCCESSFUL};
+
+ const  msgReponseStatus:  MsgResponseStatus = { 
+    title : "Error",
+    datestamp: new Date(),
+    status : ReponseStatus.SUCCESSFUL, 
+    message : ""};
+
 export const globalState:GlobalState={
     IsOpen:false,
     keySearch: "",
     ReponseStatus: listResponseStatus,
-    msgResponseStatus:defaultmsgReponseStatus
+    msgResponseStatus:msgReponseStatus,
+    rangeDate : rangeDate
 }

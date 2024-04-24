@@ -44,6 +44,14 @@ public class RobotServiceImpl implements RobotService {
     }
 
 
+    @Override
+    public Robot selectByName(String name) {
+        Optional<Robot> r = this.robotRepository.findByName(name);
+        if (r.isEmpty()) {
+            throw new RessourceNotFoundException("Cannot found robot by name = " + name);
+        }
+        return r.get();
+    }
 
     @Override
     public List<RobotProperty> selectAllDataPropertys() {
@@ -69,7 +77,7 @@ public class RobotServiceImpl implements RobotService {
     }
     @Override
     public Robot insert(Robot obj) {
-        if (robotRepository.findbyName(obj.getName()).isPresent()) {
+        if (robotRepository.findByName(obj.getName()).isPresent()) {
             throw new MethodArgumentNotValidException("other Robot found equal " + obj.getName());
         }
         obj.setCreatedAt(new Date());

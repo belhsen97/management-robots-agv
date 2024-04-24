@@ -28,7 +28,6 @@ import { FormForgotPasswordComponent } from './components/user/form-forgot-passw
 import { GlobalEffects } from './core/store/effects/Global.Effects';
 import { EffectsModule } from '@ngrx/effects';
 import { SuccessSignUpComponent } from './components/user/success-sign-up/success-sign-up.component';
-import { ChartsDashboardComponent } from './components/dashboard/charts-dashboard/charts-dashboard.component';
 import { MessageBoxConfirmationComponent } from './components/shared/message-box-confirmation/message-box-confirmation.component';
 import { MessageBoxUploadImgComponent } from './components/shared/message-box-upload-img/message-box-upload-img.component';
 import { UpdateRoleComponent } from './components/user/update-role/update-role.component';
@@ -50,6 +49,10 @@ import { MqttEffects } from './core/store/effects/Mqtt.Effect';
 import { GaugeChartComponent } from './components/dashboard/details/gauge-chart/gauge-chart.component';
 import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
 import { RobotEffects } from './core/store/effects/Robot.Effect';
+import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
+import { DateFormatPipe } from './pipes/DateFormatPipe';
+import { DateAgoPipe } from './pipes/DateAgoPipe';
+import { RangeDateComponent } from './components/shared/range-date/range-date.component';
 
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
@@ -70,7 +73,6 @@ import { RobotEffects } from './core/store/effects/Robot.Effect';
     SignUpComponent,
     FormForgotPasswordComponent,
     SuccessSignUpComponent,
-    ChartsDashboardComponent,
     MessageBoxConfirmationComponent,
     MessageBoxUploadImgComponent,
     UpdateRoleComponent,
@@ -85,7 +87,9 @@ import { RobotEffects } from './core/store/effects/Robot.Effect';
     DetailsRobotComponent,
     TracingComponent,
     GaugeChartComponent,
-    StockChartComponent
+    StockChartComponent,
+    ChartsRobotsStatisticComponent,
+    DateFormatPipe,DateAgoPipe, RangeDateComponent
   ],
   imports: [
     CommonModule,

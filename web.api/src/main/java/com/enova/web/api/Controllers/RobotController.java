@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/robot")
 public class RobotController {
     private final RobotService iService;
-
     @Autowired
     public RobotController(@Qualifier("robot-service") RobotService iService) {
         this.iService = iService;
@@ -40,8 +39,12 @@ public class RobotController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<RobotDto> GetBy(@PathVariable String id) {
+    public ResponseEntity<RobotDto> GetById(@PathVariable String id) {
         return ResponseEntity.ok(RobotMapper.mapToDto(iService.selectById(id)));
+    }
+    @GetMapping("/name/{name}")
+    public ResponseEntity<RobotDto> GetByName(@PathVariable("name") String name) {
+        return ResponseEntity.ok(RobotMapper.mapToDto(iService.selectByName(name)));
     }
 
     @Async("get-robot-data")
