@@ -20,5 +20,5 @@ public class RobotData {
     Date timestamp;
     TypeProperty type;
     String value;
-    //not complete 
+    //not complete
 }
