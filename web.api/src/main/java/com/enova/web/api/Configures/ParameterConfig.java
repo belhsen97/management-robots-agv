@@ -17,6 +17,9 @@ public class ParameterConfig {
     @Value("${emqx.url.authentication}")
     public String brokerurl;
 
+
+    public long tokenExpired = 1000 * 60 * 60 * 24;
+
     @Value("${myApp.file.forgotPassword_HTML}")
     public String file_forgotPassword_HTML;
     @Value("${myApp.file.ConfirmMail_HTML}")

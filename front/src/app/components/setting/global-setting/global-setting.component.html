@@ -13,7 +13,7 @@
                 <div class="d-flex flex-column custom-border pt-2 pl-2" >
                 <p>Distance : </p>
                 <div class="d-flex justify-content-between mx-2">
-                    <mat-form-field>
+                    <mat-form-field class="mat-form-field">
                         <mat-label>Min</mat-label>
                         <input type="number" matInput [(ngModel)]="robotState.settingRobot!.distance.min"
                             #distanceMin="ngModel" name="setting-distance-min-input"
@@ -27,7 +27,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field>
+                    <mat-form-field class="mat-form-field">
                         <mat-label>Max</mat-label>
                         <input type="number" matInput [(ngModel)]="robotState.settingRobot!.distance.max"
                             #distanceMax="ngModel" name="setting-distance-max-input"
@@ -57,7 +57,7 @@
             <div class="d-flex flex-column custom-border mt-3 mb-3 pt-2 pl-2" >
                 <p>Speed : </p>
                 <div class="d-flex justify-content-between mx-2">
-                    <mat-form-field>
+                    <mat-form-field class="mat-form-field">
                         <mat-label>Min</mat-label>
                         <input type="number" matInput [(ngModel)]="robotState.settingRobot!.speed.min" #speedMin="ngModel"
                             name="setting-speed-min-input" required>
@@ -69,7 +69,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field>
+                    <mat-form-field class="mat-form-field">
                         <mat-label>Max</mat-label>
                         <input type="number" matInput [(ngModel)]="robotState.settingRobot!.speed.max" #speedMax="ngModel"
                             name="setting-speed-max-input" required>

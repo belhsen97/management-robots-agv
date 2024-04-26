@@ -42,12 +42,9 @@ annotationsInit(Highcharts);
   styleUrls: ['./details-robot.component.css']
 })
 export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
-
- 
-
-
     private getRouterNameSub: Subscription | undefined;
-    private getSelectorRobotSub: Subscription | undefined;
+    private getlistRobotPropertysSub: Subscription | undefined;
+    private getRobotSub: Subscription | undefined;
     private getValueSearchInputSub: Subscription | undefined;
     private chart: any;
     private nameRobot: string = "";
@@ -85,7 +82,7 @@ constructor(private storeRouter: Store,
 
     this.chart = Highcharts.chart('container-pie-chart-robot-details', this.chartOptions); 
     this.dataSource = new MatTableDataSource<RobotProperty>();
-    this.getSelectorRobotSub = this.storeRobot.select(getlistRobotPropertys).subscribe(item => {
+    this.getlistRobotPropertysSub = this.storeRobot.select(getlistRobotPropertys).subscribe(item => {
        this.dataSource.data = item!;
         console.log(item) 
         //this.dataSource.filter = "CONNECTION STATUS_ROBOT";
@@ -106,7 +103,7 @@ constructor(private storeRouter: Store,
           return matchFilter.every(Boolean); // AND
         }*/
       });
-      this.getSelectorRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!; });
+      this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!; });
   }
  
 
@@ -120,7 +117,8 @@ constructor(private storeRouter: Store,
   ngOnDestroy(): void {
         this.chart.destroy();
         if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
-        if (this.getSelectorRobotSub) { this.getSelectorRobotSub.unsubscribe(); } 
+        if (this.getlistRobotPropertysSub) { this.getlistRobotPropertysSub.unsubscribe(); } 
+        if (this.getRobotSub) { this.getRobotSub.unsubscribe(); } 
         if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); } 
         if (this.dataSource) { this.dataSource.disconnect(); } 
     }

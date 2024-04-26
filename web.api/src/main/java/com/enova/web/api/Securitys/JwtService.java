@@ -1,11 +1,13 @@
 package com.enova.web.api.Securitys;
 
 
+import com.enova.web.api.Configures.ParameterConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,9 @@ import java.util.function.Function;
 
 
 @Service
+@AllArgsConstructor
 public class JwtService {
+  private final ParameterConfig parameterConfig;
   private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
 
   public String extractUsername(String token) {
@@ -43,7 +47,7 @@ public class JwtService {
         .setClaims(extraClaims)
         .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+        .setExpiration(new Date(System.currentTimeMillis() + parameterConfig.tokenExpired))
         .signWith(getSignInKey(), SignatureAlgorithm.HS256)
         .compact();
   }

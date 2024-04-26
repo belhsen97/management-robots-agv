@@ -41,7 +41,7 @@ const _robotReducer = createReducer(robotState,
         return {...state,listRobotPropertys: listRobotPropertys,errorMessage: ""};
     }),
 
-    on(loadDataRobotChartSuccess,(state,action)=>{
+    on(loadDataRobotChartSuccess,(state,action)=>{ 
         const robotDataChart : RobotDataChart  = action.robotDataChart;
         return {...state,robotDataChart: robotDataChart,errorMessage: ""
         };

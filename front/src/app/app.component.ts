@@ -39,11 +39,7 @@ robot !: RobotDto ;
 
   ngOnInit(): void {
     this.storeRobot.dispatch(loadRobots());
-
-
-
-
-    // userState.userDto = this.userService.getUserDto();
+     userState.userDto = this.userService.getUserDto();
     // this.robotService.getAll().subscribe(
     //   (response) => { 
     //      robotState.listRobots = response.body;

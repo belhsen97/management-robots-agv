@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { RobotState } from "../states/Robot.state";
-import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 
 const getRobotState=createFeatureSelector<RobotState>('robotstate'); //accessing the current state and create feature selector
 

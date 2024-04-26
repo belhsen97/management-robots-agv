@@ -9,15 +9,15 @@ export interface GlobalState{
     rangeDate:RangeDate;
 }
 export interface RangeDate{
-    min:Date;
-    max:Date;
+    start:Date;
+    end:Date;
     limit:number;
 }
 
 const rangeDate : RangeDate = {
-    min: new Date(2020, 6, 1),
-    max: new Date(2020, 6, 3),
-    limit: new Date(2016, 6, 13).getTime()-new Date(2016, 6, 13).getTime(),
+    start: new Date(2020, 6, 1),
+    end: new Date(2020, 6, 3),
+    limit: new Date(2016, 6, 10).getTime()-new Date(2016, 6, 1).getTime()
 };
 
 const listResponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }> ={ successful: ReponseStatus.SUCCESSFUL,error: ReponseStatus.ERROR,unsuccessful: ReponseStatus.UNSUCCESSFUL};

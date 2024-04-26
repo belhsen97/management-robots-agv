@@ -18,3 +18,5 @@ o	java:S100_"NRename this method name to match the regular expression '^[a-z][
 o	java:S100j"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»éºÔýÿÿÿÿ8÷Ö§Úî1
 j	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÖ”®8øÖ§Úî1
 j	java:S100t"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8ùÖ§Úî1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8”ðˆ€ñ1

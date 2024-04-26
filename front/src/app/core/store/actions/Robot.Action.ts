@@ -7,6 +7,8 @@ import { RobotProperty } from "../models/Robot/RobotProperty.model";
 export const LOAD_ALL_ROBOTS_SUCCESS='[robot page] load all Robots success';
 export const LOAD_ROBOT_SUCCESS='[robot page] load Robot success';
 export const LOAD_DATA_ROBOT_SUCCESS='[robot page] load Data Robot chart by name success';
+export const LOAD_DATA_ROBOT_PROPERTY_SUCCESS='[robot page] load Data Robot property by name success';
+
 export const LOAD_ROBOT_FAIL='[robot page] load Robot fail';
 export const ADD_ROBOT_SUCCESS='[robot page] add Robot success';
 export const UPDATE_ROBOT_SUCCESS='[robot page] update Robot success';
@@ -31,7 +33,7 @@ export const STOP_REFRESH_ROBOT='[robot page] stop refresh Robot';
 export const loadRobotfail=createAction(LOAD_ROBOT_FAIL,props<{errorMessage:any}>())
 
 export const loadDataRobotChartSuccess=createAction(LOAD_DATA_ROBOT_SUCCESS,props<{robotDataChart:RobotDataChart}>());
-export const loadDataRobotPropertySuccess=createAction(LOAD_DATA_ROBOT_SUCCESS,props<{listRobotPropertys:RobotProperty[] }>());
+export const loadDataRobotPropertySuccess=createAction(LOAD_DATA_ROBOT_PROPERTY_SUCCESS,props<{listRobotPropertys:RobotProperty[] }>());
 
 export const loadAllRobotsuccess=createAction(LOAD_ALL_ROBOTS_SUCCESS,props<{listRobots:RobotDto[]}>());
 export const loadRobotsuccess=createAction(LOAD_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());

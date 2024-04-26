@@ -15,7 +15,7 @@ export class PanelRobotComponent  implements OnInit , OnDestroy {
   private getCountRobotsPropertiestSub !: Subscription | undefined;
   constructor(private storeRobot: Store<RobotState>) {  this.robotsCount  = robotState.count!;}
   ngOnInit(): void {
-    this.storeRobot.select(getCountRobotsProperties).subscribe(item => {   this.robotsCount = item!; });
+   this.getCountRobotsPropertiestSub = this.storeRobot.select(getCountRobotsProperties).subscribe(item => {   this.robotsCount = item!; });
   }
   ngOnDestroy() {if (this.getCountRobotsPropertiestSub) {this.getCountRobotsPropertiestSub.unsubscribe();}}
 }

@@ -9,6 +9,8 @@
     border-radius: 5px;
 }
 
-
+.mat-form-field{
+  width: 100px;
+}
 mat-slider { width: 100%; margin-left: 10px;margin-right: 10px;}
 span {min-width: 60px;}

@@ -2,9 +2,7 @@
   <div class="col-12">
     <div class="d-flex flex-row">
       <app-range-date></app-range-date>
-
-      <!-- <button (click)="onClickRefresh()" mat-raised-button color="primary-color" class="mr-2">
-                        <mat-icon>cached</mat-icon>Refresh</button> -->
+     <div >
       <mat-button-toggle-group (click)="onToggleButtonClickTypeProperty()" [(ngModel)]="typeProperty" name="ingredients"
         aria-label="Ingredients" aria-label="blue"> <!-- multiple-->
         <mat-button-toggle value="CONNECTION">CONNECTION</mat-button-toggle>
@@ -14,9 +12,9 @@
         <mat-button-toggle value="LEVEL_BATTERY">LEVEL_BATTERY</mat-button-toggle>
         <mat-button-toggle value="SPEED">SPEED</mat-button-toggle>
       </mat-button-toggle-group>
-
+    </div>
     
-      <div class="example-selected-value">Selected value: {{typeProperty}}</div>
+      <!-- <div class="example-selected-value">Selected value: {{typeProperty}}</div> -->
 
 
 

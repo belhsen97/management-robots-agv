@@ -7,7 +7,4 @@ const selectMQTTState=createFeatureSelector<MQTTState>('mqtt');
 export const selectIsConnected =createSelector(selectMQTTState,(state : MQTTState)=>{ 
     return state.isConnection;
 })
-
-
-
-//export const selectBookState = createFeatureSelector<IMqttMessage>('IMqttMessage');
+ 

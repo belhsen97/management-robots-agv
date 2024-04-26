@@ -110,7 +110,7 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         );
         this.getRobotSub = this.storeRobot.select(getRobot).pipe(throttleTime(500)).subscribe(r => {
-           const x = (new Date()).getTime();
+          const x = (new Date()).getTime();
            let y = r.speed;
            this.chart.series[0].addPoint([x,y], true, false);   //addPoint(options [, redraw] [, shift] [, animation] [, withEvent])
            y = r.levelBattery;
@@ -137,7 +137,7 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
            }
         }
         );
-        this.storeRobot.dispatch(loadDataRobotChartbyName({ name: this.nameRobot }));
+       this.storeRobot.dispatch(loadDataRobotChartbyName({ name: this.nameRobot }));
  
 
 
@@ -156,20 +156,8 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
         if (this.getDataRobotChartSub) { this.getDataRobotChartSub.unsubscribe(); }
         if (this.getRobotSub) {this.getRobotSub.unsubscribe();}
-    }
-
-    onClickRefresh(): void {
-        //const x = (new Date()).getTime();
-        //this.chart.series[0].addPoint([x, 10], true, false);
-        //this.chart.series[1].addPoint([x, 10], true, false);
-        //this.chart.redraw(false);
-
-    }
-
-
-
-
-
+    } 
+ 
     isExtremesSetDueToNavigatorMove: boolean = false;
 
     chartOptions: any = {
