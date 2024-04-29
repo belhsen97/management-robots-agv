@@ -17,6 +17,11 @@ public class AuthenticationController {
     @PostMapping("/sign-in")
     public   ResponseEntity<AuthenticationResponse> authenticateRobot(@RequestBody AuthenticationRequest request)  {
         System.out.println(request);
-        return ResponseEntity.ok(AuthenticationResponse.builder().result(StatusRobotAuth.allow).build());
+        return ResponseEntity.ok(
+                AuthenticationResponse.builder()
+                        .result(StatusRobotAuth.allow)
+                        .is_superuser(true)
+                        .build()
+        );
     }
 }

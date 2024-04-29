@@ -1,33 +1,528 @@
-2024-04-24 13:06:26.150  INFO 28032 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 28032 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
-2024-04-24 13:06:26.158  INFO 28032 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
-2024-04-24 13:06:26.799  INFO 28032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2024-04-24 13:06:26.874  INFO 28032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 6 MongoDB repository interfaces.
-2024-04-24 13:06:27.302  INFO 28032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
-2024-04-24 13:06:27.310  INFO 28032 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-04-24 13:06:27.310  INFO 28032 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
-2024-04-24 13:06:27.399  INFO 28032 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
-2024-04-24 13:06:27.399  INFO 28032 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1184 ms
-2024-04-24 13:06:27.504  INFO 28032 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
-2024-04-24 13:06:27.551  INFO 28032 --- [cluster-ClusterId{value='6628f5c326613b56a9ac6d6e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:23}] to localhost:27017
-2024-04-24 13:06:27.551  INFO 28032 --- [cluster-rtt-ClusterId{value='6628f5c326613b56a9ac6d6e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:24}] to localhost:27017
-2024-04-24 13:06:27.554  INFO 28032 --- [cluster-ClusterId{value='6628f5c326613b56a9ac6d6e', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18515300}
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> tags -> workstation -> robots'
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> robots -> workstation -> tags'
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
-2024-04-24 13:06:27.722  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'robots -> workstation -> robots'
-2024-04-24 13:06:27.723  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> tags -> workstation -> robots'
-2024-04-24 13:06:27.723  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> robots'
-2024-04-24 13:06:27.723  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
-2024-04-24 13:06:27.724  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> robots -> workstation'
-2024-04-24 13:06:27.724  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation -> robots -> workstation'
-2024-04-24 13:06:27.724  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
-2024-04-24 13:06:27.724  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'workstation -> robots -> workstation'
-2024-04-24 13:06:27.725  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'workstation -> tags -> workstation -> robots -> workstation'
-2024-04-24 13:06:27.725  INFO 28032 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'tags -> workstation -> tags'
-2024-04-24 13:06:28.651  INFO 28032 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5dae5a70, org.springframework.security.web.context.SecurityContextPersistenceFilter@50778bde, org.springframework.security.web.header.HeaderWriterFilter@27bb4dc5, org.springframework.web.filter.CorsFilter@7686f701, org.springframework.security.web.authentication.logout.LogoutFilter@2ba024cb, com.enova.web.api.Securitys.JwtAuthenticationFilter@7eb27768, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4af12a63, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1eab8437, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47c96f2c, org.springframework.security.web.session.SessionManagementFilter@2fac80a8, org.springframework.security.web.access.ExceptionTranslationFilter@dd737ea, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f26b992]
-2024-04-24 13:06:28.893  INFO 28032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
-2024-04-24 13:06:28.904  INFO 28032 --- [main] com.enova.web.api.Application            : Started Application in 3.095 seconds (JVM running for 4.194)
-2024-04-24 13:06:29.032  INFO 28032 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:25}] to localhost:27017
+2024-04-29 09:49:47.393  INFO 16708 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 16708 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-04-29 09:49:47.399  INFO 16708 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-04-29 09:49:48.095  INFO 16708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-04-29 09:49:48.186  INFO 16708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 6 MongoDB repository interfaces.
+2024-04-29 09:49:48.694  INFO 16708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-04-29 09:49:48.701  INFO 16708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-29 09:49:48.701  INFO 16708 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-04-29 09:49:48.795  INFO 16708 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-04-29 09:49:48.795  INFO 16708 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1357 ms
+2024-04-29 09:49:48.919  INFO 16708 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-04-29 09:49:48.974  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:66}] to localhost:27017
+2024-04-29 09:49:48.974  INFO 16708 --- [cluster-rtt-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:65}] to localhost:27017
+2024-04-29 09:49:48.975  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=20032700}
+2024-04-29 09:49:49.167  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 09:49:49.167  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 09:49:49.167  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 09:49:49.167  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 09:49:49.168  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> robots -> workstation -> tags'
+2024-04-29 09:49:49.168  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 09:49:49.172  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 09:49:49.172  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 09:49:49.173  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> robots'
+2024-04-29 09:49:49.173  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 09:49:49.175  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 09:49:49.175  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 09:49:49.175  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 09:49:49.176  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 09:49:49.176  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 09:49:49.176  INFO 16708 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'tags -> workstation -> tags'
+2024-04-29 09:49:49.919  INFO 16708 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b35c7aa, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f883d90, org.springframework.security.web.header.HeaderWriterFilter@46d1b59, org.springframework.web.filter.CorsFilter@6dd20ec9, org.springframework.security.web.authentication.logout.LogoutFilter@286866cb, com.enova.web.api.Securitys.JwtAuthenticationFilter@50e5032c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@44384b4a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5cc3e49b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20dd5870, org.springframework.security.web.session.SessionManagementFilter@561d88ee, org.springframework.security.web.access.ExceptionTranslationFilter@4586a8aa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@399af6dc]
+2024-04-29 09:49:50.068  INFO 16708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-04-29 09:49:50.077  INFO 16708 --- [main] com.enova.web.api.Application            : Started Application in 3.021 seconds (JVM running for 4.326)
+2024-04-29 09:49:50.186  INFO 16708 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:67}] to localhost:27017
+2024-04-29 09:50:32.457  INFO 16708 --- [http-nio-0.0.0.0-8089-exec-1] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-29 09:50:32.457  INFO 16708 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-29 09:50:32.458  INFO 16708 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-29 09:52:35.439  INFO 16708 --- [http-nio-0.0.0.0-8089-exec-8] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:68}] to localhost:27017
+2024-04-29 11:37:39.482  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoNodeIsRecoveringException: Command failed with error 11600 (InterruptedAtShutdown): 'interrupted at shutdown' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "interrupted at shutdown", "code": 11600, "codeName": "InterruptedAtShutdown"}
+	at com.mongodb.internal.connection.ProtocolHelper.createSpecialException(ProtocolHelper.java:266) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:194) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:418) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:374) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:216) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-04-29 11:37:49.509  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketReadException: Prematurely reached end of stream
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:112) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:131) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:718) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:576) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:415) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:342) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:96) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:44) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:131) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.startHandshake(InternalStreamConnectionInitializer.java:73) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:182) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-04-29 11:37:57.573  INFO 16708 --- [cluster-rtt-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:3}] to localhost:27017
+2024-04-29 11:37:59.526  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:7, serverValue:5}] to localhost:27017
+2024-04-29 11:37:59.527  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2962800}
+2024-04-29 11:39:21.998  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoNodeIsRecoveringException: Command failed with error 11600 (InterruptedAtShutdown): 'interrupted at shutdown' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "interrupted at shutdown", "code": 11600, "codeName": "InterruptedAtShutdown"}
+	at com.mongodb.internal.connection.ProtocolHelper.createSpecialException(ProtocolHelper.java:266) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:194) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:418) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:374) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:216) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-04-29 11:39:32.010  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:8, serverValue:2}] to localhost:27017
+2024-04-29 11:39:32.010  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2712000}
+2024-04-29 11:39:37.666  INFO 16708 --- [cluster-rtt-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:9, serverValue:6}] to localhost:27017
+2024-04-29 11:43:02.157  INFO 16708 --- [http-nio-0.0.0.0-8089-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:10, serverValue:7}] to localhost:27017
+2024-04-29 11:43:02.182  INFO 16708 --- [http-nio-0.0.0.0-8089-exec-3] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:11, serverValue:8}] to localhost:27017
+2024-04-29 13:18:54.950  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoNodeIsRecoveringException: Command failed with error 11600 (InterruptedAtShutdown): 'interrupted at shutdown' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "interrupted at shutdown", "code": 11600, "codeName": "InterruptedAtShutdown"}
+	at com.mongodb.internal.connection.ProtocolHelper.createSpecialException(ProtocolHelper.java:266) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:194) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:418) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:374) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:216) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-04-29 13:19:04.963  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:180) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method) ~[na:na]
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:608) ~[na:na]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:107) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.4.2.jar:na]
+	... 4 common frames omitted
+
+2024-04-29 13:19:29.850  INFO 16708 --- [cluster-rtt-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:17, serverValue:1}] to localhost:27017
+2024-04-29 13:19:35.014  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:18, serverValue:3}] to localhost:27017
+2024-04-29 13:19:35.014  INFO 16708 --- [cluster-ClusterId{value='662f5f2c571acc3ed7207197', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2300500}
+2024-04-29 13:45:08.050  INFO 16708 --- [SpringApplicationShutdownHook] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:19, serverValue:11}] to localhost:27017
+2024-04-29 13:45:12.398  INFO 36064 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 36064 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-04-29 13:45:12.400  INFO 36064 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-04-29 13:45:12.970  INFO 36064 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-04-29 13:45:13.031  INFO 36064 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 6 MongoDB repository interfaces.
+2024-04-29 13:45:13.428  INFO 36064 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-04-29 13:45:13.435  INFO 36064 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-29 13:45:13.435  INFO 36064 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-04-29 13:45:13.515  INFO 36064 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-04-29 13:45:13.515  INFO 36064 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1076 ms
+2024-04-29 13:45:13.620  INFO 36064 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-04-29 13:45:13.661  INFO 36064 --- [cluster-rtt-ClusterId{value='662f965941e04d199ef81f99', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:13}] to localhost:27017
+2024-04-29 13:45:13.661  INFO 36064 --- [cluster-ClusterId{value='662f965941e04d199ef81f99', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:12}] to localhost:27017
+2024-04-29 13:45:13.663  INFO 36064 --- [cluster-ClusterId{value='662f965941e04d199ef81f99', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16229700}
+2024-04-29 13:45:13.816  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:45:13.816  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 13:45:13.816  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:45:13.817  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:45:13.817  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> robots -> workstation -> tags'
+2024-04-29 13:45:13.817  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:45:13.820  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:45:13.820  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 13:45:13.821  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> robots'
+2024-04-29 13:45:13.821  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:45:13.822  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 13:45:13.823  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 13:45:13.823  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:45:13.823  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 13:45:13.823  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 13:45:13.823  INFO 36064 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'tags -> workstation -> tags'
+2024-04-29 13:45:14.465  INFO 36064 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f4f843f, org.springframework.security.web.context.SecurityContextPersistenceFilter@11e834ad, org.springframework.security.web.header.HeaderWriterFilter@5e385b6f, org.springframework.web.filter.CorsFilter@7b5833ee, org.springframework.security.web.authentication.logout.LogoutFilter@590013c7, com.enova.web.api.Securitys.JwtAuthenticationFilter@3b5a19ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25d911a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@18026052, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e471884, org.springframework.security.web.session.SessionManagementFilter@18e4551, org.springframework.security.web.access.ExceptionTranslationFilter@505d2bac, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@40bf0e15]
+2024-04-29 13:45:14.623  INFO 36064 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-04-29 13:45:14.631  INFO 36064 --- [main] com.enova.web.api.Application            : Started Application in 2.574 seconds (JVM running for 3.677)
+2024-04-29 13:45:14.734  INFO 36064 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:14}] to localhost:27017
+2024-04-29 13:55:37.720  INFO 29060 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 29060 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-04-29 13:55:37.724  INFO 29060 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-04-29 13:55:38.513  INFO 29060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-04-29 13:55:38.576  INFO 29060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 6 MongoDB repository interfaces.
+2024-04-29 13:55:39.041  INFO 29060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-04-29 13:55:39.055  INFO 29060 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-29 13:55:39.057  INFO 29060 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-04-29 13:55:39.173  INFO 29060 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-04-29 13:55:39.174  INFO 29060 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1402 ms
+2024-04-29 13:55:39.303  INFO 29060 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-04-29 13:55:39.351  INFO 29060 --- [cluster-ClusterId{value='662f98cb9bd5b25dc85b2368', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:21}] to localhost:27017
+2024-04-29 13:55:39.351  INFO 29060 --- [cluster-rtt-ClusterId{value='662f98cb9bd5b25dc85b2368', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:20}] to localhost:27017
+2024-04-29 13:55:39.353  INFO 29060 --- [cluster-ClusterId{value='662f98cb9bd5b25dc85b2368', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18033900}
+2024-04-29 13:55:39.523  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:55:39.524  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 13:55:39.524  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:55:39.525  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:55:39.525  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> robots -> workstation -> tags'
+2024-04-29 13:55:39.526  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:55:39.529  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:55:39.530  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 13:55:39.531  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> robots'
+2024-04-29 13:55:39.531  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:55:39.531  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 13:55:39.532  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 13:55:39.532  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:55:39.532  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 13:55:39.533  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 13:55:39.533  INFO 29060 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'tags -> workstation -> tags'
+2024-04-29 13:55:40.338  INFO 29060 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a0d313, org.springframework.security.web.context.SecurityContextPersistenceFilter@1247c72e, org.springframework.security.web.header.HeaderWriterFilter@3a5e2525, org.springframework.web.filter.CorsFilter@13908f9c, org.springframework.security.web.authentication.logout.LogoutFilter@6c96403e, com.enova.web.api.Securitys.JwtAuthenticationFilter@497ed877, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5f61e002, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@334540a0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@329b331f, org.springframework.security.web.session.SessionManagementFilter@464ede1f, org.springframework.security.web.access.ExceptionTranslationFilter@12fccff0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4fa0ee7e]
+2024-04-29 13:55:40.528  INFO 29060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-04-29 13:55:40.537  INFO 29060 --- [main] com.enova.web.api.Application            : Started Application in 3.352 seconds (JVM running for 4.556)
+2024-04-29 13:55:40.647  INFO 29060 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:22}] to localhost:27017
+2024-04-29 13:55:54.564  INFO 29060 --- [http-nio-0.0.0.0-8089-exec-1] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-29 13:55:54.565  INFO 29060 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-29 13:55:54.566  INFO 29060 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-29 13:57:25.969  INFO 29060 --- [get-robot-data-Executor-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:23}] to localhost:27017
+2024-04-29 13:57:46.778  INFO 29060 --- [http-nio-0.0.0.0-8089-exec-1] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@2f3e13a0]
+2024-04-29 13:57:46.799 ERROR 29060 --- [http-nio-0.0.0.0-8089-exec-1] com.enova.web.api.Aop.LoggingAspect      : AfterThrowing class: com.enova.web.api.Services.Interfaces.RobotServiceImpl - method: update - Message: java.lang.NullPointerException
+2024-04-29 13:57:46.806 ERROR 29060 --- [http-nio-0.0.0.0-8089-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/management-robot-avg] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl.update(RobotServiceImpl.java:103) ~[classes/:na]
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl.update(RobotServiceImpl.java:23) ~[classes/:na]
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl$$FastClassBySpringCGLIB$$65721847.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:64) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.21.jar:5.3.21]
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl$$EnhancerBySpringCGLIB$$a0360f34.update(<generated>) ~[classes/:na]
+	at com.enova.web.api.Controllers.RobotController.Update(RobotController.java:112) ~[classes/:na]
+	at com.enova.web.api.Controllers.RobotController$$FastClassBySpringCGLIB$$9966e3d7.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.21.jar:5.3.21]
+	at com.enova.web.api.Controllers.RobotController$$EnhancerBySpringCGLIB$$711f3bb5.Update(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684) ~[tomcat-embed-core-9.0.64.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.64.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at com.enova.web.api.Securitys.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:45) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1787) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-04-29 13:57:59.098  INFO 29060 --- [http-nio-0.0.0.0-8089-exec-3] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@ecd5c58]
+2024-04-29 13:57:59.111 ERROR 29060 --- [http-nio-0.0.0.0-8089-exec-3] com.enova.web.api.Aop.LoggingAspect      : AfterThrowing class: com.enova.web.api.Services.Interfaces.RobotServiceImpl - method: update - Message: java.lang.NullPointerException
+2024-04-29 13:57:59.113 ERROR 29060 --- [http-nio-0.0.0.0-8089-exec-3] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/management-robot-avg] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl.update(RobotServiceImpl.java:103) ~[classes/:na]
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl.update(RobotServiceImpl.java:23) ~[classes/:na]
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl$$FastClassBySpringCGLIB$$65721847.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:64) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.21.jar:5.3.21]
+	at com.enova.web.api.Services.Interfaces.RobotServiceImpl$$EnhancerBySpringCGLIB$$a0360f34.update(<generated>) ~[classes/:na]
+	at com.enova.web.api.Controllers.RobotController.Update(RobotController.java:112) ~[classes/:na]
+	at com.enova.web.api.Controllers.RobotController$$FastClassBySpringCGLIB$$9966e3d7.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.21.jar:5.3.21]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.21.jar:5.3.21]
+	at com.enova.web.api.Controllers.RobotController$$EnhancerBySpringCGLIB$$711f3bb5.Update(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684) ~[tomcat-embed-core-9.0.64.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.21.jar:5.3.21]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.64.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at com.enova.web.api.Securitys.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:45) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.6.jar:5.6.6]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.21.jar:5.3.21]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1787) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.64.jar:9.0.64]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-04-29 13:58:58.299  INFO 23988 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 23988 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-04-29 13:58:58.301  INFO 23988 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-04-29 13:58:58.861  INFO 23988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-04-29 13:58:58.927  INFO 23988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 6 MongoDB repository interfaces.
+2024-04-29 13:58:59.332  INFO 23988 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-04-29 13:58:59.338  INFO 23988 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-29 13:58:59.338  INFO 23988 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-04-29 13:58:59.414  INFO 23988 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-04-29 13:58:59.414  INFO 23988 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1077 ms
+2024-04-29 13:58:59.522  INFO 23988 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-04-29 13:58:59.567  INFO 23988 --- [cluster-ClusterId{value='662f999382fdfb08b23e15b6', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:25}] to localhost:27017
+2024-04-29 13:58:59.567  INFO 23988 --- [cluster-rtt-ClusterId{value='662f999382fdfb08b23e15b6', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:24}] to localhost:27017
+2024-04-29 13:58:59.568  INFO 23988 --- [cluster-ClusterId{value='662f999382fdfb08b23e15b6', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=17681100}
+2024-04-29 13:58:59.720  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:58:59.720  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 13:58:59.720  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:58:59.721  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:58:59.721  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> robots -> workstation -> tags'
+2024-04-29 13:58:59.721  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:58:59.722  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 13:58:59.722  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 13:58:59.722  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> robots'
+2024-04-29 13:58:59.723  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:58:59.723  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 13:58:59.723  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 13:58:59.723  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 13:58:59.724  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 13:58:59.724  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 13:58:59.724  INFO 23988 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'tags -> workstation -> tags'
+2024-04-29 13:59:00.404  INFO 23988 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7b5833ee, org.springframework.security.web.context.SecurityContextPersistenceFilter@710ae6a7, org.springframework.security.web.header.HeaderWriterFilter@67b560fe, org.springframework.web.filter.CorsFilter@1e471884, org.springframework.security.web.authentication.logout.LogoutFilter@64f32e9e, com.enova.web.api.Securitys.JwtAuthenticationFilter@33324c05, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18026052, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@489f62a3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27261190, org.springframework.security.web.session.SessionManagementFilter@3ea48c37, org.springframework.security.web.access.ExceptionTranslationFilter@4cecc15a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c77344f]
+2024-04-29 13:59:00.552  INFO 23988 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-04-29 13:59:00.560  INFO 23988 --- [main] com.enova.web.api.Application            : Started Application in 2.595 seconds (JVM running for 3.587)
+2024-04-29 13:59:00.651  INFO 23988 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:26}] to localhost:27017
+2024-04-29 13:59:16.426  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-1] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-29 13:59:16.426  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-29 13:59:16.427  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-29 13:59:16.569  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-6] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:27}] to localhost:27017
+2024-04-29 13:59:16.574  INFO 23988 --- [get-robot-data-Executor-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:28}] to localhost:27017
+2024-04-29 13:59:20.301  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-2] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@438fced8]
+2024-04-29 14:12:51.919  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-5] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@4587ab96]
+2024-04-29 14:21:04.418  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-7] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@7a9f2f63]
+2024-04-29 14:22:08.317  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-2] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@3ac45a26]
+2024-04-29 14:22:38.781  INFO 23988 --- [http-nio-0.0.0.0-8089-exec-3] com.enova.web.api.Aop.LoggingAspect      : in class: com.enova.web.api.Controllers.RobotController - method: Update Arguments: [id=662f965a41e04d199ef81f9a, rd=com.enova.web.api.Models.Dtos.RobotDto@7a5ada0c]
+2024-04-29 16:52:47.854  INFO 32132 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 32132 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-04-29 16:52:47.858  INFO 32132 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-04-29 16:52:48.734  INFO 32132 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-04-29 16:52:48.826  INFO 32132 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 6 MongoDB repository interfaces.
+2024-04-29 16:52:49.347  INFO 32132 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-04-29 16:52:49.356  INFO 32132 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-29 16:52:49.356  INFO 32132 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-04-29 16:52:49.463  INFO 32132 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-04-29 16:52:49.464  INFO 32132 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1549 ms
+2024-04-29 16:52:49.610  INFO 32132 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-04-29 16:52:49.671  INFO 32132 --- [cluster-ClusterId{value='662fc251fd4a360b34698f48', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:30}] to localhost:27017
+2024-04-29 16:52:49.671  INFO 32132 --- [cluster-rtt-ClusterId{value='662fc251fd4a360b34698f48', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:29}] to localhost:27017
+2024-04-29 16:52:49.672  INFO 32132 --- [cluster-ClusterId{value='662fc251fd4a360b34698f48', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=21709300}
+2024-04-29 16:52:49.889  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 16:52:49.890  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 16:52:49.890  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 16:52:49.890  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 16:52:49.890  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> robots -> workstation -> tags'
+2024-04-29 16:52:49.890  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 16:52:49.893  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'robots -> workstation -> robots'
+2024-04-29 16:52:49.893  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> tags -> workstation -> robots'
+2024-04-29 16:52:49.894  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'robots -> workstation -> robots'
+2024-04-29 16:52:49.894  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 16:52:49.894  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 16:52:49.895  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 16:52:49.895  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-04-29 16:52:49.896  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'robots' in type 'Workstation' for path 'workstation -> robots -> workstation'
+2024-04-29 16:52:49.897  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Robot' for path 'workstation -> tags -> workstation -> robots -> workstation'
+2024-04-29 16:52:49.897  INFO 32132 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'tags -> workstation -> tags'
+2024-04-29 16:52:50.775  INFO 32132 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f5e6833, org.springframework.security.web.context.SecurityContextPersistenceFilter@2154652c, org.springframework.security.web.header.HeaderWriterFilter@5a4c98d7, org.springframework.web.filter.CorsFilter@2c674d58, org.springframework.security.web.authentication.logout.LogoutFilter@12365bd8, com.enova.web.api.Securitys.JwtAuthenticationFilter@cbf1997, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c2ab536, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22fb9a2c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c07e830, org.springframework.security.web.session.SessionManagementFilter@1b3bec6c, org.springframework.security.web.access.ExceptionTranslationFilter@66f2ec1c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@502c087e]
+2024-04-29 16:52:50.971  INFO 32132 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-04-29 16:52:50.982  INFO 32132 --- [main] com.enova.web.api.Application            : Started Application in 3.667 seconds (JVM running for 4.844)
+2024-04-29 16:52:51.094  INFO 32132 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:31}] to localhost:27017
+2024-04-29 16:53:27.895  INFO 32132 --- [http-nio-0.0.0.0-8089-exec-2] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-29 16:53:27.895  INFO 32132 --- [http-nio-0.0.0.0-8089-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-29 16:53:27.896  INFO 32132 --- [http-nio-0.0.0.0-8089-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

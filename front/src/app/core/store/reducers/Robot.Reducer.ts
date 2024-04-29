@@ -128,9 +128,9 @@ const _robotReducer = createReducer(robotState,
     }),
     on(updateRobotsuccess ,(state,action)=>{
         const _robot={...action.robotinput};
-        _robot.createdAt =  new Date (  state.robot.createdAt.toString());
+        _robot.createdAt =  new Date (  _robot.createdAt.toString());
         const updatedRobot=state.listRobots.map((r:RobotDto)=>{return _robot.id===r.id?_robot:r;});
-        return{  ...state, listRobots:[...updatedRobot]}
+        return{  ...state, listRobots:[...updatedRobot] , robot : _robot}
     }),
     on(refreshRobotssuccess ,(state,action)=>{
         
@@ -168,7 +168,7 @@ const _robotReducer = createReducer(robotState,
            return r.id !==action.id
         });
         return{
-           ...state,  listRobots : updatedlistRobots
+           ...state, listRobots : updatedlistRobots
         }
     })
 );

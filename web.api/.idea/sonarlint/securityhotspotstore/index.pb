@@ -174,3 +174,7 @@ o
 ?src/main/java/com/enova/web/api/Models/Responses/RobotData.java,e\a\ea6fa4bf6c8f208fd0cc2a7ba340a4cf4483d6cc
 i
 9src/main/java/com/enova/web/api/Services/UserService.java,e\3\e3d291c0998d12d561bdd8ba2dfe83e4fa99a7ed
+o
+?src/main/java/com/enova/web/api/Models/Dtos/WorkstationDto.java,9\6\9609edc1ae07c8cdccbe768ae37082430d14d278
+s
+Csrc/main/java/com/enova/web/api/Models/Responses/RobotDataBand.java,c\9\c93ea4f6160c76e7fa25ab3e81e7cd431ab8e03c

@@ -8,6 +8,7 @@ import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Entitys.Workstation;
 import com.enova.web.api.Models.Responses.PlotBand;
 import com.enova.web.api.Models.Responses.PlotLine;
+import com.enova.web.api.Models.Responses.RobotDataBand;
 import com.enova.web.api.Models.Responses.RobotDataChart;
 
 import java.util.*;
@@ -18,6 +19,9 @@ public class RobotMapper {
         final Workstation w = r.getWorkstation() == null ? null : WorkstationMapper.mapToEntity(r.getWorkstation());
         final String name = w == null ? null : w.getName() == null ? null : w.getName();
         return Robot.builder()
+                .clientid(r.getClientid())
+                .username(r.getUsername())
+                .password(r.getPassword())
                 .createdAt(r.getCreatedAt())
                 .name(r.getName())
                 .notice(r.getNotice())
@@ -36,6 +40,9 @@ public class RobotMapper {
         final WorkstationDto w = r.getWorkstation() == null ? null : WorkstationMapper.mapToDto(r.getWorkstation());
         return RobotDto.builder()
                 .id(r.getId())
+                .clientid(r.getClientid())
+                .username(r.getUsername())
+                .password(r.getPassword())
                 .createdAt(r.getCreatedAt())
                 .name(r.getName())
                 .notice(r.getNotice())
@@ -207,11 +214,19 @@ public class RobotMapper {
             operationStatusList.add(new Object[]{data[0], data[4]});
             if (verifyCNX.equals(Connection.DISCONNECTED) ){
                 plotBandCnx.setTo(data[0]);
-                connectionPlotBandList.add(PlotBand.builder().from(plotBandCnx.getFrom()).to(plotBandCnx.getTo()).build());
+                connectionPlotBandList.add(PlotBand.builder()
+                        .from(plotBandCnx.getFrom())
+                        .to(plotBandCnx.getTo())
+                        .text(plotBandCnx.getText())
+                        .build());
             }
             if (verifyMode.equals(ModeRobot.MANUAL) ){
                 plotBandmode.setTo(data[0]);
-                modePlotBandList.add(PlotBand.builder().from(plotBandmode.getFrom()).to(plotBandmode.getTo()).build());
+                modePlotBandList.add(PlotBand.builder()
+                        .from(plotBandmode.getFrom())
+                        .to(plotBandmode.getTo())
+                        .text(plotBandmode.getText())
+                        .build());
             }
         }
         Object[][] speedArray = speedList.toArray(new Object[0][]);
@@ -249,6 +264,82 @@ public class RobotMapper {
             return  Connection.DISCONNECTED;
         }
     }
+
+
+
+
+
+
+
+
+    public static RobotDataBand mapToRobotDataBand(String name, List<RobotProperty> properties) {
+        List<PlotBand> listDesconnected = new ArrayList<PlotBand>();
+        List<PlotBand> listConnected= new ArrayList<PlotBand>();
+        List<PlotBand> listManual= new ArrayList<PlotBand>();
+        List<PlotBand> listAuto= new ArrayList<PlotBand>();
+        List<PlotBand> listNormal= new ArrayList<PlotBand>();
+        List<PlotBand> listEms= new ArrayList<PlotBand>();
+        List<PlotBand> listPause= new ArrayList<PlotBand>();
+        List<PlotBand> listInactive= new ArrayList<PlotBand>();
+        List<PlotBand> listWaiting= new ArrayList<PlotBand>();
+        List<PlotBand> listRunning= new ArrayList<PlotBand>();
+        List<PlotBand> listCharge= new ArrayList<PlotBand>();
+        List<PlotBand> listDischarge= new ArrayList<PlotBand>();
+        List<PlotBand> listMaxSpeed= new ArrayList<PlotBand>();
+        List<PlotBand> listMinSpeed= new ArrayList<PlotBand>();
+        List<PlotBand> listNormalSpeed= new ArrayList<PlotBand>();
+
+        List<PlotBand> objj = new ArrayList<PlotBand>();
+
+        PlotBand plotDesconnected = PlotBand.builder().from(Connection.DISCONNECTED).text("Desconnected").build();
+        long dateNow = new Date().getTime();
+        Connection verifyDISCONNECTED = Connection.DISCONNECTED;
+        for (RobotProperty property : properties) {
+            dateNow = property.getTimestamp().getTime();
+            switch (property.getType()) {
+                case CONNECTION:
+                    if (!verifyDISCONNECTED.equals(Connection.valueOf(property.getValue()))) {
+                        verifyDISCONNECTED = Connection.valueOf(property.getValue());
+                    }
+                    if (verifyDISCONNECTED.equals(Connection.DISCONNECTED) ){
+                        plotDesconnected.setFrom(dateNow);
+                    }
+                    if (verifyDISCONNECTED.equals(Connection.CONNECTED) ){
+                        plotDesconnected.setTo(dateNow);
+                        listDesconnected.add(
+                                PlotBand.builder()
+                                .from(plotDesconnected.getFrom())
+                                .to(plotDesconnected.getTo())
+                                .text(plotDesconnected.getText())
+                                .build()
+                        );
+                    }
+                    break;
+            }
+        }
+
+
+
+        if (!properties.isEmpty()) {
+            if (verifyDISCONNECTED.equals(Connection.DISCONNECTED) ){
+                plotDesconnected.setTo(dateNow);
+                listDesconnected.add(PlotBand.builder()
+                        .from(plotDesconnected.getFrom())
+                        .to(plotDesconnected.getTo())
+                        .text(plotDesconnected.getText())
+                        .build());
+            }
+        }
+
+        return new RobotDataBand(name, listDesconnected,listConnected,listManual,listAuto,listNormal,listEms,listPause,listInactive,listWaiting,listRunning,listCharge,listDischarge,listMaxSpeed,listMinSpeed,listNormalSpeed);
+    }
+
+
+
+
+
+
+
 }
 
 

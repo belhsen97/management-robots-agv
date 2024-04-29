@@ -26,7 +26,10 @@ import java.util.Date;
 public class Robot implements Serializable {
     @Id
     String  id;
-    String name ;
+    String name;
+    String clientid;
+    String username;
+    String password;
     Connection connection;
     StatusRobot statusRobot;
     ModeRobot modeRobot;

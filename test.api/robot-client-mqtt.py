@@ -12,10 +12,18 @@ broker = 'localhost'
 port = 1883
 publish_topic = 'topic/robot/data/'# publish_topic     topic/robot/data/  +robot-name
 control_topic = 'topic/robot/control/'# control_topic     topic/robot/control/  +robot-name
-control_all_robot_topic = 'topic/robot/control/all'# control_all_robot_topic   topic/robot/control/all
+control_all_robot_topic = 'topic/robot/control/all/+/+'# control_all_robot_topic   topic/robot/control/all
+
+"""
+control_topic = 'topic/robot/control/{name robot}/{property}{value} 
+property can be ( operationStatus ,  statusRobot ,modeRobot )
+"""
+
+
 client_id = f'robot-mqtt-{random.randint(0, 10000)}'
-username = 'test'
-password = 'test'
+#"clientid": "enova-robot-1",
+username = 'robot'
+password = 'robot'
 robot_name = 'robot'
 
 
@@ -90,47 +98,46 @@ class RobotAVG:
             self.client.disconnect()    
     
     
-    def subscribe(self, topic):
+    def subscribe(self, topic):#topic/robot/control/robot-1/ModeRobot/MANUAL
         def on_message(client, userdata, msg):
-            #print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-            payload = msg.payload.decode()
-            try:
-                data = json.loads(payload)
-                print(f"Received data from `{msg.topic}` topic:")
-                print(json.dumps(data, indent=2))  # is used to specify the number of spaces 
-                if data.get("name") is not None and data.get("name") != "":
-                      self.robot_data["name"] = data.get("name")
-                if data.get("modeRobot") is not None and data.get("modeRobot") != "":
-                      self.robot_data["modeRobot"] = data.get("modeRobot")
-                if data.get("statusRobot") is not None and data.get("statusRobot") != "":
-                      self.robot_data["statusRobot"] = data.get("statusRobot")
-                if data.get("operationStatus") is not None and data.get("operationStatus") != "":
-                      self.robot_data["operationStatus"] = data.get("operationStatus")
-
-                # Process the received data further as needed
-            except json.JSONDecodeError:
-                   print("Received payload is not in JSON format:", payload)
+            print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+            print(f"Received data from `{msg.topic}` topic:")
+            parts = msg.topic.split('/')
+            lengthParts = len(parts)
+            if lengthParts != 6:
+               return
+            print(f"attribut  `{parts[lengthParts-2]}` value: `{parts[lengthParts-1]}`")
+            if not( (parts[lengthParts-2] == "ModeRobot") or ( parts[lengthParts-2] == "OperationStatus")):
+               return
+            if (parts[lengthParts-2] == "ModeRobot") and ((parts[lengthParts-1] == "MANUAL")or(parts[lengthParts-1] == "AUTO")) :
+                 self.robot_data["modeRobot"] = parts[lengthParts-1] 
+            if (parts[lengthParts-2] == "OperationStatus") and ((parts[lengthParts-1] == "NORMAL")or(parts[lengthParts-1] == "EMS")or(parts[lengthParts-1] == "PAUSE")) :
+                 self.robot_data["operationStatus"] = parts[lengthParts-1]  
+            msg = json.dumps(self.robot_data)
+            self.publish(msg)    
                    
         self.client.subscribe(topic)
         self.client.on_message = on_message
 
-    def subscribeAll(self,topic):
+    def subscribeAll(self,topic):#topic/robot/control/all/ModeRobot/MANUAL
         def on_message(client, userdata, msg):
-            #print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-            payload = msg.payload.decode()
-            try:
-                data = json.loads(payload)
-                print(f"Received data from `{msg.topic}` topic:")
-                print(json.dumps(data, indent=2))  # is used to specify the number of spaces 
-                if data.get("modeRobot") is not None and data.get("modeRobot") != "":
-                      self.robot_data["modeRobot"] = data.get("modeRobot")
-                if data.get("statusRobot") is not None and data.get("statusRobot") != "":
-                      self.robot_data["statusRobot"] = data.get("statusRobot")
-                if data.get("operationStatus") is not None and data.get("operationStatus") != "":
-                      self.robot_data["operationStatus"] = data.get("operationStatus")
-                # Process the received data further as needed
-            except json.JSONDecodeError:
-                   print("Received payload is not in JSON format:", payload)
+            print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+            print(f"Received data from `{msg.topic}` topic:")
+            parts = msg.topic.split('/')
+            lengthParts = len(parts)
+            if lengthParts != 6:
+               return
+            print(f"attribut  `{parts[lengthParts-2]}` value: `{parts[lengthParts-1]}`")
+            if not( (parts[lengthParts-2] == "ModeRobot") or ( parts[lengthParts-2] == "OperationStatus")):
+               return
+            if (parts[lengthParts-2] == "ModeRobot") and ((parts[lengthParts-1] == "MANUAL")or(parts[lengthParts-1] == "AUTO")) :
+                 self.robot_data["modeRobot"] = parts[lengthParts-1] 
+            if (parts[lengthParts-2] == "OperationStatus") and ((parts[lengthParts-1] == "NORMAL")or(parts[lengthParts-1] == "EMS")or(parts[lengthParts-1] == "PAUSE")) :
+                 self.robot_data["operationStatus"] = parts[lengthParts-1]
+            if (parts[lengthParts-2] == "StatusRobot") and ((parts[lengthParts-1] == "INACTIVE")or(parts[lengthParts-1] == "RUNNING")or(parts[lengthParts-1] == "WAITING")) :
+                 self.robot_data["statusRobot"] = parts[lengthParts-1]       
+            msg = json.dumps(self.robot_data)
+            self.publish(msg)
 
         self.client.subscribe(topic)
         self.client.on_message = on_message
@@ -186,7 +193,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.robot_name:
         publish_topic += args.robot_name
-        control_topic += args.robot_name
+        control_topic += args.robot_name +"/+/+"
+        print(control_topic)
         username = args.robot_name
         password = args.robot_name
         robot_name = args.robot_name
@@ -205,6 +213,18 @@ if __name__ == '__main__':
 
 
 """
+
+{
+  "name": "robot-1",
+  "connection": "DISCONNECTED",
+  "statusRobot": "RUNNING",
+  "modeRobot": "MANUAL",
+  "operationStatus": "PAUSE",
+  "levelBattery": 100,
+  "speed": 2.0
+}
+
+
 robot_data = {#"id": "robot_id_" + str(msg_count),
             "name": robot_name,
             "connection": "DISCONNECTED",

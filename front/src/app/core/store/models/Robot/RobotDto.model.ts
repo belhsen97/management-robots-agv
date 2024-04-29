@@ -7,6 +7,9 @@ import { StatusRobot } from "./StatusRobot.enum";
 export interface RobotDto {
     id: String;
     createdAt: Date;
+    clientid: String;
+    username: String;
+    password: String;
     name: string;
     statusRobot: StatusRobot;
     modeRobot: ModeRobot;

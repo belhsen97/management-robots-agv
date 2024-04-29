@@ -112,7 +112,7 @@ public class BeanStartup implements CommandLineRunner {
 //        for (int i = 1; i <= 50; i++) {
 //            final Robot robot = Robot.builder()
 //                    .nameWorkstation(workstation1.getName())
-//                    .name("robot-" + i)
+//                    .name("robot-"+i)
 //                    .createdAt(new Date())
 //                    .connection(Connection.DISCONNECTED)
 //                    .modeRobot(ModeRobot.AUTO)
@@ -120,6 +120,10 @@ public class BeanStartup implements CommandLineRunner {
 //                    .operationStatus(OperationStatus.PAUSE)
 //                    .levelBattery(100)
 //                    .speed(1.5)
+//                    .notice("")
+//                    .clientid("enova-robot-"+i)
+//                    .username("robot")
+//                    .password("robot")
 //                    .build();
 //            robotRepository.save(robot);
 //        }

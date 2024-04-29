@@ -100,6 +100,9 @@ export class RobotService extends Service {
       const count = i + 1;
       robotState.listRobots[i] = {
         id: count.toString(),
+        clientid: 'robot-'+count.toString(),
+        username: 'robot-'+count.toString(),
+        password: 'robot-'+count.toString(),
         createdAt: new Date(),
         name: "Robot-" + count,
         statusRobot: this.getRandomEnumValue(StatusRobot),

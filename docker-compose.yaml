@@ -53,40 +53,40 @@ services:
 
 
   # driveless-api service      
-  driveless-api:
-    container_name: driveless-api
-    image: "driveless-api:0.0.1"
-    build: ./driveless.api
-    ports:
-      - "8088:8088"
-    environment:
-      - SERVER_SERVLET_CONTEXT_PATH=/management-robot-avg/driveless
+  # driveless-api:
+    # container_name: driveless-api
+    # image: "driveless-api:0.0.1"
+    # build: ./driveless.api
+    # ports:
+      # - "8088:8088"
+    # environment:
+      # - SERVER_SERVLET_CONTEXT_PATH=/management-robot-avg/driveless
 
-      - MYAPP_PATH_RESOURCES=/app
+      # - MYAPP_PATH_RESOURCES=/app
       
-      - SPRING_DATA_MONGODB_HOST=mongodb
-      - SPRING_DATA_MONGODB_PORT=27017
-      - SPRING_DATA_MONGODB_DATABASE=management_robot_avg_db
-      - SPRING_DATA_MONGODB_USERNAME=root
-      - SPRING_DATA_MONGODB_PASSWORD=root
-      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
-      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      # - SPRING_DATA_MONGODB_HOST=mongodb
+      # - SPRING_DATA_MONGODB_PORT=27017
+      # - SPRING_DATA_MONGODB_DATABASE=management_robot_avg_db
+      # - SPRING_DATA_MONGODB_USERNAME=root
+      # - SPRING_DATA_MONGODB_PASSWORD=root
+      # - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      # - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
       
-      - MQTT_BROKER=tcp://emqx:1883
-      - MQTT_CLEAN_SESSION=true
-      - MQTT_CONNECTION_TIMEOUT=60
-      - MQTT_KEEPALIVE_INTERVAL=60
-      - MQTT_TOPIC=topic/robot/data/#
-      - MQTT_CLIENTID=driveless-service
-      - MQTT_USER_USERNAME=test
-      - MQTT_USER_PASSWORD=test
-    volumes:
-      - driveless-api-src:/app
-    depends_on:
-      - mongodb
-      - emqx
-    networks:
-      - ennova-network
+      # - MQTT_BROKER=tcp://emqx:1883
+      # - MQTT_CLEAN_SESSION=true
+      # - MQTT_CONNECTION_TIMEOUT=60
+      # - MQTT_KEEPALIVE_INTERVAL=60
+      # - MQTT_TOPIC=topic/robot/data/#
+      # - MQTT_CLIENTID=driveless-service
+      # - MQTT_USER_USERNAME=test
+      # - MQTT_USER_PASSWORD=test
+    # volumes:
+      # - driveless-api-src:/app
+    # depends_on:
+      # - mongodb
+      # - emqx
+    # networks:
+      # - ennova-network
 
 
 

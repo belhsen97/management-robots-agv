@@ -39,6 +39,9 @@ const robotDataChart: RobotDataChart = {
 };
 const robot: RobotDto = {
     id: "",
+    clientid: "",
+    username: "",
+    password: "",
     createdAt: new Date(),
     name: "",
     statusRobot: StatusRobot.RUNNING,

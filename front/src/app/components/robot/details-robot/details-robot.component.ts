@@ -103,7 +103,7 @@ constructor(private storeRouter: Store,
           return matchFilter.every(Boolean); // AND
         }*/
       });
-      this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!; });
+      this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => {   this.robot = item!; });
   }
  
 

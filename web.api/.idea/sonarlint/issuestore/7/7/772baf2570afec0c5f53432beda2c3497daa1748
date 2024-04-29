@@ -1,13 +1,56 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8úœƒ…ï1
+w
+java:S2293”"YReplace the type specification in this constructor call with the diamond operator ("<>").(Û 8²ÎÔò1
+w
+java:S2293•"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÒøÖ8²ÎÔò1
+w
+java:S2293–"YReplace the type specification in this constructor call with the diamond operator ("<>").(€´¡ö8²ÎÔò1
+w
+java:S2293—"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤±Ï½8²ÎÔò1
+|
+java:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(…ëõ£üÿÿÿÿ8²ÎÔò1
+|
+java:S2293™"YReplace the type specification in this constructor call with the diamond operator ("<>").(™®¤ëùÿÿÿÿ8²ÎÔò1
+|
+java:S2293š"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥™ùŸûÿÿÿÿ8²ÎÔò1
+|
+java:S2293›"YReplace the type specification in this constructor call with the diamond operator ("<>").(§èÁŞşÿÿÿÿ8²ÎÔò1
+|
+java:S2293œ"YReplace the type specification in this constructor call with the diamond operator ("<>").(§”ŒÅüÿÿÿÿ8²ÎÔò1
+|
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Öª¡ãûÿÿÿÿ8²ÎÔò1
+|
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÃÿĞÆÿÿÿÿÿ8²ÎÔò1
+|
+java:S2293Ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨ÊóÔúÿÿÿÿ8²ÎÔò1
+|
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(Ğ¾·¼ÿÿÿÿÿ8²ÎÔò1
+w
+java:S2293¡"YReplace the type specification in this constructor call with the diamond operator ("<>").(ï½•€8²ÎÔò1
+w
+java:S2293¢"YReplace the type specification in this constructor call with the diamond operator ("<>").(Å»¨Â8²ÎÔò1
+|
+java:S2293¤"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÈŸ¦çùÿÿÿÿ8¼ÈÎÔò1
+R
+java:S1066Ä"/Merge this if statement with the enclosing one.(á¢ÿÆûÿÿÿÿ8³ÎÔò1
+h
+java:S1301«"KReplace this "switch" statement by "if" statements to increase readability.(”ó18´ÎÔò1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8¶ÎÔò1
+j
+java:S2259>"MA "NullPointerException" could be thrown; "robotProperties" is nullable here.(ÒÔ±Ä8ÔÎÔò1
 W
-java:S1118":Add a private constructor to hide the implicit public one.(®â¤Ğ8É¼……ï1
+java:S1118":Add a private constructor to hide the implicit public one.(®â¤Ğ8×ÎÔò1
 f
-java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8Çƒ…ï1
+java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8ØÎÔò1
 t
-java:S3776l"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ôì‰¬ùÿÿÿÿ8Ğƒ…ï1
-Y	java:S125‚"<This block of commented-out lines of code should be removed.(üÿ„º8Úƒ…ï1
+java:S3776s"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ôì‰¬ùÿÿÿÿ8âÎÔò1
+[
+java:S1854¤"8Remove this useless assignment to local variable "objj".(ÈŸ¦çùÿÿÿÿ8„ËÎÔò1
+L
+java:S1481¤")Remove this unused "objj" local variable.(ÈŸ¦çùÿÿÿÿ8†ËÎÔò1
+u	java:S131«"YComplete cases by adding the missing enum constants or add a default case to this switch.(”ó18ğÎÔò1
+Y	java:S125İ"<This block of commented-out lines of code should be removed.(üÿ„º8óÎÔò1
 W
-java:S1144õ"4Remove this unused private "parseConnection" method.(Ïæßëúÿÿÿÿ8Ûƒ…ï1
+java:S1144„"4Remove this unused private "parseConnection" method.(Ïæßëúÿÿÿÿ8óÎÔò1
 é
-java:S6541l"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 118 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 25 to 6.(ôì‰¬ùÿÿÿÿ8Üƒ…ï1
+java:S6541s"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 126 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 25 to 6.(ôì‰¬ùÿÿÿÿ8ôÎÔò1

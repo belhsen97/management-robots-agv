@@ -86,13 +86,11 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
 
 
   onClickStopAllRobot(): void {
-    const robot = { statusRobot: StatusRobot.INACTIVE };
-    const publish: Publish = { topic: "topic/robot/control/all", qos: 0, payload: JSON.stringify(robot) };
+    const publish: Publish = { topic: "topic/robot/control/all/OperationStatus/PAUSE", qos: 0, payload: "" };
     this.mqttClientService.publish(publish);
   }
   onClickStartAllRobot(): void {
-    const robot = { statusRobot: StatusRobot.RUNNING };
-    const publish: Publish = { topic: "topic/robot/control/all", qos: 0, payload: JSON.stringify(robot) };
+    const publish: Publish = { topic: "topic/robot/control/all/OperationStatus/NORMAL", qos: 0, payload: "" };
     this.mqttClientService.publish(publish);
   }
   onClickTrunOffAllRobot(): void {

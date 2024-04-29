@@ -25,12 +25,28 @@ export class AddRobotComponent implements OnInit {
   ngOnInit(): void {
      if (this.data.element != undefined) {
       this.robot  = {
-        id: this.data.element.id,createdAt: this.data.element.createdAt,name: this.data.element.name,statusRobot: this.data.element.statusRobot,modeRobot: this.data.element.modeRobot,notice: this.data.element.notice,connection: this.data.element.connection,operationStatus: this.data.element.operationStatus,levelBattery: this.data.element.levelBattery,speed: this.data.element.speed,workstation: this.data.element.workstation};
+        id: this.data.element.id,
+        clientid: this.data.element.clientid,
+        username: this.data.element.username,
+        password: this.data.element.password,
+        createdAt: this.data.element.createdAt,
+        name: this.data.element.name,
+        statusRobot: this.data.element.statusRobot,
+        modeRobot: this.data.element.modeRobot,
+        notice: this.data.element.notice,
+        connection: this.data.element.connection,
+        operationStatus: this.data.element.operationStatus,
+        levelBattery: this.data.element.levelBattery,
+        speed: this.data.element.speed,
+        workstation: this.data.element.workstation};
       
       
       return;} 
       this.robot  = {
       id: "",
+      clientid: "",
+      username: "",
+      password: "",
       createdAt: new Date(),
       name: "",
       statusRobot: StatusRobot.RUNNING,

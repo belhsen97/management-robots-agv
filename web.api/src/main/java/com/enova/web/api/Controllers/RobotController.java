@@ -4,6 +4,7 @@ package com.enova.web.api.Controllers;
 import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
 import com.enova.web.api.Enums.ReponseStatus;
+import com.enova.web.api.Models.Responses.RobotDataBand;
 import com.enova.web.api.Models.Responses.RobotDataChart;
 import com.enova.web.api.Models.Dtos.RobotDto;
 import com.enova.web.api.Models.Entitys.Robot;
@@ -45,6 +46,14 @@ public class RobotController {
     @GetMapping("/name/{name}")
     public ResponseEntity<RobotDto> GetByName(@PathVariable("name") String name) {
         return ResponseEntity.ok(RobotMapper.mapToDto(iService.selectByName(name)));
+    }
+
+    @Async("get-robot-data")
+    @GetMapping("{name}/databand/all")
+    public CompletableFuture<RobotDataBand> GetAllRobotDataBandByName(@PathVariable String name) {
+        final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
+        final  RobotDataBand r  = RobotMapper.mapToRobotDataBand(name , list);
+        return CompletableFuture.completedFuture(r);
     }
 
     @Async("get-robot-data")

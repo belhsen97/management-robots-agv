@@ -18,7 +18,10 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RobotDto {
     String id;
-    String name ;
+    String name;
+    String clientid;
+    String username;
+    String password;
     Connection connection;
     StatusRobot statusRobot;
     ModeRobot modeRobot;
