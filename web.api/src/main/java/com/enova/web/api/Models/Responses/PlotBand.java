@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class PlotBand {
     private Object from;
     private Object to;

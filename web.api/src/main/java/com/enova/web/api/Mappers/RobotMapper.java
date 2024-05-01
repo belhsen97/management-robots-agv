@@ -273,46 +273,100 @@ public class RobotMapper {
 
 
     public static RobotDataBand mapToRobotDataBand(String name, List<RobotProperty> properties) {
-        List<PlotBand> listDesconnected = new ArrayList<PlotBand>();
-        List<PlotBand> listConnected= new ArrayList<PlotBand>();
-        List<PlotBand> listManual= new ArrayList<PlotBand>();
-        List<PlotBand> listAuto= new ArrayList<PlotBand>();
-        List<PlotBand> listNormal= new ArrayList<PlotBand>();
-        List<PlotBand> listEms= new ArrayList<PlotBand>();
-        List<PlotBand> listPause= new ArrayList<PlotBand>();
-        List<PlotBand> listInactive= new ArrayList<PlotBand>();
-        List<PlotBand> listWaiting= new ArrayList<PlotBand>();
-        List<PlotBand> listRunning= new ArrayList<PlotBand>();
-        List<PlotBand> listCharge= new ArrayList<PlotBand>();
-        List<PlotBand> listDischarge= new ArrayList<PlotBand>();
-        List<PlotBand> listMaxSpeed= new ArrayList<PlotBand>();
-        List<PlotBand> listMinSpeed= new ArrayList<PlotBand>();
-        List<PlotBand> listNormalSpeed= new ArrayList<PlotBand>();
+        Set<PlotBand> listDesconnected = new HashSet<PlotBand>();
+        Set<PlotBand> listConnected= new HashSet<PlotBand>();
+        Set<PlotBand> listManual= new HashSet<PlotBand>();
+        Set<PlotBand> listAuto= new HashSet<PlotBand>();
+        Set<PlotBand> listNormal= new HashSet<PlotBand>();
+        Set<PlotBand> listEms= new HashSet<PlotBand>();
+        Set<PlotBand> listPause= new HashSet<PlotBand>();
+        Set<PlotBand> listInactive= new HashSet<PlotBand>();
+        Set<PlotBand> listWaiting= new HashSet<PlotBand>();
+        Set<PlotBand> listRunning= new HashSet<PlotBand>();
+        Set<PlotBand> listCharge= new HashSet<PlotBand>();
+        Set<PlotBand> listDischarge= new HashSet<PlotBand>();
+        Set<PlotBand> listMaxSpeed= new HashSet<PlotBand>();
+        Set<PlotBand> listMinSpeed= new HashSet<PlotBand>();
+        Set<PlotBand> listNormalSpeed= new HashSet<PlotBand>();
+        //Arrays.asList();
 
-        List<PlotBand> objj = new ArrayList<PlotBand>();
-
-        PlotBand plotDesconnected = PlotBand.builder().from(Connection.DISCONNECTED).text("Desconnected").build();
         long dateNow = new Date().getTime();
-        Connection verifyDISCONNECTED = Connection.DISCONNECTED;
+
+        Map<String, PlotBand> plot  = new HashMap<String, PlotBand>();
+        plot.put("Desconnected",  PlotBand.builder().from(dateNow).text("Desconnected").build());
+        plot.put("Connected",  PlotBand.builder().from(dateNow).text("Connected").build());
+        plot.put("Manual",  PlotBand.builder().from(dateNow).text("Manual").build());
+        plot.put("Auto",  PlotBand.builder().from(dateNow).text("Auto").build());
+
+
+        Connection verifyConnection = Connection.DISCONNECTED;
+        ModeRobot verifyModeRobot = ModeRobot.MANUAL;
+
+        boolean isDesconnected = false ;   boolean isConnected = false ;
+        boolean isManual = false ;   boolean isAuto = false ;
         for (RobotProperty property : properties) {
             dateNow = property.getTimestamp().getTime();
+
+
+
+
             switch (property.getType()) {
                 case CONNECTION:
-                    if (!verifyDISCONNECTED.equals(Connection.valueOf(property.getValue()))) {
-                        verifyDISCONNECTED = Connection.valueOf(property.getValue());
+                    if (!verifyConnection.equals(Connection.valueOf(property.getValue()))) {
+                        verifyConnection = Connection.valueOf(property.getValue());
                     }
-                    if (verifyDISCONNECTED.equals(Connection.DISCONNECTED) ){
-                        plotDesconnected.setFrom(dateNow);
-                    }
-                    if (verifyDISCONNECTED.equals(Connection.CONNECTED) ){
-                        plotDesconnected.setTo(dateNow);
-                        listDesconnected.add(
+                    if (verifyConnection.equals(Connection.DISCONNECTED) ){
+                        plot.get("Desconnected").setFrom(dateNow);
+                        plot.get("Connected").setTo(dateNow);
+                        isDesconnected = true;
+                        if (isConnected) {isConnected = false;
+                        listConnected.add(
                                 PlotBand.builder()
-                                .from(plotDesconnected.getFrom())
-                                .to(plotDesconnected.getTo())
-                                .text(plotDesconnected.getText())
-                                .build()
+                                        .from( plot.get("Connected").getFrom())
+                                        .to( plot.get("Connected").getTo())
+                                        .text( plot.get("Connected").getText())
+                                        .build()
                         );
+                        }
+                    }
+                    if (verifyConnection.equals(Connection.CONNECTED) ){
+                        plot.get("Desconnected").setTo(dateNow);
+                        plot.get("Connected").setFrom(dateNow);
+                        isConnected = true;
+                        if (isDesconnected) {isDesconnected = false;
+                            listDesconnected.add(PlotBand.builder().from(plot.get("Desconnected").getFrom()).to(plot.get("Desconnected").getTo()).text(plot.get("Desconnected").getText()).build());
+                        }
+                    }
+                    break;
+
+                case MODE_ROBOT:
+                    if (!verifyModeRobot.equals(ModeRobot.valueOf(property.getValue()))) {
+                        verifyModeRobot = ModeRobot.valueOf(property.getValue());
+                    }
+                    if (verifyModeRobot.equals(ModeRobot.MANUAL) ){
+                        plot.get("Manual").setFrom(dateNow);
+                        plot.get("Auto").setTo(dateNow);
+
+                        listAuto.add(
+                                PlotBand.builder()
+                                        .from( plot.get("Auto").getFrom())
+                                        .to( plot.get("Auto").getTo())
+                                        .text( plot.get("Auto").getText())
+                                        .build()
+                        );
+                    }
+                    if (verifyModeRobot.equals(ModeRobot.AUTO) ){
+                        plot.get("Manual").setTo(dateNow);
+                        plot.get("Auto").setFrom(dateNow);
+                        listManual.add(
+                                PlotBand.builder()
+                                        .from( plot.get("Manual").getFrom())
+                                        .to( plot.get("Manual").getTo())
+                                        .text( plot.get("Manual").getText())
+                                        .build()
+                        );
+
+
                     }
                     break;
             }
@@ -321,14 +375,44 @@ public class RobotMapper {
 
 
         if (!properties.isEmpty()) {
-            if (verifyDISCONNECTED.equals(Connection.DISCONNECTED) ){
-                plotDesconnected.setTo(dateNow);
+            if (verifyConnection.equals(Connection.DISCONNECTED) ){
+                plot.get("Desconnected").setTo(dateNow);
                 listDesconnected.add(PlotBand.builder()
-                        .from(plotDesconnected.getFrom())
-                        .to(plotDesconnected.getTo())
-                        .text(plotDesconnected.getText())
+                        .from( plot.get("Desconnected").getFrom())
+                        .to( plot.get("Desconnected").getTo())
+                        .text( plot.get("Desconnected").getText())
                         .build());
             }
+            if (verifyConnection.equals(Connection.CONNECTED) ){
+                plot.get("Connected").setTo(dateNow);
+                listConnected.add(PlotBand.builder()
+                        .from( plot.get("Connected").getFrom())
+                        .to( plot.get("Connected").getTo())
+                        .text( plot.get("Connected").getText())
+                        .build());
+            }
+
+
+
+            if (verifyConnection.equals(ModeRobot.MANUAL) ){
+                plot.get("Manual").setTo(dateNow);
+                listManual.add(PlotBand.builder()
+                        .from( plot.get("Manual").getFrom())
+                        .to( plot.get("Manual").getTo())
+                        .text( plot.get("Manual").getText())
+                        .build());
+            }
+            if (verifyConnection.equals(ModeRobot.AUTO) ){
+                plot.get("Auto").setTo(dateNow);
+                listAuto.add(PlotBand.builder()
+                        .from( plot.get("Auto").getFrom())
+                        .to( plot.get("Auto").getTo())
+                        .text( plot.get("Auto").getText())
+                        .build());
+            }
+
+
+
         }
 
         return new RobotDataBand(name, listDesconnected,listConnected,listManual,listAuto,listNormal,listEms,listPause,listInactive,listWaiting,listRunning,listCharge,listDischarge,listMaxSpeed,listMinSpeed,listNormalSpeed);
