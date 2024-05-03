@@ -16,19 +16,20 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RobotDataBand {
     String name;
-    Set<PlotBand> desconnected;
-    Set<PlotBand> connected;
-    Set<PlotBand> manual;
-    Set<PlotBand> auto;
-    Set<PlotBand> normal;
-    Set<PlotBand> ems;
-    Set<PlotBand> pause;
-    Set<PlotBand> inactive;
-    Set<PlotBand> waiting;
-    Set<PlotBand> running;
-    Set<PlotBand> charge;
-    Set<PlotBand> discharge;
-    Set<PlotBand> maxSpeed;
-    Set<PlotBand> minSpeed;
-    Set<PlotBand> normalSpeed;
+    List<PlotBand> desconnected;
+    List<PlotBand> connected;
+    List<PlotBand> manual;
+    List<PlotBand> auto;
+    List<PlotBand> normal;
+    List<PlotBand> ems;
+    List<PlotBand> pause;
+    List<PlotBand> inactive;
+    List<PlotBand> waiting;
+    List<PlotBand> running;
+    List<PlotBand> charge;
+    List<PlotBand> discharge;
+    List<PlotBand> standby;
+    List<PlotBand> maxSpeed;
+    List<PlotBand> minSpeed;
+    List<PlotBand> normalSpeed;
 }

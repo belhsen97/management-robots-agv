@@ -1,6 +1,7 @@
 package com.enova.web.api.Controllers;
 
 
+import com.enova.web.api.Mappers.RobotPropertyMapper;
 import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
 import com.enova.web.api.Enums.ReponseStatus;
@@ -52,7 +53,7 @@ public class RobotController {
     @GetMapping("{name}/databand/all")
     public CompletableFuture<RobotDataBand> GetAllRobotDataBandByName(@PathVariable String name) {
         final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
-        final  RobotDataBand r  = RobotMapper.mapToRobotDataBand(name , list);
+        final  RobotDataBand r  = RobotPropertyMapper.mapToRobotDataBand(name , list);
         return CompletableFuture.completedFuture(r);
     }
 
@@ -67,7 +68,7 @@ public class RobotController {
     @GetMapping("/all/data-chart")
     public CompletableFuture<List<RobotDataChart>> getAllDataChart() {
         //System.out.println("Execute method with configured executor - "+ Thread.currentThread().getName());
-        final  List<RobotDataChart> list  = RobotMapper.mapToRobotData(iService.selectAllDataPropertys());
+        final  List<RobotDataChart> list  = RobotPropertyMapper.mapToRobotData(iService.selectAllDataPropertys());
         return CompletableFuture.completedFuture(list);
     }
 
@@ -75,7 +76,7 @@ public class RobotController {
     @GetMapping("{name}/data-chart/all")
     public CompletableFuture<RobotDataChart> GetDataChartByName(@PathVariable String name) {
         final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
-        final  RobotDataChart r  = RobotMapper.mapToRobotData(name , list);
+        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
         return CompletableFuture.completedFuture(r);
     }
 
@@ -86,7 +87,7 @@ public class RobotController {
             @RequestParam("start")  @DateTimeFormat(pattern = "yyyy-MM-dd")  Date start,
             @RequestParam("end")  @DateTimeFormat(pattern = "yyyy-MM-dd")  Date end) {
         final List<RobotProperty> list  =  iService.selectDataPropertysByNameAndDateTimes(name,start,end);
-        final  RobotDataChart r  = RobotMapper.mapToRobotData(name , list);
+        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
         return CompletableFuture.completedFuture(r);
     }
     @Async("get-robot-data")
@@ -96,7 +97,7 @@ public class RobotController {
             @RequestParam("start")  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  Date start,
             @RequestParam("end")  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  Date end) {
         final List<RobotProperty> list  =  iService.selectDataPropertysByNameAndDateTimes(name,start,end);
-        final  RobotDataChart r  = RobotMapper.mapToRobotData(name , list);
+        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
         return CompletableFuture.completedFuture(r);
     }
     @Async("get-robot-data")
@@ -106,7 +107,7 @@ public class RobotController {
             @RequestParam("start")  Long  start,
             @RequestParam("end")  Long  end) {
         final List<RobotProperty> list  =  iService.selectDataPropertysByNameAndUnixTimestamps(name,start,end);
-        final  RobotDataChart r  = RobotMapper.mapToRobotData(name , list);
+        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
         return CompletableFuture.completedFuture(r);
     }
 

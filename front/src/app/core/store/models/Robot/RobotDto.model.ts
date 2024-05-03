@@ -11,12 +11,12 @@ export interface RobotDto {
     username: String;
     password: String;
     name: string;
-    statusRobot: StatusRobot;
-    modeRobot: ModeRobot;
+       statusRobot: StatusRobot;
+       modeRobot: ModeRobot;
     notice: string;
-    connection: Connection;
-    operationStatus: OperationStatus;
-    levelBattery: number;  // real time
-    speed: number; // real time
+       connection: Connection;
+       operationStatus: OperationStatus;
+       levelBattery: number;  // real time
+       speed: number; // real time
     workstation: WorkstationDto;
 }
