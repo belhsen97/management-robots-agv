@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 public class PlotBand {
-    private Object from;
-    private Object to;
+    private Long from;
+    private Long to;
     private String text;
 }

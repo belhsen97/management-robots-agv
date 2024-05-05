@@ -21,8 +21,9 @@ public class RobotPropertyMapper {
             return Double.NaN;
         }
     }
-    public static  Map<String, List<RobotProperty>>  maptoPropertys  (List<RobotProperty> properties) {
-        Map<String, List<RobotProperty>> robotPropertyMap  = new HashMap<String, List<RobotProperty>>();
+
+    public static Map<String, List<RobotProperty>> maptoPropertys(List<RobotProperty> properties) {
+        Map<String, List<RobotProperty>> robotPropertyMap = new HashMap<String, List<RobotProperty>>();
         robotPropertyMap.put("Connection", new ArrayList<RobotProperty>());
         robotPropertyMap.put("ModeRobot", new ArrayList<RobotProperty>());
         robotPropertyMap.put("OperationStatus", new ArrayList<RobotProperty>());
@@ -77,13 +78,15 @@ public class RobotPropertyMapper {
 
 
     public static RobotDataChart mapToRobotData(String name, List<RobotProperty> properties) {
-        if (  properties.isEmpty()){return new RobotDataChart();}
+        if (properties.isEmpty()) {
+            return new RobotDataChart();
+        }
         properties = properties.stream()
                 .sorted(Comparator.comparing(RobotProperty::getTimestamp))
                 .collect(Collectors.toList());
         Long lastTimestamp = (properties.get(properties.size() - 1).getTimestamp().getTime());
 
-        Map<String, List<RobotProperty>> robotPropertyMap  =  maptoPropertys(properties);
+        Map<String, List<RobotProperty>> robotPropertyMap = maptoPropertys(properties);
 
 
         List<Object[]> speedList = new ArrayList<>();
@@ -121,24 +124,22 @@ public class RobotPropertyMapper {
         }
 
 
-
-
-
         List<PlotLine> connectionPlotLineList = new ArrayList<>();
         List<PlotBand> connectionPlotBandList = new ArrayList<>();
         timestamp = null;
         Long previousTimestamp = null;
-        Connection currentConnection  = null;
+        Connection currentConnection = null;
         for (RobotProperty property : robotPropertyMap.get("Connection")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final Connection connection = Connection.valueOf(property.getValue());
             if (currentConnection == null) {
                 currentConnection = connection;
                 previousTimestamp = timestamp;
-                continue; }
+                continue;
+            }
 
             if (!connection.equals(currentConnection)) {
-                connectionPlotLineList.add(PlotLine.builder().text(connection.name()).value(timestamp).build() );
+                connectionPlotLineList.add(PlotLine.builder().text(connection.name()).value(timestamp).build());
                 connectionPlotBandList.add(
                         PlotBand.builder()
                                 .from(previousTimestamp)
@@ -161,23 +162,22 @@ public class RobotPropertyMapper {
         }
 
 
-
-
         List<PlotBand> modePlotBandList = new ArrayList<>();
         List<PlotLine> modePlotLineList = new ArrayList<>();
         timestamp = null;
         previousTimestamp = null;
-        ModeRobot currentModeRobot  = null;
+        ModeRobot currentModeRobot = null;
         for (RobotProperty property : robotPropertyMap.get("ModeRobot")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final ModeRobot connection = ModeRobot.valueOf(property.getValue());
             if (currentModeRobot == null) {
                 currentModeRobot = connection;
                 previousTimestamp = timestamp;
-                continue; }
+                continue;
+            }
 
             if (!connection.equals(currentModeRobot)) {
-                modePlotLineList.add(PlotLine.builder().text(connection.name()).value(timestamp).build() );
+                modePlotLineList.add(PlotLine.builder().text(connection.name()).value(timestamp).build());
                 modePlotBandList.add(
                         PlotBand.builder()
                                 .from(previousTimestamp)
@@ -200,7 +200,6 @@ public class RobotPropertyMapper {
         }
 
 
-
         Object[][] speedArray = speedList.toArray(new Object[0][]);
         Object[][] batteryArray = batteryList.toArray(new Object[0][]);
 
@@ -212,7 +211,6 @@ public class RobotPropertyMapper {
             operationStatusList.add(new Object[]{lastTimestamp, valueOperationStatus});
         }
         Object[][] operationStatusArray = operationStatusList.toArray(new Object[0][]);
-
 
 
         connectionPlotBandList = connectionPlotBandList.stream()
@@ -242,21 +240,16 @@ public class RobotPropertyMapper {
     }
 
 
-
-
-
-
-
-
-
-
-
     public static RobotDataBand mapToRobotDataBand(String name, List<RobotProperty> properties) {
         //Arrays.asList();
-        final String CHARGED = "CHARGED"; final String DISCHARGED = "DISCHARGED";
-        final String STANDBY = "STANDBY";final String MIN = "MIN"; final String MAX = "MAX";
+        final String CHARGED = "CHARGED";
+        final String DISCHARGED = "DISCHARGED";
+        final String STANDBY = "STANDBY";
+        final String MIN = "MIN";
+        final String MAX = "MAX";
 
-        final Double min = 7.0; final Double max = 8.0;
+        final Double min = 7.0;
+        final Double max = 8.0;
 
 
         properties = properties.stream()
@@ -264,10 +257,10 @@ public class RobotPropertyMapper {
                 .collect(Collectors.toList());
 
 
-        Map<String, List<RobotProperty>> robotPropertyMap  =  maptoPropertys(properties);
+        Map<String, List<RobotProperty>> robotPropertyMap = maptoPropertys(properties);
 
 
-        Map<String, List<PlotBand>> plotMap  = new HashMap<String, List<PlotBand>>();
+        Map<String, List<PlotBand>> plotMap = new HashMap<String, List<PlotBand>>();
         plotMap.put("Connection", new ArrayList<PlotBand>());
         plotMap.put("ModeRobot", new ArrayList<PlotBand>());
         plotMap.put("OperationStatus", new ArrayList<PlotBand>());
@@ -278,14 +271,15 @@ public class RobotPropertyMapper {
         long timestamp = 0L;
 
         Long previousTimestamp = null;
-        Connection currentConnection  = null;
+        Connection currentConnection = null;
         for (RobotProperty property : robotPropertyMap.get("Connection")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final Connection connection = Connection.valueOf(property.getValue());
             if (currentConnection == null) {
                 currentConnection = connection;
                 previousTimestamp = timestamp;
-                continue; }
+                continue;
+            }
             if (!connection.equals(currentConnection)) {
                 plotMap.get("Connection").add(
                         PlotBand.builder()
@@ -311,7 +305,7 @@ public class RobotPropertyMapper {
         previousTimestamp = null;
         ModeRobot currentModeRobot = null;
         for (RobotProperty property : robotPropertyMap.get("ModeRobot")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final ModeRobot mode = ModeRobot.valueOf(property.getValue());
             if (currentModeRobot == null) {
                 currentModeRobot = mode;
@@ -340,9 +334,9 @@ public class RobotPropertyMapper {
         }
 
         previousTimestamp = null;
-        OperationStatus currentOperationStatus  = null;
+        OperationStatus currentOperationStatus = null;
         for (RobotProperty property : robotPropertyMap.get("OperationStatus")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final OperationStatus operationStatusRobot = OperationStatus.valueOf(property.getValue());
             if (currentOperationStatus == null) {
                 currentOperationStatus = operationStatusRobot;
@@ -374,7 +368,7 @@ public class RobotPropertyMapper {
         previousTimestamp = null;
         StatusRobot currentStatusRobot = null;
         for (RobotProperty property : robotPropertyMap.get("StatusRobot")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final StatusRobot statusRobot = StatusRobot.valueOf(property.getValue());
             if (currentStatusRobot == null) {
                 currentStatusRobot = statusRobot;
@@ -404,10 +398,10 @@ public class RobotPropertyMapper {
         }
 
         previousTimestamp = null;
-        Double  previousTlevelBattery = null;
+        Double previousTlevelBattery = null;
         String currentStatusBattery = null;
         for (RobotProperty property : robotPropertyMap.get("StatusBattery")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final double levelBattery = parseDoubleValue(property.getValue());
             if (previousTlevelBattery == null) {
                 previousTlevelBattery = levelBattery;
@@ -427,7 +421,9 @@ public class RobotPropertyMapper {
             }
             //if (statusBattery == null) { continue; }
             if (currentStatusBattery == null || statusBattery == null) {
-                currentStatusBattery = statusBattery; continue; }
+                currentStatusBattery = statusBattery;
+                continue;
+            }
 
             if (!statusBattery.equals(currentStatusBattery)) {
                 plotMap.get("StatusBattery").add(
@@ -445,7 +441,7 @@ public class RobotPropertyMapper {
         if (currentStatusBattery != null) {
             plotMap.get("StatusBattery").add(
                     PlotBand.builder()
-                            .from( previousTimestamp )
+                            .from(previousTimestamp)
                             .to(timestamp)
                             .text(currentStatusBattery)
                             .build()
@@ -453,12 +449,10 @@ public class RobotPropertyMapper {
         }
 
 
-
-
         previousTimestamp = null;
         String currentStatusSpeed = null;
         for (RobotProperty property : robotPropertyMap.get("StatusSpeed")) {
-            timestamp =  property.getTimestamp().getTime();
+            timestamp = property.getTimestamp().getTime();
             final double speedValue = parseDoubleValue(property.getValue());
             if (previousTimestamp == null) {
                 previousTimestamp = timestamp;
@@ -476,7 +470,9 @@ public class RobotPropertyMapper {
             }
             //if (statusSpeed == null) { continue; }
             if (currentStatusSpeed == null || statusSpeed == null) {
-                currentStatusSpeed = statusSpeed; continue; }
+                currentStatusSpeed = statusSpeed;
+                continue;
+            }
 
             if (!statusSpeed.equals(currentStatusSpeed)) {
                 plotMap.get("StatusSpeed").add(
@@ -494,7 +490,7 @@ public class RobotPropertyMapper {
         if (currentStatusSpeed != null) {
             plotMap.get("StatusSpeed").add(
                     PlotBand.builder()
-                            .from( previousTimestamp )
+                            .from(previousTimestamp)
                             .to(timestamp)
                             .text(currentStatusSpeed)
                             .build()
@@ -502,7 +498,7 @@ public class RobotPropertyMapper {
         }
 
 
-        Map<String, List<PlotBand>> plotMapOut  = new HashMap<String, List<PlotBand>>();
+        Map<String, List<PlotBand>> plotMapOut = new HashMap<String, List<PlotBand>>();
         plotMapOut.put("Desconnected", new ArrayList<PlotBand>());
         plotMapOut.put("Connected", new ArrayList<PlotBand>());
         plotMapOut.put("Manual", new ArrayList<PlotBand>());
@@ -520,34 +516,128 @@ public class RobotPropertyMapper {
         plotMapOut.put("MinSpeed", new ArrayList<PlotBand>());
         plotMapOut.put("NormalSpeed", new ArrayList<PlotBand>());
 
-        plotMap.get("Connection").stream().forEach(plotBand -> {
-            if (Connection.CONNECTED.name().equals(plotBand.getText())) { plotMap.get("Desconnected").add(plotBand);   }
-            else if (Connection.DISCONNECTED.name().equals(plotBand.getText())) {   plotMap.get("Connected").add(plotBand); }
-        });
-        plotMap.get("ModeRobot").stream().forEach(plotBand -> {
-            if (ModeRobot.MANUAL.name().equals(plotBand.getText())) {     plotMap.get("Manual").add(plotBand);   }
-            else if (ModeRobot.AUTO.name().equals(plotBand.getText())) {  plotMap.get("Auto") .add(plotBand); }
-        });
-        plotMap.get("OperationStatus").stream().forEach(plotBand -> {
-            if (OperationStatus.NORMAL.name().equals(plotBand.getText())) {     plotMap.get("Normal").add(plotBand); }
-            else if (OperationStatus.EMS.name().equals(plotBand.getText())) {   plotMap.get("Ems").add(plotBand); }
-            else if (OperationStatus.PAUSE.name().equals(plotBand.getText())) {    plotMap.get("Pause").add(plotBand); }
-        });
-        plotMap.get("StatusRobot").stream().forEach(plotBand -> {
-            if (StatusRobot.INACTIVE.name().equals(plotBand.getText())) { plotMap.get("Inactive").add(plotBand); }
-            else if (StatusRobot.WAITING.name().equals(plotBand.getText())) {   plotMap.get("Waiting").add(plotBand); }
-            else if (StatusRobot.RUNNING.name().equals(plotBand.getText())) {  plotMap.get("Running").add(plotBand); }
-        });
-        plotMap.get("StatusBattery").stream().forEach(plotBand -> {
-            if (CHARGED.equals(plotBand.getText())) { plotMap.get("Charge").add(plotBand); }
-            else if (DISCHARGED.equals(plotBand.getText())) { plotMap.get("Discharge").add(plotBand); }
-            else if (STANDBY.equals(plotBand.getText())) {   plotMap.get("Standby").add(plotBand); }
-        });
-        plotMap.get("StatusSpeed").stream().forEach(plotBand -> {
-            if (MIN.equals(plotBand.getText())) {  plotMap.get("MinSpeed").add(plotBand); }
-            else if (MAX.equals(plotBand.getText())) {  plotMap.get("MaxSpeed").add(plotBand); }
-            else if (STANDBY.equals(plotBand.getText())) { plotMap.get("NormalSpeed") .add(plotBand); }
-        });
+
+
+        double incIntervalFirst = 0D;
+        double incIntervalSecond = 0D;
+        double incIntervalThird = 0D;
+        for (PlotBand plotBand : plotMap.get("Connection")) {
+            if (Connection.CONNECTED.name().equals(plotBand.getText())) {
+                plotMapOut.get("Desconnected").add(plotBand);
+                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+            } else if (Connection.DISCONNECTED.name().equals(plotBand.getText())) {
+                plotMapOut.get("Connected").add(plotBand);
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+            }
+        }
+        Map<String, Double> averageConnection = new HashMap<String, Double>();
+        averageConnection.put("desconnected", new Double(((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
+        averageConnection.put("connected", new Double(((incIntervalSecond  * 100) /( incIntervalFirst +incIntervalSecond ))));
+
+
+        incIntervalFirst = 0D;
+        incIntervalSecond = 0D;
+        for (PlotBand plotBand : plotMap.get("ModeRobot")) {
+            if (ModeRobot.MANUAL.name().equals(plotBand.getText())) {
+                plotMapOut.get("Manual").add(plotBand);
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+            } else if (ModeRobot.AUTO.name().equals(plotBand.getText())) {
+                plotMapOut.get("Auto").add(plotBand);
+                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+            }
+        }
+        Map<String, Double> averageMode = new HashMap<String, Double>();
+        averageMode.put("manual", new Double( ((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
+        averageMode.put("auto", new Double(((incIntervalSecond  * 100) /( incIntervalFirst +incIntervalSecond ))));
+
+
+        incIntervalFirst = 0D;
+        incIntervalSecond = 0D;
+        incIntervalThird = 0D;
+        for (PlotBand plotBand : plotMap.get("OperationStatus")) {
+            if (OperationStatus.NORMAL.name().equals(plotBand.getText())) {
+                plotMapOut.get("Normal").add(plotBand);
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+            } else if (OperationStatus.EMS.name().equals(plotBand.getText())) {
+                plotMapOut.get("Ems").add(plotBand);
+                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+            } else if (OperationStatus.PAUSE.name().equals(plotBand.getText())) {
+                plotMapOut.get("Pause").add(plotBand);
+                incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+            }
+        }
+        Map<String, Double> averageOperationStatus = new HashMap<String, Double>();
+        averageOperationStatus.put("normal", new Double(    ((incIntervalFirst*100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
+        averageOperationStatus.put("ems", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
+        averageOperationStatus.put("pause", new Double(   ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
+
+
+        incIntervalFirst = 0D;
+        incIntervalSecond = 0D;
+        incIntervalThird = 0D;
+        for (PlotBand plotBand : plotMap.get("StatusRobot")) {
+            if (StatusRobot.INACTIVE.name().equals(plotBand.getText())) {
+                plotMapOut.get("Inactive").add(plotBand);
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+            } else if (StatusRobot.WAITING.name().equals(plotBand.getText())) {
+                plotMapOut.get("Waiting").add(plotBand);
+                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+            } else if (StatusRobot.RUNNING.name().equals(plotBand.getText())) {
+                plotMapOut.get("Running").add(plotBand);
+                incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+            }
+        }
+        Map<String, Double> averageStatusRobot = new HashMap<String, Double>();
+        averageStatusRobot.put("inactive", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
+        averageStatusRobot.put("waiting", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
+        averageStatusRobot.put("running", new Double(  ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
+
+
+
+
+        incIntervalFirst= 0D;
+        incIntervalSecond = 0D;
+        incIntervalThird = 0D;
+        for (PlotBand plotBand : plotMap.get("StatusBattery")) {
+            if (CHARGED.equals(plotBand.getText())) {
+                plotMapOut.get("Charge").add(plotBand);
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+            } else if (DISCHARGED.equals(plotBand.getText())) {
+                plotMapOut.get("Discharge").add(plotBand);
+                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+            } else if (STANDBY.equals(plotBand.getText())) {
+                plotMapOut.get("Standby").add(plotBand);
+                incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+            }
+        }
+        Map<String, Double> averageStatusBattery = new HashMap<String, Double>();
+        averageStatusBattery.put("charge", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
+        averageStatusBattery.put("discharge", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
+        averageStatusBattery.put("standby", new Double(  ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
+
+
+        incIntervalFirst= 0D;
+        incIntervalSecond = 0D;
+        incIntervalThird = 0D;
+        for (PlotBand plotBand : plotMap.get("StatusSpeed")) {
+            if (MIN.equals(plotBand.getText())) {
+                plotMapOut.get("MinSpeed").add(plotBand);
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+            } else if (MAX.equals(plotBand.getText())) {
+                plotMapOut.get("MaxSpeed").add(plotBand);
+                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+            } else if (STANDBY.equals(plotBand.getText())) {
+                plotMapOut.get("NormalSpeed").add(plotBand);
+                incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+            }
+        }
+        Map<String, Double> averageStatusSpeed = new HashMap<String, Double>();
+        averageStatusSpeed.put("min", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
+        averageStatusSpeed.put("max", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
+        averageStatusSpeed.put("standby", new Double(  ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
+
+
+
 
 //        for (PlotBand plot : listStandby ){
 //            String stringToConvert = String.valueOf(plot.getFrom());
@@ -560,21 +650,58 @@ public class RobotPropertyMapper {
 //        }
 
         return new RobotDataBand(name,
-                plotMap.get("Desconnected"),
-                plotMap.get("Connected"),
-                plotMap.get("Manual"),
-                plotMap.get("Auto"),
-                plotMap.get("Normal"),
-                plotMap.get("Ems"),
-                plotMap.get("Pause"),
-                plotMap.get("Inactive"),
-                plotMap.get("Waiting"),
-                plotMap.get("Running"),
-                plotMap.get("Charge"),
-                plotMap.get("Discharge"),
-                plotMap.get("Standby"),
-                plotMap.get("MaxSpeed"),
-                plotMap.get("MinSpeed"),
-                plotMap.get("NormalSpeed"));
+                new HashMap<String, Object>() {{
+                    put("average",averageConnection);
+                    put("interval", new HashMap<String, Object>() {{
+                                                                   put("connected", plotMapOut.get("Connected"));
+                                                                  put("desconnected", plotMapOut.get("Desconnected"));
+                                                                  }}
+                    );
+                }},
+                new HashMap<String, Object>() {{
+                    put("average",averageMode);
+                    put("interval", new HashMap<String, Object>() {{
+                                put("manual", plotMapOut.get("Manual"));
+                                put("auto", plotMapOut.get("Auto"));
+                            }}
+                    );
+                }},
+                new HashMap<String, Object>() {{
+                    put("average",averageOperationStatus);
+                    put("interval", new HashMap<String, Object>() {{
+                                put("manual", plotMapOut.get("Normal"));
+                                put("ems", plotMapOut.get("Ems"));
+                                put("pause", plotMapOut.get("Pause"));
+                            }}
+                    );
+                }},
+                new HashMap<String, Object>() {{
+                    put("average",averageStatusRobot);
+                    put("interval", new HashMap<String, Object>() {{
+                                put("inactive", plotMapOut.get("Inactive"));
+                                put("waiting", plotMapOut.get("Waiting"));
+                                put("running", plotMapOut.get("Running"));
+                            }}
+                    );
+                }},
+                new HashMap<String, Object>() {{
+                    put("average",averageStatusBattery);
+                    put("interval", new HashMap<String, Object>() {{
+                                put("charge", plotMapOut.get("Charge"));
+                                put("discharge", plotMapOut.get("Discharge"));
+                                put("standby", plotMapOut.get("Standby"));
+                            }}
+                    );
+                }},
+                new HashMap<String, Object>() {{
+                    put("average",averageStatusBattery);
+                    put("interval", new HashMap<String, Object>() {{
+                               put("max", plotMapOut.get("MaxSpeed"));
+                               put("min", plotMapOut.get("MinSpeed"));
+                               put("standby", plotMapOut.get("NormalSpeed"));
+                            }}
+                    );
+                }}
+        );
     }
 }
