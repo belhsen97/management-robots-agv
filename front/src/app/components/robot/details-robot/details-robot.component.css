@@ -120,16 +120,16 @@ mat-cell {
     font-size: 12px;
 }
 
-.mat-column-type {
+.mat-column-text {
     max-width: 30%;
 }
 
-.mat-column-timestamp {
-    max-width: 40%;
+.mat-column-from {
+    max-width: 35%;
 }
 
-.mat-column-value {
-    max-width: 30%;
+.mat-column-two {
+    max-width: 35%;
 }
 
 

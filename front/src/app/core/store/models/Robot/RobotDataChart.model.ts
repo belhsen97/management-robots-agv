@@ -1,5 +1,3 @@
-
-
 type DataPoint = [number, number];
 export interface RobotDataChart {
     name: string;

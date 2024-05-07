@@ -15,7 +15,7 @@
                 <div class="d-flex justify-content-between mx-2">
                     <mat-form-field class="mat-form-field">
                         <mat-label>Min</mat-label>
-                        <input type="number" matInput [(ngModel)]="robotState.settingRobot!.distance.min"
+                        <input type="number" matInput [(ngModel)]="setting.distance.min"
                             #distanceMin="ngModel" name="setting-distance-min-input"
                             required>
                         <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
@@ -29,7 +29,7 @@
 
                     <mat-form-field class="mat-form-field">
                         <mat-label>Max</mat-label>
-                        <input type="number" matInput [(ngModel)]="robotState.settingRobot!.distance.max"
+                        <input type="number" matInput [(ngModel)]="setting.distance.max"
                             #distanceMax="ngModel" name="setting-distance-max-input"
                             required>
                         <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
@@ -46,9 +46,9 @@
                     <span>0 mm</span>
                     <mat-slider min="0" max="10" step="0.1" showTickMarks>
                         <input value="3" name="setting-distance-min-input-slider"
-                            [(ngModel)]="robotState.settingRobot!.distance.min" matSliderStartThumb>
+                            [(ngModel)]="setting!.distance.min" matSliderStartThumb>
                         <input value="9" name="setting-distance-max-input-slider"
-                            [(ngModel)]="robotState.settingRobot!.distance.max" matSliderEndThumb>
+                            [(ngModel)]="setting!.distance.max" matSliderEndThumb>
                     </mat-slider>
                     <span>10 mm</span>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="d-flex justify-content-between mx-2">
                     <mat-form-field class="mat-form-field">
                         <mat-label>Min</mat-label>
-                        <input type="number" matInput [(ngModel)]="robotState.settingRobot!.speed.min" #speedMin="ngModel"
+                        <input type="number" matInput [(ngModel)]="setting.speed.min" #speedMin="ngModel"
                             name="setting-speed-min-input" required>
                         <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
                         <!-- <mat-error   *ngIf="(speedMin.errors?.['required']">Name is <strong>required</strong></mat-error> -->
@@ -71,7 +71,7 @@
 
                     <mat-form-field class="mat-form-field">
                         <mat-label>Max</mat-label>
-                        <input type="number" matInput [(ngModel)]="robotState.settingRobot!.speed.max" #speedMax="ngModel"
+                        <input type="number" matInput [(ngModel)]="setting.speed.max" #speedMax="ngModel"
                             name="setting-speed-max-input" required>
                         <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
                         <!-- <mat-error   *ngIf="(speedMax.errors?.['required']">Name is <strong>required</strong></mat-error> -->
@@ -84,9 +84,9 @@
                 <div class="d-flex justify-content-between align-items-center mx-2">
                     <span>0 m/s</span>
                     <mat-slider min="0" max="14" step="0.1" showTickMarks>
-                        <input name="setting-speed-min-input-slider" [(ngModel)]="robotState.settingRobot!.speed.min"
+                        <input name="setting-speed-min-input-slider" [(ngModel)]="setting.speed.min"
                             matSliderStartThumb>
-                        <input name="setting-speed-max-input-slider" [(ngModel)]="robotState.settingRobot!.speed.max"
+                        <input name="setting-speed-max-input-slider" [(ngModel)]="setting.speed.max"
                             matSliderEndThumb>
                     </mat-slider>
                     <span>10 m/s</span>

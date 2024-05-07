@@ -3,15 +3,10 @@ package com.enova.web.api.AppRunners;
 
 import com.enova.web.api.Configures.ParameterConfig;
 import com.enova.web.api.Enums.*;
-import com.enova.web.api.Mappers.RobotMapper;
-import com.enova.web.api.Repositorys.RobotRepository;
-import com.enova.web.api.Repositorys.TraceRepository;
-import com.enova.web.api.Repositorys.UserRepository;
-import com.enova.web.api.Repositorys.WorkstationRepository;
+import com.enova.web.api.Repositorys.*;
 import com.enova.web.api.Services.FileService;
 import com.enova.web.api.Services.TagService;
 import com.enova.web.api.Models.Entitys.*;
-import com.enova.web.api.Services.Interfaces.FileServiceImpl;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,9 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 
 @Order(value = 1)//Register BeanRunnerOne bean
@@ -34,14 +27,15 @@ import java.util.Random;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BeanStartup implements CommandLineRunner {
-     final UserRepository userRepository;
-     final WorkstationRepository workstationRepository;
-     final RobotRepository robotRepository;
-     final FileService ifileService;
-     final TagService iTagService;
-     final PasswordEncoder passwordEncoder;
-     final TraceRepository traceRepository;
-     final ParameterConfig parameterConfig;
+    final UserRepository userRepository;
+    final WorkstationRepository workstationRepository;
+    final RobotRepository robotRepository;
+    final FileService ifileService;
+    final TagService iTagService;
+    final PasswordEncoder passwordEncoder;
+    final TraceRepository traceRepository;
+    final ParameterConfig parameterConfig;
+    final RobotSettingRepository repository;
     final Token token = Token.builder()
             .token("Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RmaTk3IiwiaWF0IjoxNzA5NDk0NTUyLCJleHAiOjE3MDk0OTU5OTJ9.8sxfA6qa8ijehu4GZJrnVaOQ5nCU9AXWYgtIQGAFsjs")
             .tokenType(TokenType.BEARER)
@@ -76,6 +70,12 @@ public class BeanStartup implements CommandLineRunner {
             .build();
     Tag tag1 = Tag.builder().code("code-1").description("description").build();
     Trace trace1 = Trace.builder().username(user.getUsername()).timestamp(new Date()).className("RobotService").methodName("insert").description("add new robot where is name = robot-1").build();
+    List<RobotSetting> robotConfigs = Arrays.asList(
+            RobotSetting.builder().category(TypeProperty.SPEED).constraint(Constraint.MIN).value("1.5").unit("m/s").build(),
+            RobotSetting.builder().category(TypeProperty.SPEED).constraint(Constraint.MAX).value("8").unit("m/s").build(),
+            RobotSetting.builder().category(TypeProperty.DISTANCE).constraint(Constraint.MIN).value("0").unit("mm").build(),
+            RobotSetting.builder().category(TypeProperty.DISTANCE).constraint(Constraint.MAX).value("10").unit("mm").build()
+    );
 
     @Override
     public void run(String... args) throws Exception {
@@ -88,8 +88,14 @@ public class BeanStartup implements CommandLineRunner {
             img.setId(user.getId());
             user.setPhoto(img);
             user = userRepository.save(user);
-            log.info("finish add user : "+user.getUsername());
+            log.info("finish add user : " + user.getUsername());
         }
+        for ( RobotSetting r : robotConfigs){
+            final Optional<RobotSetting> opt = this.repository.findRobotSettingByCategoryAndConstraint(r.getCategory(),r.getConstraint());
+            if (opt.isEmpty()) {
+                repository.save(r);
+            }
+         }
 //        traceRepository.deleteAll();
 //        traceRepository.save(trace1);
 //        log.info("finish add list of trace");
@@ -148,15 +154,10 @@ public class BeanStartup implements CommandLineRunner {
 //        System.out.println( userRepository.findUsersByRole(Roles.ADMIN).size());
 
 
-
-
     }
 
 
-
-
-
-     Attachment saveAttachment(String pathFile) throws Exception {
+    Attachment saveAttachment(String pathFile) throws Exception {
         MultipartFile multipartFile = ifileService.importFileToMultipartFile(pathFile);
         String fileName = "";
         fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -172,7 +173,8 @@ public class BeanStartup implements CommandLineRunner {
                 .build();
         return attachment;
     }
-     static String generateRandomIP() {
+
+    static String generateRandomIP() {
         Random rand = new Random();
         StringBuilder ip = new StringBuilder();
         for (int i = 0; i < 4; i++) {

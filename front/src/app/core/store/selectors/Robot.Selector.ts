@@ -5,19 +5,9 @@ const getRobotState=createFeatureSelector<RobotState>('robotstate'); //accessing
 
 export const getListRobot=createSelector(getRobotState,(state)=>{  //create the individual selectors for that be how the class is create 
     return state.listRobots;
-})
-export const getRobot=createSelector(getRobotState,(state)=>{ 
-    return state.robot;
-})
-
-export const getCountRobotsProperties=createSelector(getRobotState,(state)=>{
-    return state.count;
-})
-
-export const getDataRobotChart =createSelector(getRobotState,(state)=>{ 
-    return state.robotDataChart ;
-})
-
-export const getlistRobotPropertys =createSelector(getRobotState,(state)=>{
-    return state.listRobotPropertys ;
-})
+});
+export const getRobot=createSelector(getRobotState,(state)=>{      return state.robot;     });
+export const getCountRobotsProperties=createSelector(getRobotState,(state)=>{  return state.count;});
+export const getDataRobotChart =createSelector(getRobotState,(state)=>{  return state.robotDataChart;  });
+export const getRobotDataBand =createSelector(getRobotState,(state)=>{ return state.robotDataBand;   });
+export const getSettingRobot=createSelector(getRobotState,(state)=>{  return state.settingRobot;  });

@@ -22,4 +22,5 @@ public class RobotDataChart {
     PlotBand[] modePlotBand;
     PlotLine[] connectionPlotLine;
     PlotLine[] modePlotLine;
+
 }

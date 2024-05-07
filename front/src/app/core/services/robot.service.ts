@@ -10,21 +10,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { robotState } from '../store/states/Robot.state';
 import { wsState } from '../store/states/Worstation.state';
+import { RobotSettingDto } from '../store/models/Robot/RobotSettingDto.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RobotService extends Service {
 
-  constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) { 
-    super(http, router, activeRoute);  
-  }
-
-
-
+  constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) {   super(http, router, activeRoute);}
 
   getAll(): Observable<HttpResponse<any>> {
     return this.http.get(`${this.url}/robot`,
+      { observe: 'response', 
+      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
+     })
+  }
+  getAllRobotConfig(): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot-setting`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
@@ -41,8 +43,8 @@ export class RobotService extends Service {
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
-  GetAllPropertyByName(name:String): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot/${name}/property/all`,
+  GetRobotDataBandByName(name:String): Observable<HttpResponse<any>> {
+    return this.http.get(`${this.url}/robot/${name}/databand/all`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
@@ -79,21 +81,19 @@ export class RobotService extends Service {
        // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
       }) })
   }
+  updateRobotConfig(r: RobotSettingDto): Observable<HttpResponse<any>> {
+    return this.http.put(`${this.url}/robot-setting`, r,
+      { observe: 'response',
+       headers: new HttpHeaders({'Content-Type': 'application/json',
+       // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+      }) })
+  }
   delete(id: any): Observable<HttpResponse<any>> {
     return this.http.delete(`${this.url}/robot/${id}`,
       { observe: 'response',
        //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
       })
   }
-
-
-
-
-
-
-
-
-
 
   randomDataRobots(): void {
     for (var i = 0; i < 50; i++) {

@@ -3,24 +3,24 @@ import { ModeRobot } from '../models/Robot/ModeRobot.enum';
 import { StatusRobot } from '../models/Robot/StatusRobot.enum';
 import { OperationStatus } from '../models/Robot/OperationStatus.enum';
 import { RobotDto } from '../models/Robot/RobotDto.model';
-import { SettingRobot } from '../models/Robot/SettingRobot.model';
+import { RobotSettingDto } from '../models/Robot/RobotSettingDto.model';
 import { CountRobotsProperties } from '../models/Robot/CountRobotsProperties.model';
 import { wsState } from './Worstation.state';
 import { MatTableDataSource } from '@angular/material/table';
 import { RobotDataChart } from '../models/Robot/RobotDataChart.model';
-import { RobotProperty } from '../models/Robot/RobotProperty.model';
+import { Plot, RobotDataBand } from '../models/Robot/RobotDataBand.model';
 
 export interface RobotState {
     typeConnection?: ReadonlyArray<{ label: string; value: Connection }>;
     listModeRobot?: ReadonlyArray<{ label: string; value: ModeRobot }>;
     listOperationStatus?: ReadonlyArray<{ label: string; value: OperationStatus }>;
     listStatusRobot?: ReadonlyArray<{ label: string; value: StatusRobot }>;
-    settingRobot?: SettingRobot;
+    settingRobot?: RobotSettingDto;
     count?: CountRobotsProperties;
     dataSource?: MatTableDataSource<RobotDto>;
     robotDataChart:RobotDataChart;
     robot: RobotDto;
-    listRobotPropertys?: RobotProperty[]
+    robotDataBand?: RobotDataBand;
     listRobotsData?:RobotDataChart[];
     listRobots: RobotDto[];
     errorMessage?:String;
@@ -53,9 +53,37 @@ const robot: RobotDto = {
     speed: 0,
     workstation: wsState.workstation
 };
+const plot : Plot = { text: "", from: 0, to: 0 };
+const robotDataBand: RobotDataBand = {
+    name: "",
+    connection: {
+        average: { connected: 0, desconnected: 0 },
+        interval: { connected: [plot], desconnected: [plot] }
+    },
+    mode: {
+        average: { auto: 0, manual: 0 },
+        interval: { auto: [plot], manual: [plot] }
+    },
+    operationStatus: {
+        average: { normal: 0, ems: 0 , pause: 0},
+        interval: { normal: [plot], ems: [plot] , pause: [plot]}
+    },
+    statusRobot: {
+        average: { running: 0, inactive: 0 , waiting: 0},
+        interval: { running: [plot], inactive: [plot] , waiting: [plot]}
+    },
+    battery: {
+        average: { charge: 0, standby: 0 , discharge: 0},
+        interval: { charge: [plot], standby: [plot] , discharge: [plot]}
+    },
+    speed: {
+        average: { max: 0, standby: 0 , min: 0},
+        interval: { max: [plot], standby: [plot] , min: [plot]}
+    }
+}
 const listRobots: RobotDto[] = [];
 const listRobotsData: RobotDataChart[] = [];
-const settingRobot: SettingRobot = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
+const settingRobot: RobotSettingDto = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
 const panelRobot: CountRobotsProperties = { count: 0, connected: 0,disconnected:0, running: 0,waiting:0,inactive:0,
     normal: 0,ems: 0,pause: 0, auto: 0,manual:0}
 const typeConnection: readonly { label: string; value: Connection }[] = [
@@ -84,5 +112,6 @@ export const robotState: RobotState = {
     robotDataChart : robotDataChart,
     listRobotsData:listRobotsData,
     listRobots: listRobots,
+    robotDataBand: robotDataBand, 
     errorMessage:""
 };

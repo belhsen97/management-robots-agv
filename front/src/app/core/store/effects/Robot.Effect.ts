@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { EMPTY, Observable, Subscription, catchError, concatMap, exhaustMap, map, mergeMap, of, switchMap, takeUntil, tap } from "rxjs"
 import { RobotService } from "../../services/robot.service";
-import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChartbyName, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadDataRobotChartByNameAndUnixDatetime, loadDataRobotPropertybyName, loadDataRobotPropertySuccess, loadRobotByName, loadRobotsuccess } from "../actions/Robot.Action";
+import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChartbyName, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadDataRobotChartByNameAndUnixDatetime, loadRobotByName, loadRobotsuccess, loadRobotDataBandSuccess, loadRobotDataBandbyName, loadSettingRobot, loadSettingRobotSuccess, updateSettingRobot } from "../actions/Robot.Action";
 import { ShowAlert } from "../actions/Global.Action";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { RobotDto } from "../models/Robot/RobotDto.model";
@@ -12,6 +12,8 @@ import { MqttClientService } from "../../services/mqtt-client.service";
 import { connectionFailure } from "../actions/Mqtt.Action";
 import { IMqttMessage } from "ngx-mqtt";
 import { RobotProperty } from "../models/Robot/RobotProperty.model";
+import { RobotDataBand } from "../models/Robot/RobotDataBand.model";
+import { RobotSettingDto } from "../models/Robot/RobotSettingDto.model";
 
 
 @Injectable()
@@ -65,13 +67,33 @@ export class RobotEffects {
         })
     )
 );
-
-    _loadDataRobotPropertyByName = createEffect(() => this.action$
+_loadSettingRobot = createEffect(() => this.action$
+.pipe(
+    ofType(loadSettingRobot),
+    exhaustMap((action) => {
+        return this.service.getAllRobotConfig( ).pipe(
+            map((response) => {return loadSettingRobotSuccess({ setting: response.body as RobotSettingDto  });}),
+            catchError((_error) =>
+                of(
+                    loadRobotfail({ errorMessage: _error }),
+                    ShowAlert({
+                        title: "Error",
+                        datestamp: new Date(),
+                        status: ReponseStatus.ERROR,
+                        message: _error
+                    })
+                )
+            )
+        );
+    })
+)
+);
+    _loadRobotDataBandByName = createEffect(() => this.action$
     .pipe(
-        ofType(loadDataRobotPropertybyName),
+        ofType(loadRobotDataBandbyName),
         exhaustMap((action) => {
-            return this.service.GetAllPropertyByName(action.name).pipe(
-                map((response) => { return loadDataRobotPropertySuccess({ listRobotPropertys: response.body as RobotProperty[] }); }),
+            return this.service.GetRobotDataBandByName(action.name).pipe(
+                map((response) => { return loadRobotDataBandSuccess({ robotDataBand: response.body as RobotDataBand }); }),
                 catchError((_error) =>
                     of(
                         loadRobotfail({ errorMessage: _error }),
@@ -87,6 +109,7 @@ export class RobotEffects {
         })
     )
 );
+
     _loadDataChartRobotByName = createEffect(() => this.action$
         .pipe(
             ofType(loadDataRobotChartbyName),
@@ -163,6 +186,30 @@ export class RobotEffects {
                     switchMap(response => of(
                         updateRobotsuccess({ robotinput: response.body as RobotDto }),
                         ShowAlert({ title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success update robot" }),
+                        refreshPannelRobot()
+                    )),
+                    catchError((error) => {
+                        let errorMsg;
+                        if (error.status === 406 || error.status === 403) {
+                            errorMsg = error.error;
+                        } else {
+                            errorMsg = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message };
+                        }
+                        return of(loadRobotfail({ errorMessage: errorMsg }), ShowAlert(errorMsg));
+                    }
+                    )
+                )
+            )
+        )
+    );
+    _UpdateSettingRobot = createEffect(() =>
+        this.action$.pipe(
+            ofType(updateSettingRobot),
+            switchMap(action =>
+                this.service.updateRobotConfig(action.settinginput).pipe(
+                    switchMap(response => of(
+                        loadSettingRobotSuccess({ setting: response.body as RobotSettingDto  }),
+                        ShowAlert({ title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success update robot setting" }),
                         refreshPannelRobot()
                     )),
                     catchError((error) => {

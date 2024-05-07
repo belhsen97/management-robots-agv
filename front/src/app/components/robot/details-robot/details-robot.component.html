@@ -81,25 +81,21 @@
       <div class="table-container">
         <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
 
-          <ng-container matColumnDef="timestamp">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>timestamp</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.timestamp | dateFormat }}</mat-cell>
+          <ng-container matColumnDef="text">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>text</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.text  }}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>type</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.type }}</mat-cell>
+          <ng-container matColumnDef="from">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>from</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.from | dateFormat}}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="value">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>value</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.value }}</mat-cell>
-          </ng-container>
+          <ng-container matColumnDef="to">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>to</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.to | dateFormat}}</mat-cell>
+          </ng-container> 
 
-          <ng-container matColumnDef="operationStatus">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Operation Status</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.operationStatus }}</mat-cell>
-          </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

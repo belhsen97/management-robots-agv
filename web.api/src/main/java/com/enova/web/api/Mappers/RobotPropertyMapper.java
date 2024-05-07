@@ -523,17 +523,19 @@ public class RobotPropertyMapper {
         double incIntervalThird = 0D;
         for (PlotBand plotBand : plotMap.get("Connection")) {
             if (Connection.CONNECTED.name().equals(plotBand.getText())) {
-                plotMapOut.get("Desconnected").add(plotBand);
+                plotMapOut.get("Connected").add(plotBand);
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
             } else if (Connection.DISCONNECTED.name().equals(plotBand.getText())) {
-                plotMapOut.get("Connected").add(plotBand);
+                plotMapOut.get("Desconnected").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
             }
         }
-        Map<String, Double> averageConnection = new HashMap<String, Double>();
-        averageConnection.put("desconnected", new Double(((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
-        averageConnection.put("connected", new Double(((incIntervalSecond  * 100) /( incIntervalFirst +incIntervalSecond ))));
 
+        Map<String, Double> averageConnection = new HashMap<String, Double>();
+        averageConnection.put("connected", new Double(((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
+        averageConnection.put("desconnected", new Double(((incIntervalSecond  * 100) /( incIntervalFirst +incIntervalSecond ))));
+        averageConnection.put("connected", (  averageConnection.get("connected").equals(Double.NaN)? 0:averageConnection.get("connected")) );
+        averageConnection.put("desconnected", (  averageConnection.get("desconnected").equals(Double.NaN)? 0:averageConnection.get("desconnected")) );
 
         incIntervalFirst = 0D;
         incIntervalSecond = 0D;
@@ -549,6 +551,8 @@ public class RobotPropertyMapper {
         Map<String, Double> averageMode = new HashMap<String, Double>();
         averageMode.put("manual", new Double( ((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
         averageMode.put("auto", new Double(((incIntervalSecond  * 100) /( incIntervalFirst +incIntervalSecond ))));
+        averageMode.put("manual", (  averageMode.get("manual").equals(Double.NaN)? 0:averageMode.get("manual")) );
+        averageMode.put("auto", (  averageMode.get("auto").equals(Double.NaN)? 0:averageMode.get("auto")) );
 
 
         incIntervalFirst = 0D;
@@ -570,7 +574,9 @@ public class RobotPropertyMapper {
         averageOperationStatus.put("normal", new Double(    ((incIntervalFirst*100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
         averageOperationStatus.put("ems", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
         averageOperationStatus.put("pause", new Double(   ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
-
+        averageOperationStatus.put("normal", (  averageOperationStatus.get("normal").equals(Double.NaN)? 0:averageOperationStatus.get("normal")) );
+        averageOperationStatus.put("ems", (  averageOperationStatus.get("ems").equals(Double.NaN)? 0:averageOperationStatus.get("ems")) );
+        averageOperationStatus.put("pause", (  averageOperationStatus.get("pause").equals(Double.NaN)? 0:averageOperationStatus.get("pause")) );
 
         incIntervalFirst = 0D;
         incIntervalSecond = 0D;
@@ -591,7 +597,9 @@ public class RobotPropertyMapper {
         averageStatusRobot.put("inactive", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
         averageStatusRobot.put("waiting", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
         averageStatusRobot.put("running", new Double(  ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
-
+        averageStatusRobot.put("inactive", (  averageStatusRobot.get("inactive").equals(Double.NaN)? 0:averageStatusRobot.get("inactive")) );
+        averageStatusRobot.put("waiting", (  averageStatusRobot.get("waiting").equals(Double.NaN)? 0:averageStatusRobot.get("waiting")) );
+        averageStatusRobot.put("running", (  averageStatusRobot.get("running").equals(Double.NaN)? 0:averageStatusRobot.get("running")) );
 
 
 
@@ -614,7 +622,9 @@ public class RobotPropertyMapper {
         averageStatusBattery.put("charge", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
         averageStatusBattery.put("discharge", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
         averageStatusBattery.put("standby", new Double(  ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
-
+        averageStatusBattery.put("charge", (  averageStatusBattery.get("charge").equals(Double.NaN)? 0:averageStatusBattery.get("charge")) );
+        averageStatusBattery.put("discharge", (  averageStatusBattery.get("discharge").equals(Double.NaN)? 0:averageStatusBattery.get("discharge")) );
+        averageStatusBattery.put("standby", (  averageStatusBattery.get("standby").equals(Double.NaN)? 0:averageStatusBattery.get("standby")) );
 
         incIntervalFirst= 0D;
         incIntervalSecond = 0D;
@@ -635,7 +645,9 @@ public class RobotPropertyMapper {
         averageStatusSpeed.put("min", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
         averageStatusSpeed.put("max", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
         averageStatusSpeed.put("standby", new Double(  ((incIntervalThird  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
-
+        averageStatusSpeed.put("min", (  averageStatusSpeed.get("min").equals(Double.NaN)? 0:averageStatusSpeed.get("min")) );
+        averageStatusSpeed.put("max", (  averageStatusSpeed.get("max").equals(Double.NaN)? 0:averageStatusSpeed.get("max")) );
+        averageStatusSpeed.put("standby", (  averageStatusSpeed.get("standby").equals(Double.NaN)? 0:averageStatusSpeed.get("standby")) );
 
 
 
@@ -669,7 +681,7 @@ public class RobotPropertyMapper {
                 new HashMap<String, Object>() {{
                     put("average",averageOperationStatus);
                     put("interval", new HashMap<String, Object>() {{
-                                put("manual", plotMapOut.get("Normal"));
+                                put("normal", plotMapOut.get("Normal"));
                                 put("ems", plotMapOut.get("Ems"));
                                 put("pause", plotMapOut.get("Pause"));
                             }}
@@ -694,7 +706,7 @@ public class RobotPropertyMapper {
                     );
                 }},
                 new HashMap<String, Object>() {{
-                    put("average",averageStatusBattery);
+                    put("average",averageStatusSpeed);
                     put("interval", new HashMap<String, Object>() {{
                                put("max", plotMapOut.get("MaxSpeed"));
                                put("min", plotMapOut.get("MinSpeed"));

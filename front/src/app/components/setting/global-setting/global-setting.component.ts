@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { updateSettingRobot } from 'src/app/core/store/actions/Robot.Action';
+import { RobotSettingDto } from 'src/app/core/store/models/Robot/RobotSettingDto.model';
+import { getSettingRobot } from 'src/app/core/store/selectors/Robot.Selector';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({
@@ -7,12 +12,20 @@ import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
   templateUrl: './global-setting.component.html',
   styleUrls: ['./global-setting.component.css']
 })
-export class GlobalSettingComponent {
-  robotState !: RobotState;
-constructor(){this.robotState  = robotState;}
+export class GlobalSettingComponent implements OnInit, OnDestroy {
+  public setting : RobotSettingDto = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
+  private getSettingRobot: Subscription | undefined;
+constructor( private storeRobot: Store<RobotState>){ }
+  ngOnDestroy(): void { if (this.getSettingRobot) { this.getSettingRobot.unsubscribe(); }}
+  ngOnInit(): void {
+    this.getSettingRobot = this.storeRobot.select(getSettingRobot).subscribe(item => {
+       robotState.settingRobot = item;
+       this.setting = item!;
+    });
+  }
  onSubmitForm(form: NgForm):void {
-  console.log(form.invalid);
-  console.log(this.robotState.settingRobot);
+  if (form.valid){ this.storeRobot.dispatch(updateSettingRobot({ settinginput: this.setting })); }
+
   }
 
 

@@ -16,7 +16,7 @@ import { RobotService } from './core/services/robot.service';
 import { RobotState, robotState } from './core/store/states/Robot.state';
 import { ShowAlert } from './core/store/actions/Global.Action';
 import { ReponseStatus } from './core/store/models/Global/ReponseStatus.enum';
-import { loadRobots, refreshRobots } from './core/store/actions/Robot.Action';
+import { loadRobots, loadSettingRobot, refreshRobots } from './core/store/actions/Robot.Action';
 import { getListRobot } from './core/store/selectors/Robot.Selector';
 @Component({
   selector: 'app-root',
@@ -39,6 +39,7 @@ robot !: RobotDto ;
 
   ngOnInit(): void {
     this.storeRobot.dispatch(loadRobots());
+    this.storeRobot.dispatch(loadSettingRobot());
      userState.userDto = this.userService.getUserDto();
     // this.robotService.getAll().subscribe(
     //   (response) => { 

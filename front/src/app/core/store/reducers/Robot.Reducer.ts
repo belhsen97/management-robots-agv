@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 
 
-import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadDataRobotPropertySuccess, loadRobotsuccess } from "../actions/Robot.Action";
+import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess } from "../actions/Robot.Action";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { Connection } from "../models/Robot/Connection.enum";
 import { ModeRobot } from "../models/Robot/ModeRobot.enum";
@@ -10,7 +10,8 @@ import { StatusRobot } from "../models/Robot/StatusRobot.enum";
 import { CountRobotsProperties } from "../models/Robot/CountRobotsProperties.model";
 import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 import { robotState } from "../states/Robot.state";
-import { RobotProperty } from "../models/Robot/RobotProperty.model";
+import { RobotDataBand } from "../models/Robot/RobotDataBand.model";
+import { RobotSettingDto } from "../models/Robot/RobotSettingDto.model";
 
 const _robotReducer = createReducer(robotState,
     on(loadRobots, (state) => {
@@ -18,7 +19,6 @@ const _robotReducer = createReducer(robotState,
             ...state//not modifying every anythings whatever the value is comming , it return 
         };
     }),
-
     on(loadAllRobotsuccess,(state,action)=>{
         const updatedListRobots = action.listRobots.map(robot => ({
             ...robot,
@@ -26,19 +26,18 @@ const _robotReducer = createReducer(robotState,
         }));
         return {...state,listRobots: [...updatedListRobots],errorMessage: ""};
     }),
-
     on(loadRobotsuccess,(state,action)=>{
         const robot_ = action.robotinput;
         robot_.createdAt =  new Date ( robot_.createdAt.toString());
         return { ...state, robot: robot_,errorMessage: ""};
     }),
+    on(loadSettingRobotSuccess,(state,action)=>{ 
+        return {...state,settingRobot: action.setting   ,errorMessage: ""};
+    }),
 
-    on(loadDataRobotPropertySuccess,(state,action)=>{
-        const listRobotPropertys  : RobotProperty[]  = action.listRobotPropertys.map(property => ({
-            ...property,
-            timestamp: new Date ( property.timestamp.toString())
-        }));
-        return {...state,listRobotPropertys: listRobotPropertys,errorMessage: ""};
+    on(loadRobotDataBandSuccess,(state,action)=>{
+        const robotdataband  : RobotDataBand  = action.robotDataBand;
+        return {...state,robotDataBand: robotdataband   ,errorMessage: ""};
     }),
 
     on(loadDataRobotChartSuccess,(state,action)=>{ 
