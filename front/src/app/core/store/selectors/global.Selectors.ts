@@ -5,4 +5,4 @@ const getAppstate=createFeatureSelector<GlobalState>('global');
 
 export const getStateSlidebare=createSelector(getAppstate,(state)=>{return state.IsOpen;});
 export const getValueSearchInput=createSelector(getAppstate,(input)=>{return input.keySearch;});
-export const getDateRangeSearchInput=createSelector(getAppstate,(input)=>{return input.rangeDate;});
+export const getDateRangeSearchInput=createSelector(getAppstate,(state)=>{return state.rangeDate;});

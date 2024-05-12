@@ -15,7 +15,7 @@ const _GlobalReducer  = createReducer(globalState,
             keySearch: action.value
         }
     }) 
-    ,on(searchInputRangeDate, (state, action) => {
+    ,on(searchInputRangeDate, (state, action) => { 
         return {
             ...state,
             rangeDate: action.rangeDate

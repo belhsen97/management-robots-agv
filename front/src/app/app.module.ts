@@ -53,6 +53,7 @@ import { ChartsRobotsStatisticComponent } from './components/statistic/charts-ro
 import { DateFormatPipe } from './pipes/DateFormatPipe';
 import { DateAgoPipe } from './pipes/DateAgoPipe';
 import { RangeDateComponent } from './components/shared/range-date/range-date.component';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
@@ -101,7 +102,12 @@ import { RangeDateComponent } from './components/shared/range-date/range-date.co
     BrowserAnimationsModule,
 
     // HighchartsChartModule ,
+
     
+    RichTextEditorAllModule,
+
+
+
     MaterialModule,
      
     StoreModule.forRoot(AppReducer , {

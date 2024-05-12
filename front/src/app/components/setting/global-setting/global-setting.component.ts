@@ -18,15 +18,16 @@ export class GlobalSettingComponent implements OnInit, OnDestroy {
 constructor( private storeRobot: Store<RobotState>){ }
   ngOnDestroy(): void { if (this.getSettingRobot) { this.getSettingRobot.unsubscribe(); }}
   ngOnInit(): void {
-    this.getSettingRobot = this.storeRobot.select(getSettingRobot).subscribe(item => {
-       robotState.settingRobot = item;
-       this.setting = item!;
+    this.getSettingRobot = this.storeRobot.select(getSettingRobot).subscribe(item => { 
+ 
+        this.setting = item!;
+  
+     
     });
   }
  onSubmitForm(form: NgForm):void {
-  if (form.valid){ this.storeRobot.dispatch(updateSettingRobot({ settinginput: this.setting })); }
-
-  }
+  if (form.valid){ this.storeRobot.dispatch(updateSettingRobot({ settinginput: this.setting })); } 
+}
 
 
 }

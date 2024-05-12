@@ -8,7 +8,7 @@
         <input   [(ngModel)]="rangeDate.start" #start="ngModel" name="component-range-date-start" matStartDate placeholder="Start date" >
         <input   [(ngModel)]="rangeDate.end" #end="ngModel"  name="component-range-date-end" matEndDate placeholder="End date" >
       </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
       <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
       <mat-date-range-picker #rangePicker>
         <mat-date-range-picker-actions>

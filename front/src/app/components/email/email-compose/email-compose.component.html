@@ -1,73 +1,138 @@
 <div class="row row-eq-height">
-    <div class="col-md-12">
-       <div class="row">
-          <div class="col-md-12">
-             <div class="iq-card iq-border-radius-20">
-                <div class="iq-card-body">
-                   <div class="row">
-                      <div class="col-md-12 mb-3">
-                         <h5 class="text-primary card-title"><i class="ri-pencil-fill"></i> Compose Message</h5>
-                      </div>
-                   </div>
-                   <form class="email-form">
-                      <div class="form-group row">
-                         <label for="inputEmail3" class="col-sm-2 col-form-label">To:</label>
-                         <div class="col-sm-10">
-                            <select  id="inputEmail3" class="select2jsMultiSelect form-control" multiple="multiple">
-                               <option value="Petey Cruiser">Petey Cruiser</option>
-                               <option value="Bob Frapples">Bob Frapples</option>
-                               <option value="Barb Ackue">Barb Ackue</option>
-                               <option value="Greta Life">Greta Life</option>
-                            </select>
-                         </div>
-                      </div>
-                      <div class="form-group row">
-                         <label for="cc" class="col-sm-2 col-form-label">Cc:</label>
-                         <div class="col-sm-10">
-                            <select  id="cc" class="select2jsMultiSelect form-control" multiple="multiple">
-                               <option value="Brock Lee">Brock Lee</option>
-                               <option value="Rick O'Shea">Rick O'Shea</option>
-                               <option value="Cliff Hanger">Cliff Hanger</option>
-                               <option value="Barb Dwyer">Barb Dwyer</option>
-                            </select>
-                         </div>
-                      </div>
-                      <div class="form-group row">
-                         <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
-                         <div class="col-sm-10">
-                            <input type="text"  id="subject" class="form-control">
-                         </div>
-                      </div>
-                      <div class="form-group row">
-                         <label for="subject" class="col-sm-2 col-form-label">Your Message:</label>
-                         <div class="col-md-10">
-                            <textarea class="textarea form-control" rows="5">Next, use our Get Started docs to setup Tiny!</textarea>
-                         </div>
-                      </div>
-                      <div class="form-group row align-items-center">
-                         <div class="d-flex flex-grow-1 align-items-center">
-                            <div class="send-btn pl-3">
-                               <button type="submit" class="btn btn-primary">Send</button>
-                            </div>
-                            <div class="send-panel">
-                               <label class="ml-2 mb-0 iq-bg-primary rounded" for="file"> <input type="file" id="file" style="display: none"> <a><i class="ri-attachment-line"></i> </a> </label>
-                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i class="ri-map-pin-user-line text-primary"></i></a>  </label>
-                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i class="ri-drive-line text-primary"></i></a>  </label>
-                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i class="ri-camera-line text-primary"></i></a>  </label>
-                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i class="ri-user-smile-line text-primary"></i></a>  </label>
-                            </div>
-                         </div>
-                         <div class="d-flex mr-3 align-items-center">
-                            <div class="send-panel float-right">
-                               <label class="ml-2 mb-0 iq-bg-primary rounded" ><a href="javascript:void();"><i class="ri-settings-2-line text-primary"></i></a></label>
-                               <label class="ml-2 mb-0 iq-bg-primary rounded"><a href="javascript:void();">  <i class="ri-delete-bin-line text-primary"></i></a>  </label>
-                            </div>
-                         </div>
-                      </div>
-                   </form>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
- </div>
+   <div class="col-md-12">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="iq-card iq-border-radius-20">
+               <div class="iq-card-body">
+                  <div class="row">
+                     <div class="col-md-12 mb-3">
+                        <h5 class="text-primary card-title"><i class="ri-pencil-fill"></i> Compose Message</h5>
+                     </div>
+                  </div>
+                  <form class="email-form" #ComposeForm="ngForm" (ngSubmit)="onSubmitForm(ComposeForm)" >
+                     <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">To / Cc:</label>
+                        <mat-form-field class="example-chip-list col-sm-10">
+                           <mat-label>Mails</mat-label>
+                           <mat-chip-grid #chipGrid aria-label="Fruit selection">
+                              <mat-chip-row *ngFor="let destinate of destinates" (removed)="remove(destinate)">
+                                 {{destinate}}
+                                 <button matChipRemove [attr.aria-label]="'remove ' + destinate">
+                                    <mat-icon>cancel</mat-icon>
+                                 </button>
+                              </mat-chip-row>
+                           </mat-chip-grid>
+                           <input placeholder="Add Mail..." #fruitInput matInput name="fruitInput"
+                              [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)"
+                              [(ngModel)]="newDestinate" />
+                           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                              <mat-option *ngFor="let fruit of filterFruits(newDestinate)"
+                                 [value]="fruit">{{fruit}}</mat-option>
+                           </mat-autocomplete>
+                        </mat-form-field>
+                     </div>
+                     <div class="form-group row">
+                        <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
+                        <mat-form-field class="col-sm-10">
+                           <mat-label>Subject about what you will send </mat-label>
+                           <input matInput placeholder="Ex. Reclamation" value="Sushi">
+                        </mat-form-field>
+                     </div>
+                     <div class="form-group row">
+                        <label for="subject" class="col-sm-2 col-form-label">Your Message:</label>
+                        <!-- <mat-form-field class="col-sm-10">
+                           <mat-label>Leave a message</mat-label>
+                           <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field> -->
+
+
+
+                        <!-- https://ej2.syncfusion.com/angular/documentation/rich-text-editor/getting-started?cs-save-lang=1&cs-lang=ts -->
+                        <div class="col-sm-10">
+                           <ejs-richtexteditor id='defaultRTE' #valueTemplate [toolbarSettings]='tools'>
+                              <ng-template>
+                                 <p>The Rich Text Editor component is WYSIWYG ("what you see is what you get") editor
+                                    that provides the best user experience to create and update the content.
+                                    Users can format their content using standard toolbar commands.</p>
+                                 <p><b>Key features:</b></p>
+                                 <ul>
+                                    <li>
+                                       <p>Provides &lt;IFRAME&gt; and &lt;DIV&gt; modes.</p>
+                                    </li>
+                                    <li>
+                                       <p>Capable of handling markdown editing.</p>
+                                    </li>
+                                    <li>
+                                       <p>Contains a modular library to load the necessary functionality on demand.</p>
+                                    </li>
+                                    <li>
+                                       <p>Provides a fully customizable toolbar.</p>
+                                    </li>
+                                    <li>
+                                       <p>Provides HTML view to edit the source directly for developers.</p>
+                                    </li>
+                                    <li>
+                                       <p>Supports third-party library integration.</p>
+                                    </li>
+                                    <li>
+                                       <p>Allows preview of modified content before saving it.</p>
+                                    </li>
+                                    <li>
+                                       <p>Handles images, hyperlinks, video, hyperlinks, uploads, etc.</p>
+                                    </li>
+                                    <li>
+                                       <p>Contains undo/redo manager. </p>
+                                    </li>
+                                    <li>
+                                       <p>Creates bulleted and numbered lists.</p>
+                                    </li>
+                                 </ul>
+                              </ng-template>
+                           </ejs-richtexteditor>
+                        </div>
+                        <div [innerHTML]="safeHtml"></div>
+
+                     </div>
+                     <div class="form-group row align-items-center">
+                        <div class="d-flex flex-grow-1 align-items-center">
+                           <div class="send-btn pl-3">
+                              <button type="submit" class="ml-auto mt-auto mb-auto" mat-raised-button
+                                 color="primary-color">
+                                 <mat-icon>mail</mat-icon>Send
+                              </button>
+                           </div>
+                           <div class="send-panel">
+                              <label class="ml-2 mb-0 iq-bg-primary rounded" for="file">
+                                 <button type="button" mat-raised-button (click)="fileInput.click()">
+                                    <mat-icon>file_copy</mat-icon>Choose File</button>
+                                 <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+                              </label>
+
+                              <!-- <label class="ml-2 mb-0 iq-bg-primary rounded" for="file"> <input type="file" id="file" style="display: none"> <a><i class="ri-attachment-line"></i> </a> </label> -->
+                              <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
+                                       class="ri-map-pin-user-line text-primary"></i></a> </label>
+                              <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
+                                       class="ri-drive-line text-primary"></i></a> </label>
+                              <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
+                                       class="ri-camera-line text-primary"></i></a> </label>
+                              <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
+                                       class="ri-user-smile-line text-primary"></i></a> </label>
+                           </div>
+                        </div>
+                        <div class="d-flex mr-3 align-items-center">
+                           <div class="send-panel float-right">
+                              <label class="ml-2 mb-0 iq-bg-primary rounded" for="file">
+                                 <button type="button" mat-raised-button>
+                                    <mat-icon>delete</mat-icon>draft </button>
+                              </label>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

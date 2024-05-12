@@ -61,8 +61,6 @@
                         <mat-label>Min</mat-label>
                         <input type="number" matInput [(ngModel)]="setting.speed.min" #speedMin="ngModel"
                             name="setting-speed-min-input" required>
-                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
-                        <!-- <mat-error   *ngIf="(speedMin.errors?.['required']">Name is <strong>required</strong></mat-error> -->
                         <mat-error
                             *ngIf="speedMin.invalid && (speedMin.dirty || speedMin.touched || parameterForm.submitted)">
                             <span *ngIf="speedMin.errors?.['required']">speedMin is <strong>required</strong></span>
@@ -73,8 +71,6 @@
                         <mat-label>Max</mat-label>
                         <input type="number" matInput [(ngModel)]="setting.speed.max" #speedMax="ngModel"
                             name="setting-speed-max-input" required>
-                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
-                        <!-- <mat-error   *ngIf="(speedMax.errors?.['required']">Name is <strong>required</strong></mat-error> -->
                         <mat-error
                             *ngIf="speedMax.invalid && (speedMax.dirty || speedMax.touched || parameterForm.submitted)">
                             <span *ngIf="speedMax.errors?.['required']">speedMax is <strong>required</strong></span>

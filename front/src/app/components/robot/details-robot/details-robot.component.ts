@@ -21,7 +21,7 @@ import { getRobot, getRobotDataBand } from 'src/app/core/store/selectors/Robot.S
 import { RobotProperty } from 'src/app/core/store/models/Robot/RobotProperty.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { GlobalState } from 'src/app/core/store/states/Global.state';
-import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getDateRangeSearchInput, getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRobotComponent } from '../add-robot/add-robot.component';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
@@ -47,6 +47,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
   private getlistRobotPropertysSub: Subscription | undefined;
   private getRobotSub: Subscription | undefined;
   private getValueSearchInputSub: Subscription | undefined;
+  private getDateRangeSearchInputSub: Subscription | undefined;
   private chart: any;
   private nameRobot: string = "";
   public robot !: RobotDto;
@@ -61,9 +62,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
     private storeGlobal: Store<GlobalState>,
     public robotService: RobotService,
     private storeRobot: Store<RobotState>,
-    private dialog: MatDialog) {
-
-  }
+    private dialog: MatDialog) {}
   ngOnInit(): void {
     this.getRouterNameSub = this.storeRouter.select(getRouterName).subscribe(item => {
       console.log(item);
@@ -73,6 +72,9 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getValueSearchInputSub = this.storeGlobal.select(getValueSearchInput).subscribe(value => {
       if (value === null || value === undefined || this.dataSource == undefined) { return; }
       this.dataSource.filter = value;
+    });
+    this.getDateRangeSearchInputSub = this.storeGlobal.select(getDateRangeSearchInput).subscribe(value => { 
+     console.log(value) ;
     });
     if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
     if (this.nameRobot == "") { this.robotService.goToComponent("dashboard/table"); }
@@ -104,6 +106,10 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
       dataPlot = [...dataPlot, ...item!.speed.interval.min];
       dataPlot = [...dataPlot, ...item!.speed.interval.standby];
       this.dataSource.data = dataPlot;
+      this.chart.series[0].setData([
+        { name: 'connected', y: robotState.robotDataBand!.connection.average.connected },
+        { name: 'desconnected', y: robotState.robotDataBand!.connection.average.desconnected }
+      ]);
     });
     this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!; });
   }
@@ -122,6 +128,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.getlistRobotPropertysSub) { this.getlistRobotPropertysSub.unsubscribe(); }
     if (this.getRobotSub) { this.getRobotSub.unsubscribe(); }
     if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); }
+    if (this.getDateRangeSearchInputSub) { this.getDateRangeSearchInputSub.unsubscribe(); }
     if (this.dataSource) { this.dataSource.disconnect(); }
   }
 
@@ -134,6 +141,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
       case "CONNECTION": {
         this.dataSource.data = [...robotState.robotDataBand!.connection.interval.desconnected,
         ...robotState.robotDataBand!.connection.interval.connected];
+        this.chart.setTitle({text: "Robot property"},{text: "Connection"});
         this.chart.series[0].setData([
           { name: 'connected', y: robotState.robotDataBand!.connection.average.connected },
           { name: 'desconnected', y: robotState.robotDataBand!.connection.average.desconnected }
@@ -143,6 +151,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
       case "MODE_ROBOT": {
         this.dataSource.data = [...robotState.robotDataBand!.mode.interval.auto,
         ...robotState.robotDataBand!.mode.interval.manual];
+        this.chart.setTitle({text: "Robot property"},{text: "Mode"});
         this.chart.series[0].setData([
           { name: 'auto', y: robotState.robotDataBand!.mode.average.auto },
           { name: 'manual', y: robotState.robotDataBand!.mode.average.manual }
@@ -153,6 +162,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.statusRobot.interval.inactive,
         ...robotState.robotDataBand!.statusRobot.interval.waiting,
         ...robotState.robotDataBand!.statusRobot.interval.running];
+        this.chart.setTitle({text: "Robot property"},{text: "Status Robot"});
         this.chart.series[0].setData([
           { name: 'auto', y: robotState.robotDataBand!.statusRobot.average.inactive },
           { name: 'waiting', y: robotState.robotDataBand!.statusRobot.average.waiting },
@@ -164,6 +174,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.operationStatus.interval.ems,
         ...robotState.robotDataBand!.operationStatus.interval.pause,
         ...robotState.robotDataBand!.operationStatus.interval.normal];
+        this.chart.setTitle({text: "Robot property"},{text: "Operation Status"});
         this.chart.series[0].setData([
           { name: 'ems', y: robotState.robotDataBand!.operationStatus.average.ems },
           { name: 'pause', y: robotState.robotDataBand!.operationStatus.average.pause },
@@ -175,6 +186,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.battery.interval.discharge,
         ...robotState.robotDataBand!.battery.interval.standby,
         ...robotState.robotDataBand!.battery.interval.charge];
+        this.chart.setTitle({text: "Robot property"},{text: "Battery"});
         this.chart.series[0].setData([
           { name: 'discharge', y: robotState.robotDataBand!.battery.average.discharge },
           { name: 'standby', y: robotState.robotDataBand!.battery.average.standby },
@@ -186,6 +198,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.speed.interval.max,
         ...robotState.robotDataBand!.speed.interval.min,
         ...robotState.robotDataBand!.speed.interval.standby];
+        this.chart.setTitle({text: "Robot property"},{text: "Speed"});
         this.chart.series[0].setData([
           { name: 'max', y: robotState.robotDataBand!.speed.average.max },
           { name: 'min', y: robotState.robotDataBand!.speed.average.min },

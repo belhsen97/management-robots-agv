@@ -15,19 +15,24 @@ export class RangeDateComponent implements OnInit , OnDestroy {
   public rangeDate !: RangeDate;
   private getDateRangeSearchInputSub !: Subscription | undefined;
   constructor(private store: Store<GlobalState>) { 
-     this.rangeDate = { start: new Date(2020, 6, 1), end: new Date(2020, 6, 3),
+     this.rangeDate = { 
+      start: new Date(2020, 6, 1),
+      end: new Date(2020, 6, 3),
       limit: new Date(2016, 6, 16).getTime()-new Date(2016, 6, 12).getTime()};
     }
   ngOnInit(): void {
-    this.getDateRangeSearchInputSub =  this.store.select(getDateRangeSearchInput).subscribe(input => { this.rangeDate = input; });
+    this.getDateRangeSearchInputSub =  this.store.select(getDateRangeSearchInput).subscribe(input => { 
+      this.rangeDate = input; 
+    console.log("input");
+    });
     
   }
-  ngOnDestroy() {if (this.getDateRangeSearchInputSub) {this.getDateRangeSearchInputSub.unsubscribe();}}
+  ngOnDestroy() {
+    if (this.getDateRangeSearchInputSub) {this.getDateRangeSearchInputSub.unsubscribe();}}
  
 
   onApplyRange():void{ 
     this.store.dispatch(searchInputRangeDate({ rangeDate:  this.rangeDate }));
-   
   }
 
 }

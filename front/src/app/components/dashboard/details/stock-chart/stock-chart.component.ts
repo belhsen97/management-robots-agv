@@ -84,27 +84,30 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
                     from: data.from,
                     to: data.to,
                     color: "#F7CAC9",
+                    zIndex: 2,
                 });
             });
+            item.modePlotBand.forEach((data) => {
+                this.chart.xAxis[0].addPlotBand({
+                    from: data.from,
+                    to: data.to,
+                    color: "#e5e8e8",
+                    zIndex: 1,
+                  });
+              });
             item.connectionPlotLine.forEach((data) => {
                 this.chart.xAxis[0].addPlotLine({
-                    color: '#000000', width: 1, value: data.value,
+                    color: '#000000', width: 1, value: data.value,  zIndex: 3,
                     label: { text: data.text, rotation: (data.text == "CONNECTED" ? 90 : -90), x: (data.text == "CONNECTED" ? 5 : -5), y: (data.text == "CONNECTED" ? 5 : 110) }
                 });
             });
             item.modePlotLine.forEach((data) => {
                 this.chart.xAxis[0].addPlotLine({
-                    color: '#000000', width: 1, value: data.value,
+                    color: '#000000', width: 1, value: data.value,  zIndex: 3,
                     label: {  verticalAlign: 'bottom',text: data.text, rotation: (data.text == "AUTO" ? 90 : -90), x: (data.text == "AUTO" ? 5 : -5) }
                 });
             });
-            //   robotState.robotDataChart!.modePlotBand.forEach((data) => {
-            //     this.chart.xAxis[0].addPlotBand({
-            //         from: data.from,
-            //         to: data.to,
-            //         color: "#EDD59E"
-            //       });
-            //   });
+
          
             this.chart.hideLoading();
         }

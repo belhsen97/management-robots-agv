@@ -24,6 +24,7 @@
     "@ngrx/router-store": "^16.2.0",
     "@ngrx/store": "^16.2.0",
     "@ngrx/store-devtools": "^16.2.0",
+    "@syncfusion/ej2-angular-richtexteditor": "^25.2.3",
     "highcharts": "11.4",
     "ngx-mqtt": "^17.0.0",
     "primeicons": "^6.0.1",

@@ -18,11 +18,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
- 
+import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'; 
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
-
+import {  MatChipsModule} from '@angular/material/chips';
  
 
 @NgModule({
@@ -48,9 +48,9 @@ import {MatNativeDateModule, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS} f
         MatCheckboxModule,
         
         MatFormFieldModule,
-
+         MatAutocompleteModule,   MatChipsModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule, 
     ]
 })
 export class MaterialModule { }
