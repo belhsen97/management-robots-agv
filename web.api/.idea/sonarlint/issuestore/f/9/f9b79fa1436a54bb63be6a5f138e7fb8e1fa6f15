@@ -1,6 +1,0 @@
-
-w
-java:S1192,"UDefine a constant instead of duplicating this literal "Robot Config Service" 3 times.(ªá“¶ıÿÿÿÿ8àƒÙòô1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8áƒÙòô1
-d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò„Ì8ìƒÙòô1

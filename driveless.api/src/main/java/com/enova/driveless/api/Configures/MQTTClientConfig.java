@@ -19,8 +19,6 @@ import java.util.Date;
 public class MQTTClientConfig {
     @Value("${mqtt.broker}")
     String broker = "tcp://broker.emqx.io:1883";
-    @Value("${mqtt.topic}")
-    public String topic = "testtopic/#";
     @Value("${mqtt.clean.session}")
     boolean cleanSession = true;
     @Value("${mqtt.connection.timeout}")

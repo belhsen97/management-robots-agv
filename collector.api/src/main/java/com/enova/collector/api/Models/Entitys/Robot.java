@@ -28,6 +28,12 @@ public class Robot implements Serializable {
     @Setter(AccessLevel.NONE)
     String name;
     @Setter(AccessLevel.NONE)
+    String clientid;
+    @Setter(AccessLevel.NONE)
+    String username;
+    @Setter(AccessLevel.NONE)
+    String password;
+    @Setter(AccessLevel.NONE)
     String notice;
     @Setter(AccessLevel.NONE)
     String nameWorkstation;

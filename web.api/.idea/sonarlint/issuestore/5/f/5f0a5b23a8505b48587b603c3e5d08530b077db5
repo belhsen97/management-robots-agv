@@ -1,11 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬ôƒ™8ú¾‘óô1
-H
-java:S3599",Use another way to initialize this instance.(ÃÄĞ"8¼ºÂõ1
-u
-java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÃÄĞ"8¼ºÂõ1
-N
-java:S3599",Use another way to initialize this instance.(Ø•ÔĞùÿÿÿÿ8¥Ãõ1
-{
-java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(Ø•ÔĞùÿÿÿÿ8‚¥Ãõ1
-]	java:S125"<This block of commented-out lines of code should be removed.(¼è÷ïøÿÿÿÿ8èÕÁõ1
