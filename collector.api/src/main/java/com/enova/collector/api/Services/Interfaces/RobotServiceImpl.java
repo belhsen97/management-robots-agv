@@ -1,6 +1,7 @@
 package com.enova.collector.api.Services.Interfaces;
 
 
+import com.enova.collector.api.Enums.Connection;
 import com.enova.collector.api.Models.Entitys.Robot;
 import com.enova.collector.api.Models.Entitys.RobotProperty;
 import com.enova.collector.api.Exceptions.RessourceNotFoundException;
@@ -23,8 +24,7 @@ public class RobotServiceImpl implements RobotService {
     private final RobotPropertyRepository robotPropertyRepository;
 
     @Override
-    public void insertDataPropertys( Robot robot) {
-        final List<RobotProperty> listPropertys = RobotMapper.convertToRobotPropertyList(robot);
+    public void insertDataPropertys(List<RobotProperty> listPropertys) {
 
         for (RobotProperty property : listPropertys) {
             /*if (robotPropertyRepository.countByType(property.getType()) == 0) {
@@ -42,10 +42,15 @@ public class RobotServiceImpl implements RobotService {
             }
         }
     }
-
+    @Override
+    public void  updateRobotConnection( String clientId ,  Connection c) {
+        Robot r =  this.selectByClientId(clientId);
+        r.setConnection(c);
+        robotRepository.save(r);
+    }
     @Override
     public void  updateRobot( Robot r,  Robot ru) {
-        r.setConnection(ru.getConnection());
+        //r.setConnection(ru.getConnection());
         r.setStatusRobot(ru.getStatusRobot());
         r.setModeRobot(ru.getModeRobot());
         r.setOperationStatus(ru.getOperationStatus());
@@ -58,6 +63,14 @@ public class RobotServiceImpl implements RobotService {
         Optional<Robot> r = this.robotRepository.findbyName(name);
         if (r.isEmpty()) {
             throw new RessourceNotFoundException("Cannot found robot by id = " + name);
+        }
+        return r.get();
+    }
+    @Override
+    public Robot selectByClientId( String clientId) {
+        Optional<Robot> r = this.robotRepository. findbyClientId(clientId);
+        if (r.isEmpty()) {
+            throw new RessourceNotFoundException("Cannot found robot by clientId = " + clientId);
         }
         return r.get();
     }

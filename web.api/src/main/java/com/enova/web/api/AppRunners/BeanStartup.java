@@ -127,9 +127,9 @@ public class BeanStartup implements CommandLineRunner {
 //                    .levelBattery(100)
 //                    .speed(1.5)
 //                    .notice("")
-//                    .clientid("enova-robot-"+i)
-//                    .username("robot")
-//                    .password("robot")
+//                    .clientid("robot-"+i)
+//                    .username("robot-"+i)
+//                    .password("robot-"+i)
 //                    .build();
 //            robotRepository.save(robot);
 //        }

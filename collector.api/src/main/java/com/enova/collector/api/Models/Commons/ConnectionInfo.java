@@ -1,6 +1,5 @@
-package com.enova.driveless.api.Models.Commons;
+package com.enova.collector.api.Models.Commons;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

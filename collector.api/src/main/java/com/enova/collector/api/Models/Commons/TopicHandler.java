@@ -1,9 +1,10 @@
-package com.enova.driveless.api.Models.Commons;
+package com.enova.collector.api.Models.Commons;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.lang.reflect.Method;
+
 
 @AllArgsConstructor
 @NoArgsConstructor

@@ -18,7 +18,7 @@ public class ExceptionsAspect {
     }
 
     @AfterThrowing(
-            pointcut = "execution(* com.enova.collector.api.Callbacks.*.*(..)) "//|| " +
+            pointcut = "execution(* com.enova.collector.api.Listener.*.*(..)) "//|| " +
             // "execution(* com.enova.collector.api.Services.*.*(..))",
             , throwing = "error"
     )

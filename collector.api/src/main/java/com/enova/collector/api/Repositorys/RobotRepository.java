@@ -16,4 +16,7 @@ public interface RobotRepository extends MongoRepository<Robot, String> {
 
     @Query(value = "{ 'name' : ?0 }")
     Optional<Robot> findbyName(String name);
+
+    @Query(value = "{ 'clientid' : ?0 }")
+    Optional<Robot> findbyClientId(String clientId);
 }

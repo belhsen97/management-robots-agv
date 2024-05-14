@@ -17,6 +17,5 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BeanStartup implements CommandLineRunner {
     @Override
-    public void run(String... args) {
-    }
+    public void run(String... args) {}
 }

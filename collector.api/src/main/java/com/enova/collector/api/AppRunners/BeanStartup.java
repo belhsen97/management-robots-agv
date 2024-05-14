@@ -7,6 +7,7 @@ import com.enova.collector.api.Services.RobotService;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -20,15 +21,9 @@ import java.util.Date;
 public class BeanStartup implements CommandLineRunner {
     private final MQTTService mqttService;
     private final MQTTClientConfig mqttClientConfig;
-    @Override
-    public void run(String... args) {
-        try {
-            mqttService.subscribe(mqttClientConfig.topic);
-            //   mqttService2.publish("testtopic/1",robot);
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
 
+    @Override
+    public void run(String... args) throws Exception {
 
     }
 
@@ -43,6 +38,7 @@ public class BeanStartup implements CommandLineRunner {
 //        System.out.println("Received message from handleErrorTopicMessage : " + new String(message));
 //    }
 }
+
 //    private final MQTTService mqttService2;
 //    private final ObjectMapperService objectMapperService;
 //    private final RobotService robotService;

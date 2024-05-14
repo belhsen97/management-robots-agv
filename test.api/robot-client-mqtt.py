@@ -20,8 +20,8 @@ property can be ( operationStatus ,  statusRobot ,modeRobot )
 """
 
 
-client_id = f'robot-mqtt-{random.randint(0, 10000)}'
-#"clientid": "enova-robot-1",
+#client_id = f'robot-mqtt-{random.randint(0, 10000)}'
+client_id: "robot"
 username = 'robot'
 password = 'robot'
 robot_name = 'robot'
@@ -194,10 +194,10 @@ if __name__ == '__main__':
     if args.robot_name:
         publish_topic += args.robot_name
         control_topic += args.robot_name +"/+/+"
-        print(control_topic)
         username = args.robot_name
         password = args.robot_name
         robot_name = args.robot_name
+        client_id =  args.robot_name
         run()
     else:
         print("Please provide the name of the robot using -name or --robot_name argument.")
