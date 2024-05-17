@@ -908,3 +908,7 @@ Caused by: java.lang.Exception: Exception
 2024-05-14 16:01:53.398  INFO 27084 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
 2024-05-14 16:01:53.404  INFO 27084 --- [main] com.enova.collector.api.Application      : Started Application in 2.13 seconds (JVM running for 3.059)
 2024-05-14 16:01:58.779  INFO 27084 --- [MQTT Call: collector-service-16-01-52370] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:152}] to localhost:27017
+2024-05-14 22:35:58.852 ERROR 27084 --- [MQTT Ping: collector-service-16-01-52370] o.e.p.c.mqttv3.internal.ClientState      : collector-service-16-01-52370: Timed out as no write activity, keepAlive=60,000,000,000 lastOutboundActivity=1,796,225,915,741,100 lastInboundActivity=1,796,225,917,051,900 time=1,816,455,917,947,100 lastPing=1,796,225,915,744,100
+2024-05-14 22:35:58.915  INFO 27084 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-14 22:35:58.916  INFO 27084 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'collector.api.errorChannel' has 0 subscriber(s).
+2024-05-14 22:35:58.918  INFO 27084 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
