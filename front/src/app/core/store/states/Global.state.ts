@@ -14,10 +14,14 @@ export interface RangeDate{
     limit:number;
 }
 
+const dateNow = new Date();
+const lastDate = new Date();
+const substructionTime:number  = 365 * 24 * 60 * 60 * 1000;
+lastDate.setTime( dateNow.getTime() - substructionTime);
 const rangeDate : RangeDate = {
-    start: new Date(2020, 6, 1),
-    end: new Date(2020, 6, 3),
-    limit: new Date(2016, 6, 10).getTime()-new Date(2016, 6, 1).getTime()
+    start:  lastDate ,
+    end: dateNow,
+    limit: dateNow.getTime()-lastDate.getTime()
 };
 
 const listResponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }> ={ successful: ReponseStatus.SUCCESSFUL,error: ReponseStatus.ERROR,unsuccessful: ReponseStatus.UNSUCCESSFUL};

@@ -50,67 +50,40 @@ public class RobotController {
     }
 
     @Async("get-robot-data")
-    @GetMapping("{name}/databand/all")
-    public CompletableFuture<RobotDataBand> GetAllRobotDataBandByName(@PathVariable String name) {
-        final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
+    @GetMapping("/databand")
+    public CompletableFuture<RobotDataBand> GetAllOrByNameOrUnixTimestampsRobotDataBand(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "start", required = false)  Long  start,
+            @RequestParam(value = "end", required = false)  Long  end) {
+        final List<RobotProperty> list  = iService.selectDataPropertysAllOrByNameOrUnixTimestamps(name,start,end);
         final  RobotDataBand r  = RobotPropertyMapper.mapToRobotDataBand(name , list);
         return CompletableFuture.completedFuture(r);
     }
 
+
     @Async("get-robot-data")
-    @GetMapping("{name}/property/all")
-    public CompletableFuture<List<RobotProperty>> GetAllPropertyByName(@PathVariable String name) {
-        final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
+    @GetMapping("/property")
+    public CompletableFuture<List<RobotProperty>> GetAllPropertyByName(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "start", required = false)  Long  start,
+            @RequestParam(value = "end", required = false)  Long  end){
+        final List<RobotProperty> list  =  iService.selectDataPropertysAllOrByNameOrUnixTimestamps(name,start,end);
         return CompletableFuture.completedFuture(list);
     }
-
     @Async("get-robot-data")
-    @GetMapping("/all/data-chart")
-    public CompletableFuture<List<RobotDataChart>> getAllDataChart() {
-        //System.out.println("Execute method with configured executor - "+ Thread.currentThread().getName());
-        final  List<RobotDataChart> list  = RobotPropertyMapper.mapToRobotData(iService.selectAllDataPropertys());
-        return CompletableFuture.completedFuture(list);
-    }
-
-    @Async("get-robot-data")
-    @GetMapping("{name}/data-chart/all")
-    public CompletableFuture<RobotDataChart> GetDataChartByName(@PathVariable String name) {
-        final List<RobotProperty> list  =  iService.selectAllDataPropertysByName(name);
+    @GetMapping("/data-chart")
+    public CompletableFuture<?> GetDataChartbyNameAndUnixTimeStamps(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "start", required = false)  Long  start,
+            @RequestParam(value = "end", required = false)  Long  end){
+        final List<RobotProperty> list  =  iService.selectDataPropertysAllOrByNameOrUnixTimestamps(name,start,end);
+        if ( name == null  ){
+            final  List<RobotDataChart> listRobotDataChart  = RobotPropertyMapper.mapToRobotData(list);
+            return CompletableFuture.completedFuture(listRobotDataChart);
+        }
         final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
         return CompletableFuture.completedFuture(r);
     }
-
-    @Async("get-robot-data")
-    @GetMapping("{name}/data-chart/date")
-    public CompletableFuture<RobotDataChart> GetDataChartbyNameBetweenDates(
-            @PathVariable("name") String name,
-            @RequestParam("start")  @DateTimeFormat(pattern = "yyyy-MM-dd")  Date start,
-            @RequestParam("end")  @DateTimeFormat(pattern = "yyyy-MM-dd")  Date end) {
-        final List<RobotProperty> list  =  iService.selectDataPropertysByNameAndDateTimes(name,start,end);
-        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
-        return CompletableFuture.completedFuture(r);
-    }
-    @Async("get-robot-data")
-    @GetMapping("{name}/data-chart/datetime")
-    public CompletableFuture<RobotDataChart> GetDataChartbyNameBetweenDateTimes(
-            @PathVariable("name") String name,
-            @RequestParam("start")  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  Date start,
-            @RequestParam("end")  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")  Date end) {
-        final List<RobotProperty> list  =  iService.selectDataPropertysByNameAndDateTimes(name,start,end);
-        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
-        return CompletableFuture.completedFuture(r);
-    }
-    @Async("get-robot-data")
-    @GetMapping("{name}/data-chart/unix-timestamp")
-    public CompletableFuture<RobotDataChart> GetDataChartbyNameAndUnixTimeStamps(
-            @PathVariable("name") String name,
-            @RequestParam("start")  Long  start,
-            @RequestParam("end")  Long  end) {
-        final List<RobotProperty> list  =  iService.selectDataPropertysByNameAndUnixTimestamps(name,start,end);
-        final  RobotDataChart r  = RobotPropertyMapper.mapToRobotData(name , list);
-        return CompletableFuture.completedFuture(r);
-    }
-
 
     @PostMapping
     public RobotDto Add(@RequestBody RobotDto rd) {

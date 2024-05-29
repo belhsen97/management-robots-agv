@@ -17,7 +17,7 @@ import { getRouterName } from 'src/app/core/store/selectors/Router.Seletor';
 import { MqttClientService } from 'src/app/core/services/mqtt-client.service';
 import { Subscribe } from 'src/app/core/store/models/Mqtt/Subscribe.model';
 import { getDataRobotChart, getRobot } from 'src/app/core/store/selectors/Robot.Selector';
-import { loadDataRobotChartByNameAndUnixDatetime, loadDataRobotChartbyName, refreshRobot, stopRefreshRobot } from 'src/app/core/store/actions/Robot.Action';
+import {  loadDataRobotChart, refreshRobot, stopRefreshRobot } from 'src/app/core/store/actions/Robot.Action';
 
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
@@ -140,7 +140,7 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
            }
         }
         );
-       this.storeRobot.dispatch(loadDataRobotChartbyName({ name: this.nameRobot }));
+       this.storeRobot.dispatch(loadDataRobotChart({ name: this.nameRobot,start:null,end:null }));
  
 
 

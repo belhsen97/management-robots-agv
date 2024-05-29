@@ -19,7 +19,6 @@ public class RobotServiceImpl implements RobotService {
 
     private final RobotRepository robotRepository;
 
-
     @Override
     public Optional<Robot> selectByUsernameAndPassword(String username, String password) {
         return robotRepository.findbyUsernameAndPassword( username,  password);

@@ -11,8 +11,8 @@ export const environment = {
         //connectTimeout: 4000, // Timeout period
         // Authentication information
         clientId: 'front',
-        username: 'test',
-        password: 'test',
+        username: 'admin',
+        password: 'admin',
         protocol: 'ws' as 'ws',  //protocol: 'ws'
         connectOnCreate: true,
       }

@@ -1,24 +1,140 @@
-2024-05-15 03:30:14.051  INFO 28444 --- [cluster-ClusterId{value='66437ceb25a63c1e1a3dc305', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
-
-com.mongodb.MongoSocketReadTimeoutException: Timeout while receiving message
-	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:701) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:579) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:415) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:374) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:216) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
-	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
-Caused by: java.net.SocketTimeoutException: Read timed out
-	at java.base/java.net.SocketInputStream.socketRead0(Native Method) ~[na:na]
-	at java.base/java.net.SocketInputStream.socketRead(SocketInputStream.java:115) ~[na:na]
-	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:168) ~[na:na]
-	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140) ~[na:na]
-	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:109) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:131) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:718) ~[mongodb-driver-core-4.4.2.jar:na]
-	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:576) ~[mongodb-driver-core-4.4.2.jar:na]
-	... 5 common frames omitted
-
-2024-05-15 09:42:30.466  INFO 28444 --- [cluster-rtt-ClusterId{value='66437ceb25a63c1e1a3dc305', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:160}] to localhost:27017
-2024-05-15 09:42:39.361  INFO 28444 --- [cluster-ClusterId{value='66437ceb25a63c1e1a3dc305', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:161}] to localhost:27017
-2024-05-15 09:42:39.361  INFO 28444 --- [cluster-ClusterId{value='66437ceb25a63c1e1a3dc305', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4149900}
+2024-05-28 09:50:04.640  INFO 23800 --- [main] com.enova.driveless.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 23800 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api)
+2024-05-28 09:50:04.651  INFO 23800 --- [main] com.enova.driveless.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-05-28 09:50:05.289  INFO 23800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-05-28 09:50:05.375  INFO 23800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 1 MongoDB repository interfaces.
+2024-05-28 09:50:05.459  INFO 23800 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-05-28 09:50:05.473  INFO 23800 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-05-28 09:50:05.658  INFO 23800 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 09:50:05.664  INFO 23800 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 09:50:05.828  INFO 23800 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2024-05-28 09:50:05.837  INFO 23800 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-28 09:50:05.838  INFO 23800 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-05-28 09:50:05.951  INFO 23800 --- [main] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring embedded WebApplicationContext
+2024-05-28 09:50:05.951  INFO 23800 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1246 ms
+2024-05-28 09:50:06.058  INFO 23800 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-05-28 09:50:06.112  INFO 23800 --- [cluster-ClusterId{value='66559abe69e9df1f183664bb', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:8}] to localhost:27017
+2024-05-28 09:50:06.112  INFO 23800 --- [cluster-rtt-ClusterId{value='66559abe69e9df1f183664bb', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:7}] to localhost:27017
+2024-05-28 09:50:06.114  INFO 23800 --- [cluster-ClusterId{value='66559abe69e9df1f183664bb', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=21052000}
+2024-05-28 09:50:07.095  INFO 23800 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 09:50:07.096  INFO 23800 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 1 subscriber(s).
+2024-05-28 09:50:07.097  INFO 23800 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-05-28 09:50:07.116  INFO 23800 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/management-robot-avg/driveless'
+2024-05-28 09:50:07.125  INFO 23800 --- [main] com.enova.driveless.api.Application      : Started Application in 2.858 seconds (JVM running for 4.039)
+2024-05-28 09:53:05.611  INFO 23800 --- [http-nio-0.0.0.0-8088-exec-3] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-28 09:53:05.612  INFO 23800 --- [http-nio-0.0.0.0-8088-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-28 09:53:05.613  INFO 23800 --- [http-nio-0.0.0.0-8088-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-05-28 09:53:05.802  INFO 23800 --- [http-nio-0.0.0.0-8088-exec-3] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:9}] to localhost:27017
+2024-05-28 09:56:59.985  INFO 23800 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 09:56:59.986  INFO 23800 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 0 subscriber(s).
+2024-05-28 09:56:59.986  INFO 23800 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-05-28 09:57:02.707  INFO 30880 --- [main] com.enova.driveless.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 30880 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api)
+2024-05-28 09:57:02.710  INFO 30880 --- [main] com.enova.driveless.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-05-28 09:57:03.258  INFO 30880 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-05-28 09:57:03.309  INFO 30880 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 1 MongoDB repository interfaces.
+2024-05-28 09:57:03.368  INFO 30880 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-05-28 09:57:03.376  INFO 30880 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-05-28 09:57:03.545  INFO 30880 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 09:57:03.550  INFO 30880 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 09:57:03.689  INFO 30880 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2024-05-28 09:57:03.695  INFO 30880 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-28 09:57:03.695  INFO 30880 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-05-28 09:57:03.776  INFO 30880 --- [main] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring embedded WebApplicationContext
+2024-05-28 09:57:03.776  INFO 30880 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1020 ms
+2024-05-28 09:57:03.877  INFO 30880 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-05-28 09:57:03.919  INFO 30880 --- [cluster-rtt-ClusterId{value='66559c5f1bf27869fa15bda5', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:14}] to localhost:27017
+2024-05-28 09:57:03.919  INFO 30880 --- [cluster-ClusterId{value='66559c5f1bf27869fa15bda5', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:15}] to localhost:27017
+2024-05-28 09:57:03.921  INFO 30880 --- [cluster-ClusterId{value='66559c5f1bf27869fa15bda5', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16274500}
+2024-05-28 09:57:04.799  INFO 30880 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 09:57:04.799  INFO 30880 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 1 subscriber(s).
+2024-05-28 09:57:04.799  INFO 30880 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-05-28 09:57:04.812  INFO 30880 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/management-robot-avg/driveless'
+2024-05-28 09:57:04.821  INFO 30880 --- [main] com.enova.driveless.api.Application      : Started Application in 2.465 seconds (JVM running for 3.575)
+2024-05-28 09:57:18.591  INFO 30880 --- [http-nio-0.0.0.0-8088-exec-1] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-28 09:57:18.592  INFO 30880 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-28 09:57:18.593  INFO 30880 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-28 09:57:18.772  INFO 30880 --- [http-nio-0.0.0.0-8088-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:16}] to localhost:27017
+2024-05-28 09:59:25.049  INFO 30880 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 09:59:25.050  INFO 30880 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 0 subscriber(s).
+2024-05-28 09:59:25.051  INFO 30880 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-05-28 09:59:28.992  INFO 9056 --- [main] com.enova.driveless.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 9056 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api)
+2024-05-28 09:59:28.994  INFO 9056 --- [main] com.enova.driveless.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-05-28 09:59:29.503  INFO 9056 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-05-28 09:59:29.554  INFO 9056 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 1 MongoDB repository interfaces.
+2024-05-28 09:59:29.611  INFO 9056 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-05-28 09:59:29.620  INFO 9056 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-05-28 09:59:29.756  INFO 9056 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 09:59:29.762  INFO 9056 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 09:59:29.893  INFO 9056 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2024-05-28 09:59:29.899  INFO 9056 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-28 09:59:29.899  INFO 9056 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-05-28 09:59:29.973  INFO 9056 --- [main] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring embedded WebApplicationContext
+2024-05-28 09:59:29.973  INFO 9056 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 938 ms
+2024-05-28 09:59:30.067  INFO 9056 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-05-28 09:59:30.109  INFO 9056 --- [cluster-rtt-ClusterId{value='66559cf272b723783a4ddf36', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:17}] to localhost:27017
+2024-05-28 09:59:30.109  INFO 9056 --- [cluster-ClusterId{value='66559cf272b723783a4ddf36', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:18}] to localhost:27017
+2024-05-28 09:59:30.111  INFO 9056 --- [cluster-ClusterId{value='66559cf272b723783a4ddf36', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=15563900}
+2024-05-28 09:59:30.956  INFO 9056 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 09:59:30.957  INFO 9056 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 1 subscriber(s).
+2024-05-28 09:59:30.957  INFO 9056 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-05-28 09:59:30.970  INFO 9056 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/management-robot-avg/driveless'
+2024-05-28 09:59:30.978  INFO 9056 --- [main] com.enova.driveless.api.Application      : Started Application in 2.332 seconds (JVM running for 3.369)
+2024-05-28 09:59:31.028  INFO 9056 --- [http-nio-0.0.0.0-8088-exec-1] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-28 09:59:31.029  INFO 9056 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-28 09:59:31.030  INFO 9056 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-28 09:59:31.187  INFO 9056 --- [http-nio-0.0.0.0-8088-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:19}] to localhost:27017
+2024-05-28 10:00:06.063  INFO 9056 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 10:00:06.064  INFO 9056 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 0 subscriber(s).
+2024-05-28 10:00:06.064  INFO 9056 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-05-28 10:00:09.827  INFO 18236 --- [main] com.enova.driveless.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 18236 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api)
+2024-05-28 10:00:09.830  INFO 18236 --- [main] com.enova.driveless.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-05-28 10:00:10.404  INFO 18236 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-05-28 10:00:10.458  INFO 18236 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 1 MongoDB repository interfaces.
+2024-05-28 10:00:10.521  INFO 18236 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-05-28 10:00:10.532  INFO 18236 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-05-28 10:00:10.701  INFO 18236 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 10:00:10.705  INFO 18236 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 10:00:10.861  INFO 18236 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2024-05-28 10:00:10.868  INFO 18236 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-28 10:00:10.869  INFO 18236 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-05-28 10:00:10.951  INFO 18236 --- [main] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring embedded WebApplicationContext
+2024-05-28 10:00:10.951  INFO 18236 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1065 ms
+2024-05-28 10:00:11.044  INFO 18236 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-05-28 10:00:11.085  INFO 18236 --- [cluster-rtt-ClusterId{value='66559d1b610c29649a451991', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:20}] to localhost:27017
+2024-05-28 10:00:11.085  INFO 18236 --- [cluster-ClusterId{value='66559d1b610c29649a451991', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:21}] to localhost:27017
+2024-05-28 10:00:11.087  INFO 18236 --- [cluster-ClusterId{value='66559d1b610c29649a451991', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14889900}
+2024-05-28 10:00:12.002  INFO 18236 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 10:00:12.002  INFO 18236 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 1 subscriber(s).
+2024-05-28 10:00:12.002  INFO 18236 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-05-28 10:00:12.019  INFO 18236 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/management-robot-avg/driveless'
+2024-05-28 10:00:12.031  INFO 18236 --- [main] com.enova.driveless.api.Application      : Started Application in 2.527 seconds (JVM running for 3.472)
+2024-05-28 10:00:12.069  INFO 18236 --- [http-nio-0.0.0.0-8088-exec-1] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-28 10:00:12.069  INFO 18236 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-28 10:00:12.070  INFO 18236 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-28 10:00:12.275  INFO 18236 --- [http-nio-0.0.0.0-8088-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:22}] to localhost:27017
+2024-05-28 10:08:30.934  INFO 18236 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 10:08:30.934  INFO 18236 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 0 subscriber(s).
+2024-05-28 10:08:30.935  INFO 18236 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-05-28 10:08:34.761  INFO 17596 --- [main] com.enova.driveless.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 17596 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api)
+2024-05-28 10:08:34.764  INFO 17596 --- [main] com.enova.driveless.api.Application      : No active profile set, falling back to 1 default profile: "default"
+2024-05-28 10:08:35.326  INFO 17596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-05-28 10:08:35.382  INFO 17596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 MongoDB repository interfaces.
+2024-05-28 10:08:35.444  INFO 17596 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2024-05-28 10:08:35.451  INFO 17596 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2024-05-28 10:08:35.580  INFO 17596 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 10:08:35.585  INFO 17596 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-28 10:08:35.741  INFO 17596 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2024-05-28 10:08:35.748  INFO 17596 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-28 10:08:35.748  INFO 17596 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-05-28 10:08:35.839  INFO 17596 --- [main] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring embedded WebApplicationContext
+2024-05-28 10:08:35.839  INFO 17596 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1030 ms
+2024-05-28 10:08:35.934  INFO 17596 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-05-28 10:08:35.981  INFO 17596 --- [cluster-rtt-ClusterId{value='66559f13a4fc411c72cf74f3', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:23}] to localhost:27017
+2024-05-28 10:08:35.981  INFO 17596 --- [cluster-ClusterId{value='66559f13a4fc411c72cf74f3', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:24}] to localhost:27017
+2024-05-28 10:08:35.983  INFO 17596 --- [cluster-ClusterId{value='66559f13a4fc411c72cf74f3', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=17655300}
+2024-05-28 10:08:36.866  INFO 17596 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-05-28 10:08:36.867  INFO 17596 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 1 subscriber(s).
+2024-05-28 10:08:36.867  INFO 17596 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2024-05-28 10:08:36.880  INFO 17596 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/management-robot-avg/driveless'
+2024-05-28 10:08:36.889  INFO 17596 --- [main] com.enova.driveless.api.Application      : Started Application in 2.475 seconds (JVM running for 3.478)
+2024-05-28 10:09:09.548  INFO 17596 --- [MQTT Call: driveless-service-10-08-36212] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:25}] to localhost:27017
+2024-05-28 13:13:37.846 ERROR 17596 --- [MQTT Ping: driveless-service-10-08-36212] o.e.p.c.mqttv3.internal.ClientState      : driveless-service-10-08-36212: Timed out as no write activity, keepAlive=60,000,000,000 lastOutboundActivity=800,146,758,897,500 lastInboundActivity=800,146,760,440,300 time=803,391,418,563,300 lastPing=800,146,758,900,400

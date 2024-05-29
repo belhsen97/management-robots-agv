@@ -524,12 +524,17 @@ public class RobotPropertyMapper {
         for (PlotBand plotBand : plotMap.get("Connection")) {
             if (Connection.CONNECTED.name().equals(plotBand.getText())) {
                 plotMapOut.get("Connected").add(plotBand);
-                incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
             } else if (Connection.DISCONNECTED.name().equals(plotBand.getText())) {
                 plotMapOut.get("Desconnected").add(plotBand);
-                incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incIntervalSecond   += plotBand.getTo() - plotBand.getFrom();
             }
         }
+
+        Map<String, Double> durationConnection = new HashMap<String, Double>();
+        durationConnection.put("connected", incIntervalFirst);
+        durationConnection.put("desconnected", incIntervalSecond);
+
 
         Map<String, Double> averageConnection = new HashMap<String, Double>();
         averageConnection.put("connected", new Double(((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
@@ -548,6 +553,13 @@ public class RobotPropertyMapper {
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
             }
         }
+
+
+
+        Map<String, Double> durationStatusMode = new HashMap<String, Double>();
+        durationStatusMode.put("Manual",  incIntervalFirst );
+        durationStatusMode.put("Auto",  incIntervalSecond );
+
         Map<String, Double> averageMode = new HashMap<String, Double>();
         averageMode.put("manual", new Double( ((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
         averageMode.put("auto", new Double(((incIntervalSecond  * 100) /( incIntervalFirst +incIntervalSecond ))));
@@ -570,6 +582,12 @@ public class RobotPropertyMapper {
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
             }
         }
+        Map<String, Double> durationOperationStatus = new HashMap<String, Double>();
+        durationOperationStatus.put("Normal",  incIntervalFirst );
+        durationOperationStatus.put("Ems",  incIntervalSecond );
+        durationOperationStatus.put("Pause",  incIntervalThird);
+
+
         Map<String, Double> averageOperationStatus = new HashMap<String, Double>();
         averageOperationStatus.put("normal", new Double(    ((incIntervalFirst*100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
         averageOperationStatus.put("ems", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))   ));
@@ -593,6 +611,12 @@ public class RobotPropertyMapper {
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
             }
         }
+        Map<String, Double> durationStatusRobot = new HashMap<String, Double>();
+        durationStatusRobot.put("inactive",  incIntervalFirst );
+        durationStatusRobot.put("waiting",  incIntervalSecond );
+        durationStatusRobot.put("running",  incIntervalThird);
+
+
         Map<String, Double> averageStatusRobot = new HashMap<String, Double>();
         averageStatusRobot.put("inactive", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
         averageStatusRobot.put("waiting", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
@@ -618,6 +642,13 @@ public class RobotPropertyMapper {
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
             }
         }
+        Map<String, Double> durationStatusBattery = new HashMap<String, Double>();
+        durationStatusBattery.put("charge",  incIntervalFirst );
+        durationStatusBattery.put("discharge",  incIntervalSecond );
+        durationStatusBattery.put("standby",  incIntervalThird);
+
+
+
         Map<String, Double> averageStatusBattery = new HashMap<String, Double>();
         averageStatusBattery.put("charge", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
         averageStatusBattery.put("discharge", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
@@ -664,6 +695,7 @@ public class RobotPropertyMapper {
         return new RobotDataBand(name,
                 new HashMap<String, Object>() {{
                     put("average",averageConnection);
+                    put("duration",durationConnection);
                     put("interval", new HashMap<String, Object>() {{
                                                                    put("connected", plotMapOut.get("Connected"));
                                                                   put("desconnected", plotMapOut.get("Desconnected"));
@@ -672,6 +704,7 @@ public class RobotPropertyMapper {
                 }},
                 new HashMap<String, Object>() {{
                     put("average",averageMode);
+                    put("duration",durationStatusMode);
                     put("interval", new HashMap<String, Object>() {{
                                 put("manual", plotMapOut.get("Manual"));
                                 put("auto", plotMapOut.get("Auto"));
@@ -680,6 +713,7 @@ public class RobotPropertyMapper {
                 }},
                 new HashMap<String, Object>() {{
                     put("average",averageOperationStatus);
+                    put("duration",durationOperationStatus);
                     put("interval", new HashMap<String, Object>() {{
                                 put("normal", plotMapOut.get("Normal"));
                                 put("ems", plotMapOut.get("Ems"));
@@ -689,6 +723,7 @@ public class RobotPropertyMapper {
                 }},
                 new HashMap<String, Object>() {{
                     put("average",averageStatusRobot);
+                    put("duration",durationStatusRobot);
                     put("interval", new HashMap<String, Object>() {{
                                 put("inactive", plotMapOut.get("Inactive"));
                                 put("waiting", plotMapOut.get("Waiting"));
@@ -698,6 +733,7 @@ public class RobotPropertyMapper {
                 }},
                 new HashMap<String, Object>() {{
                     put("average",averageStatusBattery);
+                    put("duration", durationStatusBattery);
                     put("interval", new HashMap<String, Object>() {{
                                 put("charge", plotMapOut.get("Charge"));
                                 put("discharge", plotMapOut.get("Discharge"));

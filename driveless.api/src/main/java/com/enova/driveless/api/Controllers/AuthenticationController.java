@@ -23,6 +23,7 @@ public class AuthenticationController {
 //https://www.emqx.io/docs/en/latest/access-control/authz/http.html
     @PostMapping("/sign-in")
     public   ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)  {
+        System.out.println(request.toString());
         if (request.getUsername() == "admin" && request.getPassword() == "admin" ){
             return ResponseEntity.ok(AuthenticationResponse.builder().result(StatusRobotAuth.allow).is_superuser(true).build());
         }

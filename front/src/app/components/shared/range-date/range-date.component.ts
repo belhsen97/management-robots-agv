@@ -22,10 +22,8 @@ export class RangeDateComponent implements OnInit , OnDestroy {
     }
   ngOnInit(): void {
     this.getDateRangeSearchInputSub =  this.store.select(getDateRangeSearchInput).subscribe(input => { 
-      this.rangeDate = input; 
-    console.log("input");
+    this.rangeDate = input; 
     });
-    
   }
   ngOnDestroy() {
     if (this.getDateRangeSearchInputSub) {this.getDateRangeSearchInputSub.unsubscribe();}}

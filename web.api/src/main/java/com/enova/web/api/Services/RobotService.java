@@ -10,12 +10,6 @@ import java.util.List;
 public interface RobotService extends IGenericCRUD<Robot,String> {
 
     Robot selectByName(String name);
-    List<RobotProperty> selectAllDataPropertys( );
-    List<RobotProperty> selectDataPropertysByTimestampBetween(Date start, Date end);
-
-    List<RobotProperty>  selectAllDataPropertysByName(String name);
-    List<RobotProperty> selectDataPropertysByNameAndDateTimes(String name, Date start, Date end);
-
-    List<RobotProperty> selectDataPropertysByNameAndUnixTimestamps(String name, Long start, Long end);
+    List<RobotProperty> selectDataPropertysAllOrByNameOrUnixTimestamps(String name, Long start, Long end);
 
 }

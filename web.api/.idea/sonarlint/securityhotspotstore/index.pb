@@ -194,3 +194,5 @@ w
 Gsrc/main/java/com/enova/web/api/Repositorys/RobotSettingRepository.java,0\c\0c2127d4982734851a490e78e66f2c60e6526c64
 j
 :src/main/java/com/enova/web/api/Services/TraceService.java,1\a\1af4bed358ecbd9231dbe0f44dc7a3bf8dd70ce7
+p
+@src/main/java/com/enova/web/api/Models/Entitys/RobotSetting.java,4\b\4b909612de32681b55a2ecfacaf693b071cc4389

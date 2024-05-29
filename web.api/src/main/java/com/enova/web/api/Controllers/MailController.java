@@ -1,7 +1,6 @@
 package com.enova.web.api.Controllers;
 
 import com.enova.web.api.Models.Commons.mail.Msg;
-import com.enova.web.api.Models.Dtos.RobotDto;
 import com.enova.web.api.Services.SmtpMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

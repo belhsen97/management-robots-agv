@@ -16,5 +16,7 @@ public interface RobotPropertyRepository extends MongoRepository<RobotProperty, 
 
    List<RobotProperty> findByTimestampBetween(Date startDate, Date endDate);
 
+   List<RobotProperty> findByNameAndTimestamp(String name, Date date);
    List<RobotProperty> findByNameAndTimestampBetween(String name, Date startDate, Date endDate);
+
 }

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { globalState } from "../states/Global.state"; 
-import { ShowAlert, openSidebar, searchInputRangeDate, searchInput } from "../actions/Global.Action";
+import { RangeDate, globalState } from "../states/Global.state"; 
+import { ShowAlert, openSidebar, searchInput, searchInputRangeDateSuccess } from "../actions/Global.Action";
 
 const _GlobalReducer  = createReducer(globalState,
     on(openSidebar, (state, action) => {
@@ -10,15 +10,18 @@ const _GlobalReducer  = createReducer(globalState,
         }
     })
     ,on(searchInput, (state, action) => {
+   
         return {
             ...state,
             keySearch: action.value
         }
     }) 
-    ,on(searchInputRangeDate, (state, action) => { 
+    ,on(/*searchInputRangeDate*/searchInputRangeDateSuccess, (state, action) => {
+        const rangeDate : RangeDate = {start: action.rangeDate.start, end: action.rangeDate.end,
+            limit: action.rangeDate.limit };
         return {
             ...state,
-            rangeDate: action.rangeDate
+            rangeDate:rangeDate
         }
     }) 
 

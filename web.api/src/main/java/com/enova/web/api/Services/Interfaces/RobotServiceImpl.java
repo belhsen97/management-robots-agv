@@ -53,26 +53,25 @@ public class RobotServiceImpl implements RobotService {
         return r.get();
     }
 
+
+
+
     @Override
-    public List<RobotProperty> selectAllDataPropertys() {
-         return robotPropertyRepository.findAll();
-    }
-    @Override
-    public List<RobotProperty> selectDataPropertysByTimestampBetween(Date start, Date end) {
-        return robotPropertyRepository.findByTimestampBetween(start, end);
-    }
-    @Override
-    public List<RobotProperty> selectAllDataPropertysByName(String name) {
-        return robotPropertyRepository.findAllByName(name);
-    }
-    @Override
-    public List<RobotProperty> selectDataPropertysByNameAndDateTimes(String name, Date start, Date end) {
-        return robotPropertyRepository.findByNameAndTimestampBetween( name,  start,  end);
-    }
-    @Override
-    public List<RobotProperty> selectDataPropertysByNameAndUnixTimestamps(String name, Long startUnixTimestamp, Long endUnixTimestamp){
-        final Date start = new Date(startUnixTimestamp);
-        final Date end = new Date(endUnixTimestamp);
+    public List<RobotProperty> selectDataPropertysAllOrByNameOrUnixTimestamps(String name, Long startUnixTimestamp, Long endUnixTimestamp){
+        if ( name == null ){return robotPropertyRepository.findAll();}
+        if ( startUnixTimestamp == null &&  endUnixTimestamp == null  ){return robotPropertyRepository.findAllByName(name);}
+        Date start;
+        Date end;
+        if (startUnixTimestamp == null ){
+            end = new Date(endUnixTimestamp);
+            return robotPropertyRepository.findByNameAndTimestamp( name,  end);
+        }
+        if (endUnixTimestamp == null ){
+            start = new Date(startUnixTimestamp);
+            return robotPropertyRepository.findByNameAndTimestamp( name,  start);
+        }
+         start = new Date(startUnixTimestamp);
+         end = new Date(endUnixTimestamp);
         return robotPropertyRepository.findByNameAndTimestampBetween( name,  start,  end);
     }
     @Override

@@ -2,7 +2,6 @@ import { createAction, props } from "@ngrx/store";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 import { Subscribe } from "../models/Mqtt/Subscribe.model";
-import { RobotProperty } from "../models/Robot/RobotProperty.model";
 import { RobotDataBand } from "../models/Robot/RobotDataBand.model";
 import { RobotSettingDto } from "../models/Robot/RobotSettingDto.model";
  
@@ -23,8 +22,8 @@ export const LOAD_ROBOTS='[robot page] load robot';
 export const  LOAD_SETTING_ROBOT='[robot page] load robot';
 export const LOAD_ROBOT_BY_Name='[robot page] load robot by name';
 export const LOAD_ROBOT_DATA_BAND_BY_NAME='[robot page] load data robot band by name';
-export const LOAD_DATA_ROBOT_CHART_BY_NAME='[robot page] load data robot chart by name';
 export const LOAD_DATA_ROBOT_CHART_BY_NAME_AND_UNIXDATETIME='[robot page] load data robot chart by name and Unix Date time';
+export const LOAD_DATA_ROBOT_BAND ='[robot page] load data robot Band all or by name or by Unix Date time';
 export const ADD_ROBOT='[robot page] add robot';
 export const UPDATE_ROBOT='[robot page] update robot';
 export const UPDATE_SETTING_ROBOT='[robot page] update setting robot';
@@ -52,10 +51,14 @@ export const refreshRobotsuccess=createAction(REFRESH_ROBOT_SUCCESS,props<{robot
 
 
 
+export const loadDataRobotData=createAction(LOAD_DATA_ROBOT_BAND,props<{name:String | null,start:number | null,end:number | null}>());
 
-export const loadRobotDataBandbyName=createAction(LOAD_ROBOT_DATA_BAND_BY_NAME,props<{name:String}>());
-export const loadDataRobotChartbyName=createAction(LOAD_DATA_ROBOT_CHART_BY_NAME,props<{name:String}>());
-export const loadDataRobotChartByNameAndUnixDatetime=createAction(LOAD_DATA_ROBOT_CHART_BY_NAME_AND_UNIXDATETIME,props<{name:String,start:number,end:number}>());
+
+
+export const loadDataRobotChart=createAction(LOAD_DATA_ROBOT_CHART_BY_NAME_AND_UNIXDATETIME,props<{name:String | null,start:number | null,end:number | null}>());
+
+
+
 
 export const refreshRobots=createAction(REFRESH_ROBOTS,props<{ subscribe: Subscribe }>()); 
 export const refreshRobot=createAction(REFRESH_ROBOT,props<{ subscribe: Subscribe }>()); 

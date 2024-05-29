@@ -43,27 +43,46 @@ export class RobotService extends Service {
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
-  GetRobotDataBandByName(name:String): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot/${name}/databand/all`,
-      { observe: 'response', 
+
+
+
+
+
+
+  geDataChartRobot(  queryParams: any): Observable<HttpResponse<any>> {
+    let params = new HttpParams();
+    if (queryParams) {
+      Object.keys(queryParams).forEach(key => {
+        const value = queryParams[key];
+        if (value !== null && value !== undefined) { // Check for null or undefined
+          params = params.append(key, value.toString());
+        }
+      });
+    }
+    return this.http.get(`${this.url}/robot/data-chart`,
+      { observe: 'response', params: params,
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
 
-  getAllDataChartByName(name:String): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot/${name}/data-chart/all`,
-      { observe: 'response', 
-      //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
-     })
-  }
-  geAllDataChartByNameAndUnixDatetime(name:String, queryParams: any): Observable<HttpResponse<any>> {
+
+
+
+
+
+
+
+  geAllDataBand(queryParams: any): Observable<HttpResponse<any>> {
     let params = new HttpParams();
     if (queryParams) {
-        Object.keys(queryParams).forEach(key => {
-            params = params.append(key, queryParams[key]);
-        });
+      Object.keys(queryParams).forEach(key => {
+        const value = queryParams[key];
+        if (value !== null && value !== undefined) { // Check for null or undefined
+          params = params.append(key, value.toString());
+        }
+      });
     }
-    return this.http.get(`${this.url}/robot/${name}/data-chart/unix-timestamp`,
+    return this.http.get(`${this.url}/robot/databand`,
       { observe: 'response', params: params,
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })

@@ -1,13 +1,11 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8Î‰‘Ùî1
 
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(§Ãêœ8Ñ‰‘Ùî1
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(§Ãêœ8Ñ‰‘Ùî1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ñĞ™úÿÿÿÿ8Ó‰‘Ùî1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ì‘Á8Ó‰‘Ùî1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ñĞ™úÿÿÿÿ8Ó‰‘Ùî1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ì‘Á8Ó‰‘Ùî1
 H
-java:S1168"+Return an empty collection instead of null.(¥¹ï8Ô‰‘Ùî1
-e
-java:S1128"CRemove this unused import 'com.enova.web.api.Models.Dtos.RobotDto'.(ÜÇÔûÿÿÿÿ8Õ‰‘Ùî1
+java:S1168"+Return an empty collection instead of null.(¥¹ï8Ô‰‘Ùî1
 I
-java:S1068",Remove this unused "iService" private field.(Œ“Ú¡8Õ‰‘Ùî1
+java:S1068",Remove this unused "iService" private field.(Œ“Ú¡8Õ‰‘Ùî1

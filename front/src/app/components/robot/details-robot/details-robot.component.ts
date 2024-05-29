@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { MatSort } from '@angular/material/sort';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
-import { deleteRobot, loadRobotDataBandbyName, loadRobotByName, updateRobot } from 'src/app/core/store/actions/Robot.Action';
+import { deleteRobot, loadRobotByName, updateRobot, loadDataRobotData } from 'src/app/core/store/actions/Robot.Action';
 import { getRobot, getRobotDataBand } from 'src/app/core/store/selectors/Robot.Selector';
 import { RobotProperty } from 'src/app/core/store/models/Robot/RobotProperty.model';
 import { MatPaginator } from '@angular/material/paginator';
@@ -47,7 +47,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
   private getlistRobotPropertysSub: Subscription | undefined;
   private getRobotSub: Subscription | undefined;
   private getValueSearchInputSub: Subscription | undefined;
-  private getDateRangeSearchInputSub: Subscription | undefined;
+  private getDateRangeSearchInputSubb: Subscription | undefined;
   private chart: any;
   private nameRobot: string = "";
   public robot !: RobotDto;
@@ -73,8 +73,12 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
       if (value === null || value === undefined || this.dataSource == undefined) { return; }
       this.dataSource.filter = value;
     });
-    this.getDateRangeSearchInputSub = this.storeGlobal.select(getDateRangeSearchInput).subscribe(value => { 
-     console.log(value) ;
+    this.getDateRangeSearchInputSubb = this.storeGlobal.select(getDateRangeSearchInput).subscribe(value => { 
+      this.storeRobot.dispatch(loadDataRobotData({
+        name:(this.nameRobot== null ? null : this.nameRobot ),
+        start:(value.start == null ? null : value.start.getTime()),
+        end:(value.end == null ? null : value.end.getTime())
+      }));
     });
     if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
     if (this.nameRobot == "") { this.robotService.goToComponent("dashboard/table"); }
@@ -118,8 +122,12 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
     this.storeRobot.dispatch(loadRobotByName({ name: this.nameRobot }));
-    this.storeRobot.dispatch(loadRobotDataBandbyName({ name: this.nameRobot }));
+    this.storeRobot.dispatch(loadDataRobotData({ 
+      name:(this.nameRobot== null ? null : this.nameRobot )
+      ,start:null,end:null
+    }));
 
   }
   ngOnDestroy(): void {
@@ -128,7 +136,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.getlistRobotPropertysSub) { this.getlistRobotPropertysSub.unsubscribe(); }
     if (this.getRobotSub) { this.getRobotSub.unsubscribe(); }
     if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); }
-    if (this.getDateRangeSearchInputSub) { this.getDateRangeSearchInputSub.unsubscribe(); }
+    if (this.getDateRangeSearchInputSubb) { this.getDateRangeSearchInputSubb.unsubscribe(); }
     if (this.dataSource) { this.dataSource.disconnect(); }
   }
 
