@@ -8,5 +8,5 @@ export const AppReducer={
     global:GlobalReducer,
     router:routerReducer,
     robotstate : robotReducer,
- //   mqtt:mqttReducer
+    mqtt:mqttReducer
 }

@@ -196,3 +196,5 @@ j
 :src/main/java/com/enova/web/api/Services/TraceService.java,1\a\1af4bed358ecbd9231dbe0f44dc7a3bf8dd70ce7
 p
 @src/main/java/com/enova/web/api/Models/Entitys/RobotSetting.java,4\b\4b909612de32681b55a2ecfacaf693b071cc4389
+p
+@src/main/java/com/enova/web/api/Models/Dtos/RobotSettingDto.java,b\c\bc6a7eeb94d4b3b00fc89e53dbcbc2bae80aef50

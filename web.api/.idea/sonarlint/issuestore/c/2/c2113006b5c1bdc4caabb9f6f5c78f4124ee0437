@@ -1,21 +1,23 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8¸ö°ıû1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8ÿ†ğü1
 i
-java:S6830 "GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ÖÌ“øÿÿÿÿ8Åö°ıû1
-j	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂŸ±¹8Åö°ıû1
+java:S6830""GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜¨¢ûÿÿÿÿ8‡ğü1
+d
+java:S6830#"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö¶¦›8‡ğü1
+j	java:S100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂŸ±¹8‡ğü1
 _
-java:S1612'"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8Çö°ıû1
-j	java:S100,"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§À°‹8Èö°ıû1
-j	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è§ÀÎ8Èö°ıû1
-j	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸ğ¸8Éö°ıû1
-j	java:S100B"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦‹ß…8Êö°ıû1
-j	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Š«»8Ìö°ıû1
+java:S1612+"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8‡ğü1
+j	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§À°‹8‡ğü1
+j	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è§ÀÎ8‘‡ğü1
+j	java:S100:"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áæƒï8‘‡ğü1
 C
-java:S1452K"&Remove usage of generic wildcard type.(™Š«»8Ìö°ıû1
-o	java:S100Y"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»éºÔıÿÿÿÿ8ÏÜ´ıû1
-j	java:S100^"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÖ”®8ĞÜ´ıû1
-j	java:S100c"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8ÑÜ´ıû1
-s
-java:S1128"QRemove this unused import 'org.springframework.format.annotation.DateTimeFormat'.(‡ˆôƒøÿÿÿÿ8ˆ¤´ıû1
-M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ˆ¤´ıû1
+java:S1452:"&Remove usage of generic wildcard type.(áæƒï8‘‡ğü1
+S
+java:S2696@"6Make the enclosing method "static" or remove this set.(§ìŒ¬8Ô©Ÿü1
+j	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦‹ß…8”‡ğü1
+j	java:S100T"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Š«»8”‡ğü1
+C
+java:S1452T"&Remove usage of generic wildcard type.(™Š«»8•‡ğü1
+o	java:S100b"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»éºÔıÿÿÿÿ8•‡ğü1
+j	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÖ”®8–‡ğü1
+j	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8–‡ğü1

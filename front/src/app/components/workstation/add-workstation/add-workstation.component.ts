@@ -27,7 +27,7 @@ export class AddWorkstationComponent implements OnInit {
     this.wsState = wsState;
   }
   ngOnInit(): void {
-    this.storeRobot.select(getListRobot).subscribe(item => { this.listRobot = item; });
+    this.storeRobot.select(getListRobot).subscribe(item => { this.listRobot = item;  });
     if (this.data.element != undefined) { this.wsState.workstation = this.data.element; return; }
     this.wsState.workstation = { id: "", name: "", enable: true, tags: [], robots: [] };
   }

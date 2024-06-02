@@ -299,9 +299,7 @@ _loadSettingRobot = createEffect(() => this.action$
                  }
              )
         )
-    );
-
-
+    ); 
     refreshOneRobot = createEffect(() =>
     this.action$.pipe(
         ofType(refreshRobot),

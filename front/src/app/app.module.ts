@@ -52,9 +52,8 @@ import { RobotEffects } from './core/store/effects/Robot.Effect';
 import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
 import { DateFormatPipe } from './pipes/DateFormatPipe';
 import { DateAgoPipe } from './pipes/DateAgoPipe';
-import { RangeDateComponent } from './components/shared/range-date/range-date.component';
-import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
-
+import { RangeDateComponent } from './components/shared/range-date/range-date.component';  
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
 @NgModule({
@@ -103,9 +102,8 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
 
     // HighchartsChartModule ,
 
-    
-    RichTextEditorAllModule,
-
+ 
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
 
 
     MaterialModule,
@@ -118,7 +116,7 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), 
     StoreRouterConnectingModule.forRoot({serializer : DashbordRouterSerializer}), BrowserAnimationsModule ,// include n number of reducer  / 25 max records clicking events 
-    EffectsModule.forRoot([GlobalEffects, RobotEffects/*,MqttEffects*/]),
+    EffectsModule.forRoot([GlobalEffects, RobotEffects,MqttEffects]),
 
     
    MqttModule.forRoot(environment.mqttClientConfig)

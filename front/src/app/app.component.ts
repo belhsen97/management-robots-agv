@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MqttClientService } from './core/services/mqtt-client.service';
 import { UserService } from './core/services/user.service.ts.service';
 import { userState } from './core/store/states/User.state';
@@ -6,10 +6,10 @@ import {  MQTTState, mqttState } from './core/store/states/Mqtt.state';
 import { IMqttMessage } from 'ngx-mqtt';
 import { Store } from '@ngrx/store';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
-import { connectMQTT, connectionSuccess, desconnectMQTT, onSubscribeMQTT, subscribeMQTT } from './core/store/actions/Mqtt.Action';
+import { connectMQTT, connectionSuccess, desconnectMQTT, onSubscribeMQTT, subscribeMQTT, subscribeStatusClients } from './core/store/actions/Mqtt.Action';
 import { state } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import {  selectIsConnected } from './core/store/selectors/Mqtt.selector';
+import {  selectIsConnected, selectStatusClient } from './core/store/selectors/Mqtt.selector';
 import * as mqtt from 'mqtt';
 import { environment } from 'src/environments/environment';
 import { RobotService } from './core/services/robot.service';
@@ -23,12 +23,12 @@ import { getListRobot } from './core/store/selectors/Robot.Selector';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
 
   title = 'dashboard-robot-agv';
-robot !: RobotDto ; 
-      // isConnectedsubscribe !: Subscription;
-      // onSubcribe !: Subscription;
+  private robot !: RobotDto ;
+  private getListRobotSub !: Subscription | undefined;
+  private getStatusClientSub !: Subscription | undefined;
 
   constructor(public mqttClientService: MqttClientService,public userService: UserService,
     public robotService: RobotService,
@@ -37,10 +37,40 @@ robot !: RobotDto ;
   ) 
   { }
 
+
   ngOnInit(): void {
+    this.getListRobotSub = this.storeRobot.select(getListRobot).subscribe(item => {
+      robotState.listRobots = item;
+      console.log(robotState.listRobots);
+    });
+    this.getStatusClientSub= this.storeMqtt.select(selectStatusClient).subscribe(item => {
+       console.log(item);
+
+    });
+  }
+  ngAfterViewInit(): void {
     this.storeRobot.dispatch(loadRobots());
     this.storeRobot.dispatch(loadSettingRobot());
-     userState.userDto = this.userService.getUserDto();
+    userState.userDto = this.userService.getUserDto();
+    this.storeRobot.dispatch(refreshRobots({ subscribe: mqttState.subscribes.dataRobots }));
+    this.storeMqtt.dispatch(subscribeStatusClients({ subscribe: mqttState.subscribes.clientsStatus }));
+  }
+  ngOnDestroy(): void {
+    this.mqttClientService.disconnect();
+    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe(); }
+    if (this.getStatusClientSub) { this.getStatusClientSub.unsubscribe(); }
+  }
+
+}
+
+
+
+
+
+
+    
+          // isConnectedsubscribe !: Subscription;
+      // onSubcribe !: Subscription;
     // this.robotService.getAll().subscribe(
     //   (response) => { 
     //      robotState.listRobots = response.body;
@@ -87,10 +117,3 @@ robot !: RobotDto ;
     //        console.log('MQTT --> Subscribe to topics res', message.payload.toString())
     //      });
     // this.mqttClientService.publish(mqttState.publish);
-  }
-
-  ngOnDestroy(): void {
-    this.mqttClientService.disconnect(); 
-  }
-
-}

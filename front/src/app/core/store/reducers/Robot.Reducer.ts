@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 
 
-import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess } from "../actions/Robot.Action";
+import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess, updateRobotStatusConnectionSuccess } from "../actions/Robot.Action";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { Connection } from "../models/Robot/Connection.enum";
 import { ModeRobot } from "../models/Robot/ModeRobot.enum";
@@ -130,6 +130,23 @@ const _robotReducer = createReducer(robotState,
         _robot.createdAt =  new Date (  _robot.createdAt.toString());
         const updatedRobot=state.listRobots.map((r:RobotDto)=>{return _robot.id===r.id?_robot:r;});
         return{  ...state, listRobots:[...updatedRobot] , robot : _robot}
+    }),
+    on(updateRobotStatusConnectionSuccess ,(state,action)=>{
+        let connection = Connection.DISCONNECTED;
+        if ( ( (action.client!.disconnected_at == undefined )   ? true : action.client!.connected_at > action.client!.disconnected_at )   ){
+            connection =  Connection.CONNECTED;}
+      if ( ( (action.client!.connected_at == undefined )   ? true : action.client!.connected_at < action.client!.disconnected_at ) ){
+        connection = Connection.DISCONNECTED;}
+        const updatedRobots = state.listRobots.map((robot: RobotDto) => {
+            if (robot.clientid === action.client.clientid) {
+              return {
+                ...robot,
+                connection :  connection,
+              };
+            }
+            return robot;
+          });
+        return{  ...state, listRobots:[...updatedRobots] }
     }),
     on(refreshRobotssuccess ,(state,action)=>{
         

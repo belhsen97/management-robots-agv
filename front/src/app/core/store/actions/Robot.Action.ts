@@ -4,6 +4,7 @@ import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 import { Subscribe } from "../models/Mqtt/Subscribe.model";
 import { RobotDataBand } from "../models/Robot/RobotDataBand.model";
 import { RobotSettingDto } from "../models/Robot/RobotSettingDto.model";
+import { StatusClientMQTT } from "../models/Global/StatusClientMQTT.model";
  
 export const LOAD_ALL_ROBOTS_SUCCESS='[robot page] load all Robots success';
 export const LOAD_ROBOT_SUCCESS='[robot page] load Robot success';
@@ -14,6 +15,7 @@ export const LOAD_SETTING_ROBOT_SUCCESS='[robot page] load Setting Robot success
 export const LOAD_ROBOT_FAIL='[robot page] load Robot fail';
 export const ADD_ROBOT_SUCCESS='[robot page] add Robot success';
 export const UPDATE_ROBOT_SUCCESS='[robot page] update Robot success';
+export const UPDATE_ROBOT_CNX_STATUS_SUCCESS='[robot page] update Robot success connection status';
 export const REFRESH_ROBOTS_SUCCESS='[robot page] refresh Robots success';
 export const REFRESH_ROBOT_SUCCESS='[robot page] refresh Robot success';
 export const DELETE_ROBOT_SUCCESS='[robot page] delete Robot success';
@@ -43,11 +45,11 @@ export const loadAllRobotsuccess=createAction(LOAD_ALL_ROBOTS_SUCCESS,props<{lis
 export const loadRobotsuccess=createAction(LOAD_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());
 export const addRobotsuccess=createAction(ADD_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());
 export const updateRobotsuccess=createAction(UPDATE_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());
+export const updateRobotStatusConnectionSuccess = createAction(UPDATE_ROBOT_CNX_STATUS_SUCCESS, props<{ client: StatusClientMQTT }>());
 export const deleteRobotsuccess=createAction(DELETE_ROBOT_SUCCESS,props<{id:String}>()); 
 
 export const refreshPannelRobot=createAction(REFRESH_PANNEL_ROBOT); 
-export const refreshRobotssuccess=createAction(REFRESH_ROBOTS_SUCCESS,props<{robotinput:RobotDto}>());
-export const refreshRobotsuccess=createAction(REFRESH_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());
+
 
 
 
@@ -57,13 +59,6 @@ export const loadDataRobotData=createAction(LOAD_DATA_ROBOT_BAND,props<{name:Str
 
 export const loadDataRobotChart=createAction(LOAD_DATA_ROBOT_CHART_BY_NAME_AND_UNIXDATETIME,props<{name:String | null,start:number | null,end:number | null}>());
 
-
-
-
-export const refreshRobots=createAction(REFRESH_ROBOTS,props<{ subscribe: Subscribe }>()); 
-export const refreshRobot=createAction(REFRESH_ROBOT,props<{ subscribe: Subscribe }>()); 
-export const stopRefreshRobots=createAction(STOP_REFRESH_ROBOTS);
-export const stopRefreshRobot=createAction(STOP_REFRESH_ROBOT); 
 
 export const loadRobots=createAction(LOAD_ROBOTS);
 export const loadRobotByName=createAction(LOAD_ROBOT_BY_Name,props<{name:string}>());
@@ -75,3 +70,13 @@ export const deleteRobot=createAction(DELETE_ROBOT,props<{id:String}>());
 export const loadSettingRobot = createAction(LOAD_SETTING_ROBOT);
 export const loadSettingRobotSuccess=createAction(LOAD_SETTING_ROBOT_SUCCESS,props<{setting:RobotSettingDto}>());
 export const updateSettingRobot=createAction(UPDATE_SETTING_ROBOT,props<{settinginput:RobotSettingDto}>());
+
+
+
+export const refreshRobotssuccess=createAction(REFRESH_ROBOTS_SUCCESS,props<{robotinput:RobotDto}>());
+export const refreshRobotsuccess=createAction(REFRESH_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());
+
+export const refreshRobots=createAction(REFRESH_ROBOTS,props<{ subscribe: Subscribe }>()); 
+export const refreshRobot=createAction(REFRESH_ROBOT,props<{ subscribe: Subscribe }>()); 
+export const stopRefreshRobots=createAction(STOP_REFRESH_ROBOTS);
+export const stopRefreshRobot=createAction(STOP_REFRESH_ROBOT); 

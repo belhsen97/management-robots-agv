@@ -4,6 +4,7 @@ import com.enova.web.api.Enums.Connection;
 import com.enova.web.api.Enums.ModeRobot;
 import com.enova.web.api.Enums.OperationStatus;
 import com.enova.web.api.Enums.StatusRobot;
+import com.enova.web.api.Models.Dtos.RobotSettingDto;
 import com.enova.web.api.Models.Entitys.RobotProperty;
 import com.enova.web.api.Models.Responses.PlotBand;
 import com.enova.web.api.Models.Responses.PlotLine;
@@ -14,6 +15,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RobotPropertyMapper {
+    public static RobotSettingDto globalSetting = RobotSettingDto.builder()
+            .speed(new HashMap<String, Double>() {{
+                put("min", 7.0D);
+                put("max", 8.0D);
+            }})
+            .distance(new HashMap<String, Double>() {{
+                put("min", 4D);
+                put("max", 10D);
+            }})
+            .build();
+
     private static double parseDoubleValue(String str) {
         try {
             return Double.parseDouble(str);
@@ -56,7 +68,7 @@ public class RobotPropertyMapper {
     }
 
 
-    public static List<RobotDataChart> mapToRobotData(List<RobotProperty> properties) {
+    public static List<RobotDataChart> mapToRobotsDataChart(List<RobotProperty> properties) {
         if (properties.isEmpty()) {
             return Collections.emptyList();
         }
@@ -70,14 +82,14 @@ public class RobotPropertyMapper {
         for (Map.Entry<String, List<RobotProperty>> entry : propertyMap.entrySet()) {
             String name = entry.getKey();
             List<RobotProperty> props = entry.getValue();
-            robotDataList.add(mapToRobotData(name, props));
+            robotDataList.add(mapToRobotDataChart(name, props));
         }
 
         return robotDataList;
     }
 
 
-    public static RobotDataChart mapToRobotData(String name, List<RobotProperty> properties) {
+    public static RobotDataChart mapToRobotDataChart(String name, List<RobotProperty> properties) {
         if (properties.isEmpty()) {
             return new RobotDataChart();
         }
@@ -239,7 +251,25 @@ public class RobotPropertyMapper {
                 .build();
     }
 
+    public static List<RobotDataBand> mapToRobotsDataBand(List<RobotProperty> properties) {
+        if (properties.isEmpty()) {
+            return Collections.emptyList();
+        }
 
+        Map<String, List<RobotProperty>> propertyMap = new HashMap<>();
+        for (RobotProperty property : properties) {
+            propertyMap.computeIfAbsent(property.getName(), k -> new ArrayList<>()).add(property);
+        }
+
+        List<RobotDataBand> robotDataList = new ArrayList<>();
+        for (Map.Entry<String, List<RobotProperty>> entry : propertyMap.entrySet()) {
+            String name = entry.getKey();
+            List<RobotProperty> props = entry.getValue();
+            robotDataList.add(mapToRobotDataBand(name, props));
+        }
+
+        return robotDataList;
+    }
     public static RobotDataBand mapToRobotDataBand(String name, List<RobotProperty> properties) {
         //Arrays.asList();
         final String CHARGED = "CHARGED";
@@ -248,8 +278,7 @@ public class RobotPropertyMapper {
         final String MIN = "MIN";
         final String MAX = "MAX";
 
-        final Double min = 7.0;
-        final Double max = 8.0;
+
 
 
         properties = properties.stream()
@@ -460,11 +489,11 @@ public class RobotPropertyMapper {
             }
             String statusSpeed = null;
             if (previousTimestamp != timestamp) {
-                if (speedValue > max) {
+                if (speedValue > globalSetting.getSpeed().get("max")) {
                     statusSpeed = MAX;
-                } else if (speedValue < min) {
+                } else if (speedValue < globalSetting.getSpeed().get("min")) {
                     statusSpeed = MIN;
-                } else if (speedValue <= max && speedValue >= max) {
+                } else if (speedValue <= globalSetting.getSpeed().get("max") && speedValue >= globalSetting.getSpeed().get("min")) {
                     statusSpeed = STANDBY;
                 }
             }
@@ -521,20 +550,27 @@ public class RobotPropertyMapper {
         double incIntervalFirst = 0D;
         double incIntervalSecond = 0D;
         double incIntervalThird = 0D;
+        double incFrequencyFirst = 0D;
+        double incFrequencySecond = 0D;
+        double incFrequencyThird = 0D;
         for (PlotBand plotBand : plotMap.get("Connection")) {
             if (Connection.CONNECTED.name().equals(plotBand.getText())) {
                 plotMapOut.get("Connected").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyFirst += 1;
             } else if (Connection.DISCONNECTED.name().equals(plotBand.getText())) {
                 plotMapOut.get("Desconnected").add(plotBand);
                 incIntervalSecond   += plotBand.getTo() - plotBand.getFrom();
+                incFrequencySecond += 1;
             }
         }
 
         Map<String, Double> durationConnection = new HashMap<String, Double>();
         durationConnection.put("connected", incIntervalFirst);
         durationConnection.put("desconnected", incIntervalSecond);
-
+        Map<String, Double> frquencyConnection = new HashMap<String, Double>();
+        frquencyConnection.put("connected", incFrequencyFirst);
+        frquencyConnection.put("desconnected", incFrequencySecond);
 
         Map<String, Double> averageConnection = new HashMap<String, Double>();
         averageConnection.put("connected", new Double(((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
@@ -544,13 +580,17 @@ public class RobotPropertyMapper {
 
         incIntervalFirst = 0D;
         incIntervalSecond = 0D;
+        incFrequencyFirst = 0D;
+        incFrequencySecond = 0D;
         for (PlotBand plotBand : plotMap.get("ModeRobot")) {
             if (ModeRobot.MANUAL.name().equals(plotBand.getText())) {
                 plotMapOut.get("Manual").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyFirst += 1;
             } else if (ModeRobot.AUTO.name().equals(plotBand.getText())) {
                 plotMapOut.get("Auto").add(plotBand);
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+                incFrequencySecond += 1;
             }
         }
 
@@ -559,6 +599,9 @@ public class RobotPropertyMapper {
         Map<String, Double> durationStatusMode = new HashMap<String, Double>();
         durationStatusMode.put("Manual",  incIntervalFirst );
         durationStatusMode.put("Auto",  incIntervalSecond );
+        Map<String, Double> frequencyStatusMode = new HashMap<String, Double>();
+        frequencyStatusMode.put("Manual",  incFrequencyFirst );
+        frequencyStatusMode.put("Auto",  incFrequencySecond );
 
         Map<String, Double> averageMode = new HashMap<String, Double>();
         averageMode.put("manual", new Double( ((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
@@ -569,23 +612,32 @@ public class RobotPropertyMapper {
 
         incIntervalFirst = 0D;
         incIntervalSecond = 0D;
-        incIntervalThird = 0D;
+        incFrequencyFirst = 0D;
+        incFrequencySecond = 0D;
         for (PlotBand plotBand : plotMap.get("OperationStatus")) {
             if (OperationStatus.NORMAL.name().equals(plotBand.getText())) {
                 plotMapOut.get("Normal").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyFirst += 1;
             } else if (OperationStatus.EMS.name().equals(plotBand.getText())) {
                 plotMapOut.get("Ems").add(plotBand);
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+                incFrequencySecond += 1;
             } else if (OperationStatus.PAUSE.name().equals(plotBand.getText())) {
                 plotMapOut.get("Pause").add(plotBand);
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyThird += 1;
             }
         }
         Map<String, Double> durationOperationStatus = new HashMap<String, Double>();
         durationOperationStatus.put("Normal",  incIntervalFirst );
         durationOperationStatus.put("Ems",  incIntervalSecond );
         durationOperationStatus.put("Pause",  incIntervalThird);
+
+        Map<String, Double> frequencyOperationStatus = new HashMap<String, Double>();
+        frequencyOperationStatus.put("Normal",  incFrequencyFirst );
+        frequencyOperationStatus.put("Ems",  incFrequencySecond );
+        frequencyOperationStatus.put("Pause",  incFrequencyThird);
 
 
         Map<String, Double> averageOperationStatus = new HashMap<String, Double>();
@@ -599,16 +651,22 @@ public class RobotPropertyMapper {
         incIntervalFirst = 0D;
         incIntervalSecond = 0D;
         incIntervalThird = 0D;
+        incFrequencyFirst = 0D;
+        incFrequencySecond = 0D;
+        incFrequencyThird = 0D;
         for (PlotBand plotBand : plotMap.get("StatusRobot")) {
             if (StatusRobot.INACTIVE.name().equals(plotBand.getText())) {
                 plotMapOut.get("Inactive").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyFirst += 1;
             } else if (StatusRobot.WAITING.name().equals(plotBand.getText())) {
                 plotMapOut.get("Waiting").add(plotBand);
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+                incFrequencySecond += 1;
             } else if (StatusRobot.RUNNING.name().equals(plotBand.getText())) {
                 plotMapOut.get("Running").add(plotBand);
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyThird += 1;
             }
         }
         Map<String, Double> durationStatusRobot = new HashMap<String, Double>();
@@ -616,6 +674,10 @@ public class RobotPropertyMapper {
         durationStatusRobot.put("waiting",  incIntervalSecond );
         durationStatusRobot.put("running",  incIntervalThird);
 
+        Map<String, Double> frquencyStatusRobot = new HashMap<String, Double>();
+        frquencyStatusRobot.put("inactive",  incFrequencyFirst );
+        frquencyStatusRobot.put("waiting",  incFrequencySecond );
+        frquencyStatusRobot.put("running",  incFrequencyThird);
 
         Map<String, Double> averageStatusRobot = new HashMap<String, Double>();
         averageStatusRobot.put("inactive", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird ))  ));
@@ -630,16 +692,22 @@ public class RobotPropertyMapper {
         incIntervalFirst= 0D;
         incIntervalSecond = 0D;
         incIntervalThird = 0D;
+        incFrequencyFirst = 0D;
+        incFrequencySecond = 0D;
+        incFrequencyThird = 0D;
         for (PlotBand plotBand : plotMap.get("StatusBattery")) {
             if (CHARGED.equals(plotBand.getText())) {
                 plotMapOut.get("Charge").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyFirst += 1;
             } else if (DISCHARGED.equals(plotBand.getText())) {
                 plotMapOut.get("Discharge").add(plotBand);
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+                incFrequencySecond += 1;
             } else if (STANDBY.equals(plotBand.getText())) {
                 plotMapOut.get("Standby").add(plotBand);
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyThird += 1;
             }
         }
         Map<String, Double> durationStatusBattery = new HashMap<String, Double>();
@@ -647,6 +715,10 @@ public class RobotPropertyMapper {
         durationStatusBattery.put("discharge",  incIntervalSecond );
         durationStatusBattery.put("standby",  incIntervalThird);
 
+        Map<String, Double> frequencyStatusBattery = new HashMap<String, Double>();
+        frequencyStatusBattery.put("charge",  incFrequencyFirst );
+        frequencyStatusBattery.put("discharge",  incFrequencySecond );
+        frequencyStatusBattery.put("standby",  incFrequencyThird);
 
 
         Map<String, Double> averageStatusBattery = new HashMap<String, Double>();
@@ -660,18 +732,34 @@ public class RobotPropertyMapper {
         incIntervalFirst= 0D;
         incIntervalSecond = 0D;
         incIntervalThird = 0D;
+        incFrequencyFirst = 0D;
+        incFrequencySecond = 0D;
+        incFrequencyThird = 0D;
         for (PlotBand plotBand : plotMap.get("StatusSpeed")) {
             if (MIN.equals(plotBand.getText())) {
                 plotMapOut.get("MinSpeed").add(plotBand);
                 incIntervalFirst += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyFirst += 1;
             } else if (MAX.equals(plotBand.getText())) {
                 plotMapOut.get("MaxSpeed").add(plotBand);
                 incIntervalSecond += plotBand.getTo() - plotBand.getFrom();
+                incFrequencySecond += 1;
             } else if (STANDBY.equals(plotBand.getText())) {
                 plotMapOut.get("NormalSpeed").add(plotBand);
                 incIntervalThird += plotBand.getTo() - plotBand.getFrom();
+                incFrequencyThird += 1;
             }
         }
+        Map<String, Double> durationSpeed = new HashMap<String, Double>();
+        durationSpeed.put("min",  incIntervalFirst );
+        durationSpeed.put("max",  incIntervalSecond );
+        durationSpeed.put("standby",  incIntervalThird);
+
+        Map<String, Double> frequencySpeed = new HashMap<String, Double>();
+        frequencySpeed.put("min",  incFrequencyFirst );
+        frequencySpeed.put("max",  incFrequencySecond );
+        frequencySpeed.put("standby",  incFrequencyThird);
+
         Map<String, Double> averageStatusSpeed = new HashMap<String, Double>();
         averageStatusSpeed.put("min", new Double(   ((incIntervalFirst * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
         averageStatusSpeed.put("max", new Double(   ((incIntervalSecond  * 100) /( incIntervalFirst+incIntervalSecond+incIntervalThird )) ));
@@ -696,6 +784,7 @@ public class RobotPropertyMapper {
                 new HashMap<String, Object>() {{
                     put("average",averageConnection);
                     put("duration",durationConnection);
+                    put("frequency",frquencyConnection);
                     put("interval", new HashMap<String, Object>() {{
                                                                    put("connected", plotMapOut.get("Connected"));
                                                                   put("desconnected", plotMapOut.get("Desconnected"));
@@ -705,6 +794,7 @@ public class RobotPropertyMapper {
                 new HashMap<String, Object>() {{
                     put("average",averageMode);
                     put("duration",durationStatusMode);
+                    put("frequency",frequencyStatusMode);
                     put("interval", new HashMap<String, Object>() {{
                                 put("manual", plotMapOut.get("Manual"));
                                 put("auto", plotMapOut.get("Auto"));
@@ -714,6 +804,7 @@ public class RobotPropertyMapper {
                 new HashMap<String, Object>() {{
                     put("average",averageOperationStatus);
                     put("duration",durationOperationStatus);
+                    put("frequency",frequencyOperationStatus);
                     put("interval", new HashMap<String, Object>() {{
                                 put("normal", plotMapOut.get("Normal"));
                                 put("ems", plotMapOut.get("Ems"));
@@ -724,6 +815,7 @@ public class RobotPropertyMapper {
                 new HashMap<String, Object>() {{
                     put("average",averageStatusRobot);
                     put("duration",durationStatusRobot);
+                    put("frequency",frquencyStatusRobot);
                     put("interval", new HashMap<String, Object>() {{
                                 put("inactive", plotMapOut.get("Inactive"));
                                 put("waiting", plotMapOut.get("Waiting"));
@@ -734,6 +826,7 @@ public class RobotPropertyMapper {
                 new HashMap<String, Object>() {{
                     put("average",averageStatusBattery);
                     put("duration", durationStatusBattery);
+                    put("frequency",frequencyStatusBattery);
                     put("interval", new HashMap<String, Object>() {{
                                 put("charge", plotMapOut.get("Charge"));
                                 put("discharge", plotMapOut.get("Discharge"));
@@ -743,6 +836,8 @@ public class RobotPropertyMapper {
                 }},
                 new HashMap<String, Object>() {{
                     put("average",averageStatusSpeed);
+                    put("duration", durationSpeed);
+                    put("frequency",frequencySpeed);
                     put("interval", new HashMap<String, Object>() {{
                                put("max", plotMapOut.get("MaxSpeed"));
                                put("min", plotMapOut.get("MinSpeed"));

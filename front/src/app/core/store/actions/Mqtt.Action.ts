@@ -4,6 +4,7 @@ import { Publish } from '../models/Mqtt/Publish.model';
 import { MQTTState } from '../states/Mqtt.state';
 import { Subscribe } from '../models/Mqtt/Subscribe.model';
 import { Observable } from 'rxjs';
+import { StatusClientMQTT } from '../models/Global/StatusClientMQTT.model';
 
 
 
@@ -23,3 +24,9 @@ export const updateMQTTState = createAction('[MQTT] Update State', props<{ state
 export const subscribeSuccess = createAction('[MQTT] Subscribe Success');
 export const subscribeFailure = createAction('[MQTT] Subscribe Failure', props<{ error: any }>());
 export const receiveMessage = createAction('[MQTT] Receive Message', props<{ message: string }>());
+
+
+
+export const onSubscribeStatusClients = createAction('[MQTT] On Subscribe Status Clients', props<{ statusClient: StatusClientMQTT }>());
+export const subscribeStatusClients = createAction('[MQTT] Subscribe Status Clients', props<{ subscribe: Subscribe }>());
+export const stopSubscribeStatusClients=createAction('[MQTT] Stop Subscribe Status Clients');

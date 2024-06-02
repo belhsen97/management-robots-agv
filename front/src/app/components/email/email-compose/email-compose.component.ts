@@ -1,56 +1,86 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes'; 
 import { LiveAnnouncer } from '@angular/cdk/a11y'; 
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, map, startWith } from 'rxjs';
-
-
-import { HtmlEditorService, ImageService, LinkService, RichTextEditorComponent, ToolbarService } from '@syncfusion/ej2-angular-richtexteditor';
+import FroalaEditor from 'froala-editor';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-email-compose',
   templateUrl: './email-compose.component.html',
   styleUrls: ['./email-compose.component.css'],
-  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService]
+    providers: [ ]
 })
-export class EmailComposeComponent  implements OnInit {
+export class EmailComposeComponent  implements OnInit , AfterViewInit {
  
-  public tools: object = {
-    items: ['Undo', 'Redo', '|',
-        'Bold', 'Italic', 'Underline', 'StrikeThrough', '|',
-        'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
-        'SubScript', 'SuperScript', '|',
-        'LowerCase', 'UpperCase', '|',
-        'Formats', 'Alignments', '|', 'OrderedList', 'UnorderedList', '|',
-        'Indent', 'Outdent', '|', 'CreateLink',
-        'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
-}; 
-@ViewChild('valueTemplate', { static: true })  rteObj !: RichTextEditorComponent ;
+ 
+  //@ViewChild('valueTemplate', { static: true })  rteObj !: RichTextEditorComponent ;
 
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   destinates: string[] = ['Lemon@gmail.com'];
   allDestinates: string[] = ['Apple@gmail.com', 'Lemon@gmail.com', 'Lime@gmail.com', 'Orange@gmail.com', 'Strawberry@gmail.com'];
   newDestinate: string = '';
+
+
+
+
+  public options: Object = {
+    charCounterCount: true,
+    placeholderText: 'Edit Your Content Here!',
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+      events : {
+          'FroalaEditor.contentChanged' : function(){
+            console.log('Content updated!');
+          }
+        }
+  };
+
   @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
   announcer = inject(LiveAnnouncer);
 
+
+ elementFloara !: any;
+  
   constructor(private sanitizer: DomSanitizer ) {}
+
+
+
+
+ 
+
+
+
+
+
+
   ngOnInit(): void { 
-    let rteValue: string = this.rteObj.value;
+    // let rteValue: string = this.rteObj.value;
+    let rteValue: string = "AAAA";
+    // console.log(rteValue);
+    // this.rteObj.value = "AAAAAAAAAAAAAAAAAAAA";
 
-    console.log(rteValue);
-    this.rteObj.value = "AAAAAAAAAAAAAAAAAAAA";
+    // const trialMessageElement = document.querySelector('div[style*="position: fixed"]');
+    // if (trialMessageElement) { trialMessageElement.remove();}
 
-    const trialMessageElement = document.querySelector('div[style*="position: fixed"]');
-    if (trialMessageElement) { trialMessageElement.remove();}
-
-
+    this.elementFloara = new FroalaEditor('div#editor-div', {}, () => {
+      // Ensure that the Froala Editor is initialized
+      this.elementFloara.html.set('<p>New HTML content</p>');
+      //  console.log(editor.html.get())
+    });
 
   }
+  ngAfterViewInit(): void {
+  
+  }
+
+
 
   srcResult : any ; 
   onFileSelected() {
@@ -67,19 +97,17 @@ export class EmailComposeComponent  implements OnInit {
     }
   }
   
-
-
-
-
+  public editorContent: string = 'AAAAAAAAAAAAAAAAAAAAAAA'
+ 
  
   safeHtml!: SafeHtml;
   onSubmitForm(form: NgForm): void { if (!form.invalid) {  }
 
   
   //let rteValue: string = this.rteObj.value;
-  let rteValue: any = this.rteObj.getHtml();
-  console.log(rteValue.length);
-  this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.rteObj.getHtml());
+  // let rteValue: any = this.rteObj.getHtml();
+  // console.log(rteValue.length);
+  // this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.rteObj.getHtml());
 }
 
 

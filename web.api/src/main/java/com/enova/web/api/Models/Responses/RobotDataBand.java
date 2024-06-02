@@ -1,14 +1,10 @@
 package com.enova.web.api.Models.Responses;
 
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 @Builder
 @AllArgsConstructor

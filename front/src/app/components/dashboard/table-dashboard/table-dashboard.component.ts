@@ -14,7 +14,6 @@ import { Subscription, interval, throttleTime } from 'rxjs';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { GaugeChartComponent } from '../details/gauge-chart/gauge-chart.component';
-import { getListRobot } from 'src/app/core/store/selectors/Robot.Selector';
 import { refreshPannelRobot, refreshRobots, stopRefreshRobots } from 'src/app/core/store/actions/Robot.Action';
 
 @Component({
@@ -25,7 +24,7 @@ import { refreshPannelRobot, refreshRobots, stopRefreshRobots } from 'src/app/co
 export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   private timerSubscription: Subscription | undefined;
   private getValueSearchInputSub !: Subscription | undefined;
-  private getListRobotSub !: Subscription | undefined;
+
   displayedColumns: string[] = ['name', 'view', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed'];
   dataSource !: MatTableDataSource<RobotDto>;
   @ViewChild(MatSort) sort  !: MatSort;
@@ -41,15 +40,10 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
       if (value === null || value === undefined || this.dataSource == undefined) { return; }
       this.dataSource!.filter = value;
     });
+ 
+  
 
-    this.storeRobot.dispatch(refreshRobots({ subscribe: mqttState.subscribe }));
 
-    this.getListRobotSub = this.storeRobot.select(getListRobot).subscribe(item => {
-      robotState.listRobots = item;
-      console.log("getListRobot")
-     
-    }
-    );
 
     /*this.mqttClientService.curSubscription = this.mqttClientService.subscribe(mqttState.subscribe)?.subscribe((message: IMqttMessage) => {
       //console.log('MQTT --> Subscribe to topics res', message.payload.toString())
@@ -79,8 +73,9 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
     this.storeRobot.dispatch(stopRefreshRobots()); 
     this.timerSubscription?.unsubscribe();
     if (this.dataSource) { this.dataSource.disconnect(); } //robotState.dataSource!.paginator = null;
-    if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); }
-    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe(); }
+    if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); } 
+    
+
   }
 
 

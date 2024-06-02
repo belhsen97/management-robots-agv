@@ -33,7 +33,7 @@ class RobotAVG:
     msg_count = 0
     robot_data = {#"id": "robot_id_" ,
             "name": "robot",
-            "connection": "DISCONNECTED",
+            #"connection": "DISCONNECTED",
             "statusRobot": "RUNNING",
             "modeRobot": "AUTO",
             "operationStatus": "PAUSE",
@@ -52,14 +52,14 @@ class RobotAVG:
         print("Inside enter")
         self.client = self.connect_mqtt()
         self.client.loop_start()
-        self.robot_data["connection"] = "CONNECTED" 
+        #self.robot_data["connection"] = "CONNECTED" 
         msg = json.dumps(self.robot_data)
         self.publish(msg)
         return self
         
     def __exit__(self, exc_type, exc_value, traceback):
         print("\nInside __exit__")
-        self.robot_data["connection"] = "DISCONNECTED" 
+        #self.robot_data["connection"] = "DISCONNECTED" 
         msg = json.dumps(self.robot_data)
         self.publish(msg)
         # print("\nExecution type:", exc_type)
@@ -154,7 +154,7 @@ class RobotAVG:
     def publish_loop_data(self):
         while True:
            time.sleep(1)
-           random_robot.update_connection_status()
+           #random_robot.update_connection_status()
            #random_robot.update_robot_status()
            random_robot.update_battery_level()
            random_robot.update_speed_value()

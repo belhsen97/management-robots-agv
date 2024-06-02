@@ -4,7 +4,9 @@ import { IMqttMessage } from 'ngx-mqtt';
 
 const selectMQTTState=createFeatureSelector<MQTTState>('mqtt'); 
 
-export const selectIsConnected =createSelector(selectMQTTState,(state : MQTTState)=>{ 
+export const selectIsConnected = createSelector(selectMQTTState,(state : MQTTState)=>{ 
     return state.isConnection;
-})
- 
+});
+export const selectStatusClient = createSelector(selectMQTTState,(state : MQTTState)=>{ 
+    return state.msgstatusClient;
+});

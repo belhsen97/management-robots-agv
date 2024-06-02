@@ -1,21 +1,22 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MqttClientService } from "../../services/mqtt-client.service";
 import { Injectable } from "@angular/core";
-import { EMPTY, Observable, catchError, exhaustMap, filter, from, map, mergeMap, of, switchMap, take, tap } from "rxjs";
+import { EMPTY, Observable, catchError, exhaustMap, filter, from, map, mergeMap, of, switchMap, take, takeUntil, tap } from "rxjs";
 import { IMqttMessage, MqttService } from "ngx-mqtt";
-import { connectMQTT, connectionClosed, connectionFailure, connectionSuccess, desconnectMQTT, onSubscribeMQTT, subscribeFailure, subscribeMQTT, subscribeSuccess } from "../actions/Mqtt.Action";
+import { connectMQTT, connectionClosed, connectionFailure, connectionSuccess, desconnectMQTT, onSubscribeMQTT, onSubscribeStatusClients, stopSubscribeStatusClients, subscribeFailure, subscribeMQTT, subscribeStatusClients, subscribeSuccess } from "../actions/Mqtt.Action";
 import { RobotDto } from "../models/Robot/RobotDto.model";
-import { refreshRobotssuccess, updateRobotsuccess } from "../actions/Robot.Action";
+import { refreshRobotssuccess, updateRobotStatusConnectionSuccess, updateRobotsuccess } from "../actions/Robot.Action";
 import { RobotState } from "../states/Robot.state";
 import { Store } from "@ngrx/store";
 import { ShowAlert } from "../actions/Global.Action";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
+import { StatusClientMQTT } from "../models/Global/StatusClientMQTT.model";
 
 @Injectable()
 export class MqttEffects {
     constructor(private actions$: Actions, private mqttClientService: MqttClientService,   private store: Store<RobotState>  ) { }
 
-    connectMQTTEffect$ = createEffect(() => this.actions$.pipe(
+    _connectMQTTEffect$ = createEffect(() => this.actions$.pipe(
       ofType(connectMQTT),
       switchMap(({ options }) => {
         return this.mqttClientService.connect(options).pipe(
@@ -24,7 +25,7 @@ export class MqttEffects {
         );
       })
     ));
-    desconnectMQTTEffect$ = createEffect(() => this.actions$.pipe(
+    _desconnectMQTTEffect$ = createEffect(() => this.actions$.pipe(
       ofType(desconnectMQTT),
       switchMap(() => {
         return this.mqttClientService.disconnect().pipe(
@@ -33,6 +34,43 @@ export class MqttEffects {
         );
       })
     ));
+
+
+    _subscribeStatusClients = createEffect(() =>
+      this.actions$.pipe(
+          ofType(subscribeStatusClients),
+          switchMap(action =>
+              { 
+              if (!action.subscribe) { return EMPTY;}
+               return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
+                  // map(message => {
+                  //     const statusClient : StatusClientMQTT = JSON.parse(message.payload.toString());
+                  //     return onSubscribeStatusClients({ statusClient: statusClient });
+                  // }),
+                  mergeMap(message => {
+                    const statusClient: StatusClientMQTT = JSON.parse(message.payload.toString());
+                    return [
+                      onSubscribeStatusClients({ statusClient }),
+                      updateRobotStatusConnectionSuccess({ client: statusClient })
+                    ];
+                  }),
+                  catchError((_error) =>
+                      of(
+                          connectionFailure({ error: 'Subscribe Robots failed' }),
+                          ShowAlert({
+                              title: "Error",
+                              datestamp: new Date(),
+                              status: ReponseStatus.ERROR,
+                              message: _error
+                          })
+                      )
+                  ),takeUntil(this.actions$.pipe(ofType(stopSubscribeStatusClients))) 
+              )
+               }
+           )
+      )
+  ); 
+
 
 
 // subscribeToMQTTTopic = createEffect(() =>
