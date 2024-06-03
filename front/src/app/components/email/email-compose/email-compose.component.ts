@@ -102,7 +102,8 @@ export class EmailComposeComponent  implements OnInit , AfterViewInit {
  
   safeHtml!: SafeHtml;
   onSubmitForm(form: NgForm): void { if (!form.invalid) {  }
-
+  const htmlContent = this.elementFloara.html.get();
+      console.log(htmlContent); 
   
   //let rteValue: string = this.rteObj.value;
   // let rteValue: any = this.rteObj.getHtml();

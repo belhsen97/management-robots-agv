@@ -1,11 +1,16 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8ßÛšè1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8áœºôı1
 d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óìõ•8ëÛšè1
-[
-java:S1155(">Use isEmpty() to check whether the collection is empty or not.(«ÇÖÚ8ïÛšè1
-j
-java:S6809)"MCall async methods via an injected dependency instead of directly via 'this'.(øİÒá8ä¯Áœè1
-[
-java:S1155,">Use isEmpty() to check whether the collection is empty or not.(ğ‰êã8ğÛšè1
-X	java:S125f"<This block of commented-out lines of code should be removed.(¢Ğ¬€8øÛšè1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óìõ•8úºôı1
+X	java:S125Y"<This block of commented-out lines of code should be removed.(ÛûÒí8¤½¾öı1
+X	java:S125a"<This block of commented-out lines of code should be removed.(êûí¿8¥½¾öı1
+]	java:S125i"<This block of commented-out lines of code should be removed.(­Óüÿÿÿÿ8¥½¾öı1
+T
+java:S3252Œ"6Use static access with "javax.mail.Part" for "INLINE".(à¼Æå8¯½¾öı1
+^	java:S125Î"<This block of commented-out lines of code should be removed.(ôÕüıÿÿÿÿ8™²¸öı1
+n
+java:S1128"LRemove this unused import 'org.springframework.scheduling.annotation.Async'.(İë€Ûúÿÿÿÿ8³½¾öı1
+Y
+java:S1128"<Remove this unused import 'javax.activation.FileDataSource'.(¬Ï”ë8³½¾öı1
+F
+java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8³½¾öı1

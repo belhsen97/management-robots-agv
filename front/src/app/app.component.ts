@@ -41,7 +41,6 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
   ngOnInit(): void {
     this.getListRobotSub = this.storeRobot.select(getListRobot).subscribe(item => {
       robotState.listRobots = item;
-      console.log(robotState.listRobots);
     });
     this.getStatusClientSub= this.storeMqtt.select(selectStatusClient).subscribe(item => {
        console.log(item);
@@ -69,8 +68,8 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
 
 
     
-          // isConnectedsubscribe !: Subscription;
-      // onSubcribe !: Subscription;
+    // isConnectedsubscribe !: Subscription;
+    // onSubcribe !: Subscription;
     // this.robotService.getAll().subscribe(
     //   (response) => { 
     //      robotState.listRobots = response.body;

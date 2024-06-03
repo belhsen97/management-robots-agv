@@ -1,15 +1,13 @@
 package com.enova.web.api.Services.Interfaces;
 
 
+import com.enova.web.api.Enums.*;
+import com.enova.web.api.Models.Commons.mail.Msg;
+import com.enova.web.api.Models.Commons.mail.Recipient;
 import com.enova.web.api.Models.Requests.AuthenticationRequest;
 import com.enova.web.api.Models.Responses.AuthenticationResponse;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
-import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Commons.mail.BodyContent;
-import com.enova.web.api.Models.Commons.mail.Msg;
-import com.enova.web.api.Enums.TypeBody;
-import com.enova.web.api.Enums.Roles;
-import com.enova.web.api.Enums.TokenType;
 import com.enova.web.api.Models.Entitys.Token;
 import com.enova.web.api.Models.Entitys.User;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
@@ -29,10 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service("authentication-service")
 @RequiredArgsConstructor
@@ -59,20 +54,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .build();
         final String formHTMLForNewUser = ifileService.Edit_ConfirmMailPage(user.getUsername());
         final String formHTMLForAdmin = ifileService.Edit_NewUser(user.getUsername(), user.getEmail());
-        final Msg msgForNewUser = Msg.builder().subject("Confirmation Address Mail")
-                .email(user.getEmail())
-                .text("body")
-                .bodyContents(new ArrayList<BodyContent>() {{
-                    add(BodyContent.builder().content(formHTMLForNewUser).type(TypeBody.HTML).build());
-                }}).build();
-        this.smtpMailService.sendingMultiBodyContent(msgForNewUser);
-        for ( User admin : userRepository.findUsersByRole(Roles.ADMIN)){
-            final Msg msgForAdmin = Msg.builder().subject("New User Registration Notification")
-                    .email(admin.getEmail())
-                    .text("body")
-                    .bodyContents(new ArrayList<BodyContent>(){{add(BodyContent.builder().content(formHTMLForAdmin).type(TypeBody.HTML).build());}}).build();
-            this.smtpMailService.sendingMultiBodyContent(msgForAdmin);
+
+
+        List<Recipient> recipientList =  new ArrayList<Recipient>() {{add(Recipient.builder().address(user.getEmail()).type(RecipientType.TO).build());} };
+        List<BodyContent> bodyContentList =  new ArrayList<BodyContent>() {{add(BodyContent.builder().content(formHTMLForNewUser).type(TypeBody.HTML).build());}};
+        Msg msg = Msg.builder().subject("Confirmation Address Mail").recipients(recipientList).bodyContents(bodyContentList).build();
+        this.smtpMailService.sendingMessage(msg);
+
+
+        recipientList = new ArrayList<Recipient>();
+        List<User> adminList =  userRepository.findUsersByRole(Roles.ADMIN);
+        for ( User admin : adminList){
+            recipientList.add(Recipient.builder().address(admin.getEmail()).type(RecipientType.TO).build());
         }
+        if ( !adminList.isEmpty()) {
+            bodyContentList = new ArrayList<BodyContent>() {{add(BodyContent.builder().content(formHTMLForAdmin).type(TypeBody.HTML).build());}};
+            msg = Msg.builder().subject("Confirmation Address Mail").recipients(recipientList).bodyContents(bodyContentList).build();
+            this.smtpMailService.sendingMessage(msg);
+        }
+
 
 
 

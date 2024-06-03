@@ -7,11 +7,14 @@ import com.enova.web.api.Models.Commons.mail.Msg;
 import javax.mail.MessagingException;
 
 public interface SmtpMailService {
-    void sending( Msg msg ) throws MessagingException ;
-    void sendingSimple( Msg msg ) throws MessagingException ;
-    void sendingWithViewHTML( Msg msg ) throws MessagingException ;
-    void sendingWithDocument( Msg msg ) throws MessagingException ;
-    void sendingWithDocuments( Msg msg ) throws MessagingException;
-    void sendingWithStreamDocuments( Msg msg ) throws MessagingException;
-    void sendingMultiBodyContent( Msg msg ) throws MessagingException;
+//    void sending( SimpleMsg msg ) throws MessagingException ;
+//    void sendingSimple( SimpleMsg msg ) throws MessagingException ;
+//    void sendingWithViewHTML( SimpleMsg msg ) throws MessagingException ;
+//    void sendingWithDocument( SimpleMsg msg ) throws MessagingException ;
+//    void sendingWithDocuments( SimpleMsg msg ) throws MessagingException;
+//    void sendingWithStreamDocuments( SimpleMsg msg ) throws MessagingException;
+//    void sendingMultiBodyContent( SimpleMsg msg ) throws MessagingException;
+
+
+    void sendingMessage( Msg msg ) throws MessagingException;
 }

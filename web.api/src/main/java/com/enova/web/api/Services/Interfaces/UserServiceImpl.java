@@ -1,9 +1,11 @@
 package com.enova.web.api.Services.Interfaces;
 
+import com.enova.web.api.Enums.RecipientType;
+import com.enova.web.api.Models.Commons.mail.Msg;
+import com.enova.web.api.Models.Commons.mail.Recipient;
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
 import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Commons.mail.BodyContent;
-import com.enova.web.api.Models.Commons.mail.Msg;
 import com.enova.web.api.Enums.TypeBody;
 import com.enova.web.api.Models.Entitys.Attachment;
 import com.enova.web.api.Enums.Roles;
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final FileService ifileService;
-    private final SmtpMailService ismtpMailService;
+    private final SmtpMailService smtpMailService;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -148,15 +150,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user.get());
 
         String file = ifileService.Edit_forgotPasswordPage(user.get().getUsername(), code);
+
+        final List<Recipient> recipientList =  new ArrayList<Recipient>() {{add(Recipient.builder().address(email).type(RecipientType.TO).build());} };
+        final List<BodyContent> bodyContentList =  new ArrayList<BodyContent>() {{add(BodyContent.builder().content(file).type(TypeBody.HTML).build());}};
         Msg msg = Msg.builder().subject("Forgot Password")
-                .email(email)
-                .text("body")
-                .bodyContents(new ArrayList<BodyContent>() {{
-                    add(BodyContent.builder().content(file).type(TypeBody.HTML).build());
-                }}).build();
-
-
-        this.ismtpMailService.sendingMultiBodyContent(msg);
+                .recipients(recipientList)
+                .bodyContents(bodyContentList).build();
+        this.smtpMailService.sendingMessage(msg);
 
         return MsgReponseStatus.builder()
                 .title("Forgot Password")

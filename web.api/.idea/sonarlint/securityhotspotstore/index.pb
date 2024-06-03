@@ -198,3 +198,13 @@ p
 @src/main/java/com/enova/web/api/Models/Entitys/RobotSetting.java,4\b\4b909612de32681b55a2ecfacaf693b071cc4389
 p
 @src/main/java/com/enova/web/api/Models/Dtos/RobotSettingDto.java,b\c\bc6a7eeb94d4b3b00fc89e53dbcbc2bae80aef50
+`
+0src/main/java/com/enova/web/api/Enums/edzde.java,f\b\fbf9ca2c86c8a6534bf2936925055efdd96ec1f9
+r
+Bsrc/main/java/com/enova/web/api/Models/Commons/mail/Recipient.java,7\5\759533491116a9cb6b54e2d9e9c6e24418e670ad
+h
+8src/main/java/com/enova/web/api/Enums/RecipientType.java,9\0\90b79a34b063f0907ff5d3d746a7518ebb85bacb
+s
+Csrc/main/java/com/enova/web/api/Models/Commons/mail/Attachment.java,c\5\c57787807d4effce72e28a4f0f4fcf7ff452a7dd
+r
+Bsrc/main/java/com/enova/web/api/Models/Commons/mail/SimpleMsg.java,c\2\c21d6590be65cbdbdb59141245a74022413620e6
