@@ -1,6 +1,8 @@
 package com.enova.web.api.Models.Commons.mail;
 
 import com.enova.web.api.Enums.RecipientType;
+import com.enova.web.api.Enums.StatusMsg;
+import com.enova.web.api.Models.Entitys.Attachment;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.util.StringUtils;
@@ -20,12 +22,12 @@ import java.util.stream.Collectors;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Msg {
-    Long id;
+    String id;
     String subject;
     List<Recipient> recipients = new ArrayList<>();
     List<BodyContent> bodyContents = new ArrayList<BodyContent>();
-    Date sentDate;
-    Date  receivedDate;
+    Date timestamp;
+    StatusMsg status;
     List<Attachment>  attachements = new ArrayList<Attachment>();
 
     public List<Recipient> getRecipientsByType(RecipientType type ){

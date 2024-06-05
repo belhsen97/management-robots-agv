@@ -54,6 +54,7 @@ import { DateFormatPipe } from './pipes/DateFormatPipe';
 import { DateAgoPipe } from './pipes/DateAgoPipe';
 import { RangeDateComponent } from './components/shared/range-date/range-date.component';  
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ContainerChipsComponent } from './components/shared/container-chips/container-chips.component';
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
 @NgModule({
@@ -89,7 +90,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     GaugeChartComponent,
     StockChartComponent,
     ChartsRobotsStatisticComponent,
-    DateFormatPipe,DateAgoPipe, RangeDateComponent
+    DateFormatPipe,DateAgoPipe, RangeDateComponent, ContainerChipsComponent
   ],
   imports: [
     CommonModule,

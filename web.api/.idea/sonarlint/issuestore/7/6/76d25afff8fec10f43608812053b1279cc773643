@@ -1,6 +1,8 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8€¸Ðòý1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8¥ˆ»¼þ1
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÔŠîž8¬ˆ»¼þ1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ñÐ™úÿÿÿÿ8‡¸Ðòý1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïñß¦ýÿÿÿÿ8Ã«Æ¼þ1
 C
-java:S1452"&Remove usage of generic wildcard type.(ùŠ‡ä8ˆ¸Ðòý1
+java:S1452#"&Remove usage of generic wildcard type.(ùŠ‡ä8¬ˆ»¼þ1

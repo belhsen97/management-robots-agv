@@ -24,10 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service("user-service")
@@ -42,6 +39,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> selectAll() {
         return this.userRepository.findAll();
+    }
+    @Override
+    public Set<String> selectAllEmail() {
+        Set<String> listEmails = new HashSet<String>();
+        List<User> list = this.userRepository.findAll();
+        for (User u : list ){   if ( !u.getEmail().isEmpty()){ listEmails.add(u.getEmail());}    }
+      return listEmails;
     }
 
     @Override

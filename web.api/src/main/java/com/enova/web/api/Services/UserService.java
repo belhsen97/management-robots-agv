@@ -8,8 +8,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public interface UserService extends IGenericCRUD<User,String> {
+    Set<String> selectAllEmail() ;
+
     User selectByUsername(String username);
     Attachment savePhotoToUser(MultipartFile file, String username ) throws Exception;
     Attachment getAttachmentbyId( String id );

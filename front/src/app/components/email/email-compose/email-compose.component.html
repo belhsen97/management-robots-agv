@@ -11,32 +11,35 @@
                   </div>
                   <form class="email-form" #ComposeForm="ngForm" (ngSubmit)="onSubmitForm(ComposeForm)" >
                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">To / Cc:</label>
-                        <mat-form-field class="example-chip-list col-sm-10">
-                           <mat-label>Mails</mat-label>
-                           <mat-chip-grid #chipGrid aria-label="Fruit selection">
-                              <mat-chip-row *ngFor="let destinate of destinates" (removed)="remove(destinate)">
-                                 {{destinate}}
-                                 <button matChipRemove [attr.aria-label]="'remove ' + destinate">
-                                    <mat-icon>cancel</mat-icon>
-                                 </button>
-                              </mat-chip-row>
-                           </mat-chip-grid>
-                           <input placeholder="Add Mail..." #fruitInput matInput name="fruitInput"
-                              [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)"
-                              [(ngModel)]="newDestinate" />
-                           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                              <mat-option *ngFor="let fruit of filterFruits(newDestinate)"
-                                 [value]="fruit">{{fruit}}</mat-option>
-                           </mat-autocomplete>
-                        </mat-form-field>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">To:</label>
+                        <app-container-chips  class="col-sm-10" [label]="'Mail To'" id="inputEmail3"
+                        [listDefine]="mailState.listAddress" 
+                        (onChange)="outputListMailTo($event)">
+                        </app-container-chips>
+
                      </div>
+
+
+                     <div class="form-group row">
+                        <label for="inputEmail4" class="col-sm-2 col-form-label">Cc:</label>
+                        <app-container-chips  class="col-sm-10" [label]="'Mail Cc'" id="inputEmail4"
+                        [listDefine]="mailState.listAddress" 
+                        (onChange)="outputListMailCC($event)">
+                        </app-container-chips>
+                     </div>
+                     <div class="form-group row">
+                        <label for="inputEmail5" class="col-sm-2 col-form-label">Bcc:</label>
+                        <app-container-chips  class="col-sm-10" [label]="'Mail Bcc'" id="inputEmail5"
+                        [listDefine]="mailState.listAddress" 
+                        (onChange)="outputListMailBCC($event)">
+                        </app-container-chips>
+                     </div> 
+
                      <div class="form-group row">
                         <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
                         <mat-form-field class="col-sm-10">
                            <mat-label>Subject about what you will send </mat-label>
-                           <input matInput placeholder="Ex. Reclamation" value="Sushi">
+                           <input [(ngModel)]="mailState.msg.subject" name="mail-subject-input" matInput placeholder="Ex. Reclamation" value="Sushi">
                         </mat-form-field>
                      </div>
                      <div class="form-group row">
@@ -73,9 +76,11 @@
                            <div class="send-panel">
                               <label class="ml-2 mb-0 iq-bg-primary rounded" for="file">
                                  <button type="button" mat-raised-button (click)="fileInput.click()">
-                                    <mat-icon>file_copy</mat-icon>Choose File</button>
-                                 <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
-                              </label>
+                                   <mat-icon>file_copy</mat-icon>Choose File
+                                 </button>
+                                 <input hidden (change)="onChangeFiles($event)" #fileInput type="file" id="file" multiple>
+                               </label>
+                               
 
                               <!-- <label class="ml-2 mb-0 iq-bg-primary rounded" for="file"> <input type="file" id="file" style="display: none"> <a><i class="ri-attachment-line"></i> </a> </label> -->
                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i

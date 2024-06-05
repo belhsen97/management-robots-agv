@@ -13,7 +13,6 @@ import java.util.HashMap;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BodyContent {
-    Long id;
     TypeBody type; //  text/plain or  text/html
     String content;
     Map<String, BodyContent> embeddeds = new HashMap<>();

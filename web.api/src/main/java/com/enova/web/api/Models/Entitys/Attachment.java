@@ -26,4 +26,9 @@ public class Attachment implements Serializable {
                 ", fileSize=" + fileSize +
                 '}';
     }
+    public String _getNameFile_ ( ){
+        if (fileName == null) {return null;}
+        String[] words = fileName.split("/"); // split the string into words using the space character as a delimiter
+        return ( words.length == 0 ? null : words[words.length-1]) ;
+    }
 }

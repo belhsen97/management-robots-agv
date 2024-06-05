@@ -1,26 +1,34 @@
-2024-06-03 09:26:59.273  INFO 12128 --- [main] com.enova.driveless.api.Application      : Starting Application using Java 11.0.18 on PC-001 with PID 12128 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\driveless.api)
-2024-06-03 09:26:59.288  INFO 12128 --- [main] com.enova.driveless.api.Application      : No active profile set, falling back to 1 default profile: "default"
-2024-06-03 09:27:00.095  INFO 12128 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2024-06-03 09:27:00.235  INFO 12128 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 126 ms. Found 1 MongoDB repository interfaces.
-2024-06-03 09:27:00.412  INFO 12128 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
-2024-06-03 09:27:00.441  INFO 12128 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
-2024-06-03 09:27:00.633  INFO 12128 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2024-06-03 09:27:00.638  INFO 12128 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2024-06-03 09:27:00.835  INFO 12128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2024-06-03 09:27:00.848  INFO 12128 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-03 09:27:00.849  INFO 12128 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
-2024-06-03 09:27:00.998  INFO 12128 --- [main] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring embedded WebApplicationContext
-2024-06-03 09:27:00.999  INFO 12128 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1659 ms
-2024-06-03 09:27:01.163  INFO 12128 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
-2024-06-03 09:27:01.240  INFO 12128 --- [cluster-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:196}] to localhost:27017
-2024-06-03 09:27:01.240  INFO 12128 --- [cluster-rtt-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:195}] to localhost:27017
-2024-06-03 09:27:01.241  INFO 12128 --- [cluster-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=27999100}
-2024-06-03 09:27:02.343  INFO 12128 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2024-06-03 09:27:02.344  INFO 12128 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 1 subscriber(s).
-2024-06-03 09:27:02.344  INFO 12128 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
-2024-06-03 09:27:02.367  INFO 12128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/management-robot-avg/driveless'
-2024-06-03 09:27:02.378  INFO 12128 --- [main] com.enova.driveless.api.Application      : Started Application in 3.604 seconds (JVM running for 4.969)
-2024-06-03 09:27:12.154  INFO 12128 --- [MQTT Call: driveless-service-09-27-01569] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:200}] to localhost:27017
-2024-06-03 09:27:30.683  INFO 12128 --- [http-nio-0.0.0.0-8088-exec-1] .C.[.[.[/management-robot-avg/driveless] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-03 09:27:30.684  INFO 12128 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-03 09:27:30.685  INFO 12128 --- [http-nio-0.0.0.0-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-05 13:57:58.936  INFO 12128 --- [cluster-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoNodeIsRecoveringException: Command failed with error 11600 (InterruptedAtShutdown): 'interrupted at shutdown' on server localhost:27017. The full response is {"ok": 0.0, "errmsg": "interrupted at shutdown", "code": 11600, "codeName": "InterruptedAtShutdown"}
+	at com.mongodb.internal.connection.ProtocolHelper.createSpecialException(ProtocolHelper.java:266) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:194) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:418) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:374) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:216) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-06-05 13:58:08.978  INFO 12128 --- [cluster-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:180) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:152) ~[mongodb-driver-core-4.4.2.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method) ~[na:na]
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255) ~[na:na]
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:608) ~[na:na]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:107) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.4.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.4.2.jar:na]
+	... 4 common frames omitted
+
+2024-06-05 13:58:15.570  INFO 12128 --- [cluster-rtt-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:2}] to localhost:27017
+2024-06-05 13:58:18.989  INFO 12128 --- [cluster-ClusterId{value='665d7e55cb3e632bfd54925f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:6}] to localhost:27017

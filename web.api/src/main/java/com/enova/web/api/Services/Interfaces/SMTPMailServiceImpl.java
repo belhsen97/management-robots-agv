@@ -5,25 +5,23 @@ import com.enova.web.api.Configures.SMTPMailConfig;
 import com.enova.web.api.Enums.RecipientType;
 import com.enova.web.api.Enums.TypeBody;
 import com.enova.web.api.Models.Commons.mail.*;
+import com.enova.web.api.Models.Entitys.Attachment;
 import com.enova.web.api.Services.SmtpMailService;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
-import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -35,7 +33,9 @@ public class SMTPMailServiceImpl implements SmtpMailService {
     private final Session session;
 
     private BodyContent convertToEmbeddedImages(BodyContent bodyContent) {
-        if (bodyContent.getType() != TypeBody.HTML || bodyContent.getContent() == null) {return bodyContent;}
+        if (bodyContent.getType() != TypeBody.HTML || bodyContent.getContent() == null) {
+            return bodyContent;
+        }
 
         Document doc = Jsoup.parse(bodyContent.getContent());
         Elements imgTags = doc.select("img");
@@ -56,18 +56,25 @@ public class SMTPMailServiceImpl implements SmtpMailService {
                         .type(imageType)
                         .content(base64Data)
                         .build();
-                if ( bodyContent.getEmbeddeds() == null ){bodyContent.setEmbeddeds(new HashMap<>());}
+                if (bodyContent.getEmbeddeds() == null) {
+                    bodyContent.setEmbeddeds(new HashMap<>());
+                }
                 bodyContent.getEmbeddeds().put(contentId, embeddedImage);
             }
         }
 
-        bodyContent.setContent( doc.body().html());
-        return  bodyContent;
+        bodyContent.setContent(doc.body().html());
+        return bodyContent;
     }
-    private   List<BodyContent>  convertAllToEmbeddedImages(List<BodyContent> bodyContents) {
-        if ( bodyContents == null  ){return new ArrayList<>();}
+
+    private List<BodyContent> convertAllToEmbeddedImages(List<BodyContent> bodyContents) {
+        if (bodyContents == null) {
+            return new ArrayList<>();
+        }
         for (int i = 0; i < bodyContents.size(); i++) {
-            if (bodyContents.get(i).getType() != TypeBody.HTML || bodyContents.get(i).getContent() == null) {continue;}
+            if (bodyContents.get(i).getType() != TypeBody.HTML || bodyContents.get(i).getContent() == null) {
+                continue;
+            }
             BodyContent bodyContent = this.convertToEmbeddedImages(bodyContents.get(i));
             bodyContents.set(i, bodyContent);
         }
@@ -75,7 +82,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
     }
 
     @Override
-    public void sendingMessage( Msg msg ) throws MessagingException  {
+    public void sendingMessage(Msg msg) throws MessagingException {
         // create and send the email with attachment
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(smtpMailConfig.username));
@@ -83,9 +90,8 @@ public class SMTPMailServiceImpl implements SmtpMailService {
         msg.setBodyContents(this.convertAllToEmbeddedImages(msg.getBodyContents()));
 
 
-
         List<Recipient> listRecipients = msg.getRecipientsByType(RecipientType.TO);
-        if ( !listRecipients.isEmpty()) {
+        if (!listRecipients.isEmpty()) {
             //     message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(listRecipients.get(0).getAddress()));
             String toAddresses = listRecipients.stream()
                     .map(Recipient::getAddress)
@@ -93,7 +99,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddresses));
         }
         listRecipients = msg.getRecipientsByType(RecipientType.CC);
-        if ( !listRecipients.isEmpty()) {
+        if (!listRecipients.isEmpty()) {
             //  message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(listRecipients.get(0).getAddress()));
             String toAddresses = listRecipients.stream()
                     .map(Recipient::getAddress)
@@ -101,7 +107,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
             message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(toAddresses));
         }
         listRecipients = msg.getRecipientsByType(RecipientType.BCC);
-        if ( !listRecipients.isEmpty()) {
+        if (!listRecipients.isEmpty()) {
             //  message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(listRecipients.get(0).getAddress()));
             String toAddresses = listRecipients.stream()
                     .map(Recipient::getAddress)
@@ -110,13 +116,11 @@ public class SMTPMailServiceImpl implements SmtpMailService {
         }
 
 
-
         message.setSubject(msg.getSubject());
 
         // add multiple body to  body part
         List<BodyPart> attachmentBodyParts = new ArrayList<>();
-        for ( BodyContent content : msg.getBodyContents())
-        {
+        for (BodyContent content : msg.getBodyContents()) {
             MimeBodyPart messageBodyPart = new MimeBodyPart();
 
             if (content.getType() == TypeBody.HTML) {
@@ -131,7 +135,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
 
 
                     String cid = entry.getKey();
-                    byte[] imageData =  Base64.getDecoder().decode(entry.getValue().getContent()) ;
+                    byte[] imageData = Base64.getDecoder().decode(entry.getValue().getContent());
 
                     MimeBodyPart imageBodyPart = new MimeBodyPart();
                     DataSource fds = new ByteArrayDataSource(imageData, entry.getValue().getType().getMimeType());
@@ -144,13 +148,14 @@ public class SMTPMailServiceImpl implements SmtpMailService {
 
 
                 messageBodyPart.setContent(htmlMultipart);
-            } else { messageBodyPart.setContent(content.getContent(), content.getType().getMimeType());}
+            } else {
+                messageBodyPart.setContent(content.getContent(), content.getType().getMimeType());
+            }
             attachmentBodyParts.add(messageBodyPart);
         }
 
         // add multiple attachement to  body part
-        for ( Attachment attachement : msg.getAttachements() )
-        {
+        for (Attachment attachement : msg.getAttachements()) {
             DataSource source = new ByteArrayDataSource(attachement.getData(), "application/octet-stream");
             MimeBodyPart attachment = new MimeBodyPart();
             attachment.setDataHandler(new DataHandler(source));
@@ -166,40 +171,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
         message.setContent(multipart);
         Transport.send(message);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 //  @Override
@@ -380,6 +352,4 @@ public class SMTPMailServiceImpl implements SmtpMailService {
 //            Transport.send(message);
 //    }
 
-
-}
 

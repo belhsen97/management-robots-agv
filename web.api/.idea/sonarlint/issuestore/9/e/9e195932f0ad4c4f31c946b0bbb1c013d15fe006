@@ -1,10 +1,10 @@
 
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(­Υά•8Ίχ¥νύ1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(­Υά•8σÿ”ώ1
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Λ©ύ8Ίχ¥νύ1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Λ©ύ8σÿ”ώ1
 v
-java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(®ψ©±8Ίχ¥νύ1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€υ―¥ωÿÿÿÿ8»χ¥νύ1
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(®ψ©±8τÿ”ώ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€υ―¥ωÿÿÿÿ8τÿ”ώ1
 ²
-java:S4449("Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(σΉΐ…όÿÿÿÿ8Εχ¥νύ1
+java:S4449*"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(σΉΐ…όÿÿÿÿ8ύÿ”ώ1

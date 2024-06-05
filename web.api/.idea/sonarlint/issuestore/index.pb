@@ -208,3 +208,5 @@ s
 Csrc/main/java/com/enova/web/api/Models/Commons/mail/Attachment.java,c\5\c57787807d4effce72e28a4f0f4fcf7ff452a7dd
 r
 Bsrc/main/java/com/enova/web/api/Models/Commons/mail/SimpleMsg.java,c\2\c21d6590be65cbdbdb59141245a74022413620e6
+d
+4src/main/java/com/enova/web/api/Enums/StatusMsg.java,b\d\bd4b12f2c4b0ddd554b816ee595ed898ed94ff64

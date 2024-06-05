@@ -13,12 +13,21 @@ import java.util.Date;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
+    @ExceptionHandler(javax.mail.MessagingException.class)
+    public ResponseEntity<?> handleMessagingException(javax.mail.MessagingException ex, WebRequest request) {
+        MsgReponseStatus errorDetails = MsgReponseStatus.builder()
+                .title("Messaging Exception")
+                .status(ReponseStatus.ERROR)
+                .datestamp(new Date())
+                .message(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @ExceptionHandler(org.springframework.security.authentication.DisabledException.class)
     public ResponseEntity<?> handleAccessDeniedException(org.springframework.security.authentication.DisabledException ex, WebRequest request) {
         MsgReponseStatus errorDetails = MsgReponseStatus.builder()
-                .title("security authentication Disabled")
+                .title("Security Authentication Disabled Exception")
                 .status(ReponseStatus.ERROR)
                 .datestamp(new Date())
                 .message(ex.getMessage())
@@ -30,7 +39,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
         MsgReponseStatus errorDetails = MsgReponseStatus.builder()
-                .title("Validation")
+                .title("Validation Exception")
                 .status(ReponseStatus.UNSUCCESSFUL)
                 .datestamp(new Date())
                 .message(ex.toString())
@@ -47,7 +56,7 @@ public class GlobalExceptionHandler {
         });
         //return ResponseEntity.badRequest().body(errorMessage.toString());
         MsgReponseStatus errorDetails = MsgReponseStatus.builder()
-                .title("Validation")
+                .title("Validation Exception")
                 .status(ReponseStatus.UNSUCCESSFUL)
                 .datestamp(new Date())
                 .message(errorMessage.toString())
@@ -60,7 +69,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RessourceNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundHandling(RessourceNotFoundException exception, WebRequest request) {
         MsgReponseStatus errorDetails = MsgReponseStatus.builder()
-                .title("Not Found")
+                .title("Not Found Exception")
                 .status(ReponseStatus.ERROR)
                 .datestamp(new Date())
                 .message(exception.getMessage())
@@ -82,7 +91,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IOException.class)
     public ResponseEntity<?> ExceptionAccessingInformationFilesAndDirectories(IOException exception, WebRequest request) {
         MsgReponseStatus errorDetails = MsgReponseStatus.builder()
-                .title("Accessing Information Files And Directories")
+                .title("Accessing Information Files And Directories Exception")
                 .status(ReponseStatus.ERROR)
                 .datestamp(new Date())
                 .message(exception.getMessage())
