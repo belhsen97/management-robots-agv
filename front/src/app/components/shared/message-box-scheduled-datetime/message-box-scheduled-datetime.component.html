@@ -1,0 +1,35 @@
+<form #pickTimeForm="ngForm" (ngSubmit)="onPickTime(pickTimeForm)">
+    <h2 mat-dialog-title>Choose a date and time</h2>
+    <mat-dialog-content>
+        <div class="row">
+            <div class="col-7">
+                <mat-card class="full-width" class="mat-card-calendar">
+                    <mat-calendar [(selected)]="selected" [dateFilter]="FilterOldDate"
+                        (selectedChange)="onSelectedChange($event)"> </mat-calendar>
+                </mat-card>
+            </div>
+            <div class="col-5">
+                <mat-form-field class="full-width" appearance="fill">
+                    <input type="text" name="date-mail-input" placeholder="date" matInput [(ngModel)]="dateInput"
+                        #dateinput="ngModel" (ngModelChange)="onDateChange()" [pattern]="regex" required>
+                    <mat-error
+                        *ngIf="dateinput.invalid && (dateinput.dirty || dateinput.touched || pickTimeForm.submitted)">
+                        <span *ngIf="dateinput.errors?.['required']">date is <strong>required</strong></span>
+                        <span *ngIf="dateinput.errors?.['pattern']"><strong>days -/: month -/: years</strong></span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input type="time" matInput [(ngModel)]="timeInput" #timeinput="ngModel" name="robot-time" required>
+                    <mat-error
+                        *ngIf="timeinput.invalid && (timeinput.dirty || timeinput.touched || pickTimeForm.submitted)">
+                        <span *ngIf="timeinput.errors?.['required']">Time is <strong>required</strong></span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button color="primary" type="submit">schedule shipment</button>
+        <a (click)="dialogRef.close(undefined)" mat-button>Cancel</a>
+    </mat-dialog-actions>
+</form>

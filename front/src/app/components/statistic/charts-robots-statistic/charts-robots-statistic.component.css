@@ -3,28 +3,18 @@
     background-color: var(--navy-blue);
   }
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
 .highcharts-figure,
 .highcharts-data-table table {
-    min-width: 310px;
-    max-width: 800px;
+    /*min-width: 250px;
+    max-width: 350px;*/
+    width: 100%;
     margin: 1em auto;
+    height: 100%;
 }
 
-#container {
+#container-bar-chart,container-pie-chart {
     height: 100%;
+    width: 100%;
 }
 
 .highcharts-data-table table {

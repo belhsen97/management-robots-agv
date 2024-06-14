@@ -1,0 +1,10 @@
+<mat-button-toggle-group (click)="onToggleButtonClick()" [(ngModel)]="typeProperty"
+name="ingredients" aria-label="Ingredients" aria-label="blue"> <!-- multiple-->
+<mat-button-toggle value="ALL">ALL</mat-button-toggle>
+<mat-button-toggle value="CONNECTION">CONNECTION</mat-button-toggle>
+<mat-button-toggle value="STATUS_ROBOT">STATUS_ROBOT</mat-button-toggle>
+<mat-button-toggle value="MODE_ROBOT">MODE_ROBOT</mat-button-toggle>
+<mat-button-toggle value="OPERATION_STATUS">OPERATION_STATUS</mat-button-toggle>
+<mat-button-toggle value="LEVEL_BATTERY">LEVEL_BATTERY</mat-button-toggle>
+<mat-button-toggle value="SPEED">SPEED</mat-button-toggle>
+</mat-button-toggle-group>

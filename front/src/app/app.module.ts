@@ -55,6 +55,9 @@ import { DateAgoPipe } from './pipes/DateAgoPipe';
 import { RangeDateComponent } from './components/shared/range-date/range-date.component';  
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ContainerChipsComponent } from './components/shared/container-chips/container-chips.component';
+import { MessageBoxScheduledDatetimeComponent } from './components/shared/message-box-scheduled-datetime/message-box-scheduled-datetime.component';
+import { SelectButtonChoiceComponent } from './components/shared/select-button-choice/select-button-choice.component';
+import { GlobalButtonControlComponent } from './components/shared/global-button-control/global-button-control.component';
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
 @NgModule({
@@ -90,7 +93,7 @@ import { ContainerChipsComponent } from './components/shared/container-chips/con
     GaugeChartComponent,
     StockChartComponent,
     ChartsRobotsStatisticComponent,
-    DateFormatPipe,DateAgoPipe, RangeDateComponent, ContainerChipsComponent
+    DateFormatPipe,DateAgoPipe, RangeDateComponent, ContainerChipsComponent, MessageBoxScheduledDatetimeComponent, SelectButtonChoiceComponent, GlobalButtonControlComponent
   ],
   imports: [
     CommonModule,

@@ -23,7 +23,6 @@ import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from '@angular/mate
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import {  MatChipsModule} from '@angular/material/chips';
- 
 
 @NgModule({
     exports: [
@@ -50,7 +49,8 @@ import {  MatChipsModule} from '@angular/material/chips';
         MatFormFieldModule,
          MatAutocompleteModule,   MatChipsModule,
         MatDatepickerModule,
-        MatNativeDateModule, 
+        MatNativeDateModule,
+        
     ]
 })
 export class MaterialModule { }

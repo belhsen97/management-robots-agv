@@ -70,9 +70,10 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
   }
   ngOnDestroy(): void {
     //this.mqttClientService.closeSubscribe( this.mqttClientService.curSubscription);
-    this.storeRobot.dispatch(stopRefreshRobots()); 
-    this.timerSubscription?.unsubscribe();
-    if (this.dataSource) { this.dataSource.disconnect(); } //robotState.dataSource!.paginator = null;
+  
+    this.timerSubscription!.unsubscribe();
+    robotState.dataSource!.paginator = null;
+    if (this.dataSource) { this.dataSource.disconnect(); }
     if (this.getValueSearchInputSub) { this.getValueSearchInputSub.unsubscribe(); } 
     
 
@@ -80,17 +81,7 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
 
 
 
-  onClickStopAllRobot(): void {
-    const publish: Publish = { topic: "topic/robot/control/all/OperationStatus/PAUSE", qos: 0, payload: "" };
-    this.mqttClientService.publish(publish);
-  }
-  onClickStartAllRobot(): void {
-    const publish: Publish = { topic: "topic/robot/control/all/OperationStatus/NORMAL", qos: 0, payload: "" };
-    this.mqttClientService.publish(publish);
-  }
-  onClickTrunOffAllRobot(): void {
 
-  }
 
   cellColorLevelBattery(value: number): string {
     return (value <= 15 ? 'cell-danger' : 'cell-steady');

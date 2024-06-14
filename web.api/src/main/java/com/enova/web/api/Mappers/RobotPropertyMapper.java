@@ -267,6 +267,9 @@ public class RobotPropertyMapper {
             List<RobotProperty> props = entry.getValue();
             robotDataList.add(mapToRobotDataBand(name, props));
         }
+        robotDataList = robotDataList.stream()
+                .sorted(Comparator.comparing(RobotDataBand::getName))
+                .collect(Collectors.toList());
 
         return robotDataList;
     }
@@ -277,8 +280,6 @@ public class RobotPropertyMapper {
         final String STANDBY = "STANDBY";
         final String MIN = "MIN";
         final String MAX = "MAX";
-
-
 
 
         properties = properties.stream()
@@ -597,11 +598,11 @@ public class RobotPropertyMapper {
 
 
         Map<String, Double> durationStatusMode = new HashMap<String, Double>();
-        durationStatusMode.put("Manual",  incIntervalFirst );
-        durationStatusMode.put("Auto",  incIntervalSecond );
+        durationStatusMode.put("manual",  incIntervalFirst );
+        durationStatusMode.put("auto",  incIntervalSecond );
         Map<String, Double> frequencyStatusMode = new HashMap<String, Double>();
-        frequencyStatusMode.put("Manual",  incFrequencyFirst );
-        frequencyStatusMode.put("Auto",  incFrequencySecond );
+        frequencyStatusMode.put("manual",  incFrequencyFirst );
+        frequencyStatusMode.put("auto",  incFrequencySecond );
 
         Map<String, Double> averageMode = new HashMap<String, Double>();
         averageMode.put("manual", new Double( ((incIntervalFirst  * 100) /( incIntervalFirst +incIntervalSecond ))));
@@ -630,14 +631,14 @@ public class RobotPropertyMapper {
             }
         }
         Map<String, Double> durationOperationStatus = new HashMap<String, Double>();
-        durationOperationStatus.put("Normal",  incIntervalFirst );
-        durationOperationStatus.put("Ems",  incIntervalSecond );
-        durationOperationStatus.put("Pause",  incIntervalThird);
+        durationOperationStatus.put("normal",  incIntervalFirst );
+        durationOperationStatus.put("ems",  incIntervalSecond );
+        durationOperationStatus.put("pause",  incIntervalThird);
 
         Map<String, Double> frequencyOperationStatus = new HashMap<String, Double>();
-        frequencyOperationStatus.put("Normal",  incFrequencyFirst );
-        frequencyOperationStatus.put("Ems",  incFrequencySecond );
-        frequencyOperationStatus.put("Pause",  incFrequencyThird);
+        frequencyOperationStatus.put("normal",  incFrequencyFirst );
+        frequencyOperationStatus.put("ems",  incFrequencySecond );
+        frequencyOperationStatus.put("pause",  incFrequencyThird);
 
 
         Map<String, Double> averageOperationStatus = new HashMap<String, Double>();

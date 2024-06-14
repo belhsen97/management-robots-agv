@@ -18,10 +18,6 @@ import { MqttClientService } from 'src/app/core/services/mqtt-client.service';
 import { Subscribe } from 'src/app/core/store/models/Mqtt/Subscribe.model';
 import { getDataRobotChart, getRobot } from 'src/app/core/store/selectors/Robot.Selector';
 import {  loadDataRobotChart, refreshRobot, stopRefreshRobot } from 'src/app/core/store/actions/Robot.Action';
-
-import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
-import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
-import { RobotDataChart } from 'src/app/core/store/models/Robot/RobotDataChart.model';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { OperationStatus } from 'src/app/core/store/models/Robot/OperationStatus.enum';
 import { Connection } from 'src/app/core/store/models/Robot/Connection.enum';

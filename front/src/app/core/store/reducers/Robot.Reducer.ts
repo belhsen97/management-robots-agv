@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 
 
-import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess, updateRobotStatusConnectionSuccess } from "../actions/Robot.Action";
+import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess, updateRobotStatusConnectionSuccess, loadListRobotDataBandSuccess } from "../actions/Robot.Action";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { Connection } from "../models/Robot/Connection.enum";
 import { ModeRobot } from "../models/Robot/ModeRobot.enum";
@@ -39,7 +39,10 @@ const _robotReducer = createReducer(robotState,
         const robotdataband  : RobotDataBand  = action.robotDataBand;
         return {...state,robotDataBand: robotdataband   ,errorMessage: ""};
     }),
-
+    on(loadListRobotDataBandSuccess,(state,action)=>{
+        const list  : RobotDataBand[]  = action.list;
+        return {...state,listRobotDataBand: list   ,errorMessage: ""};
+    }),
     on(loadDataRobotChartSuccess,(state,action)=>{ 
         const robotDataChart : RobotDataChart  = action.robotDataChart;
         return {...state,robotDataChart: robotDataChart,errorMessage: ""
@@ -154,7 +157,7 @@ const _robotReducer = createReducer(robotState,
             if (robot.name === action.robotinput.name) {
               return {
                 ...robot,
-                connection :  action.robotinput.connection,
+                //connection :  action.robotinput.connection,
                 levelBattery :  action.robotinput.levelBattery, 
                 modeRobot :  action.robotinput.modeRobot,
                 operationStatus :  action.robotinput.operationStatus,

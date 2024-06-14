@@ -16,7 +16,7 @@ import { RobotService } from './core/services/robot.service';
 import { RobotState, robotState } from './core/store/states/Robot.state';
 import { ShowAlert } from './core/store/actions/Global.Action';
 import { ReponseStatus } from './core/store/models/Global/ReponseStatus.enum';
-import { loadRobots, loadSettingRobot, refreshRobots } from './core/store/actions/Robot.Action';
+import { loadRobots, loadSettingRobot, refreshRobots, stopRefreshRobots } from './core/store/actions/Robot.Action';
 import { getListRobot } from './core/store/selectors/Robot.Selector';
 @Component({
   selector: 'app-root',
@@ -41,6 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
   ngOnInit(): void {
     this.getListRobotSub = this.storeRobot.select(getListRobot).subscribe(item => {
       robotState.listRobots = item;
+      console.log("getListRobotSub");
     });
     this.getStatusClientSub= this.storeMqtt.select(selectStatusClient).subscribe(item => {
        console.log(item);
@@ -55,9 +56,11 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
     this.storeMqtt.dispatch(subscribeStatusClients({ subscribe: mqttState.subscribes.clientsStatus }));
   }
   ngOnDestroy(): void {
-    this.mqttClientService.disconnect();
-    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe(); }
+    this.storeRobot.dispatch(stopRefreshRobots()); 
+    console.log("ngOnDestroy  "); 
+    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe();       console.log("ngOnDestroy getListRobotSub"); }
     if (this.getStatusClientSub) { this.getStatusClientSub.unsubscribe(); }
+    this.mqttClientService.disconnect();
   }
 
 }

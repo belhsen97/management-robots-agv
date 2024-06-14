@@ -10,6 +10,7 @@ export const LOAD_ALL_ROBOTS_SUCCESS='[robot page] load all Robots success';
 export const LOAD_ROBOT_SUCCESS='[robot page] load Robot success';
 export const LOAD_DATA_ROBOT_SUCCESS='[robot page] load Data Robot chart by name success';
 export const LOAD_ROBOT_DATA_BAND_SUCCESS='[robot page] load Data Robot band by name success';
+export const  LOAD_LIST_ROBOT_DATA_BAND_SUCCESS='[robot page] load List Data Robot band by name success';
 export const LOAD_SETTING_ROBOT_SUCCESS='[robot page] load Setting Robot success';
 
 export const LOAD_ROBOT_FAIL='[robot page] load Robot fail';
@@ -40,6 +41,8 @@ export const loadRobotfail=createAction(LOAD_ROBOT_FAIL,props<{errorMessage:any}
 
 export const loadDataRobotChartSuccess=createAction(LOAD_DATA_ROBOT_SUCCESS,props<{robotDataChart:RobotDataChart}>());
 export const loadRobotDataBandSuccess=createAction(LOAD_ROBOT_DATA_BAND_SUCCESS,props<{robotDataBand:RobotDataBand }>());
+export const loadListRobotDataBandSuccess=createAction(LOAD_LIST_ROBOT_DATA_BAND_SUCCESS,props<{list:RobotDataBand[] }>());
+
 
 export const loadAllRobotsuccess=createAction(LOAD_ALL_ROBOTS_SUCCESS,props<{listRobots:RobotDto[]}>());
 export const loadRobotsuccess=createAction(LOAD_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());

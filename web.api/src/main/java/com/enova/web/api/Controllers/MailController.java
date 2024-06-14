@@ -13,9 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -34,7 +32,8 @@ public class MailController {
     @PostMapping()
     public CompletableFuture<?> sendMail(@RequestPart(name ="files" , required = false) MultipartFile[] files   , @RequestPart(name ="msg" ) Msg msg) throws MessagingException, IOException {
         msg.addAttachments(files);
-        this.service.sendingMessage(msg);
+        //this.service.sendingMessage(msg);
+        System.out.println(msg.toString());
         return CompletableFuture.completedFuture(MsgReponseStatus.builder().title("message").datestamp(new Date()).status(ReponseStatus.SUCCESSFUL).message("success").build());
     }
 

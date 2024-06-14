@@ -1,0 +1,26 @@
+
+  .full-width{
+    width: 100%;
+  }
+  .mat-card-calendar {
+    width: 100%;
+    box-shadow: none !important;
+  }
+/* 
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: transparent !important;
+  } */
+  
+/* .mat-mdc-text-field-wrapper{
+  background-color: transparent !important;
+} */
+
+
+/* .mat-input-container {
+  background-color: #FF0000;   
+} */
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #FF0000 !important;  
+}
+
+ 

@@ -5,6 +5,7 @@
     height: 100%;
 }
 .center-content-form-field{
+    margin-bottom: -10px;
     /* display: flex;
     align-items: center; */
 }

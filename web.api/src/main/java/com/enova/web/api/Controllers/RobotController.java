@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -114,5 +116,20 @@ public class RobotController {
                 .datestamp(new Date()).build());
     }
 
+
+
+
+
+    @GetMapping("/ping/{ip}")
+    public String ping(@PathVariable String ip) {
+        System.out.println("|"+ip+"|");
+        try {
+            InetAddress inet = InetAddress.getByName(ip);
+            return "Ping to " + ip + (inet.isReachable(10000) ? " was successful." : "failed fff");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Ping to " + ip + " failed.";
+        }
+    }
 }
 

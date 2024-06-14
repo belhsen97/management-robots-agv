@@ -1,23 +1,24 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ι£Ή8ÿ†πό1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ι£Ή8Γ²2
 i
-java:S6830""GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Άϋÿÿÿÿ8‡πό1
+java:S6830$"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Άϋÿÿÿÿ8Ò²2
 d
-java:S6830#"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Φ¶¦›8‡πό1
-j	java:S100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Β±Ή8‡πό1
+java:S6830%"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Φ¶¦›8Ò²2
+j	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Β±Ή8Ò²2
 _
-java:S1612+"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Ϊέ8‡πό1
-j	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ΐ°‹8‡πό1
-j	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(θ§ΐΞ8‘‡πό1
-j	java:S100:"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(αζƒο8‘‡πό1
+java:S1612-"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Ϊέ8Σ²2
+j	java:S1002"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ΐ°‹8Τ²2
+j	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(θ§ΐΞ8Τ²2
+j	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(αζƒο8Υ²2
 C
-java:S1452:"&Remove usage of generic wildcard type.(αζƒο8‘‡πό1
+java:S1452<"&Remove usage of generic wildcard type.(αζƒο8Υ²2
 S
-java:S2696@"6Make the enclosing method "static" or remove this set.(§μ¬8Τ©ό1
-j	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦‹ί…8”‡πό1
-j	java:S100T"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™«»8”‡πό1
+java:S2696B"6Make the enclosing method "static" or remove this set.(§μ¬8Φ²2
+j	java:S100M"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦‹ί…8Φ²2
+j	java:S100V"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™«»8Φ²2
 C
-java:S1452T"&Remove usage of generic wildcard type.(™«»8•‡πό1
-o	java:S100b"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ιΊΤύÿÿÿÿ8•‡πό1
-j	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(λΦ”®8–‡πό1
-j	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ι‡σ8–‡πό1
+java:S1452V"&Remove usage of generic wildcard type.(™«»8Χ²2
+o	java:S100d"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ιΊΤύÿÿÿÿ8Χ²2
+j	java:S100i"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(λΦ”®8Ψ²2
+j	java:S100n"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ι‡σ8Ω²2
+G	java:S106}"+Replace this use of System.out by a logger.(’θ©ο8Ϋ²2

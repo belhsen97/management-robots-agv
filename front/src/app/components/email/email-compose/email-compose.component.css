@@ -3,5 +3,14 @@
     background-color: var(--navy-blue); 
 }
 
+/* Target all mat-form-field elements with appearance set to 'fill' */
+.mat-form-field {
+    background-color: var(--navy-blue) !important;
+  }
+  
+  
+  /* .mat-form-field-appearance-fill {
+    background-color: var(--navy-blue);
+  } */
 /* @import 'node_modules/froala-editor/css/froala_editor.pkgd.min.css';
 @import 'node_modules/froala-editor/css/froala_style.min.css'; */

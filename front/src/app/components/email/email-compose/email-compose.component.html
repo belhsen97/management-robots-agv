@@ -9,37 +9,34 @@
                         <h5 class="text-primary card-title"><i class="ri-pencil-fill"></i> Compose Message</h5>
                      </div>
                   </div>
-                  <form class="email-form" #ComposeForm="ngForm" (ngSubmit)="onSubmitForm(ComposeForm)" >
+                  <form class="email-form" #ComposeForm="ngForm" (ngSubmit)="onSubmitForm(ComposeForm)">
                      <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">To:</label>
-                        <app-container-chips  class="col-sm-10" [label]="'Mail To'" id="inputEmail3"
-                        [listDefine]="mailState.listAddress" 
-                        (onChange)="outputListMailTo($event)">
-                        </app-container-chips>
-
-                     </div>
-
-
-                     <div class="form-group row">
-                        <label for="inputEmail4" class="col-sm-2 col-form-label">Cc:</label>
-                        <app-container-chips  class="col-sm-10" [label]="'Mail Cc'" id="inputEmail4"
-                        [listDefine]="mailState.listAddress" 
-                        (onChange)="outputListMailCC($event)">
+                        <label for="mail-to-container-chips" class="col-sm-2 col-form-label">To:</label>
+                        <app-container-chips class="col-sm-10" id="mail-to-container-chips" [listElement]="inputListTo"
+                           [label]="'Mail To'" [listDefine]="mailState.listAddress"
+                           (onChange)="outputListMailTo($event)">
                         </app-container-chips>
                      </div>
                      <div class="form-group row">
-                        <label for="inputEmail5" class="col-sm-2 col-form-label">Bcc:</label>
-                        <app-container-chips  class="col-sm-10" [label]="'Mail Bcc'" id="inputEmail5"
-                        [listDefine]="mailState.listAddress" 
-                        (onChange)="outputListMailBCC($event)">
+                        <label for="mail-cc-container-chips" class="col-sm-2 col-form-label">Cc:</label>
+                        <app-container-chips class="col-sm-10" id="mail-cc-container-chips" [listElement]="inputListCc"
+                           [label]="'Mail Cc'" [listDefine]="mailState.listAddress"
+                           (onChange)="outputListMailCC($event)">
                         </app-container-chips>
-                     </div> 
-
+                     </div>
+                     <div class="form-group row">
+                        <label for="mail-bcc-container-chips" class="col-sm-2 col-form-label">Bcc:</label>
+                        <app-container-chips class="col-sm-10" id="mail-bcc-container-chips"
+                           [listElement]="inputListBcc" [label]="'Mail Bcc'" [listDefine]="mailState.listAddress"
+                           (onChange)="outputListMailBCC($event)">
+                        </app-container-chips>
+                     </div>
                      <div class="form-group row">
                         <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
-                        <mat-form-field class="col-sm-10">
+                        <mat-form-field  class="col-sm-10 custom-standard" appearance="fill">
                            <mat-label>Subject about what you will send </mat-label>
-                           <input [(ngModel)]="mailState.msg.subject" name="mail-subject-input" matInput placeholder="Ex. Reclamation" value="Sushi">
+                           <input [(ngModel)]="mailState.msg.subject" name="mail-subject-input" matInput
+                              placeholder="Ex. Reclamation" value="Sushi">
                         </mat-form-field>
                      </div>
                      <div class="form-group row">
@@ -55,16 +52,31 @@
                         <div class="col-sm-10">
                            <!-- <div [froalaEditor]  [froalaEditor]="options">Hello, Froala!</div>   -->
 
-                          
-                              <!-- <div id="editor-div" [froalaEditor]  [(froalaModel)]="editorContent"  name="editor-content-textarea" 
+
+                           <!-- <div id="editor-div" [froalaEditor]  [(froalaModel)]="editorContent"  name="editor-content-textarea" 
                               [froalaEditor]="options"></div> -->
 
-                              <div id="editor-div" style="height: 400px;"></div>
-                     
+                           <div id="editor-div"></div>
+
                         </div>
                         <div [innerHTML]="safeHtml"></div>
 
                      </div>
+                     <div *ngIf="selectedFiles.length!=0" class="form-group row">
+                        <label class="col-sm-2 col-form-label">Your Files:</label>
+                        <div class="col-sm-10">
+                           <ul class="list-group">
+                              <li *ngFor="let file of selectedFiles" class="list-group-item">
+                                 <div class="d-flex justify-content-between">
+                                    <span><strong>file:</strong> <span style="color: #15c;">{{file.name}}</span>
+                                       &nbsp;&nbsp;<strong>size:</strong>({{(file.size/1024).toFixed(2)}} mo)</span>
+                                    <mat-icon class="cursor-pointer" (click)="onRemoveFile(file)">close</mat-icon>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+
                      <div class="form-group row align-items-center">
                         <div class="d-flex flex-grow-1 align-items-center">
                            <div class="send-btn pl-3">
@@ -73,30 +85,34 @@
                                  <mat-icon>mail</mat-icon>Send
                               </button>
                            </div>
+                           <div class="send-btn pl-2">
+                              <button type="button" (click)="onSchedule()" class="ml-auto mt-auto mb-auto"
+                                 mat-raised-button color="primary-color">
+                                 <mat-icon>schedule</mat-icon>Scheduled Send
+                              </button>
+                           </div>
                            <div class="send-panel">
                               <label class="ml-2 mb-0 iq-bg-primary rounded" for="file">
                                  <button type="button" mat-raised-button (click)="fileInput.click()">
-                                   <mat-icon>file_copy</mat-icon>Choose File
+                                    <mat-icon>file_copy</mat-icon>Choose File
                                  </button>
-                                 <input hidden (change)="onChangeFiles($event)" #fileInput type="file" id="file" multiple>
-                               </label>
-                               
-
+                                 <input hidden (change)="onAddFiles($event)" #fileInput type="file" id="file" multiple>
+                              </label>
                               <!-- <label class="ml-2 mb-0 iq-bg-primary rounded" for="file"> <input type="file" id="file" style="display: none"> <a><i class="ri-attachment-line"></i> </a> </label> -->
-                              <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
+                              <!-- <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
                                        class="ri-map-pin-user-line text-primary"></i></a> </label>
                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
                                        class="ri-drive-line text-primary"></i></a> </label>
                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
                                        class="ri-camera-line text-primary"></i></a> </label>
                               <label class="ml-2 mb-0 iq-bg-primary rounded"> <a href="javascript:void();"> <i
-                                       class="ri-user-smile-line text-primary"></i></a> </label>
+                                       class="ri-user-smile-line text-primary"></i></a> </label> -->
                            </div>
                         </div>
                         <div class="d-flex mr-3 align-items-center">
                            <div class="send-panel float-right">
                               <label class="ml-2 mb-0 iq-bg-primary rounded" for="file">
-                                 <button type="button" mat-raised-button>
+                                 <button type="button" (click)="onClickClear()" mat-raised-button>
                                     <mat-icon>delete</mat-icon>draft </button>
                               </label>
                            </div>

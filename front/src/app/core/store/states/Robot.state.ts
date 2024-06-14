@@ -21,6 +21,7 @@ export interface RobotState {
     robotDataChart:RobotDataChart;
     robot: RobotDto;
     robotDataBand?: RobotDataBand;
+    listRobotDataBand?: RobotDataBand[];
     listRobotsData?:RobotDataChart[];
     listRobots: RobotDto[];
     errorMessage?:String;
@@ -58,26 +59,38 @@ const robotDataBand: RobotDataBand = {
     name: "",
     connection: {
         average: { connected: 0, desconnected: 0 },
+        duration: { connected: 0, desconnected: 0 },
+        frequency: { connected: 0, desconnected: 0 },
         interval: { connected: [plot], desconnected: [plot] }
     },
     mode: {
         average: { auto: 0, manual: 0 },
+        duration: { auto: 0, manual: 0 },
+        frequency: { auto: 0, manual: 0 },
         interval: { auto: [plot], manual: [plot] }
     },
     operationStatus: {
         average: { normal: 0, ems: 0 , pause: 0},
+        duration:  { normal: 0, ems: 0 , pause: 0},
+        frequency:  { normal: 0, ems: 0 , pause: 0},
         interval: { normal: [plot], ems: [plot] , pause: [plot]}
     },
     statusRobot: {
         average: { running: 0, inactive: 0 , waiting: 0},
+        duration:  { running: 0, inactive: 0 , waiting: 0},
+        frequency:  { running: 0, inactive: 0 , waiting: 0},
         interval: { running: [plot], inactive: [plot] , waiting: [plot]}
     },
     battery: {
         average: { charge: 0, standby: 0 , discharge: 0},
+        duration:{ charge: 0, standby: 0 , discharge: 0},
+        frequency:{ charge: 0, standby: 0 , discharge: 0},
         interval: { charge: [plot], standby: [plot] , discharge: [plot]}
     },
     speed: {
         average: { max: 0, standby: 0 , min: 0},
+        duration: { max: 0, standby: 0 , min: 0},
+        frequency: { max: 0, standby: 0 , min: 0},
         interval: { max: [plot], standby: [plot] , min: [plot]}
     }
 }
@@ -113,5 +126,6 @@ export const robotState: RobotState = {
     listRobotsData:listRobotsData,
     listRobots: listRobots,
     robotDataBand: robotDataBand, 
+    listRobotDataBand:[robotDataBand],
     errorMessage:""
 };

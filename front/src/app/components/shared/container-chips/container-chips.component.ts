@@ -16,9 +16,9 @@ export class ContainerChipsComponent    {
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   @Input() public label:String = '';
-  @Input()  listDefine:String[] = [];
-  listOut: string[] = [];
-  @Output() onChange=new EventEmitter<string[]>(); 
+  @Input() listDefine:String[] = [];
+  @Input() listElement: String[] = [];
+  @Output() onChange=new EventEmitter<String[]>(); 
   
   value: string = '';
 
@@ -26,29 +26,29 @@ export class ContainerChipsComponent    {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    if (value && !this.listOut.includes(value)) {
-      this.listOut.push(value);
+    if (value && !this.listElement.includes(value)) {
+      this.listElement.push(value);
       this.announcer.announce(`Added ${value}`);
-      this.onChange.emit(  this.listOut);
+      this.onChange.emit(  this.listElement);
     }
     event.chipInput!.clear();
     this.value = '';
   }
-  remove(mail: string): void {
-    const index = this.listOut.indexOf(mail);
+  remove(mail: String): void {
+    const index = this.listElement.indexOf(mail);
     if (index >= 0) {
-      this.listOut.splice(index, 1);
+      this.listElement.splice(index, 1);
       this.announcer.announce(`Removed ${mail}`);
-      this.onChange.emit(  this.listOut);
+      this.onChange.emit(  this.listElement);
     }
   }
   selected(event: MatAutocompleteSelectedEvent): void {
     const value = event.option.viewValue;
     // if (!this.fruits.includes(value)) {
-      this.listOut.push(value);
+      this.listElement.push(value);
       this.chipGridInput.nativeElement.value = '';
       this.value = '';// }
-      this.onChange.emit(  this.listOut);
+      this.onChange.emit(  this.listElement);
   } 
   filterFruits(value: string): String[] {
     const addressValue = value.toLowerCase();

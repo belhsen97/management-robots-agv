@@ -1,5 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import * as Highcharts from 'highcharts/highstock';
+
+
+import * as Highcharts from 'highcharts';
 import dataInit from 'highcharts/modules/data';
 import seriesLabelInit from 'highcharts/modules/series-label';
 import exportingInit from "highcharts/modules/exporting";
@@ -7,6 +9,15 @@ import exportDataInit from "highcharts/modules/export-data";
 import accessibilityInit from "highcharts/modules/accessibility";
 import noDataToDisplayInit from 'highcharts/modules/no-data-to-display';
 import annotationsInit from 'highcharts/modules/annotations';
+import moreInit from 'highcharts/highcharts-more';
+moreInit(Highcharts);
+dataInit(Highcharts);
+seriesLabelInit(Highcharts);
+exportingInit(Highcharts);
+exportDataInit(Highcharts);
+accessibilityInit(Highcharts);
+noDataToDisplayInit(Highcharts);
+annotationsInit(Highcharts);
 
 import { RobotService } from 'src/app/core/services/robot.service';
 import { Subscription } from 'rxjs';
@@ -18,7 +29,6 @@ import { MatSort } from '@angular/material/sort';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { deleteRobot, loadRobotByName, updateRobot, loadDataRobotData } from 'src/app/core/store/actions/Robot.Action';
 import { getRobot, getRobotDataBand } from 'src/app/core/store/selectors/Robot.Selector';
-import { RobotProperty } from 'src/app/core/store/models/Robot/RobotProperty.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { GlobalState } from 'src/app/core/store/states/Global.state';
 import { getDateRangeSearchInput, getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
@@ -27,13 +37,7 @@ import { AddRobotComponent } from '../add-robot/add-robot.component';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { Plot } from 'src/app/core/store/models/Robot/RobotDataBand.model';
 
-dataInit(Highcharts);
-seriesLabelInit(Highcharts);
-exportingInit(Highcharts);
-exportDataInit(Highcharts);
-accessibilityInit(Highcharts);
-noDataToDisplayInit(Highcharts);
-annotationsInit(Highcharts);
+
 
 
 
@@ -48,16 +52,16 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
   private getRobotSub: Subscription | undefined;
   private getValueSearchInputSub: Subscription | undefined;
   private getDateRangeSearchInputSubb: Subscription | undefined;
-  private chart: any;
+  private piechart: any;
+  private spiderchart: any;
   private nameRobot: string = "";
   public robot !: RobotDto;
-  public typeProperty: string = "";
 
   displayedColumns: string[] = ['text', 'from', 'to'];
   dataSource !: MatTableDataSource<Plot>;
   @ViewChild(MatSort) sort  !: MatSort;
   @ViewChild("paginatorRobotProperty") paginator  !: MatPaginator;
-
+  
   constructor(private storeRouter: Store,
     private storeGlobal: Store<GlobalState>,
     public robotService: RobotService,
@@ -65,7 +69,6 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
     private dialog: MatDialog) {}
   ngOnInit(): void {
     this.getRouterNameSub = this.storeRouter.select(getRouterName).subscribe(item => {
-      console.log(item);
       if (item === null || item === undefined) { return; }
       this.nameRobot = item;
     });
@@ -87,7 +90,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-    this.chart = Highcharts.chart('container-pie-chart-robot-details', this.chartOptions);
+    this.piechart = Highcharts.chart('container-pie-chart-robot-details', this.chartPieOptions);
+    this.spiderchart = Highcharts.chart('container-sperder-chart-robot-details', this.chartSpiderOptions);
     this.dataSource = new MatTableDataSource<Plot>();
 
     this.getlistRobotPropertysSub = this.storeRobot.select(getRobotDataBand).subscribe(item => {
@@ -110,10 +114,40 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
       dataPlot = [...dataPlot, ...item!.speed.interval.min];
       dataPlot = [...dataPlot, ...item!.speed.interval.standby];
       this.dataSource.data = dataPlot;
-      this.chart.series[0].setData([
+      this.piechart.series[0].setData([
         { name: 'connected', y: robotState.robotDataBand!.connection.average.connected },
         { name: 'desconnected', y: robotState.robotDataBand!.connection.average.desconnected }
       ]);
+
+   
+      this.spiderchart.series[0].setData([
+       robotState.robotDataBand!.connection.average.connected,
+       robotState.robotDataBand!.operationStatus.average.normal,
+       robotState.robotDataBand!.speed.average.standby,
+       robotState.robotDataBand!.mode.average.auto,
+      (robotState.robotDataBand!.battery.average.discharge + robotState.robotDataBand!.battery.average.standby ),
+      robotState.robotDataBand!.statusRobot.average.running 
+    ]);
+
+      this.spiderchart.series[1].setData([
+       robotState.robotDataBand!.connection.average.desconnected,
+       (robotState.robotDataBand!.operationStatus.average.pause +robotState.robotDataBand!.operationStatus.average.ems),
+       robotState.robotDataBand!.speed.average.max + robotState.robotDataBand!.speed.average.min ,
+       robotState.robotDataBand!.mode.average.manual,
+       robotState.robotDataBand!.battery.average.charge,
+      (robotState.robotDataBand!.statusRobot.average.inactive + robotState.robotDataBand!.statusRobot.average.waiting),
+    ]);
+    //   {
+    //     name: 'Efficiency',
+    //     data: [90, 80, 20, 5, 6, 4],
+    //     pointPlacement: 'on'
+    // }, {
+    //     name: 'Unreliable',
+    //     data: [10, 20, 80, 95, 94, 96],
+    //     pointPlacement: 'on'
+    // }
+
+
     });
     this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!; });
   }
@@ -131,7 +165,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
   ngOnDestroy(): void {
-    this.chart.destroy();
+    this.piechart.destroy();
+    this.spiderchart.destroy();
     if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
     if (this.getlistRobotPropertysSub) { this.getlistRobotPropertysSub.unsubscribe(); }
     if (this.getRobotSub) { this.getRobotSub.unsubscribe(); }
@@ -142,15 +177,15 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onClickRefresh(): void { }
-  onToggleButtonClickTypeProperty(): void {
-    //console.log (this.typeProperty );
-    //this.dataSource.filter = this.typeProperty
-    switch (this.typeProperty) {
+  onChangeSelectTypeProperty(typeProperty :String): void {
+    //console.log (typeProperty );
+    //this.dataSource.filter = typeProperty
+    switch (typeProperty) {
       case "CONNECTION": {
         this.dataSource.data = [...robotState.robotDataBand!.connection.interval.desconnected,
         ...robotState.robotDataBand!.connection.interval.connected];
-        this.chart.setTitle({text: "Robot property"},{text: "Connection"});
-        this.chart.series[0].setData([
+        this.piechart.setTitle({text: "Robot property"},{text: "Connection"});
+        this.piechart.series[0].setData([
           { name: 'connected', y: robotState.robotDataBand!.connection.average.connected },
           { name: 'desconnected', y: robotState.robotDataBand!.connection.average.desconnected }
         ]);
@@ -159,8 +194,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
       case "MODE_ROBOT": {
         this.dataSource.data = [...robotState.robotDataBand!.mode.interval.auto,
         ...robotState.robotDataBand!.mode.interval.manual];
-        this.chart.setTitle({text: "Robot property"},{text: "Mode"});
-        this.chart.series[0].setData([
+        this.piechart.setTitle({text: "Robot property"},{text: "Mode"});
+        this.piechart.series[0].setData([
           { name: 'auto', y: robotState.robotDataBand!.mode.average.auto },
           { name: 'manual', y: robotState.robotDataBand!.mode.average.manual }
         ]);
@@ -170,8 +205,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.statusRobot.interval.inactive,
         ...robotState.robotDataBand!.statusRobot.interval.waiting,
         ...robotState.robotDataBand!.statusRobot.interval.running];
-        this.chart.setTitle({text: "Robot property"},{text: "Status Robot"});
-        this.chart.series[0].setData([
+        this.piechart.setTitle({text: "Robot property"},{text: "Status Robot"});
+        this.piechart.series[0].setData([
           { name: 'auto', y: robotState.robotDataBand!.statusRobot.average.inactive },
           { name: 'waiting', y: robotState.robotDataBand!.statusRobot.average.waiting },
           { name: 'running', y: robotState.robotDataBand!.statusRobot.average.running }
@@ -182,8 +217,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.operationStatus.interval.ems,
         ...robotState.robotDataBand!.operationStatus.interval.pause,
         ...robotState.robotDataBand!.operationStatus.interval.normal];
-        this.chart.setTitle({text: "Robot property"},{text: "Operation Status"});
-        this.chart.series[0].setData([
+        this.piechart.setTitle({text: "Robot property"},{text: "Operation Status"});
+        this.piechart.series[0].setData([
           { name: 'ems', y: robotState.robotDataBand!.operationStatus.average.ems },
           { name: 'pause', y: robotState.robotDataBand!.operationStatus.average.pause },
           { name: 'normal', y: robotState.robotDataBand!.operationStatus.average.normal }
@@ -194,8 +229,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.battery.interval.discharge,
         ...robotState.robotDataBand!.battery.interval.standby,
         ...robotState.robotDataBand!.battery.interval.charge];
-        this.chart.setTitle({text: "Robot property"},{text: "Battery"});
-        this.chart.series[0].setData([
+        this.piechart.setTitle({text: "Robot property"},{text: "Battery"});
+        this.piechart.series[0].setData([
           { name: 'discharge', y: robotState.robotDataBand!.battery.average.discharge },
           { name: 'standby', y: robotState.robotDataBand!.battery.average.standby },
           { name: 'charge', y: robotState.robotDataBand!.battery.average.charge }
@@ -206,8 +241,8 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.data = [...robotState.robotDataBand!.speed.interval.max,
         ...robotState.robotDataBand!.speed.interval.min,
         ...robotState.robotDataBand!.speed.interval.standby];
-        this.chart.setTitle({text: "Robot property"},{text: "Speed"});
-        this.chart.series[0].setData([
+        this.piechart.setTitle({text: "Robot property"},{text: "Speed"});
+        this.piechart.series[0].setData([
           { name: 'max', y: robotState.robotDataBand!.speed.average.max },
           { name: 'min', y: robotState.robotDataBand!.speed.average.min },
           { name: 'standby', y: robotState.robotDataBand!.speed.average.standby }
@@ -215,7 +250,22 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
         break;
       }
       default: {
-
+        this.dataSource.data = [...robotState.robotDataBand!.connection.interval.desconnected,
+          ...robotState.robotDataBand!.connection.interval.connected,
+          ...robotState.robotDataBand!.mode.interval.auto,
+          ...robotState.robotDataBand!.mode.interval.manual,
+          ...robotState.robotDataBand!.statusRobot.interval.inactive,
+          ...robotState.robotDataBand!.statusRobot.interval.waiting,
+          ...robotState.robotDataBand!.statusRobot.interval.running,
+          ...robotState.robotDataBand!.operationStatus.interval.ems,
+          ...robotState.robotDataBand!.operationStatus.interval.pause,
+          ...robotState.robotDataBand!.operationStatus.interval.normal,
+          ...robotState.robotDataBand!.battery.interval.discharge,
+          ...robotState.robotDataBand!.battery.interval.standby,
+          ...robotState.robotDataBand!.battery.interval.charge,
+          ...robotState.robotDataBand!.speed.interval.max,
+          ...robotState.robotDataBand!.speed.interval.min,
+          ...robotState.robotDataBand!.speed.interval.standby];
         break;
       }
     }
@@ -259,19 +309,90 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  chartSpiderOptions: any = {
+    chart: {
+        polar: true,
+        type: 'line'
+    },
 
+    accessibility: {
+        description: 'A spiderweb chart compares the allocated budget ' 
+    },
 
+    title: {
+        text: 'Efficiency vs Unreliable',
+        x: 0
+    },
 
+    pane: {
+        size: '80%'
+    },
 
+    xAxis: {
+        categories: [
+            'Connection', 'Opperation', 'Bettery', 'Mode',
+            'Speed', 'Status'
+        ],
+        tickmarkPlacement: 'on',
+        lineWidth: 0
+    },
 
+    yAxis: {
+      endOnTick: false,
+        gridLineInterpolation: 'polygon',
+        lineWidth: 0,
+        min: 0
+    },
 
+    tooltip: {
+        shared: true,
+        pointFormat: '<span style="color:{series.color}">{series.name}: <b>' +
+            '{point.y:,.0f}%</b><br/>'
+    },
+    legend: {
+        align: 'right',
+        verticalAlign: 'bottom',
+        layout: 'vertical',
+        floating: true,
+        itemMarginTop: 10
+    },
+    plotOptions: {
+      series: {
+        label: {
+          enabled: false
+        }
+      }
+    },
+    series: [{
+        name: 'Efficiency',
+        data: [90, 80, 20, 5, 6, 4],
+        pointPlacement: 'on'
+    }, {
+        name: 'Unreliable',
+        data: [10, 20, 80, 95, 94, 96],
+        pointPlacement: 'on'
+    }],
 
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    layout: 'horizontal'
+                },
+                pane: {
+                    size: '70%'
+                }
+            }
+        }]
+    }
 
-
-
-
-
-  chartOptions: any = {
+};
+  chartPieOptions: any = {
     chart: {
       type: 'pie'
     },

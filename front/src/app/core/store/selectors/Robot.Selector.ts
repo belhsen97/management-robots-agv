@@ -10,4 +10,5 @@ export const getRobot=createSelector(getRobotState,(state)=>{      return state.
 export const getCountRobotsProperties=createSelector(getRobotState,(state)=>{  return state.count;});
 export const getDataRobotChart =createSelector(getRobotState,(state)=>{  return state.robotDataChart;  });
 export const getRobotDataBand =createSelector(getRobotState,(state)=>{ return state.robotDataBand;   });
+export const getListRobotDataBand =createSelector(getRobotState,(state)=>{ return state.listRobotDataBand;   });
 export const getSettingRobot=createSelector(getRobotState,(state)=>{  return state.settingRobot;  });

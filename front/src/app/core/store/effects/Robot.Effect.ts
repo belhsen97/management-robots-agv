@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { EMPTY, Observable, Subscription, catchError, concatMap, exhaustMap, map, mergeMap, of, switchMap, takeUntil, tap } from "rxjs"
 import { RobotService } from "../../services/robot.service";
-import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChart, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadRobotByName, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobot, loadSettingRobotSuccess, updateSettingRobot, loadDataRobotData } from "../actions/Robot.Action";
+import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChart, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadRobotByName, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobot, loadSettingRobotSuccess, updateSettingRobot, loadDataRobotData, loadListRobotDataBandSuccess } from "../actions/Robot.Action";
 import { ShowAlert } from "../actions/Global.Action";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { RobotDto } from "../models/Robot/RobotDto.model";
@@ -146,7 +146,10 @@ _loadSettingRobot = createEffect(() => this.action$
             ofType(loadDataRobotData),
             exhaustMap((action) => {
                 return this.service.geAllDataBand({ name : action.name,start:action.start,end:action.end}).pipe(
-                    map((response) => { return loadRobotDataBandSuccess({ robotDataBand: response.body as RobotDataBand }); }),
+                    map((response) => { 
+                        if (  response.body instanceof Array ) {  return loadListRobotDataBandSuccess({ list: response.body as RobotDataBand[] }); }
+                        return loadRobotDataBandSuccess({ robotDataBand: response.body as RobotDataBand }); 
+                    }),
                     catchError((_error) =>
                         of(
                             loadRobotfail({ errorMessage: _error }),

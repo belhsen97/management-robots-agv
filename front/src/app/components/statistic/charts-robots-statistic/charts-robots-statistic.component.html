@@ -1,42 +1,35 @@
-<div class="row mb-3">
-    <div class="col-12">
-  
-  
-      <div class="row">
-        <div class="col-6">
-          <app-panel-robot></app-panel-robot>
-        </div>
-  
-        <div class="col-6 d-flex flex-column justify-content-center align-items-center ">
-          <div>
-            <button (click)="onClickStopAllRobot()" mat-raised-button color="primary-color" class="mr-2">
-              <mat-icon>play_arrow</mat-icon>Stop All Robot</button>
-            <button (click)="onClickStartAllRobot()" mat-raised-button color="primary-color" class="mr-2">
-              <mat-icon>pause</mat-icon>Start All Robot</button>
-            <button (click)="onClickTrunOffAllRobot()" mat-raised-button color="primary-color" class="mr-2">
-              <mat-icon>power_settings_new</mat-icon>Turn OFF All Robot</button>
-          </div>
-        </div>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-6">
+        <app-panel-robot></app-panel-robot>
       </div>
-  
-  
+      <div class="col-6 d-flex flex-column justify-content-center align-items-center ">
+        <app-global-button-control></app-global-button-control>
+      </div>
     </div>
+    <div class="row mt-1">
+        <app-select-button-choice (onChange)="onChangeSelectTypeProperty($event)"></app-select-button-choice>
+        <app-range-date></app-range-date>
+    </div>
+  </div>
 </div>
-
-  <div class="row mb-5">
-    <div class="col-12">
-
-      <figure class="highcharts-figure">
-        <div id="container"></div>
-        <p class="highcharts-description">
-            Bar chart showing horizontal columns. This chart type is often
-            beneficial for smaller screens, as the user can scroll through the data
-            vertically, and axis labels are easy to read.
-        </p>
+<div class="row mb-5">
+  <div class="col-4">
+    <figure class="highcharts-figure">
+      <div id="container-bar-chart"></div>
     </figure>
-
-
-
-
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <figure class="highcharts-figure">
+        <div id="container-line-chart"></div>
+      </figure>
     </div>
+    <div class="row">
+      <figure class="highcharts-figure">
+        <div id="container-pie-chart"></div>
+      </figure>
+    </div>
+  </div>
 </div>

@@ -201,8 +201,7 @@ if __name__ == '__main__':
         run()
     else:
         print("Please provide the name of the robot using -name or --robot_name argument.")
-# if __name__ == '__main__':
-    # run()
+
 
 
 

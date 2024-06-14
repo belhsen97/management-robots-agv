@@ -1,0 +1,33 @@
+/* Custom style for mat-form-field to mimic standard appearance */
+.custom-standard .mat-form-field-wrapper {
+    padding-bottom: 10px !important; /* Ensure unit is specified */
+  }
+  
+  .custom-standard .mat-form-field-underline {
+    display: none !important;
+  }
+  
+  .custom-standard .mat-form-field-flex {
+    background-color: transparent !important;
+    border: 1px solid rgba(0, 0, 0, 0.42) !important;
+    border-radius: 4px !important;
+    padding: 0.5em 0.75em !important;
+    transition: border-color 0.3s !important;
+  }
+  
+  .custom-standard .mat-form-field-flex:hover {
+    border-color: rgba(0, 0, 0, 0.87) !important;
+  }
+  
+  .custom-standard .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+  
+  .custom-standard.mat-focused .mat-form-field-flex {
+    border-color: rgba(0, 0, 0, 0.87) !important;
+  }
+  
+  .custom-standard.mat-focused .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.87) !important;
+  }
+  

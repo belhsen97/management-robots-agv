@@ -1,7 +1,7 @@
 <mat-form-field class="example-chip-list">
     <mat-label>{{label}}</mat-label>
     <mat-chip-grid #chipGrid  aria-label="Fruit selection"   >
-       <mat-chip-row *ngFor="let element of listOut" (removed)="remove(element)">
+       <mat-chip-row *ngFor="let element of listElement" (removed)="remove(element)">
           {{element}}
           <button matChipRemove [attr.aria-label]="'remove ' + element">
              <mat-icon>cancel</mat-icon>
