@@ -15,11 +15,11 @@ export class GlobalButtonControlComponent {
 
   
   onClickStop(): void {
-    const publish: Publish = { topic: "topic/robot/control/all/OperationStatus/PAUSE", qos: 0, payload: "" };
+    const publish: Publish = { topic: "topic/control/robot/all/OPERATION_STATUS/PAUSE", qos: 0, payload: "" };
     this.mqttClientService.publish(publish);
   }
   onClickStart(): void {
-    const publish: Publish = { topic: "topic/robot/control/all/OperationStatus/NORMAL", qos: 0, payload: "" };
+    const publish: Publish = { topic: "topic/control/robot/all/OPERATION_STATUS/NORMAL", qos: 0, payload: "" };
     this.mqttClientService.publish(publish);
   }
   onClickTrunOff(): void {

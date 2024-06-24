@@ -6,6 +6,7 @@ W
 java:S1118":Add a private constructor to hide the implicit public one.(®â¤Ğ8è€Ç÷ó1
 f
 java:S3358"DExtract this nested ternary operation into an independent statement.(äùâ£ıÿÿÿÿ8é€Ç÷ó1
+t	java:S131?"YComplete cases by adding the missing enum constants or add a default case to this switch.(”ó18ÑÕØ‚2
 X	java:S125e"<This block of commented-out lines of code should be removed.(üÿ„º8 İ×÷ó1
 V
 java:S1144X"4Remove this unused private "parseConnection" method.(Ïæßëúÿÿÿÿ8 İ×÷ó1

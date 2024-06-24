@@ -1,17 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { EMPTY, Observable, Subscription, catchError, concatMap, exhaustMap, map, mergeMap, of, switchMap, takeUntil, tap } from "rxjs"
+import { EMPTY, catchError, concatMap, exhaustMap, map, of, switchMap, takeUntil } from "rxjs"
 import { RobotService } from "../../services/robot.service";
-import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChart, refreshRobotssuccess, refreshRobots, stopRefreshRobots, refreshRobot, refreshRobotsuccess, stopRefreshRobot, loadRobotByName, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobot, loadSettingRobotSuccess, updateSettingRobot, loadDataRobotData, loadListRobotDataBandSuccess } from "../actions/Robot.Action";
+import { addRobot, addRobotsuccess, deleteRobot, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobot, updateRobotsuccess, loadDataRobotChartSuccess, loadDataRobotChart, listenerAllRobotsSuccess, startListenerAllRobots, stopListenerAllRobots, startListenerRobot, listenerRobotsuccess, stopListenerRobot, loadRobotByName, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobot, loadSettingRobotSuccess, updateSettingRobot, loadDataRobotData, loadListRobotDataBandSuccess, startListenerAllRobotsByProperty, stopListenerAllRobotsByProperty, listenerAllRobotsByPropertySuccess, startListenerRobotByProperty, stopListenerRobotByProperty, listenerRobotByPropertySuccess } from "../actions/Robot.Action";
 import { ShowAlert } from "../actions/Global.Action";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 import { MqttClientService } from "../../services/mqtt-client.service";
 import { connectionFailure } from "../actions/Mqtt.Action";
-import { IMqttMessage } from "ngx-mqtt";
-import { RobotProperty } from "../models/Robot/RobotProperty.model";
 import { RobotDataBand } from "../models/Robot/RobotDataBand.model";
 import { RobotSettingDto } from "../models/Robot/RobotSettingDto.model";
 
@@ -275,20 +273,20 @@ _loadSettingRobot = createEffect(() => this.action$
 
 
 
-    refreshAllRobots = createEffect(() =>
+    listenerAllRobots = createEffect(() =>
         this.action$.pipe(
-            ofType(refreshRobots),
+            ofType(startListenerAllRobots),
             switchMap(action =>
                 { 
                 if (!action.subscribe) { return EMPTY;}
                  return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
                     map(message => {
                         const updateRobot = JSON.parse(message.payload.toString());
-                        return refreshRobotssuccess({ robotinput: updateRobot });
+                        return listenerAllRobotsSuccess({ robotinput: updateRobot });
                     }),
                     catchError((_error) =>
                         of(
-                            connectionFailure({ error: 'Subscribe Robots failed' }),
+                            connectionFailure({ error: 'listener All Robots failed' }),
                             loadRobotfail({ errorMessage: _error }),
                             ShowAlert({
                                 title: "Error",
@@ -297,38 +295,96 @@ _loadSettingRobot = createEffect(() => this.action$
                                 message: _error
                             })
                         )
-                    ),takeUntil(this.action$.pipe(ofType(stopRefreshRobots))) 
+                    ),takeUntil(this.action$.pipe(ofType(stopListenerAllRobots))) 
+                )
+                 }
+             )
+        )
+    );
+    listenerOneRobot = createEffect(() =>
+        this.action$.pipe(
+            ofType(startListenerRobot),
+            switchMap(action =>
+                { 
+                if (!action.subscribe) { return EMPTY;}
+                 return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
+                    map(message => {
+                        const updateRobot = JSON.parse(message.payload.toString());
+                        return listenerRobotsuccess({ robotinput: updateRobot });
+                    }),
+                    catchError((_error) =>
+                        of(
+                            connectionFailure({ error: 'Listener Robot failed' }),
+                            loadRobotfail({ errorMessage: _error }),
+                            ShowAlert({
+                                title: "Error",
+                                datestamp: new Date(),
+                                status: ReponseStatus.ERROR,
+                                message: _error
+                            })
+                        )
+                    ),takeUntil(this.action$.pipe(ofType(stopListenerRobot))) 
+                )
+                 }
+             )
+        )
+    );
+    listenerAllRobotsByProperty = createEffect(() =>
+        this.action$.pipe(
+            ofType(startListenerAllRobotsByProperty),
+            switchMap(action =>
+                { 
+                if (!action.subscribe) { return EMPTY;}
+                 return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
+                    map(message => {
+                       const property = JSON.parse(message.payload.toString());
+                       if (!property.hasOwnProperty("value")) {throw new Error('[Listener AllRobots By Property] cannot found key value of propertie in topic' +message.topic.toString()); }
+                        return listenerAllRobotsByPropertySuccess({ topic: message.topic.toString(),value:property.value});
+                    }),
+                    catchError((_error) =>
+                        of(
+                            connectionFailure({ error: 'listener All Robots By Property failed' }),
+                            loadRobotfail({ errorMessage: _error }),
+                            ShowAlert({
+                                title: "Error",
+                                datestamp: new Date(),
+                                status: ReponseStatus.ERROR,
+                                message: _error
+                            })
+                        )
+                    ),takeUntil(this.action$.pipe(ofType(stopListenerAllRobotsByProperty))) 
+                )
+                 }
+             )
+        )
+    );
+    listenerOneRobotByProperty = createEffect(() =>
+        this.action$.pipe(
+            ofType(startListenerRobotByProperty),
+            switchMap(action =>
+                { 
+                if (!action.subscribe) { return EMPTY;}
+                 return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
+                    map(message => {
+                       const property = JSON.parse(message.payload.toString());
+                       if (!property.hasOwnProperty("value")) {throw new Error('[Listener Robot By Property] cannot found key value of propertie in topic' +message.topic.toString()); }
+                        return listenerRobotByPropertySuccess({ topic: message.topic.toString(),value:property.value});
+                    }),
+                    catchError((_error) =>
+                        of(
+                            connectionFailure({ error: 'listener One Robot By Property failed' }),
+                            loadRobotfail({ errorMessage: _error }),
+                            ShowAlert({
+                                title: "Error",
+                                datestamp: new Date(),
+                                status: ReponseStatus.ERROR,
+                                message: _error
+                            })
+                        )
+                    ),takeUntil(this.action$.pipe(ofType(stopListenerRobotByProperty))) 
                 )
                  }
              )
         )
     ); 
-    refreshOneRobot = createEffect(() =>
-    this.action$.pipe(
-        ofType(refreshRobot),
-        switchMap(action =>
-            { 
-            if (!action.subscribe) { return EMPTY;}
-             return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
-                map(message => {
-                    const updateRobot = JSON.parse(message.payload.toString());
-                    return refreshRobotsuccess({ robotinput: updateRobot });
-                }),
-                catchError((_error) =>
-                    of(
-                        connectionFailure({ error: 'Subscribe Robot failed' }),
-                        loadRobotfail({ errorMessage: _error }),
-                        ShowAlert({
-                            title: "Error",
-                            datestamp: new Date(),
-                            status: ReponseStatus.ERROR,
-                            message: _error
-                        })
-                    )
-                ),takeUntil(this.action$.pipe(ofType(stopRefreshRobot))) 
-            )
-             }
-         )
-    )
-);
 }

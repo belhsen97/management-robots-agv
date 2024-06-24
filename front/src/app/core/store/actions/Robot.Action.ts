@@ -17,8 +17,7 @@ export const LOAD_ROBOT_FAIL='[robot page] load Robot fail';
 export const ADD_ROBOT_SUCCESS='[robot page] add Robot success';
 export const UPDATE_ROBOT_SUCCESS='[robot page] update Robot success';
 export const UPDATE_ROBOT_CNX_STATUS_SUCCESS='[robot page] update Robot success connection status';
-export const REFRESH_ROBOTS_SUCCESS='[robot page] refresh Robots success';
-export const REFRESH_ROBOT_SUCCESS='[robot page] refresh Robot success';
+
 export const DELETE_ROBOT_SUCCESS='[robot page] delete Robot success';
 
 export const LOAD_ROBOTS='[robot page] load robot';
@@ -32,10 +31,7 @@ export const UPDATE_ROBOT='[robot page] update robot';
 export const UPDATE_SETTING_ROBOT='[robot page] update setting robot';
 export const DELETE_ROBOT='[robot page] delete robot';
 export const REFRESH_PANNEL_ROBOT='[robot page] refresh pannel robot';
-export const REFRESH_ROBOTS='[robot page] refresh Robots';
-export const REFRESH_ROBOT='[robot page] refresh Robot';
-export const STOP_REFRESH_ROBOTS='[robot page] stop refresh Robots';
-export const STOP_REFRESH_ROBOT='[robot page] stop refresh Robot';
+
 
 export const loadRobotfail=createAction(LOAD_ROBOT_FAIL,props<{errorMessage:any}>())
 
@@ -76,10 +72,18 @@ export const updateSettingRobot=createAction(UPDATE_SETTING_ROBOT,props<{setting
 
 
 
-export const refreshRobotssuccess=createAction(REFRESH_ROBOTS_SUCCESS,props<{robotinput:RobotDto}>());
-export const refreshRobotsuccess=createAction(REFRESH_ROBOT_SUCCESS,props<{robotinput:RobotDto}>());
 
-export const refreshRobots=createAction(REFRESH_ROBOTS,props<{ subscribe: Subscribe }>()); 
-export const refreshRobot=createAction(REFRESH_ROBOT,props<{ subscribe: Subscribe }>()); 
-export const stopRefreshRobots=createAction(STOP_REFRESH_ROBOTS);
-export const stopRefreshRobot=createAction(STOP_REFRESH_ROBOT); 
+export const listenerAllRobotsSuccess=createAction('[ROBOT] Listener All Robots Success',props<{robotinput:RobotDto}>());
+export const listenerAllRobotsByPropertySuccess=createAction('[ROBOT] Listener All Robots By Property Success',props<{topic:String,value:any}>());
+export const listenerRobotsuccess=createAction('[ROBOT] Listener Robot Success',props<{robotinput:RobotDto}>());
+export const listenerRobotByPropertySuccess=createAction('[ROBOT] Listener Robot By Property Success',props<{topic:String,value:any}>());
+
+export const startListenerAllRobots=createAction('[ROBOT] Start Listener All Robots',props<{ subscribe: Subscribe }>());
+export const startListenerAllRobotsByProperty=createAction('[ROBOT] Start Listener All Robots By Property',props<{ subscribe: Subscribe }>());
+export const startListenerRobot=createAction('[ROBOT] Start Listener Robot',props<{ subscribe: Subscribe }>());
+export const startListenerRobotByProperty=createAction('[ROBOT] Start Listener Robot By Property',props<{ subscribe: Subscribe }>());
+
+export const stopListenerAllRobots=createAction('[ROBOT] Stop Listener All Robots');
+export const stopListenerAllRobotsByProperty=createAction('[ROBOT] Stop Listener All Robots By Property');
+export const stopListenerRobot=createAction('[ROBOT] Stop Listener Robot');
+export const stopListenerRobotByProperty=createAction('[ROBOT] Stop Listener Robot By Property');

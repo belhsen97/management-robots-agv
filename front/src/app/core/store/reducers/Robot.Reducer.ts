@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 
 
-import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, refreshRobotssuccess, refreshRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess, updateRobotStatusConnectionSuccess, loadListRobotDataBandSuccess } from "../actions/Robot.Action";
+import { addRobotsuccess, deleteRobotsuccess, loadRobots, loadRobotfail, loadAllRobotsuccess, refreshPannelRobot, updateRobotsuccess, loadDataRobotChartSuccess, listenerAllRobotsSuccess, listenerRobotsuccess, loadRobotsuccess, loadRobotDataBandSuccess, loadSettingRobotSuccess, updateRobotStatusConnectionSuccess, loadListRobotDataBandSuccess, listenerAllRobotsByPropertySuccess, listenerRobotByPropertySuccess } from "../actions/Robot.Action";
 import { RobotDto } from "../models/Robot/RobotDto.model";
 import { Connection } from "../models/Robot/Connection.enum";
 import { ModeRobot } from "../models/Robot/ModeRobot.enum";
@@ -12,6 +12,7 @@ import { RobotDataChart } from "../models/Robot/RobotDataChart.model";
 import { robotState } from "../states/Robot.state";
 import { RobotDataBand } from "../models/Robot/RobotDataBand.model";
 import { RobotSettingDto } from "../models/Robot/RobotSettingDto.model";
+import { TypeProperty } from "../models/Robot/TypeProperty.enum";
 
 const _robotReducer = createReducer(robotState,
     on(loadRobots, (state) => {
@@ -134,6 +135,21 @@ const _robotReducer = createReducer(robotState,
         const updatedRobot=state.listRobots.map((r:RobotDto)=>{return _robot.id===r.id?_robot:r;});
         return{  ...state, listRobots:[...updatedRobot] , robot : _robot}
     }),
+    on(deleteRobotsuccess,(state,action)=>{ 
+        const updatedlistRobots = state.listRobots.filter((r:RobotDto)=>{
+           return r.id !==action.id
+        });
+        return{
+           ...state, listRobots : updatedlistRobots
+        }
+    }),
+
+
+
+
+
+
+
     on(updateRobotStatusConnectionSuccess ,(state,action)=>{
         let connection = Connection.DISCONNECTED;
         if ( ( (action.client!.disconnected_at == undefined )   ? true : action.client!.connected_at > action.client!.disconnected_at )   ){
@@ -141,18 +157,12 @@ const _robotReducer = createReducer(robotState,
       if ( ( (action.client!.connected_at == undefined )   ? true : action.client!.connected_at < action.client!.disconnected_at ) ){
         connection = Connection.DISCONNECTED;}
         const updatedRobots = state.listRobots.map((robot: RobotDto) => {
-            if (robot.clientid === action.client.clientid) {
-              return {
-                ...robot,
-                connection :  connection,
-              };
-            }
+            if (robot.clientid === action.client.clientid) {return {...robot,connection :  connection};}
             return robot;
           });
         return{  ...state, listRobots:[...updatedRobots] }
     }),
-    on(refreshRobotssuccess ,(state,action)=>{
-        
+    on(listenerAllRobotsSuccess ,(state,action)=>{
         const updatedRobots = state.listRobots.map((robot: RobotDto) => {
             if (robot.name === action.robotinput.name) {
               return {
@@ -170,7 +180,38 @@ const _robotReducer = createReducer(robotState,
 
         return{  ...state, listRobots:[...updatedRobots] }
     }),
-    on(refreshRobotsuccess ,(state,action)=>{
+    on(listenerAllRobotsByPropertySuccess ,(state,action)=>{
+        const parts = action.topic.split('/');
+        if (parts.length !== 6) {return{  ...state }}
+      const propertyKey = parts[5];
+      const index = state.listRobots.findIndex(robot => robot.name === parts[3]);
+      if (index === -1) {return{  ...state }}
+      switch (propertyKey) {
+        case TypeProperty.CONNECTION:
+            state.listRobots[index].connection = action.value;
+            break;
+        case TypeProperty.STATUS_ROBOT:
+            state.listRobots[index].statusRobot = action.value;
+            break;
+        case TypeProperty.MODE_ROBOT:
+            state.listRobots[index].modeRobot = action.value;
+            break;
+        case TypeProperty.OPERATION_STATUS:
+            state.listRobots[index].operationStatus = action.value;
+            break;
+        case TypeProperty.LEVEL_BATTERY:
+            state.listRobots[index].levelBattery = parseFloat(action.value);
+            break;
+        case TypeProperty.SPEED:
+            state.listRobots[index].speed = parseFloat(action.value);
+            break;
+        default:
+            console.log("Unhandled TypeProperty");
+            break;
+        }
+        return{  ...state, listRobots:[...state.listRobots] }
+    }),
+    on(listenerRobotsuccess ,(state,action)=>{
         const _robot={...action.robotinput};
         const index = state.listRobots.findIndex(robot => robot.name === _robot.name);
         if (index !== -1) {
@@ -178,21 +219,46 @@ const _robotReducer = createReducer(robotState,
             _robot.id = state.listRobots[index].id; 
             _robot.workstation = state.listRobots[index].workstation;
          }
-   
-
         return{  ...state, robot:_robot }
     }),
-    on(deleteRobotsuccess,(state,action)=>{ 
-        const updatedlistRobots = state.listRobots.filter((r:RobotDto)=>{
-           return r.id !==action.id
-        });
-        return{
-           ...state, listRobots : updatedlistRobots
+    on(listenerRobotByPropertySuccess ,(state,action)=>{
+        const parts = action.topic.split('/');
+        if (parts.length !== 6) {return{  ...state }}
+      const propertyKey = parts[5];
+      const index = state.listRobots.findIndex(robot => robot.name === parts[3]);
+      if (index === -1) {return{  ...state }}
+     // const updatedRobot = state.listRobots[index];
+     
+     const updatedRobot: RobotDto = { ...state.listRobots[index] };
+      switch (propertyKey) {
+        case TypeProperty.CONNECTION:
+            updatedRobot.connection = action.value;
+            break;
+        case TypeProperty.STATUS_ROBOT:
+            updatedRobot.statusRobot = action.value;
+            break;
+        case TypeProperty.MODE_ROBOT:
+            updatedRobot.modeRobot = action.value;
+            break;
+        case TypeProperty.OPERATION_STATUS:
+            updatedRobot.operationStatus = action.value;
+            console.log(  updatedRobot.operationStatus)
+            break;
+        case TypeProperty.LEVEL_BATTERY:
+            updatedRobot.levelBattery = parseFloat(action.value);
+            //state.listRobots[index] =  { ... state.listRobots[index], levelBattery: parseFloat(action.value) };
+            break;
+        case TypeProperty.SPEED:
+            updatedRobot.speed = parseFloat(action.value);
+            //state.listRobots[index] =  { ... state.listRobots[index], speed: parseFloat(action.value)  };
+            break;
+        default:
+            console.log("Unhandled TypeProperty");
+            break;
         }
+        return{  ...state, robot:updatedRobot}
     })
+
 );
 
-export function robotReducer(state: any, action: any) {
-    return _robotReducer(state, action);
-
-}
+export function robotReducer(state: any, action: any) {return _robotReducer(state, action);}

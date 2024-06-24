@@ -16,8 +16,8 @@ import { Store } from '@ngrx/store';
 import { getRouterName } from 'src/app/core/store/selectors/Router.Seletor';
 import { MqttClientService } from 'src/app/core/services/mqtt-client.service';
 import { Subscribe } from 'src/app/core/store/models/Mqtt/Subscribe.model';
-import { getDataRobotChart, getRobot } from 'src/app/core/store/selectors/Robot.Selector';
-import {  loadDataRobotChart, refreshRobot, stopRefreshRobot } from 'src/app/core/store/actions/Robot.Action';
+import { getConnectionFromRobot, getDataRobotChart, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.Selector';
+import {  loadDataRobotChart, startListenerRobot, startListenerRobotByProperty, stopListenerRobot, stopListenerRobotByProperty } from 'src/app/core/store/actions/Robot.Action';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { OperationStatus } from 'src/app/core/store/models/Robot/OperationStatus.enum';
 import { Connection } from 'src/app/core/store/models/Robot/Connection.enum';
@@ -41,8 +41,21 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
     private getRouterNameSub: Subscription | undefined;
     private getDataRobotChartSub: Subscription | undefined;
     private getRobotSub : Subscription | undefined;
-    private curSubscription: Subscription | undefined;
-    private subTopicNameRobot: Subscribe = { topic: "topic/robot/data/", qos: 0 };
+
+    private getConnectionFromRobotSub: Subscription | undefined;
+    private getModeFromRobotSub: Subscription | undefined;
+    private getStatusRobotFromRobotSub: Subscription | undefined;
+    private getOperationStatusFromRobotSub: Subscription | undefined;
+    private getLevelBatteryFromRobotSub: Subscription | undefined;
+    private getSpeedFromRobotSub: Subscription | undefined;
+
+
+
+
+
+
+    private subTopicRobot: Subscribe = { topic: "topic/data/robot/", qos: 0 };
+    private subTopicRobotByProperty: Subscribe = { topic: "topic/data/robot/+/property/+", qos: 0 };
     private nameRobot: String = "";
     private chart: any;
     private connectionState : Connection = Connection.DISCONNECTED;
@@ -51,7 +64,7 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(private storeRouter: Store, 
         private robotService: RobotService,
-        private mqttClientService: MqttClientService,
+        //private mqttClientService: MqttClientService,
         private storeRobot: Store<RobotState>,
     ) { }
 
@@ -63,8 +76,10 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
         if (this.nameRobot == "") {this.robotService.goToComponent("dashboard/table");}
 
-        this.subTopicNameRobot.topic += this.nameRobot;
-   
+        this.subTopicRobot.topic += this.nameRobot;
+        this.subTopicRobotByProperty.topic = `topic/data/robot/${this.nameRobot}/property/+`;
+
+
         this.chart = Highcharts.stockChart('container-stock-chart-robot', this.chartOptions);
 
         this.chart.showLoading("Loading data from server...");
@@ -108,16 +123,60 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
             this.chart.hideLoading();
         }
         );
+
+
+        // this.getConnectionFromRobotSub = this.storeRobot.select(getConnectionFromRobot).pipe().subscribe(value => {
+        //     const x = (new Date()).getTime();
+        //     if ( this.connectionState != value ){
+        //     this.chart.xAxis[0].addPlotLine({
+        //         color: '#000000', width: 1, value: x,
+        //         label: { text:  value , rotation: ( value  == "CONNECTED" ? 90 : -90), x: ( value  == "CONNECTED" ? 5 : -5), y: ( value  == "CONNECTED" ? 5 : 110) }
+        //     });
+        //     this.connectionState = value;
+        //    }
+        // });
+        // this.getModeFromRobotSub = this.storeRobot.select(getModeFromRobot).pipe().subscribe(value => {
+        //     const x = (new Date()).getTime();
+        //     if ( this.modeState != value ){
+        //     this.chart.xAxis[0].addPlotLine({
+        //         color: '#000000', width: 1, value: x,
+        //         label: {  verticalAlign: 'bottom', text:  value, rotation: ( value == "AUTO" ? 90 : -90), x: ( value == "AUTO" ? 5 : -5)}
+        //     });
+        //     this.modeState = value;
+        //    }
+        // });
+        // this.getStatusRobotFromRobotSub = this.storeRobot.select(getStatusRobotFromRobot).pipe().subscribe(value => {
+
+        // });
+        // this.getOperationStatusFromRobotSub = this.storeRobot.select(getOperationStatusFromRobot).pipe().subscribe(item => {
+
+        // });
+        // this.getLevelBatteryFromRobotSub = this.storeRobot.select(getLevelBatteryFromRobot).pipe().subscribe(value => {
+        //     const x = (new Date()).getTime();
+        //     const y = value;
+        //     this.chart.series[1].addPoint([x,y], true, false);
+        // });
+        // this.getSpeedFromRobotSub = this.storeRobot.select(getSpeedFromRobot).pipe().subscribe(value => {
+        //     const x = (new Date()).getTime();
+        //     const y = value;
+        //     this.chart.series[0].addPoint([x,y], true, false); 
+        // });
+        
+
+
         this.getRobotSub = this.storeRobot.select(getRobot).pipe(throttleTime(500)).subscribe(r => {
           const x = (new Date()).getTime();
            let y = r.speed;
            this.chart.series[0].addPoint([x,y], true, false);   //addPoint(options [, redraw] [, shift] [, animation] [, withEvent])
            y = r.levelBattery;
            this.chart.series[1].addPoint([x,y], true, false);
+
            y = (r.statusRobot == StatusRobot.RUNNING ?  2 : (r.statusRobot == StatusRobot.WAITING ? 1 : 0));
            this.chart.series[2].addPoint([x,y], true, false);
            y = (r.operationStatus == OperationStatus.PAUSE ?  2 : (r.operationStatus == OperationStatus.EMS ? 1 : 0));
            this.chart.series[3].addPoint([x,y], true, false);
+
+
            if ( this.connectionState != r.connection ){
             this.chart.xAxis[0].addPlotLine({
                 color: '#000000', width: 1, value: x,
@@ -145,12 +204,14 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
   
     ngAfterViewInit() {
-        this.storeRobot.dispatch(refreshRobot({ subscribe: this.subTopicNameRobot }));
+        this.storeRobot.dispatch(startListenerRobot({ subscribe: this.subTopicRobot }));
+        this.storeRobot.dispatch(startListenerRobotByProperty({ subscribe: this.subTopicRobotByProperty }));
     }
 
     ngOnDestroy(): void {
         //this.mqttClientService.closeSubscribe(this.curSubscription);
-        this.storeRobot.dispatch(stopRefreshRobot());
+        this.storeRobot.dispatch(stopListenerRobot());
+        this.storeRobot.dispatch(stopListenerRobotByProperty());
         this.chart.destroy();
         if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
         if (this.getDataRobotChartSub) { this.getDataRobotChartSub.unsubscribe(); }
@@ -516,7 +577,9 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-        /*this.robotService.getbyNameAllDatabyNameAndDatetime("robot-1", { start: '2024-01-01', end: '2024-04-01' }).subscribe(
+        /*
+            private curSubscription: Subscription | undefined;
+        this.robotService.getbyNameAllDatabyNameAndDatetime("robot-1", { start: '2024-01-01', end: '2024-04-01' }).subscribe(
             (response) => {}
             , (error) => {
                 this.robotService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message };

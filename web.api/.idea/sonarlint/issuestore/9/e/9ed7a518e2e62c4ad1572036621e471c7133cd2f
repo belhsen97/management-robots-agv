@@ -1,22 +1,23 @@
 
 p
-java:S1192Y"SDefine a constant instead of duplicating this literal "WorkstationService" 4 times.(Ïî8·–Ìå1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Ö¬Óã1
+java:S1192["SDefine a constant instead of duplicating this literal "WorkstationService" 4 times.(Ïî8®€ıÑƒ2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8±€ıÑƒ2
 c
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8Ö¬Óã1
-X	java:S125'"<This block of commented-out lines of code should be removed.(Í¶Æ«8 Ö¬Óã1
-]	java:S1257"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8¤Ö¬Óã1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÎB8Ô€ıÑƒ2
+X	java:S125)"<This block of commented-out lines of code should be removed.(Í¶Æ«8Ù€ıÑƒ2
+]	java:S1259"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8İ€ıÑƒ2
 J
-java:S1125<"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¥Ö¬Óã1
+java:S1125>"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8İ€ıÑƒ2
 E
-java:S1125="(Remove the unnecessary boolean literals.(èõ¬—8¦Ö¬Óã1
-X	java:S125G"<This block of commented-out lines of code should be removed.(¹½´ü8©Ö¬Óã1
-]	java:S125S"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«Ö¬Óã1
-]	java:S125a"<This block of commented-out lines of code should be removed.(¬ñØçıÿÿÿÿ8§õºå1
+java:S1125?"(Remove the unnecessary boolean literals.(èõ¬—8Ş€ıÑƒ2
+X	java:S125I"<This block of commented-out lines of code should be removed.(¹½´ü8á€ıÑƒ2
+]	java:S125U"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8â€ıÑƒ2
+]	java:S125c"<This block of commented-out lines of code should be removed.(‹¸ïÊÿÿÿÿÿ8˜× Òƒ2
 J
-java:S1125f"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8¨õºå1
+java:S1125g"(Remove the unnecessary boolean literals.(ÿ•ªĞşÿÿÿÿ8è€ıÑƒ2
 E
-java:S1125g"(Remove the unnecessary boolean literals.(èõ¬—8ĞµµÓã1
-X	java:S125q"<This block of commented-out lines of code should be removed.(¹½´ü8ªõºå1
-]	java:S125}"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8«õºå1
-^	java:S125œ"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8®õºå1
+java:S1125h"(Remove the unnecessary boolean literals.(èõ¬—8é€ıÑƒ2
+X	java:S125r"<This block of commented-out lines of code should be removed.(¹½´ü8ë€ıÑƒ2
+]	java:S125~"<This block of commented-out lines of code should be removed.(­¼¥Ãıÿÿÿÿ8î€ıÑƒ2
+^	java:S125"<This block of commented-out lines of code should be removed.(‹¸ïÊÿÿÿÿÿ8½ˆ¢Òƒ2
+^	java:S125´"<This block of commented-out lines of code should be removed.(ûß¥Ëıÿÿÿÿ8û€ıÑƒ2

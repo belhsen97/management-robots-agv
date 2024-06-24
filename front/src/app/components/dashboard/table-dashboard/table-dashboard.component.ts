@@ -14,7 +14,7 @@ import { Subscription, interval, throttleTime } from 'rxjs';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { GaugeChartComponent } from '../details/gauge-chart/gauge-chart.component';
-import { refreshPannelRobot, refreshRobots, stopRefreshRobots } from 'src/app/core/store/actions/Robot.Action';
+import { refreshPannelRobot } from 'src/app/core/store/actions/Robot.Action';
 
 @Component({
   selector: 'app-table-dashboard',
@@ -30,7 +30,6 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
   @ViewChild(MatSort) sort  !: MatSort;
   constructor(private store: Store,
     private storeRobot: Store<RobotState>,
-    private mqttClientService: MqttClientService,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {

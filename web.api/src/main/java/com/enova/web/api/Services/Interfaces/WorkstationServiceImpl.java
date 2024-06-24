@@ -1,9 +1,6 @@
 package com.enova.web.api.Services.Interfaces;
 
-import com.enova.web.api.Models.Entitys.Robot;
-import com.enova.web.api.Models.Entitys.Tag;
-import com.enova.web.api.Models.Entitys.Trace;
-import com.enova.web.api.Models.Entitys.Workstation;
+import com.enova.web.api.Models.Entitys.*;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotRepository;
@@ -11,7 +8,12 @@ import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.TraceService;
 import com.enova.web.api.Services.WorkstationService;
+import com.mongodb.client.result.UpdateResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +30,7 @@ public class WorkstationServiceImpl implements WorkstationService {
     private final RobotRepository robotRepository;
     private final TagRepository tagRepository;
     private final TraceService traceService;
-
+    private final MongoTemplate mongoTemplate;
     @Override
     public List<Workstation> selectAll() {
         return this.workstationRepository.findAll();
@@ -94,11 +96,10 @@ public class WorkstationServiceImpl implements WorkstationService {
     @Transactional
     public Workstation update(String id, Workstation obj) {
         Workstation w = this.selectById(id);
-        //if (w == null) {return null; }
-//        this.robotRepository.changeWorkstation(w.getName(), obj.getName());
-//        this.tagRepository.changeWorkstation(w.getName(), obj.getName());
-        this.robotRepository.changeWorkstation(w.getName(), null);
-        this.tagRepository.changeWorkstation(w.getName(), null);
+        //this.robotRepository.changeWorkstation(w.getName(), null);
+        //this.tagRepository.changeWorkstation(w.getName(), null);
+        this.updateMultipleWorstationNameOfRobots( w.getName(), null);
+        this.updateMultipleWorstationNameOfTags( w.getName(), null);
         final boolean fullListRobots  = (obj.getRobots() == null && obj.getRobots().isEmpty()? false :true);
         final boolean fullListTags = (obj.getTags() == null && obj.getTags().isEmpty()? false :true);
         if (fullListRobots) {
@@ -137,8 +138,10 @@ public class WorkstationServiceImpl implements WorkstationService {
     @Override
     public void delete(String id) {
         Workstation w = this.selectById(id);
-        this.robotRepository.changeWorkstation(w.getName(), null);
-        this.tagRepository.changeWorkstation(w.getName(), null);
+        //this.robotRepository.changeWorkstation(w.getName(), null);
+        //this.tagRepository.changeWorkstation(w.getName(), null);
+        this.updateMultipleWorstationNameOfRobots( w.getName(), null);
+        this.updateMultipleWorstationNameOfTags( w.getName(), null);
         this.workstationRepository.delete(w);
         traceService.insert(Trace.builder().className("WorkstationService").methodName("delete").description("delete Workstation where is name = "+w.getName()).build());
     }
@@ -147,6 +150,27 @@ public class WorkstationServiceImpl implements WorkstationService {
     public void deleteAll() {
         this.workstationRepository.deleteAll();
         traceService.insert(Trace.builder().className("WorkstationService").methodName("deleteAll").description("delete all Workstation").build());
+    }
+
+    private void updateMultipleWorstationNameOfRobots( String oldName  , String newName ) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("nameWorkstation").is(oldName));
+        Update update = new Update();
+        update.set("nameWorkstation", newName);
+        UpdateResult updateResult = mongoTemplate.updateMulti(query, update, Robot.class);
+        if (updateResult.getModifiedCount() == 0) {
+            throw new MethodArgumentNotValidException("Cannot update mutiple name workstation of robot may be is empty or old name not correct or the same new name");
+        }
+    }
+    private void updateMultipleWorstationNameOfTags( String oldName  , String newName ) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("workstationName").is(oldName));
+        Update update = new Update();
+        update.set("workstationName", newName);
+        UpdateResult updateResult = mongoTemplate.updateMulti(query, update, Tag.class);
+        if (updateResult.getModifiedCount() == 0) {
+            throw new MethodArgumentNotValidException("Cannot update mutiple name workstation of tag may be is empty or old name not correct or the same new name");
+        }
     }
 }
 

@@ -1,7 +1,4 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { RobotService } from 'src/app/core/services/robot.service';
-import { WorkstationService } from 'src/app/core/services/workstation.service';
-import { MqttClientService } from 'src/app/core/services/mqtt-client.service';
 
 import * as Highcharts from 'highcharts/highstock';
 import dataInit from 'highcharts/modules/data';
@@ -12,14 +9,12 @@ import exportDataInit from "highcharts/modules/export-data";
 import accessibilityInit from "highcharts/modules/accessibility";
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscribe } from 'src/app/core/store/models/Mqtt/Subscribe.model';
-import { IMqttMessage } from 'ngx-mqtt';
 import { Subscription, throttleTime } from 'rxjs';
-import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { Store } from '@ngrx/store';
-import { getRobot } from 'src/app/core/store/selectors/Robot.Selector';
-import { refreshRobot, stopRefreshRobot } from 'src/app/core/store/actions/Robot.Action';
+import { getConnectionFromRobot, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.Selector';
+import { startListenerRobot, startListenerRobotByProperty, stopListenerRobot, stopListenerRobotByProperty } from 'src/app/core/store/actions/Robot.Action';
 
 dataInit(Highcharts);
 highchartsMoreInit(Highcharts);
@@ -35,9 +30,18 @@ accessibilityInit(Highcharts);
 })
 export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
     private curSubscription: Subscription | undefined;
-    private getRobotSub: Subscription | undefined;
+   
+
+    private getConnectionFromRobotSub: Subscription | undefined;
+    private getModeFromRobotSub: Subscription | undefined;
+    private getStatusRobotFromRobotSub: Subscription | undefined;
+    private getOperationStatusFromRobotSub: Subscription | undefined;
+    private getLevelBatteryFromRobotSub: Subscription | undefined;
+    private getSpeedFromRobotSub: Subscription | undefined;
+
     private chart: any;
-    private subTopicNameRobot: Subscribe = { topic: "topic/robot/data/", qos: 0 };
+    private subTopicRobot: Subscribe = { topic: "topic/data/robot/", qos: 0 };
+    private subTopicRobotByProperty: Subscribe = { topic: "topic/data/robot/+/property/+", qos: 0 };
     constructor(/* private mqttClientService :MqttClientService,*/
         private storeRobot: Store<RobotState>,
         private dialogRef: MatDialogRef<GaugeChartComponent>,
@@ -46,55 +50,52 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit() {
         if (this.data.name == "") { this.dialogRef.close(null); return; }
         this.chart = Highcharts.chart("gauge-container-robot", this.chartOption);
-        this.subTopicNameRobot.topic += this.data.name;
-        this.storeRobot.dispatch(refreshRobot({ subscribe: this.subTopicNameRobot }));
-        this.getRobotSub = this.storeRobot.select(getRobot).pipe(throttleTime(500)).subscribe(item => {
-            console.log("getRobot");
-            this.chart.series[0].setData([parseFloat(item.speed.toFixed(1))]);
-            this.chart.series[1].setData([parseFloat(item.levelBattery.toFixed(1))]);
-            const numCateegory = (item.statusRobot == StatusRobot.RUNNING ? 1 : (item.statusRobot == StatusRobot.WAITING ? 2 : 3));
+        this.subTopicRobot.topic += this.data.name;
+        this.subTopicRobotByProperty.topic = `topic/data/robot/${this.data.name}/property/+`;
+
+
+     
+        this.getConnectionFromRobotSub = this.storeRobot.select(getConnectionFromRobot).pipe().subscribe(item => {
+            console.log("getConnectionFromRobot");
+        });
+        this.getModeFromRobotSub = this.storeRobot.select(getModeFromRobot).pipe().subscribe(item => {
+            console.log("getModeFromRobot");
+        });
+        this.getStatusRobotFromRobotSub = this.storeRobot.select(getStatusRobotFromRobot).pipe().subscribe(value => {
+            console.log("getStatusRobotFromRobot");
+            const numCateegory = (value == StatusRobot.RUNNING ? 1 : (value == StatusRobot.WAITING ? 2 : 3));
             this.chart.series[2].setData([numCateegory]);
-        }
-        );
+        });
+        this.getOperationStatusFromRobotSub = this.storeRobot.select(getOperationStatusFromRobot).pipe().subscribe(item => {
+            console.log("getOperationStatusFromRobot");
+        });
+        this.getLevelBatteryFromRobotSub = this.storeRobot.select(getLevelBatteryFromRobot).pipe().subscribe(value => {
+            this.chart.series[1].setData([parseFloat(value.toFixed(1))]);
+        });
+        this.getSpeedFromRobotSub = this.storeRobot.select(getSpeedFromRobot).pipe().subscribe(value => {
+            this.chart.series[0].setData([parseFloat(value.toFixed(1))]);
+        });
+        
 
 
-        //     this.batteryIcon = this.chart.renderer.html(
-        //     '<i class="las la-battery-empty" style="font-size:24px;"></i>', // HTML icon content
-        //     this.chart.plotLeft +  this.chart.plotWidth / 2 - 16, // X position
-        //     this.chart.plotTop +  this.chart.plotHeight / 2 - 16, // Y position   las la-exclamation-triangle
-        //     'auto', // Width default auto
-        //     'auto', // Height default auto
-        //     'battery-icon', // CSS class name
-        //     true // Allows HTML
-        // ).add();
 
 
 
     }
-
-
-
-    //     batteryIcon : any ;
-    //    updateBatteryIcon(state : string ) : void {
-    //     this.batteryIcon.update({
-    //         html: '<i class="fa fa-battery-' + state + '"></i>'
-    //     });
-    // }
-
     ngAfterViewInit() {
-        /* const subscribe : Subscribe = {topic: "topic/robot/data/"+this.data.name,qos: 0};
-         this.curSubscription = this.mqttClientService.subscribe(subscribe)?.subscribe((message: IMqttMessage) => {
-             const  updateRobot : RobotDto =JSON.parse(message.payload.toString());
-            console.log(updateRobot)
-            this.chart.series[0].setData([parseFloat(updateRobot.speed.toFixed(1))]);
-            this.chart.series[1].setData([ parseFloat(updateRobot.levelBattery.toFixed(1))]);
-            const numCateegory = (updateRobot.statusRobot  ==  StatusRobot.RUNNING ? 1:  (updateRobot.statusRobot  ==  StatusRobot.WAITING ? 2 : 3 ) );
-            this.chart.series[2].setData([numCateegory]);
-          });*/
+        this.storeRobot.dispatch(startListenerRobot({ subscribe: this.subTopicRobot }));
+        this.storeRobot.dispatch(startListenerRobotByProperty({ subscribe: this.subTopicRobotByProperty }));
     }
-    ngOnDestroy() {  /*this.mqttClientService.closeSubscribe(this.curSubscription); */
-        this.storeRobot.dispatch(stopRefreshRobot()); this.chart.destroy();
-        if (this.getRobotSub) {this.getRobotSub.unsubscribe();}
+    ngOnDestroy() {
+        this.storeRobot.dispatch(stopListenerRobot());
+        this.storeRobot.dispatch(stopListenerRobotByProperty());
+        this.chart.destroy();
+        if (this.getConnectionFromRobotSub) {this.getConnectionFromRobotSub.unsubscribe();}
+        if (this.getModeFromRobotSub) {this.getModeFromRobotSub.unsubscribe();}
+        if (this.getStatusRobotFromRobotSub) {this.getStatusRobotFromRobotSub.unsubscribe();}
+        if (this.getOperationStatusFromRobotSub) {this.getOperationStatusFromRobotSub.unsubscribe();}
+        if (this.getLevelBatteryFromRobotSub) {this.getLevelBatteryFromRobotSub.unsubscribe();}
+        if (this.getSpeedFromRobotSub) {this.getSpeedFromRobotSub.unsubscribe();}
     }
 
 
@@ -127,6 +128,22 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
     //       this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
     //       //this.robotService.goToComponent("/sign-in");
     //     }) ;
+        //     this.batteryIcon = this.chart.renderer.html(
+        //     '<i class="las la-battery-empty" style="font-size:24px;"></i>', // HTML icon content
+        //     this.chart.plotLeft +  this.chart.plotWidth / 2 - 16, // X position
+        //     this.chart.plotTop +  this.chart.plotHeight / 2 - 16, // Y position   las la-exclamation-triangle
+        //     'auto', // Width default auto
+        //     'auto', // Height default auto
+        //     'battery-icon', // CSS class name
+        //     true // Allows HTML
+        // ).add();
+
+    //     batteryIcon : any ;
+    //    updateBatteryIcon(state : string ) : void {
+    //     this.batteryIcon.update({
+    //         html: '<i class="fa fa-battery-' + state + '"></i>'
+    //     });
+    // }
 
 
     chartOption: any = {

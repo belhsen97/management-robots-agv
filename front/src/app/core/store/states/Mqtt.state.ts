@@ -16,11 +16,12 @@ export interface MQTTState {
     msgstatusClient?:StatusClientMQTT
 }
 const listSubscribes = {
-    dataRobots : { topic: 'topic/robot/data/#', qos: 0 },
+    dataRobots : { topic: 'topic/data/robot/+', qos: 0 },
+    dataPropertyRobot : { topic: 'topic/data/robot/+/property/+', qos: 0 },
     clientsStatus : { topic: '$SYS/brokers/+/clients/#', qos: 0 }
 };
 const listPublishs = {
-    controleRobot : { topic: 'topic/robot/control/1', qos: 0, payload: '{ "msg": "Hello, I am browser." }' }
+    controleRobot : { topic: 'topic/control/robot/1', qos: 0, payload: '{ "msg": "Hello, I am browser." }' }
 };
 const connectionClientConfig: IMqttServiceOptions = environment.mqttClientConfig;
 const qosList : readonly { label: number; value: number }[] =  [{ label: 0, value: 0 }, { label: 1, value: 1 }, { label: 2, value: 2 },];

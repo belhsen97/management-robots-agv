@@ -24,22 +24,23 @@ public class RobotServiceImpl implements RobotService {
     private final RobotPropertyRepository robotPropertyRepository;
 
     @Override
-    public void insertDataPropertys(List<RobotProperty> listPropertys) {
-
-        for (RobotProperty property : listPropertys) {
-            /*if (robotPropertyRepository.countByType(property.getType()) == 0) {
+    public void insertPropertysRobot(List<RobotProperty> listPropertys) {
+        for (RobotProperty property : listPropertys) {this.insertPropertyRobot(property);}
+    }
+    @Override
+    public void  insertPropertyRobot(RobotProperty property){
+        /*if (robotPropertyRepository.countByType(property.getType()) == 0) {
                 //property.setTimestamp(new Date());
                 robotPropertyRepository.save(property);
                 continue;
             }*/
-            final Optional<RobotProperty> rpOptional= robotPropertyRepository.findFirstByTypeOrderByTimestampDesc(property.getType());
-            if (rpOptional.isEmpty()) {
-                robotPropertyRepository.save(property);
-                continue;
-            }
-            if (!rpOptional.get().getValue().equals(property.getValue())) {
-                robotPropertyRepository.save(property);
-            }
+        final Optional<RobotProperty> rpOptional= robotPropertyRepository.findFirstByTypeOrderByTimestampDesc(property.getType());
+        if (rpOptional.isEmpty()) {
+            robotPropertyRepository.save(property);
+            return;
+        }
+        if (!rpOptional.get().getValue().equals(property.getValue())) {
+            robotPropertyRepository.save(property);
         }
     }
     @Override

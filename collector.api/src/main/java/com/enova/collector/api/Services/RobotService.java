@@ -11,7 +11,8 @@ import java.util.List;
 public interface RobotService  {
     Robot selectByName( String name);
     Robot selectByClientId( String clientId);
-    void insertDataPropertys(List<RobotProperty> listPropertys);
+    void insertPropertyRobot(RobotProperty property);
+    void insertPropertysRobot(List<RobotProperty> listPropertys);
     void updateRobot( Robot r, Robot ru);
     void updateRobotConnection( String clientId ,  Connection c);
 }

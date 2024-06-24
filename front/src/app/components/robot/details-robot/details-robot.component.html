@@ -28,16 +28,18 @@
             <tr>
               <td><strong>created</strong></td>
               <td>{{ robot.createdAt | dateAgo }}</td>
+              <td><strong>Status Connection</strong></td>
+              <td>{{ robot.connection }}</td>
+            </tr>
+            <tr>
               <td><strong>Status</strong></td>
               <td>{{ robot.statusRobot }}</td>
-            </tr>
-            <tr>
               <td><strong>Mode</strong></td>
               <td>{{ robot.modeRobot }}</td>
-              <td><strong>status operation</strong></td>
-              <td> {{robot.operationStatus}} </td>
             </tr>
             <tr>
+              <td><strong>status operation</strong></td>
+              <td> {{robot.operationStatus}} </td>
               <td><strong>Notice</strong></td>
               <td colspan="3">{{ robot.notice }}</td>
             </tr>

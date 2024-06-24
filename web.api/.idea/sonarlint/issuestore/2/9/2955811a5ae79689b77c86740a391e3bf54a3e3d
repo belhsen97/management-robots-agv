@@ -1,13 +1,18 @@
 
-c	java:S112¥"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8Õ—óñô1
-h	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(ìŞÁÊùÿÿÿÿ8Ö—óñô1
+c	java:S112Ò"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8Ê¥Üƒ2
+h	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(ìŞÁÊùÿÿÿÿ8Ë¥Üƒ2
+n	java:S117ë"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç‹Ë‡8ºä‘Üƒ2
 …
-java:S1488¨"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8Ö—óñô1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñæÊ8Ø—óñô1
+java:S1488Õ"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8Ì¥Üƒ2
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñæÊ8Î¥Üƒ2
 ³
-java:S4449£"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8á—óñô1
+java:S4449Ğ"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8Ù¥Üƒ2
 S
-java:S6437T"6Revoke and change this password, as it is compromised.(´²•¯8é—óñô1
-]	java:S125c"<This block of commented-out lines of code should be removed.(©Ë¡ªıÿÿÿÿ8ë—óñô1
+java:S6437l"6Revoke and change this password, as it is compromised.(´²•¯8â¥Üƒ2
+L	java:S106}"+Replace this use of System.out by a logger.(¯¯»“şÿÿÿÿ8ä¥Üƒ2
+H	java:S106‚"+Replace this use of System.out by a logger.(Œà×Î8å¥Üƒ2
+^	java:S125Š"<This block of commented-out lines of code should be removed.(ìï‚ûÿÿÿÿ8å¥Üƒ2
 A
-java:S2119²"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8î—óñô1
+java:S2119ß"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8é¥Üƒ2
+M	java:S106ò"+Replace this use of System.err by a logger.(ªı¥­ÿÿÿÿÿ8Ûä‘Üƒ2
+M	java:S106ü"+Replace this use of System.err by a logger.(®æø¶ùÿÿÿÿ8Üä‘Üƒ2

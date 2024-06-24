@@ -11,13 +11,34 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+
+
+
+
+import ncsa.hdf.object.Dataset;
+import ncsa.hdf.object.Datatype;
+import ncsa.hdf.object.FileFormat;
+import ncsa.hdf.object.Group;
+import ncsa.hdf.object.h5.H5File;
+import ncsa.hdf.hdf5lib.H5;
+import ncsa.hdf.hdf5lib.HDF5Constants;
+
+
+
+
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 
@@ -36,6 +57,9 @@ public class BeanStartup implements CommandLineRunner {
     final TraceRepository traceRepository;
     final ParameterConfig parameterConfig;
     final RobotSettingRepository repository;
+    final RobotPropertyRepository   robotPropertyRepository;
+
+    final MongoTemplate mongoTemplate;
     final Token token = Token.builder()
             .token("Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RmaTk3IiwiaWF0IjoxNzA5NDk0NTUyLCJleHAiOjE3MDk0OTU5OTJ9.8sxfA6qa8ijehu4GZJrnVaOQ5nCU9AXWYgtIQGAFsjs")
             .tokenType(TokenType.BEARER)
@@ -96,6 +120,27 @@ public class BeanStartup implements CommandLineRunner {
                 repository.save(r);
             }
          }
+
+        List<RobotProperty>  robotProperties = robotPropertyRepository.findAllByName("robot-1");
+        System.out.println(robotProperties.size());
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                 ObjectOutputStream oos = new ObjectOutputStream(bos);
+                oos.writeObject(robotProperties);
+                 System.out.println(bos.toByteArray().length);
+
+
+        createFile("test.h5");
+
+
+
+
+        // List<RobotProperty>  xxx = robotPropertyRepository.findAllByName("robot-200");
+       // for ( RobotProperty x: xxx){
+        //    x.setName("robot-20");
+      //  }
+     //   robotPropertyRepository.saveAll(xxx);
+      //  System.out.println(xxx.size());
 //        traceRepository.deleteAll();
 //        traceRepository.save(trace1);
 //        log.info("finish add list of trace");
@@ -185,4 +230,35 @@ public class BeanStartup implements CommandLineRunner {
         }
         return ip.toString();
     }
+
+void createFile(String fname){
+    int file_id = -1;
+
+    // Load the HDF5 library
+    try {
+        System.loadLibrary("jhdf5"); // Load the native HDF5 library
+    } catch (UnsatisfiedLinkError e) {
+        e.printStackTrace();
+        System.err.println("Failed to load HDF5 native library.");
+        return;
+    }
+
+    // Create a new file using default properties.
+    try {
+        file_id = H5.H5Fcreate(fname, HDF5Constants.H5F_ACC_TRUNC,
+                HDF5Constants.H5P_DEFAULT, HDF5Constants.H5P_DEFAULT);
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.err.println("Failed to create file:" + fname);
+        return;
+    }
+
+    // Close the file.
+    try {
+        if (file_id >= 0)
+            H5.H5Fclose(file_id);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 }
