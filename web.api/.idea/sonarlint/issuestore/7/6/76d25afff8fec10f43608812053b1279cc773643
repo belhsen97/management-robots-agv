@@ -1,14 +1,13 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8­ŠÀÄş1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8ı†Œ÷…2
 d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÔŠî8´ŠÀÄş1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÔŠî8‡Œ÷…2
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïñß¦ıÿÿÿÿ8´ŠÀÄş1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬Ç»Œÿÿÿÿÿ8‡Œ÷…2
+i
+java:S6830 "GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éë…Öøÿÿÿÿ8‡Œ÷…2
 “
-java:S1130!"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ùŠ‡ä8ç”˜ÿ1
+java:S1130("vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ùŠ‡ä8‡Œ÷…2
 C
-java:S1452!"&Remove usage of generic wildcard type.(ùŠ‡ä8µŠÀÄş1
-G	java:S106$"+Replace this use of System.out by a logger.(”ûÄÖ8è”˜ÿ1
-X	java:S125#"<This block of commented-out lines of code should be removed.(¹ƒ£¬8è”˜ÿ1
-H
-java:S1068"+Remove this unused "service" private field.(ã¿ÿ8ë”˜ÿ1
+java:S1452("&Remove usage of generic wildcard type.(ùŠ‡ä8‘‡Œ÷…2
+X	java:S125,"<This block of commented-out lines of code should be removed.(¹ƒ£¬8“‡Œ÷…2

@@ -15,7 +15,7 @@
             <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{card.name}}</mat-card-title>
-            <mat-card-subtitle>{{card.workstation.name}}</mat-card-subtitle>
+            <mat-card-subtitle>{{ ( card.workstation  ?  card.workstation.name : "unknow") }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p><strong>created</strong> : {{  card.createdAt   | dateAgo }}</p>

@@ -26,7 +26,7 @@ public class Msg {
     String subject;
     List<Recipient> recipients = new ArrayList<>();
     List<BodyContent> bodyContents = new ArrayList<BodyContent>();
-    Date timestamp;
+    long timestamp;
     StatusMsg status;
     List<Attachment>  attachements = new ArrayList<Attachment>();
 

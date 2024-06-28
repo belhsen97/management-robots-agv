@@ -1,3 +1,3 @@
 package com.enova.web.api.Enums;
 
-public enum Gender {MALE,FEMALE}
+public enum Gender {MALE, FEMALE}

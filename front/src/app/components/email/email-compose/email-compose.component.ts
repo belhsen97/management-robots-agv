@@ -94,7 +94,7 @@ export class EmailComposeComponent implements OnInit, AfterViewInit {
     // let rteValue: any = this.rteObj.getHtml();
     // console.log(rteValue.length);
     // this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.rteObj.getHtml());
-    this.mailState.msg.timestamp = new Date();
+    this.mailState.msg.timestamp = 0;//new Date();
     this.sendMail();
 
   }
@@ -123,8 +123,8 @@ export class EmailComposeComponent implements OnInit, AfterViewInit {
   onSchedule(): void {
     const dialogRef = this.openDialogMessageBoxScheduled('Would you want to change you Personal Information ?', '300ms', '500ms');
     dialogRef.afterClosed().subscribe(result => {
-      if (result != undefined || result != null) {
-        this.mailState.msg.timestamp = result;
+      if (result != undefined || result != null) { 
+        this.mailState.msg.timestamp = result.getTime();
         this.sendMail();
       }
     });

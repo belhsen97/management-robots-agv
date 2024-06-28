@@ -29,7 +29,7 @@ const defaultMsg : Msg = {
     subject: "",
     recipients : [],
     bodyContents : [],
-    timestamp : new Date(), 
+    timestamp : 0,//new Date(), 
     status : StatusMsg.QUEUED
 }
     

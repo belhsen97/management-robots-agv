@@ -1,7 +1,6 @@
 package com.enova.web.api.Configures;
 
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,15 +9,15 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class ParameterConfig {
 
-    @Value("${emqx.admin.username}")
-    public String brokerUsername;
-    @Value("${emqx.admin.password}")
-    public String brokerPassword;
-    @Value("${emqx.url.authentication}")
-    public String brokerurl;
+//    @Value("${emqx.admin.username}")
+//    public String brokerUsername;
+//    @Value("${emqx.admin.password}")
+//    public String brokerPassword;
+//    @Value("${emqx.url.authentication}")
+//    public String brokerurl;
 
     @Value("${myApp.security.token.expired}")
-    public long tokenExpired = 1000 * 60  * 24;
+    public long tokenExpired = 1000 * 60 * 24;
 
     @Value("${myApp.file.forgotPassword_HTML}")
     public String file_forgotPassword_HTML;
@@ -46,11 +45,12 @@ public class ParameterConfig {
     public String linkGlobalBackEnd;
     @Value("${server.servlet.context-path}")
     public String pathServiceUser;
-    public String staticLinkServiceUser ;
-    public static String  host_ContextPath = "";
+    public String staticLinkServiceUser;
+    public static String host_ContextPath = "";
+
     @PostConstruct
-    public void onCreate()  {
-        staticLinkServiceUser  = linkGlobalBackEnd + pathServiceUser;
+    public void onCreate() {
+        staticLinkServiceUser = linkGlobalBackEnd + pathServiceUser;
         ParameterConfig.host_ContextPath = linkGlobalBackEnd + pathServiceUser + pathAttachementDowload;
     }
 }

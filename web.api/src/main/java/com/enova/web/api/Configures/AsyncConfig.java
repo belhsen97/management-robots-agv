@@ -24,6 +24,7 @@ public class AsyncConfig {
         executor.initialize();
         return executor;
     }
+
     @Bean(name = "get-robot-data")
     public Executor taskExecutorDataRobot() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();

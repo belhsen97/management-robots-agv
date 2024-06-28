@@ -1,0 +1,11 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8ºøö…2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8›ºøö…2
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íÍğÙ8œºøö…2
+L	java:S106"+Replace this use of System.out by a logger.(³Ö£«øÿÿÿÿ8 ºøö…2
+L	java:S106"+Replace this use of System.out by a logger.(Çå•ªşÿÿÿÿ8¢ºøö…2
+L	java:S106!"+Replace this use of System.out by a logger.(ñû¥áşÿÿÿÿ8¤ºøö…2
+L	java:S106$"+Replace this use of System.out by a logger.(Çå•ªşÿÿÿÿ8¥ºøö…2
+X	java:S125,"<This block of commented-out lines of code should be removed.(¢ıì÷8§ºøö…2

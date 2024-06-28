@@ -33,7 +33,7 @@ export class MessageBoxScheduledDatetimeComponent implements OnInit {
     if (parts.length !== 2) { return; }
     const hours = parseInt(parts[0], 10);
     const minutes = parseInt(parts[1], 10);
-    const dateFix = new Date(this.selected.getFullYear(), this.selected.getMonth(), this.selected.getDate(), hours, minutes);
+    const dateFix : Date = new Date(this.selected.getFullYear(), this.selected.getMonth(), this.selected.getDate(), hours, minutes);
     this.dialogRef.close(dateFix);
   } 
 

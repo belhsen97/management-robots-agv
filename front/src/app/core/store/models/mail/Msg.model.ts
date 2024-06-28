@@ -7,6 +7,6 @@ export interface Msg {
     subject: String;
     recipients : Recipient[];
     bodyContents : BodyContent[];
-    timestamp : Date ;
+    timestamp : number ;
     status : StatusMsg;
 }
