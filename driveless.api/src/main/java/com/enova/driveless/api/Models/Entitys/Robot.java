@@ -45,6 +45,7 @@ public class Robot implements Serializable {
     Date createdAt;
     int levelBattery;  // real time  %
     double speed; // real time   m/s
+    //double distance; // real time   m
     public void setSpeed(double speed) {
         this.speed = Math.round(speed * 10.0) / 10.0;
     }

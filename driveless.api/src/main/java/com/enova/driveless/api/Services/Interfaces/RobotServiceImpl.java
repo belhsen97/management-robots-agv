@@ -38,5 +38,14 @@ public class RobotServiceImpl implements RobotService {
         r.setConnection(c);
         robotRepository.save(r);
     }
+
+    @Override
+    public Robot selectByName(String name) {
+        Optional<Robot> r =   robotRepository.findbyName(name);
+        if (r.isEmpty()) {
+            throw new RessourceNotFoundException("Cannot found robot by name = " + name);
+        }
+        return r.get();
+    }
 }
 

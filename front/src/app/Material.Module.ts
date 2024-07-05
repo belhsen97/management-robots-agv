@@ -18,6 +18,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+//import {MatBadgeModule} from '@angular/material/badge';
+
 import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'; 
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -50,6 +52,8 @@ import {  MatChipsModule} from '@angular/material/chips';
          MatAutocompleteModule,   MatChipsModule,
         MatDatepickerModule,
         MatNativeDateModule,
+
+        //MatBadgeModule
         
     ]
 })

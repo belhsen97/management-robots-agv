@@ -9,13 +9,13 @@
         </div>
     </div>
 </div>
-<div class="row justify-content-center">
+<div class="row justify-content-center" >
     <mat-card class="example-card col-md-6" *ngFor="let card of obs | async">
         <mat-card-header>
             <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{card.name}}</mat-card-title>
-            <mat-card-subtitle>{{ ( card.workstation  ?  card.workstation.name : "unknow") }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ ( card.workstation  ?  card.workstation.name : "unknown") }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p><strong>created</strong> : {{  card.createdAt   | dateAgo }}</p>
@@ -29,4 +29,4 @@
         </mat-card-actions>
     </mat-card>
 </div>
-<mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]"></mat-paginator>
+<mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]" ></mat-paginator>

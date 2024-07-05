@@ -11,4 +11,6 @@ public interface RobotService  {
     Optional<Robot> selectByUsernameAndPassword(String username, String password);
     Robot selectByClientId( String clientId);
     void updateRobotConnection( String clientId ,  Connection c);
+
+    Robot selectByName(String name);
 }

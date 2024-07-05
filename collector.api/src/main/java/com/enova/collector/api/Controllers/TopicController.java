@@ -6,12 +6,15 @@ import com.enova.collector.api.Exceptions.RessourceNotFoundException;
 import com.enova.collector.api.Listener.ListenerTopic;
 import com.enova.collector.api.Mappers.RobotMapper;
 import com.enova.collector.api.Models.Commons.ConnectionInfo;
+import com.enova.collector.api.Models.Commons.Publish;
 import com.enova.collector.api.Models.Entitys.Robot;
 import com.enova.collector.api.Models.Entitys.RobotProperty;
+import com.enova.collector.api.Services.MQTTService;
 import com.enova.collector.api.Services.ObjectMapperService;
 import com.enova.collector.api.Services.RobotService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -80,4 +83,5 @@ public class TopicController {
 //        Object value = messageMap.get("value");
 //        System.out.println("value: " + value);
     }
+
 }

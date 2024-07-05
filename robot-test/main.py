@@ -1,71 +1,51 @@
-
 from configurations import GlobalConfiguration
-from services import MqttService
+from services import MqttService as mqtt_service
 from services import RobotService as robot_service
-from states import GlobalState as global_state
+from states import GlobalState as state
+from effects import RobotEffect as robot_effect
+from effects import MqttEffect as mqtt_effect
+from datetime import datetime, timedelta
 import argparse
 import time
-import json
+import sys
 
-robotService : robot_service.RobotService
-clientMqttService : MqttService.MqttService
-
-def on_connection_change(value):
-    print(f"connection changed to {value}")
-    clientMqttService.publish(global_state.mqttState["publish"]["allData"]+"/property/CONNECTION",json.dumps({"value": value}))
-
-def on_status_change(value):
-    print(f"statusRobot changed to {value}")
-    clientMqttService.publish(global_state.mqttState["publish"]["allData"]+"/property/STATUS_ROBOT",json.dumps({"value": value}))
-
-def on_mode_change(value):
-    print(f"modeRobot changed to {value}")
-    clientMqttService.publish(global_state.mqttState["publish"]["allData"]+"/property/MODE_ROBOT",json.dumps({"value": value}))
-
-def on_operation_status_change(value):
-    print(f"operationStatus changed to {value}")
-    clientMqttService.publish(global_state.mqttState["publish"]["allData"]+"/property/OPERATION_STATUS",json.dumps({"value": value}))
-
-def on_battery_change(value):
-    print(f"levelBattery changed to {value}")
-    clientMqttService.publish(global_state.mqttState["publish"]["allData"]+"/property/LEVEL_BATTERY",json.dumps({"value": value}))
-
-def on_speed_change(value):
-    print(f"speed changed to {value}")
-    clientMqttService.publish(global_state.mqttState["publish"]["allData"]+"/property/SPEED",json.dumps({"value": value}))
+# robotService : robot_service.RobotService
+# clientMqttService : mqtt_service.MqttService
 
 
 
-def callbackSubscribeControlRobot(msg):
-      print(f"Subscribe Control Robot `{msg.payload.decode()}` from `{msg.topic}` topic")
-      robotService.updatePropertie(msg.topic) #example "topic/robot/control/robot-1/modeRobot/AUTO"
 
-
-def callbackSubscribeControlAllRobot(msg):
-      print(f"Subscribe Control All Robot `{msg.payload.decode()}` from `{msg.topic}` topic")
-      robotService.updatePropertie(msg.topic) #example "topic/robot/control/all/modeRobot/AUTO"
-
+       
 def run():
-        global_state.robotState["robot"].subscribe("connection", on_connection_change)
-        global_state.robotState["robot"].subscribe("statusRobot", on_status_change)
-        global_state.robotState["robot"].subscribe("modeRobot", on_mode_change)
-        global_state.robotState["robot"].subscribe("operationStatus", on_operation_status_change)
-        global_state.robotState["robot"].subscribe("levelBattery", on_battery_change)
-        global_state.robotState["robot"].subscribe("speed", on_speed_change)
-        global  robotService
-        global  clientMqttService
-        robotService =  robot_service.RobotService()
-        clientMqttService = MqttService.MqttService(global_state.mqttState["broker"],
-                                         global_state.mqttState["port"],
-                                         global_state.mqttState["client_id"],
-                                         global_state.mqttState["username"],
-                                         global_state.mqttState["password"])
-        clientMqttService.subscribe(global_state.mqttState["subscribe"]["control"],callbackSubscribeControlRobot)
-        clientMqttService.subscribe(global_state.mqttState["subscribe"]["controlAll"],callbackSubscribeControlAllRobot)
+        state.robotState["robot"].subscribe("connection", robot_effect.on_connection_change)
+        state.robotState["robot"].subscribe("statusRobot", robot_effect.on_status_change)
+        state.robotState["robot"].subscribe("modeRobot", robot_effect.on_mode_change)
+        state.robotState["robot"].subscribe("operationStatus", robot_effect.on_operation_status_change)
+        state.robotState["robot"].subscribe("levelBattery", robot_effect.on_battery_change)
+        state.robotState["robot"].subscribe("speed", robot_effect.on_speed_change)
+        state.robotState["robot"].subscribe("codeTag", robot_effect.on_code_tag_change)
+        state.robotState["robot"].subscribe("distance", robot_effect.on_distance_change)
+        state.robotState["service"] = robot_service.RobotService()
+        state.mqttState["service"] = mqtt_service.MqttService(state.mqttState["broker"],
+                                         state.mqttState["port"],
+                                         state.mqttState["client_id"],
+                                         state.mqttState["username"],
+                                         state.mqttState["password"])
+        state.mqttState["service"].subscribe(state.mqttState["subscribe"]["control"],mqtt_effect.onSubscribeControlRobot)
+        state.mqttState["service"].subscribe(state.mqttState["subscribe"]["controlAll"],mqtt_effect.onSubscribeControlAllRobot)
+        state.mqttState["service"].subscribe(state.mqttState["subscribe"]["lastUpdate"],mqtt_effect.onSubscribeInitDataRobot)
+        
+        while  not state.mqttState["service"].is_connected() :
+               print (state.mqttState["publish"]["lastUpdate"]  )
+               state.mqttState["service"].publish( state.mqttState["publish"]["lastUpdate"] ,"vide")
+
         while True:
-               #clientMqtt.publish()
-               robotService.randomData()
-               time.sleep(1)
+           if state.robotState['robot'].statusRobot  == "INACTIVE" :
+              sys.exit("Stopping the script")
+           #    state.robotState["service"].randomData2()
+           state.robotState['robot'].createdAt =  datetime.now().isoformat()
+           time.sleep(1)
+       
 
 # def run():
 #     robot =  robot_service.RobotService()
@@ -84,43 +64,67 @@ if __name__ == '__main__':
     # print("Log Level:", config_data['log_level'])
     # print("MQTT Name:", config_data['broker'])
     # print("MQTT port:", config_data['port'])
-    global_state.mqttState["broker"]= config_data['broker']
-    global_state.mqttState["port"]= config_data['port'] 
+    state.mqttState["broker"]= config_data['broker']
+    state.mqttState["port"]= config_data['port'] 
 
 
     parser = argparse.ArgumentParser(description='Robot MQTT Client')
     parser.add_argument('-name', '--robot_name', type=str, help='Name of the robot')
     args = parser.parse_args()
     if args.robot_name:
-        global_state.mqttState["publish"]["allData"]  = "topic/data/robot/"+ args.robot_name
-        global_state.mqttState["subscribe"]["control"] = "topic/control/robot/"+args.robot_name +"/+/+"
-        global_state.mqttState["username"]  = args.robot_name
-        global_state.mqttState["password"]  = args.robot_name
-        global_state.robotState['robot'].name = args.robot_name
-        global_state.mqttState["client_id"] =  args.robot_name
+        state.mqttState["publish"]["allData"]        = "topic/data/robot/"+ args.robot_name
+        state.mqttState["publish"]["lastUpdate"]     = "topic/control/robot/"+args.robot_name+"/last-update"
+        state.mqttState["subscribe"]["control"]      = "topic/control/robot/"+args.robot_name +"/property/+"
+        state.mqttState["subscribe"]["lastUpdate"]   = "topic/data/robot/"+args.robot_name+"/last-update"
+        state.mqttState["username"] = args.robot_name
+        state.mqttState["password"] = args.robot_name
+        state.robotState['robot'].name = args.robot_name
+        state.mqttState["client_id"] = args.robot_name
         run()
     else:
         print("Please provide the name of the robot using -name or --robot_name argument.")
 
 
+
+
+
+
+
+
+
+
+
+
+
+"""
+import requests
+url = 'http://localhost:8089/management-robot-avg/robot/name/robot-1'
+response = requests.get(url)
+if response.status_code == 200:
+    data = response.json()  # Assuming the response contains JSON data
+    print(data)
+else:
+    print(f"Failed to retrieve data: {response.status_code}")"""
+
+
+
+
+
+
+
 """
 # Usage
 
-
-global_state.robotState[ "robot"].subscribe("name", on_name_change)
-global_state.robotState[ "robot"].subscribe("statusRobot", on_status_change)
-global_state.robotState[ "robot"].subscribe("levelBattery", on_battery_change)
+state.robotState[ "robot"].subscribe("name", on_name_change)
+state.robotState[ "robot"].subscribe("statusRobot", on_status_change)
+state.robotState[ "robot"].subscribe("levelBattery", on_battery_change)
 
 # Access the values
-print(f"Current name: {global_state.robotState['robot'].name}")
-print(f"Current status: {global_state.robotState['robot'].statusRobot}")
-print(f"Current battery level: {global_state.robotState['robot'].levelBattery}")
+print(f"Current name: {state.robotState['robot'].name}")
+print(f"Current status: {state.robotState['robot'].statusRobot}")
+print(f"Current battery level: {state.robotState['robot'].levelBattery}")
 
 # Change the values
-global_state.robotState[ "robot"].name = "new_robot"
-global_state.robotState[ "robot"].statusRobot = "STOPPED"
-global_state.robotState[ "robot"].levelBattery = 50"""
-
-
-
-
+state.robotState[ "robot"].name = "new_robot"
+state.robotState[ "robot"].statusRobot = "STOPPED"
+state.robotState[ "robot"].levelBattery = 50"""

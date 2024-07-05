@@ -47,7 +47,7 @@ public class MailController {
 
         if (msg.getTimestamp() > dataNowUnix) {
             taskSchedulingService.addScheduleTask(new Runnable() {
-                @SneakyThrows
+                @SneakyThrows //??????????????????????????????
                 @Override
                 public void run() {
                     service.sendingMessage(msg);

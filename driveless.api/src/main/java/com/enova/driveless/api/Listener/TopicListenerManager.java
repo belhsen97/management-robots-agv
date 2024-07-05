@@ -53,6 +53,7 @@ public class TopicListenerManager {
                 e.printStackTrace();
             }
         }*/
+
         List<TopicHandler>filtered =  filterByTopic(topicHandlers, topic);
         if (filtered.isEmpty()) {  return; }
         for (TopicHandler topicHandlers : filtered) {

@@ -7,5 +7,4 @@ export interface Notification {
     severity:String;//    INFO, SUCCESS, WARNING, ERROR
     description: String;
 }
-
 //Scheduling

@@ -99,11 +99,14 @@ public class BeanStartup implements CommandLineRunner {
     private void deleteAndRandomAllTags(int number) {
         iTagService.deleteAll();
         log.info("finish add delete All Tag");
+        int firstPart = 0;
+        int secondPart = 0;
         for (int i = 1; i < number; i++) {
-            final Tag tag = Tag.builder()
-                    .code("code-" + i)
-                    .description("description-tag")
-                    .build();
+                if (secondPart > 9999) {secondPart = 0;firstPart++;}
+                String firstPartFormatted  = String.format("%04d", 0);
+                String secondPartFormatted  = String.format("%04d", i);
+                String codeFormat = String.format("%s-%s-%s", "code", firstPartFormatted, secondPartFormatted);
+                final Tag tag = Tag.builder().code(codeFormat).description("description-tag").build();
             iTagService.insert(tag);
         }
         log.info("finish add All Tag");

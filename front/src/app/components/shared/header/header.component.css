@@ -25,4 +25,7 @@ h6,h5 {
 }
  
 
- 
+.bg-primary, .badge-primary {
+  color: var(--iq-white);
+  background: var(--navy-blue) !important;
+}

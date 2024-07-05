@@ -10,10 +10,13 @@ import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service("mqtt-service")
 @RequiredArgsConstructor
@@ -22,8 +25,9 @@ public class MQTTServiceImpl implements MQTTService {
     private final ObjectMapperService objectMapperService;
     private final MqttClient client;
     private final MqttConnectOptions mqttConnectOptions;
-   // private final CollectorCalback collectorCalback;
+    // private final CollectorCalback collectorCalback;
 
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
     @PostConstruct
     public void onCreate() throws MqttException {
         System.out.println("UserService Initialized");
@@ -41,7 +45,21 @@ public class MQTTServiceImpl implements MQTTService {
 
     @Override
     public void publish(Publish pub) throws MqttException {
-        client.publish(pub.getTopic(), pub.getPayload(),  pub.getQos(), pub.isRetained());
+        if (!client.isConnected()) {
+            System.out.println("Client is not connected, attempting to reconnect...");
+            client.connect(mqttConnectOptions);
+        }
+        System.out.println("Publishing to topic: " + pub.getTopic());
+        executorService.submit(() -> {
+            try {
+                client.publish(pub.getTopic(), pub.getPayload(), pub.getQos(), pub.isRetained());
+            } catch (MqttException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+        //client.publish(pub.getTopic(), pub.getPayload(), pub.getQos(), pub.isRetained());
+        // client.publish(pub.getTopic(), pub.getPayload(),  pub.getQos(), pub.isRetained());
         //client.publish(topic, message.getBytes(), qos, false);
     }
 

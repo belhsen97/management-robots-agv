@@ -21,12 +21,9 @@ public class Tag {
     String code;
     String description ;
     String workstationName;
-
-
     @JsonIgnore
     Workstation workstation;
     //public void setWorkstation(Workstation w) {if(w==null){return;}this.workstationName = w.getName(); this.workstation = null;   }
-
     @JsonGetter("workstation")
     public Workstation getWorkstation() {return this.workstation;}
 }

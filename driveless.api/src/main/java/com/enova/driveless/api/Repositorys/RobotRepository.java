@@ -20,4 +20,6 @@ public interface RobotRepository extends MongoRepository<Robot, String> {
     Optional<Robot> findbyClientId(String clientId);
     @Query(value = "{ 'username' : ?0 ,'password' : ?1 }")
     Optional<Robot> findbyUsernameAndPassword(String username,String password);
+
+
 }
