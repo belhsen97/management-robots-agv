@@ -1,7 +1,6 @@
 package com.enova.collector.api.Services.Interfaces;
 
-
-import com.enova.collector.api.Enums.Connection;
+import com.enova.collector.api.Enums.*;
 import com.enova.collector.api.Models.Entitys.Robot;
 import com.enova.collector.api.Models.Entitys.RobotProperty;
 import com.enova.collector.api.Exceptions.RessourceNotFoundException;
@@ -12,7 +11,7 @@ import com.enova.collector.api.Services.RobotService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,42 +22,6 @@ public class RobotServiceImpl implements RobotService {
     private final RobotRepository robotRepository;
     private final RobotPropertyRepository robotPropertyRepository;
 
-    @Override
-    public void insertPropertysRobot(List<RobotProperty> listPropertys) {
-        for (RobotProperty property : listPropertys) {this.insertPropertyRobot(property);}
-    }
-    @Override
-    public void  insertPropertyRobot(RobotProperty property){
-        /*if (robotPropertyRepository.countByType(property.getType()) == 0) {
-                //property.setTimestamp(new Date());
-                robotPropertyRepository.save(property);
-                continue;
-            }*/
-        final Optional<RobotProperty> rpOptional= robotPropertyRepository.findFirstByTypeOrderByTimestampDesc(property.getType());
-        if (rpOptional.isEmpty()) {
-            robotPropertyRepository.save(property);
-            return;
-        }
-        if (!rpOptional.get().getValue().equals(property.getValue())) {
-            robotPropertyRepository.save(property);
-        }
-    }
-    @Override
-    public void  updateRobotConnection( String clientId ,  Connection c) {
-        Robot r =  this.selectByClientId(clientId);
-        r.setConnection(c);
-        robotRepository.save(r);
-    }
-    @Override
-    public void  updateRobot( Robot r,  Robot ru) {
-        //r.setConnection(ru.getConnection());
-        r.setStatusRobot(ru.getStatusRobot());
-        r.setModeRobot(ru.getModeRobot());
-        r.setOperationStatus(ru.getOperationStatus());
-        r.setLevelBattery(ru.getLevelBattery());
-        r.setSpeed(ru.getSpeed());
-        robotRepository.save(r);
-    }
     @Override
     public Robot selectByName( String name) {
         Optional<Robot> r = this.robotRepository.findbyName(name);
@@ -74,6 +37,158 @@ public class RobotServiceImpl implements RobotService {
             throw new RessourceNotFoundException("Cannot found robot by clientId = " + clientId);
         }
         return r.get();
+    }
+    @Override
+    public void updateConnection(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.CONNECTION)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setConnection(Connection.valueOf(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateStatusRobot(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.STATUS_ROBOT)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setStatusRobot(StatusRobot.valueOf(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateModeRobot(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.MODE_ROBOT)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setModeRobot(ModeRobot.valueOf(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateOperationStatus(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.OPERATION_STATUS)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setOperationStatus(OperationStatus.valueOf(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateLevelBattery(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.LEVEL_BATTERY)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setLevelBattery(Double.parseDouble(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateSpeed(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.SPEED)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setSpeed(Double.parseDouble(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateDistance(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        RobotProperty property = RobotProperty.builder()
+                .name(name)
+                .type(TypeProperty.DISTANCE)
+                .timestamp(new Date())
+                .value(value.toString())
+                .build();
+        robot.setDistance(Double.parseDouble(value.toString()));
+        robotRepository.save(robot);
+        this.insertPropertyRobot(property);
+    }
+
+    @Override
+    public void updateTagCode(String name, Object value) {
+        Robot robot = this.selectByName(name);
+        robot.setCodeTag(value.toString());
+        robotRepository.save(robot);
+//        RobotProperty property = RobotProperty.builder()
+//                .name(name)
+//                .type(TypeProperty.TAGCODE)
+//                .timestamp(new Date())
+//                .value(value.toString())
+//                .build();
+//        this.insertPropertyRobot(property);
+    }
+    @Override
+    public void insertPropertysRobot(List<RobotProperty> listPropertys) {
+        for (RobotProperty property : listPropertys) {this.insertPropertyRobot(property);}
+    }
+    @Override
+    public void  insertPropertyRobot(RobotProperty property){
+        //if (robotPropertyRepository.countByType(property.getType()) == 0) {
+        //property.setTimestamp(new Date());
+        // robotPropertyRepository.save(property); continue;}
+        final Optional<RobotProperty> rpOptional= robotPropertyRepository.findFirstByTypeOrderByTimestampDesc(property.getType());
+        if (rpOptional.isEmpty()) {
+            robotPropertyRepository.save(property);
+            return;
+        }
+        if (!rpOptional.get().getValue().equals(property.getValue())) {
+            robotPropertyRepository.save(property);
+        }
+    }
+    @Override
+    public void  updateRobotConnection( String clientId ,  Connection c) {
+        Robot robot =  this.selectByClientId(clientId);
+        robot.setConnection(c);
+        if ( c == Connection.DISCONNECTED){
+            robot.setOperationStatus(OperationStatus.PAUSE);
+        }
+        robotRepository.save(robot);
+    }
+
+    @Override
+    public void  updateRobot( String name,  Robot robot) {
+        final Robot robotDB = this.selectByName(name);
+        if (robot.getStatusRobot() != null ){ robotDB.setStatusRobot(robot.getStatusRobot()); }
+        if (robot.getModeRobot() != null ){ robotDB.setModeRobot(robot.getModeRobot()); }
+        if (robot.getOperationStatus() != null ){ robotDB.setOperationStatus(robot.getOperationStatus()); }
+        if (robot.getCodeTag() != null ){ robotDB.setCodeTag(robot.getCodeTag()); }
+        robotDB.setLevelBattery(robot.getLevelBattery());
+        robotDB.setSpeed(robot.getSpeed());
+        robotDB.setDistance(robot.getDistance());
+        List<RobotProperty> listPropertys = RobotMapper.convertToRobotPropertyList(robot);
+        this.insertPropertysRobot(listPropertys);
     }
 }
 

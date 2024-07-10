@@ -19,7 +19,6 @@ public class Tag {
     @Id
     String id;
     String code;
-    String description ;
     String workstationName;
     @JsonIgnore
     Workstation workstation;

@@ -18,6 +18,9 @@ import { ShowAlert } from './core/store/actions/Global.Action';
 import { ReponseStatus } from './core/store/models/Global/ReponseStatus.enum';
 import { loadRobots, loadSettingRobot, startListenerAllRobots, startListenerAllRobotsByProperty, stopListenerAllRobots, stopListenerAllRobotsByProperty } from './core/store/actions/Robot.Action';
 import { getListRobot } from './core/store/selectors/Robot.Selector';
+import { TagService } from './core/services/tag.service';
+import { tagState } from './core/store/states/Tag.state';
+import { GlobalState } from './core/store/states/Global.state';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,12 +33,13 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
   private getListRobotSub !: Subscription | undefined;
   private getStatusClientSub !: Subscription | undefined;
 
-  constructor(public mqttClientService: MqttClientService,public userService: UserService,
+  constructor( private tagService: TagService,
+    private mqttClientService: MqttClientService,
+    private userService: UserService,
     public robotService: RobotService,
     private storeMqtt: Store<MQTTState>,
-    private storeRobot: Store<RobotState>
-  ) 
-  { }
+    private storeRobot: Store<RobotState>,
+    private storeGlobal: Store<GlobalState>){ }
 
 
   ngOnInit(): void {
@@ -44,8 +48,18 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
     });
     this.getStatusClientSub= this.storeMqtt.select(selectStatusClient).subscribe(item => {
        console.log(item);
-
     });
+
+    this.tagService.getAll().subscribe(
+      (response) => {
+        tagState.listTags = response.body;
+      }
+      , (error) => {
+        this.storeGlobal.dispatch(ShowAlert({ title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message } ));
+        //this.workstationService.goToComponent("/sign-in");
+      });
+
+
   }
   ngAfterViewInit(): void {
     this.storeRobot.dispatch(loadRobots());

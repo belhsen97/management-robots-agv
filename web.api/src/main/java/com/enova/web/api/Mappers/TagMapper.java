@@ -12,7 +12,6 @@ public class TagMapper {
         final String name =  w == null ? null : w.getName() == null ? null : w.getName();
         return Tag.builder()
                 .code(tdto.getCode())
-                .description(tdto.getDescription())
                 .workstationName(name)
                 .workstation(null)
                 .build();
@@ -24,7 +23,6 @@ public class TagMapper {
         return TagDto.builder()
                 .id(t.getId())
                 .code(t.getCode())
-                .description(t.getDescription())
                 .workstation(w)
                 .build();
     }

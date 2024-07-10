@@ -5,5 +5,4 @@ export interface WorkstationDto {
     name: string;
     enable: boolean;
     tags?: TagDto[];
-    robots?: RobotDto[];
 }

@@ -4,14 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
-import { Publish } from 'src/app/core/store/models/Mqtt/Publish.model';
-import { RobotService } from 'src/app/core/services/robot.service';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
-import { MqttClientService } from 'src/app/core/services/mqtt-client.service';
-import { mqttState } from 'src/app/core/store/states/Mqtt.state';
-import { IMqttMessage } from 'ngx-mqtt';
 import { Subscription, interval, throttleTime } from 'rxjs';
-import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { GaugeChartComponent } from '../details/gauge-chart/gauge-chart.component';
 import { refreshPannelRobot } from 'src/app/core/store/actions/Robot.Action';
@@ -25,7 +19,7 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
   private timerSubscription: Subscription | undefined;
   private getValueSearchInputSub !: Subscription | undefined;
 
-  displayedColumns: string[] = ['name', 'view', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed'];
+  displayedColumns: string[] = ['name', 'view', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed','distance','codeTag'];
   dataSource !: MatTableDataSource<RobotDto>;
   @ViewChild(MatSort) sort  !: MatSort;
   constructor(private store: Store,

@@ -69,6 +69,14 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>speed</mat-header-cell>
             <mat-cell [ngClass]="cellColorSpeed(element.speed)"  *matCellDef="let element">{{ element.speed }}</mat-cell>
           </ng-container>
+          <ng-container matColumnDef="distance">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>distance</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.distance }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="codeTag">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>codeTag</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.codeTag ? element.codeTag  : "unknown" }}</mat-cell>
+          </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true" ></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
         </mat-table>

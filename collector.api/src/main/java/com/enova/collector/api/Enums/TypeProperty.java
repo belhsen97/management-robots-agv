@@ -1,6 +1,6 @@
 package com.enova.collector.api.Enums;
 
-public enum TypeProperty {CONNECTION,STATUS_ROBOT,MODE_ROBOT,OPERATION_STATUS,LEVEL_BATTERY,SPEED;
+public enum TypeProperty {CONNECTION,STATUS_ROBOT,MODE_ROBOT,OPERATION_STATUS,LEVEL_BATTERY,SPEED,DISTANCE,TAGCODE;
     public static  TypeProperty parseType(String str)  {
         switch (str.toUpperCase()) {
             case "CONNECTION":
@@ -15,6 +15,10 @@ public enum TypeProperty {CONNECTION,STATUS_ROBOT,MODE_ROBOT,OPERATION_STATUS,LE
                 return LEVEL_BATTERY;
             case "SPEED":
                 return SPEED;
+            case "DISTANCE":
+                return DISTANCE;
+            case "TAGCODE":
+                return TAGCODE;
             default:
                 return null;
         }

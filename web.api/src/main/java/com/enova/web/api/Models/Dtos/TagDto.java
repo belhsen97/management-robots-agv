@@ -13,6 +13,5 @@ import lombok.experimental.FieldDefaults;
 public class TagDto {
     String id;
     String code;
-    String description ;
     WorkstationDto workstation;
 }

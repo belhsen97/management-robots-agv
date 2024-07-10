@@ -2,6 +2,10 @@ package com.enova.collector.api.AppRunners;
 
 
 import com.enova.collector.api.Configures.MQTTClientConfig;
+import com.enova.collector.api.Enums.TypeProperty;
+import com.enova.collector.api.Mappers.RobotMapper;
+import com.enova.collector.api.Models.Entitys.Robot;
+import com.enova.collector.api.Models.Entitys.RobotProperty;
 import com.enova.collector.api.Services.MQTTService;
 import com.enova.collector.api.Services.RobotService;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +28,8 @@ public class BeanStartup implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
     }
-
-
+}
 //    @ListenerTopic(topic = "robot/1")
 //    public static void handleRobotTopicMessage(byte[]  message) {
 //        System.out.println("Received message from handleRobotTopicMessage : " + new String(message));
@@ -37,8 +39,6 @@ public class BeanStartup implements CommandLineRunner {
 //    public static void handleErrorTopicMessage(byte[] message) {
 //        System.out.println("Received message from handleErrorTopicMessage : " + new String(message));
 //    }
-}
-
 //    private final MQTTService mqttService2;
 //    private final ObjectMapperService objectMapperService;
 //    private final RobotService robotService;

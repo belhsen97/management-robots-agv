@@ -22,13 +22,18 @@ public class RobotDto {
     String clientid;
     String username;
     String password;
-    Connection connection;
-    StatusRobot statusRobot;
-    ModeRobot modeRobot;
-    OperationStatus operationStatus;
     Date createdAt;
-    int levelBattery;  // real time
-    double speed ; // real time
-    WorkstationDto workstation;
     String notice;
+
+
+    Connection connection;  // real time
+    StatusRobot statusRobot;  // real time
+    ModeRobot modeRobot;  // real time
+    OperationStatus operationStatus;  // real time
+    double levelBattery;  // real time  %
+    double speed; // real time   m/s
+    double distance; // real time   m
+    String codeTag;  // real time
+
+//    WorkstationDto workstation;
 }

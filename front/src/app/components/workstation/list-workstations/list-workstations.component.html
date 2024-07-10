@@ -23,10 +23,6 @@
                             <mat-icon class="icon-disable" *ngIf="!element.enable">highlight_off</mat-icon>
                         </td>
                     </ng-container>
-                    <ng-container matColumnDef="NRobot">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>NRobot</th>
-                        <td mat-cell *matCellDef="let element">{{ element.robots.length }}</td>
-                    </ng-container>
                     <ng-container matColumnDef="NTag">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>NTag</th>
                         <td mat-cell *matCellDef="let element">{{ element.tags.length }}</td>

@@ -32,7 +32,13 @@ public interface TagRepository extends MongoRepository<Tag, String> {
     })
     Optional<Tag> findById(String id);
 
-    @Query(value = "{ 'code' : ?0 }")
+
+    //@Query(value = "{ 'code' : ?0 }")
+    @Aggregation(pipeline = {
+            "{ $match: { 'code': ?0 } }",
+            "{ $lookup: { from: 'workstation', localField: 'workstationName', foreignField: 'name', as: 'workstation' } }",
+            "{ $addFields: { 'workstation': { $arrayElemAt: ['$workstation', 0] } } }"
+    })
     Optional<Tag> findbyCode(String code);
 
 

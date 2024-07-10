@@ -45,14 +45,15 @@ const robot: RobotDto = {
     password: "",
     createdAt: new Date(),
     name: "",
-    statusRobot: StatusRobot.RUNNING,
-    modeRobot: ModeRobot.MANUAL,
+    statusRobot: StatusRobot.WAITING,
+    modeRobot: ModeRobot.AUTO,
     notice: "",
-    connection: Connection.CONNECTED,
+    connection: Connection.DISCONNECTED,
     operationStatus: OperationStatus.PAUSE,
     levelBattery: 0,
     speed: 0,
-    workstation: wsState.workstation
+    distance: 0,
+    codeTag: ""
 };
 const plot : Plot = { text: "", from: 0, to: 0 };
 const robotDataBand: RobotDataBand = {
@@ -96,7 +97,7 @@ const robotDataBand: RobotDataBand = {
 }
 const listRobots: RobotDto[] = [];
 const listRobotsData: RobotDataChart[] = [];
-const settingRobot: RobotSettingDto = { distance: { min: 4, max: 5 }, speed: { min: 4, max: 8 } };
+const settingRobot: RobotSettingDto = { distance: { min: 2, max: 8 }, speed: { min: 0.01, max: 0.5 } };
 const panelRobot: CountRobotsProperties = { count: 0, connected: 0,disconnected:0, running: 0,waiting:0,inactive:0,
     normal: 0,ems: 0,pause: 0, auto: 0,manual:0}
 const typeConnection: readonly { label: string; value: Connection }[] = [

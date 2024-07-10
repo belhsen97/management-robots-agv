@@ -11,11 +11,10 @@ import { MessageBoxConfirmationComponent } from '../../shared/message-box-confir
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TagService } from 'src/app/core/services/tag.service';
-import { tagState } from 'src/app/core/store/states/Tag.state';
 import { WorkstationDto } from 'src/app/core/store/models/Workstation/WorkstationDto.model';
 import {  wsState } from 'src/app/core/store/states/Worstation.state';
 import { RobotService } from 'src/app/core/services/robot.service';
+import { GlobalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-workstations',
@@ -25,16 +24,16 @@ import { RobotService } from 'src/app/core/services/robot.service';
 export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("paginatorWorkstation") paginatorWorkstation  !: MatPaginator;
   @ViewChild(MatSort) sortWorkstation   !: MatSort;
-  displayedColumnsWorkstation: string[] = ['name', 'enable', 'NRobot', 'NTag', 'action'];
+  displayedColumnsWorkstation: string[] = ['name', 'enable', 'NTag', 'action'];
   
   dataSource : MatTableDataSource<WorkstationDto> = new MatTableDataSource<WorkstationDto>();
   //dataSourceWorkstation !: MatTableDataSource<WorkstationDto>;
 
 
 
-  constructor(private store: Store,
+  constructor(  private storeGlobal: Store<GlobalState>,
     public wsService: WorkstationService,
-    public tagService: TagService, public robotsService: RobotService,
+    public robotsService: RobotService,
     private dialog: MatDialog){}
 
 
@@ -45,7 +44,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
     // this.store.select(getrouterinfo).subscribe(item => {
     //   console.log( item);
     // });
-    this.store.select(getValueSearchInput).subscribe(value => {
+    this.storeGlobal.select(getValueSearchInput).subscribe(value => {
       if (value === null || value === undefined || this.dataSource == undefined) { return; }
       this.dataSource.filter = value;
       console.log(value);
@@ -59,24 +58,14 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
       }
       , (error) => {
         this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
+        this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
         //this.workstationService.goToComponent("/sign-in");
       });
 
 
 
 
-
-
-    this.tagService.getAll().subscribe(
-      (response) => {
-        tagState.listTags = response.body;
-      }
-      , (error) => {
-        this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
-        //this.workstationService.goToComponent("/sign-in");
-      });
+ 
 
   }
   ngAfterViewInit() {
@@ -143,7 +132,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
         (response) => {
           wsState.workstation = response.body;
           this.wsService.msgResponseStatus  = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
-          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
+          this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
           // this.workstationService.workstation.no =  this.workstationService.listWorkstations.length+1;
           wsState.listWorkstations.push(wsState.workstation);
           this.dataSource.data = wsState.listWorkstations;
@@ -153,7 +142,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
           else {
             this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
           }
-          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
+          this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
         }
       );
     });
@@ -169,7 +158,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
         (response) => {
           wsState.workstation = response.body;
           this.wsService.msgResponseStatus  = { title: "Message", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "success add new workstation" };
-          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
+          this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
 
           const index = wsState.listWorkstations.findIndex(element => element.id === wsState.workstation.id);
           if (index !== -1) { wsState.listWorkstations[index] = wsState.workstation; }
@@ -182,7 +171,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
           else {
             this.wsService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
           }
-          this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
+          this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
         }
       );
     });
@@ -196,7 +185,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
         this.wsService.delete(id).subscribe(
           (response) => {
             this.wsService.msgResponseStatus = response.body;
-            this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
+            this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus ));
             wsState.listWorkstations = wsState.listWorkstations.filter(item => item.id !== id);
             this.dataSource.data = wsState.listWorkstations;
           },
@@ -205,7 +194,7 @@ export class ListWorkstationsComponent implements OnInit, AfterViewInit, OnDestr
             else {
               this.wsService.msgResponseStatus  = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
             }
-            this.store.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
+            this.storeGlobal.dispatch(ShowAlert(this.wsService.msgResponseStatus )); console.log(error.status);
           }
         );
 

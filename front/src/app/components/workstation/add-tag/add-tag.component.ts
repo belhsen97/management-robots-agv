@@ -22,9 +22,11 @@ export class AddTagComponent implements OnInit {
     }
 
   ngOnInit(): void { if (this.data.element != undefined) { this.tagState.tag = this.data.element; return;}
-  this.tagState.tag ={id:'',code:'',description:'',workstation:wsState.workstation};
+  this.tagState.tag ={id:'',code:'',workstation:wsState.workstation};
 }
   compareWorkstation(w1: any, w2: any): boolean { return w1 && w2 ? w1.id === w2.id : w1 === w2; }
   closepopup() { this.dialogRef.close(null); }
-  onSubmitForm(form: NgForm): void { if (!form.invalid) { this.dialogRef.close(this.tagState.tag); } }
+  onSubmitForm(form: NgForm): void { 
+   // if (!form.invalid) { this.dialogRef.close(this.tagState.tag); } 
+  }
 }

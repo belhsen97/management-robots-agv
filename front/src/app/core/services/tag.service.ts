@@ -58,7 +58,6 @@ export class TagService extends Service {
       tagState.listTags[i] = {
         id: count.toString(),
         code: this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString()+this.getRandomNumber(100, 999).toString(),
-        description : "tag description "+count ,
         workstation: wsState.workstation
       };
     }

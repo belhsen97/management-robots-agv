@@ -55,8 +55,7 @@ export class WorkstationService extends Service {
         id: count.toString(),
         name : "Workstation-"+count,
         enable : true,
-        tags : [],
-        robots: []
+        tags : []
       };
     }
   }

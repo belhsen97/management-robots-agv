@@ -12,28 +12,28 @@ import java.util.*;
 
 public class RobotMapper {
     public static Robot mapToEntity(RobotDto r) {
-        final Workstation w = r.getWorkstation() == null ? null : WorkstationMapper.mapToEntity(r.getWorkstation());
-        final String name = w == null ? null : w.getName() == null ? null : w.getName();
+//        final Workstation w = r.getWorkstation() == null ? null : WorkstationMapper.mapToEntity(r.getWorkstation());
+//        final String name = w == null ? null : w.getName() == null ? null : w.getName();
         return Robot.builder()
-                .clientid(r.getClientid())
+                .name(r.getName())
+                .clientid(r.getName())
                 .username(r.getUsername())
                 .password(r.getPassword())
-                .createdAt(r.getCreatedAt())
-                .name(r.getName())
+//               .createdAt(r.getCreatedAt())
                 .notice(r.getNotice())
-                .statusRobot(r.getStatusRobot())
-                .modeRobot(r.getModeRobot())
-                .connection(r.getConnection())
-                .operationStatus(r.getOperationStatus())
-                .levelBattery(r.getLevelBattery())
-                .speed(r.getSpeed())
-                .nameWorkstation(name)
+//                .statusRobot(r.getStatusRobot())
+//                .modeRobot(r.getModeRobot())
+//                .connection(r.getConnection())
+//                .operationStatus(r.getOperationStatus())
+//                .levelBattery(r.getLevelBattery())
+//                .speed(r.getSpeed())
+                .distance(r.getDistance())
+                .codeTag(r.getCodeTag())
                 .build();
     }
 
     public static RobotDto mapToDto(Robot r) {
         if (r == null) {  return null; }
-        final WorkstationDto w = r.getWorkstation() == null ? null : WorkstationMapper.mapToDto(r.getWorkstation());
         return RobotDto.builder()
                 .id(r.getId())
                 .clientid(r.getClientid())
@@ -48,7 +48,8 @@ public class RobotMapper {
                 .operationStatus(r.getOperationStatus())
                 .levelBattery(r.getLevelBattery())
                 .speed(r.getSpeed())
-                .workstation(w)
+                .distance(r.getDistance())
+                .codeTag(r.getCodeTag())
                 .build();
     }
 
@@ -73,11 +74,17 @@ public class RobotMapper {
                 case OPERATION_STATUS:
                     robot.setOperationStatus(OperationStatus.valueOf(property.getValue()));
                     break;
+                case TAGCODE:
+                    robot.setCodeTag(property.getValue());
+                    break;
                 case LEVEL_BATTERY:
-                    robot.setLevelBattery(Integer.parseInt(property.getValue()));
+                    robot.setLevelBattery(Double.parseDouble(property.getValue()));
                     break;
                 case SPEED:
                     robot.setSpeed(Double.parseDouble(property.getValue()));
+                    break;
+                case DISTANCE:
+                    robot.setDistance(Double.parseDouble(property.getValue()));
                     break;
             }
         }

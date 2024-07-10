@@ -2,6 +2,7 @@ import sys
 import trace
 import threading
 import time
+#https://www.geeksforgeeks.org/python-different-ways-to-kill-a-thread/
 class thread_with_trace(threading.Thread):
   def __init__(self, *args, **keywords):
     threading.Thread.__init__(self, *args, **keywords)

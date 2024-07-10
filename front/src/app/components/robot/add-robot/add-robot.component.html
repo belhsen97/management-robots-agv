@@ -1,33 +1,61 @@
 <h2 mat-dialog-title>{{ data.title }}</h2>
 <mat-dialog-content>
     <form #formModel="ngForm" (ngSubmit)="onSubmitForm(formModel)" class="mt-4">
-        <!-- <div class="flex-row"> -->
-        <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input type="text" matInput [(ngModel)]="robot.name" #name="ngModel" name="robot-name"
-                placeholder="Ex. 460247808139" required>
-            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
-            <!-- <mat-error   *ngIf="(name.errors?.['required']">name is <strong>required</strong></mat-error> -->
-            <mat-error *ngIf="name.invalid && (name.dirty || name.touched || formModel.submitted)">
-                <span *ngIf="name.errors?.['required']">Name is <strong>required</strong></span>
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Workstations</mat-label>
-            <mat-select [(ngModel)]="robot.workstation" name="robot-workstation" #workstation="ngModel"
-                [compareWith]="compareWorkstation">
-                <mat-option *ngFor="let wOption of wsState.listWorkstations" [value]="wOption">{{
-                    wOption.name }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
+       <div class="row">
+          <div class="col-6">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput [(ngModel)]="robot.name" #name="ngModel" name="robot-name"
+                    placeholder="ex: robot-{number}" required>
+                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                <!-- <mat-error   *ngIf="(name.errors?.['required']">name is <strong>required</strong></mat-error> -->
+                <mat-error *ngIf="name.invalid && (name.dirty || name.touched || formModel.submitted)">
+                    <span *ngIf="name.errors?.['required']">Name is <strong>required</strong></span>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input type="text" matInput [(ngModel)]="robot.username" #username="ngModel" name="robot-username"
+                    placeholder="ex: robot-{number}" required>
+                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                <!-- <mat-error   *ngIf="(username.errors?.['required']">username is <strong>required</strong></mat-error> -->
+                <mat-error *ngIf="username.invalid && (username.dirty || username.touched || formModel.submitted)">
+                    <span *ngIf="username.errors?.['required']">username is <strong>required</strong></span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [(ngModel)]="robot.password" #password="ngModel" name="robot-password"
+                    placeholder="ex: 460247808139"  minlength="4" required>
+                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                <!-- <mat-error   *ngIf="(password.errors?.['required']">password is <strong>required</strong></mat-error> -->
+                <mat-error *ngIf="password.invalid && (password.dirty || password.touched || formModel.submitted)">
+                    <span *ngIf="password.errors?.['required']">password is <strong>required</strong></span>
+                    <span *ngIf="password.errors?.['minlength']">minimum must be <strong>4 characters</strong></span>
+                </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field>
+                <mat-label>Tags</mat-label>
+                <mat-select  [(ngModel)]="robot.codeTag" name="workstation-tags" #tags="ngModel"
+                  [compareWith]="compareTags">
+                  <mat-option *ngFor="let tag of tagState.listTags" [value]="tag.code">{{ tag.code }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Distance</mat-label>
+                    <input type="number" matInput [(ngModel)]="robot.distance" #distance="ngModel" name="robot-distance" placeholder="150.2m">
+                </mat-form-field>
+        </div>
+     </div>
+     <div class="row">
+        <mat-form-field style="width: 100%;">
             <mat-label>Notice</mat-label>
             <textarea [(ngModel)]="robot.notice" #notice="ngModel" name="robot-notice" matInput
                 placeholder="Ex. notice robot ..."></textarea>
         </mat-form-field>
-
+     </div>
         <button *ngIf="!data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
             <mat-icon>add</mat-icon>Add robot</button>
           <button *ngIf="data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">

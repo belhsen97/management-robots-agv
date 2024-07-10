@@ -7,13 +7,16 @@ def on_connection_change(value):
     print(f"connection changed to {value}")
     state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/CONNECTION",json.dumps({"value": value}))
 
-def on_status_change(value):
-    print(f"statusRobot changed to {value}")
-    state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/STATUS_ROBOT",json.dumps({"value": value}))
-
 def on_mode_change(value):
     print(f"modeRobot changed to {value}")
     state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/MODE_ROBOT",json.dumps({"value": value}))
+
+def on_status_change(value):
+    print(f"statusRobot changed to {value}")
+    state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/STATUS_ROBOT",json.dumps({"value": value}))
+    # if(value ==  robot_enum.Status.INACTIVE.name):
+    #            state.task["speed"].kill() 
+    #            state.robotState['robot'].speed=0
 
 def on_operation_status_change(value):
     print(f"operationStatus changed to {value}")
@@ -56,15 +59,15 @@ def on_code_tag_change(value):
     state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/TAGCODE",json.dumps({"value": value}))
     try:
         index = state.tagCodeState["list"].index(state.robotState['robot'].codeTag)
-        if (index <  state.tagCodeState["lengthList"]/2 ) and   state.robotState['batteryConfig']['disChargeTime']:
+        if (index <  state.tagCodeState["lengthList"]/2 ) and   state.robotState['batteryConfig']['isDisCharging']:
                 state.task["battery"].kill()
                 state.task["battery"] = thread_service.thread_with_trace(target = state.robotState["service"].modifyBattery,args=(False, state.robotState['batteryConfig']['chargeTime'],))
                 state.task["battery"].start()
-                state.robotState['batteryConfig']['disChargeTime'] = False
-        if (index >  state.tagCodeState["lengthList"]/2 ) and (not  state.robotState['batteryConfig']['disChargeTime']):
-                # state.task["battery"].kill()
-                # state.task["battery"] = thread_service.thread_with_trace(target = state.robotState["service"].modifyBattery,args=(True, state.robotState['batteryConfig']['disChargeTime'],))
-                # state.task["battery"].start()
-                state.robotState['batteryConfig']['disChargeTime'] = True
+                state.robotState['batteryConfig']['isDisCharging'] = False
+        if (index >  state.tagCodeState["lengthList"]/2 ) and (not  state.robotState['batteryConfig']['isDisCharging']):
+                state.task["battery"].kill()
+                state.task["battery"] = thread_service.thread_with_trace(target = state.robotState["service"].modifyBattery,args=(True, state.robotState['batteryConfig']['disChargeTime'],))
+                state.task["battery"].start()
+                state.robotState['batteryConfig']['isDisCharging'] = True
     except ValueError:
         print(f"'{state.robotState['robot'].codeTag}' is not in the list.")

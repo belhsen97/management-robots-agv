@@ -52,6 +52,22 @@ public class RobotMapper {
                     .value(robot.getOperationStatus().toString())
                     .build());
         }
+        if (robot.getCodeTag() != null) {
+            robotProperties.add(RobotProperty.builder()
+                    .id(robot.getId())
+                    .name(robot.getName())
+                    .timestamp(dateNow)
+                    .type(TypeProperty.TAGCODE)
+                    .value(robot.getCodeTag().toString())
+                    .build());
+        }
+        robotProperties.add(RobotProperty.builder()
+                .id(robot.getId())
+                .name(robot.getName())
+                .timestamp(dateNow)
+                .type(TypeProperty.DISTANCE)
+                .value(String.valueOf(robot.getLevelBattery()))
+                .build());
         robotProperties.add(RobotProperty.builder()
                 .id(robot.getId())
                 .name(robot.getName())
@@ -68,4 +84,42 @@ public class RobotMapper {
                 .build());
         return robotProperties;
     }
+    public static Robot mapRobotPropertysToRobot(Robot robot , List<RobotProperty> robotProperties) {
+        if (robotProperties == null && robotProperties.isEmpty()) {
+            return robot;
+        }
+        for (RobotProperty property : robotProperties) {
+             mapRobotPropertyToRobot(robot , property);
+        }
+        return robot;
+    }
+    public static void mapRobotPropertyToRobot(Robot robot , RobotProperty property) {
+        if (property == null) {throw new NullPointerException("property is null");}
+            switch (property.getType()) {
+                case CONNECTION:
+                    robot.setConnection(Connection.valueOf(property.getValue()));
+                    break;
+                case STATUS_ROBOT:
+                    robot.setStatusRobot(StatusRobot.valueOf(property.getValue()));
+                    break;
+                case MODE_ROBOT:
+                    robot.setModeRobot(ModeRobot.valueOf(property.getValue()));
+                    break;
+                case OPERATION_STATUS:
+                    robot.setOperationStatus(OperationStatus.valueOf(property.getValue()));
+                    break;
+                case LEVEL_BATTERY:
+                    robot.setLevelBattery(Integer.parseInt(property.getValue()));
+                    break;
+                case SPEED:
+                    robot.setSpeed(Double.parseDouble(property.getValue()));
+                    break;
+                case DISTANCE:
+                    robot.setDistance(Double.parseDouble(property.getValue()));
+                case TAGCODE:
+                    robot.setCodeTag(property.getValue());
+            }
+    }
+
+
 }

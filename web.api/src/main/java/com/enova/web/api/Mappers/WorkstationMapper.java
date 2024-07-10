@@ -15,17 +15,6 @@ import java.util.stream.Collectors;
 
 public class WorkstationMapper {
     public static Workstation mapToEntity(WorkstationDto wd) {
-        Set<Robot> robotList = new HashSet<Robot>();
-        robotList = (
-                (wd.getRobots() == null || wd.getRobots().isEmpty())
-                        ?
-                        robotList
-                        :
-                        wd.getRobots()
-                                .stream()
-                                .map(robot -> RobotMapper.mapToEntity(robot))
-                                .collect(Collectors.toSet())
-        );
         Set<Tag> tagList = new HashSet<Tag>();
         tagList = (
                 (wd.getTags() == null || wd.getTags().isEmpty())
@@ -40,24 +29,12 @@ public class WorkstationMapper {
         return Workstation.builder()
                 .name(wd.getName())
                 .enable(wd.isEnable())
-                .robots(robotList)
                 .tags(tagList)
                 .build();
     }
 
     public static WorkstationDto mapToDto(Workstation w) {
         if (  w == null ) { return null; }
-        List<RobotDto> robotDtoList = new ArrayList<RobotDto>();
-        robotDtoList = (
-                (w.getRobots() == null || w.getRobots().isEmpty())
-                        ?
-                        robotDtoList
-                        :
-                        w.getRobots()
-                                .stream()
-                                .map(robot -> RobotMapper.mapToDto(robot))
-                                .collect(Collectors.toList())
-        );
         List<TagDto> tagDtoList = new ArrayList<TagDto>();
         tagDtoList = (
                 (w.getTags() == null || w.getTags().isEmpty())
@@ -74,7 +51,6 @@ public class WorkstationMapper {
                 .name(w.getName())
                 .enable(w.isEnable())
                 .tags(tagDtoList)
-                .robots(robotDtoList)
                 .build();
     }
 }

@@ -45,7 +45,9 @@ class RobotService:
             if (key == "MODE_ROBOT") and ((value ==  robot_enum.ModeRobot.MANUAL.name)or(value == robot_enum.ModeRobot.AUTO.name)) :
                  state.robotState['robot'].modeRobot = value
             if (key  == "OPERATION_STATUS") and ((value == robot_enum.OperationStatus.NORMAL.name )or(value  ==  robot_enum.OperationStatus.EMS.name)or(value ==  robot_enum.OperationStatus.PAUSE.name)) :
+                 print (value)
                  state.robotState['robot'].operationStatus = value
+                 print (  state.robotState['robot'].operationStatus )
             #if (key  == "STATUS") and ((value == robot_enum.Status.INACTIVE.name )or(value  == robot_enum.Status.WAITING.name )or(value == robot_enum.Status.RUNNING.name )) :
             if (key  == "STATUS") and ((value == robot_enum.Status.INACTIVE.name )) :
                  state.robotState['robot'].statusRobot = value
@@ -56,27 +58,22 @@ class RobotService:
                     state.task["speed"] = thread_service.thread_with_trace(target = self.modifySpeed,args=( state.robotState['speedTarget'],)) 
                     state.task["speed"].start()
 
-
     def updateAll(self,robot):
          if ("connection" or "statusRobot" or "modeRobot"   or "operationStatus"  or "levelBattery"  or "speed"    in robot ):
               print ( "<------------   no attribute robot   ------------>" )
          if "connection" in robot:
               state.robotState['robot'].connection = robot["connection"]
-         if "statusRobot" in robot:
-              state.robotState['robot'].statusRobot = robot["statusRobot"]
          if "modeRobot" in robot:
               state.robotState['robot'].modeRobot = robot["modeRobot"]
-         if "operationStatus" in robot:
-              state.robotState['robot'].operationStatus = robot["operationStatus"]
          if "levelBattery" in robot:
               state.robotState['robot'].levelBattery = robot["levelBattery"]
          if "speed" in robot:
-              print( "hhhhhhhhhhhhhhhhhhhhhh")
               state.robotState['speedTarget'] = robot["speed"]
               state.robotState['robot'].speed = robot["speed"]
-
-
-
+         if "statusRobot" in robot:
+              state.robotState['robot'].statusRobot = robot["statusRobot"]
+         if "operationStatus" in robot:
+              state.robotState['robot'].operationStatus = robot["operationStatus"]
 
     def randomData(self):
            random_robot.update_battery_level()
@@ -84,26 +81,18 @@ class RobotService:
            state.robotState['robot'].createdAt =  datetime.now().isoformat()
            state.robotState['robot'].levelBattery =  random_robot.battery_level 
            state.robotState['robot'].speed =  random_robot.speed_value
-    
-    #def randomData2(self):
-        # if  ( state.robotState['robot'].operationStatus ==  robot_enum.OperationStatus.PAUSE.name ) or ( state.robotState['robot'].operationStatus ==  robot_enum.OperationStatus.EMS.name ) :
-        #            await self.cancelTask(state.task["speed"])
-        #            state.task["speed"] = asyncio.create_task( state.robotState["service"].modifySpeed(0))
-        #            return 
-        # state.robotState['robot'].speed = 0.1
-        # state.robotState['robot'].levelBattery = 100
-        # state.task["battery"] = asyncio.create_task(
-        #      state.robotState["service"].modifyBattery(True, state.robotState["batteryConfig"]["running"])
-        #      )
-        # state.robotState['robot'].speed = 0.1
-        # state.robotState['speedTarget'] = 0.3 
-        # state.task["speed"].kill()
-        # state.task["speed"] =  thread_service.thread_with_trace(target = self.modifySpeed,args=(0.3,)) 
-        # state.task["speed"].start()
-        # state.task["speed"].join()
-       
-       
-         
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -115,9 +104,8 @@ class RobotService:
            elapsed_time = (datetime.now() - last_update_time).total_seconds()
            div = (100/durationChangeTimeSecond ) 
            if  elapsed_time <= durationChangeTimeSecond and  not ((isDisCharging and state.robotState['robot'].levelBattery <= 0 )  or  ( (not isDisCharging) and state.robotState['robot'].levelBattery >= 100 )):
-               state.robotState['robot'].levelBattery += -div if isDisCharging  else div
+               state.robotState['robot'].levelBattery += -div if isDisCharging  else div 
            time.sleep(1)
-
        
     def modifySpeed(self, speedTarget):
         if  state.robotState['robot'].speed == speedTarget:
@@ -125,7 +113,6 @@ class RobotService:
         speed = state.robotState['robot'].speed 
         while speed <  speedTarget:
                   speed += state.robotState['accelaration']
-
                   if speed > speedTarget:
                            speed = speedTarget
                   state.robotState['robot'].speed = speed
@@ -136,7 +123,6 @@ class RobotService:
                            speed = speedTarget
                   state.robotState['robot'].speed = speed
                   time.sleep(1)
-      
       
     def modifyDistance(self):
         while state.robotState['robot'].speed !=  0:
@@ -156,3 +142,21 @@ class RobotService:
             print(f"The index of '{state.robotState['robot'].codeTag}' is: {index}")
          except ValueError:
             print(f"'{state.robotState['robot'].codeTag}' is not in the list.")
+
+
+   #def randomData2(self):
+        # if  ( state.robotState['robot'].operationStatus ==  robot_enum.OperationStatus.PAUSE.name ) or ( state.robotState['robot'].operationStatus ==  robot_enum.OperationStatus.EMS.name ) :
+        #            await self.cancelTask(state.task["speed"])
+        #            state.task["speed"] = asyncio.create_task( state.robotState["service"].modifySpeed(0))
+        #            return 
+        # state.robotState['robot'].speed = 0.1
+        # state.robotState['robot'].levelBattery = 100
+        # state.task["battery"] = asyncio.create_task(
+        #      state.robotState["service"].modifyBattery(True, state.robotState["batteryConfig"]["running"])
+        #      )
+        # state.robotState['robot'].speed = 0.1
+        # state.robotState['speedTarget'] = 0.3 
+        # state.task["speed"].kill()
+        # state.task["speed"] =  thread_service.thread_with_trace(target = self.modifySpeed,args=(0.3,)) 
+        # state.task["speed"].start()
+        # state.task["speed"].join()           

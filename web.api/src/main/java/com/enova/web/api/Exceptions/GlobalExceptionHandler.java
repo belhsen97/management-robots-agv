@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
                 .title("Validation Exception")
                 .status(ReponseStatus.UNSUCCESSFUL)
                 .datestamp(new Date())
-                .message(ex.toString())
+                .message(ex.getMessage())
                 .build();
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_ACCEPTABLE);
     }

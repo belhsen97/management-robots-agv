@@ -29,6 +29,15 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    public Tag selectByCode(String code) {
+        Optional<Tag> t = this.tagRepository.findbyCode(code);
+        if (t.isEmpty()) {
+            throw new RessourceNotFoundException("Cannot found Tag by code = " + code);
+        }
+        return t.get();
+    }
+
+    @Override
     public Tag selectById(String id) {
         Optional<Tag> t = this.tagRepository.findById(id);
         if (t.isEmpty()) {
@@ -45,7 +54,7 @@ public class TagServiceImpl implements TagService {
         Optional<Workstation> w = workstationRepository.findbyName(t.getWorkstationName());
         t.setWorkstationName(w.isPresent() ? w.get().getName() : null);
         t = tagRepository.save(t);
-        t.setWorkstation(w.get());
+        t.setWorkstation(    w.isPresent()  ? w.get()  : null     );
         traceService.insert(Trace.builder().className("TagService").methodName("insert").description("add new Tag where is code = "+t.getCode()).build());
         return t;
     }
@@ -55,7 +64,6 @@ public class TagServiceImpl implements TagService {
         Tag t = this.selectById(id);
         t.setWorkstation(null);
         t.setCode(obj.getCode());
-        t.setDescription(obj.getDescription());
         Optional<Workstation> w = workstationRepository.findbyName(obj.getWorkstationName());
         t.setWorkstationName(w.isPresent() ? w.get().getName() : t.getWorkstationName());
         System.out.println(t.getWorkstation());
@@ -80,17 +88,5 @@ public class TagServiceImpl implements TagService {
     }
 
 
-//    @Override
-//    public Tag insert(Tag object) {
-//        Optional<Workstation> w =  this.workstationRepository.findbyName(object.getWorkstationName());
-//        if ( w.isEmpty()){
-//            throw new RessourceNotFoundException("Cannot found Workstation by name ="+object.getWorkstationName() );
-//        }
-//        object.setId(w.get().getLengthTags()+1);
-//        w.get().addTag(object);
-//        w.get().setRobots(null);
-//        this.workstationRepository.save( w.get());
-//        return object;
-//    }
 
 }

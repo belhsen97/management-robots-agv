@@ -21,11 +21,11 @@ tagCodeState = {
 }
 
 robotState = {
-        "robot":  robot_model.ReactiveRobot( "robot","DISCONNECTED", "WAITING","AUTO","PAUSE",datetime.now().isoformat(),100,0,0, tagCodeState[  "list" ][0]),
+        "robot":  robot_model.ReactiveRobot( "robot","DISCONNECTED", "WAITING","AUTO",None,datetime.now().isoformat(),100,0,0, tagCodeState[  "list" ][0]),
         "service":None,
-        "batteryConfig":{ "disChargeTime": 60*60*2 ,"chargeTime" :60*30*1 , "isDisCharging": True},
+        "batteryConfig":{ "disChargeTime": 60*60*4 ,"chargeTime" :60*60*1 , "isDisCharging": True},
         "speedTarget": 0.0,
-        "accelaration": 0.01
+        "accelaration": 0.05
 }
 
 task = {

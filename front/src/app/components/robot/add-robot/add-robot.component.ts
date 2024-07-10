@@ -7,7 +7,7 @@ import { ModeRobot } from 'src/app/core/store/models/Robot/ModeRobot.enum';
 import { OperationStatus } from 'src/app/core/store/models/Robot/OperationStatus.enum';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
-import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.state';
+import { TagState, tagState } from 'src/app/core/store/states/Tag.state';
 
 
 @Component({
@@ -16,11 +16,11 @@ import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.
   styleUrls: ['./add-robot.component.css']
 })
 export class AddRobotComponent implements OnInit {
+  tagState !: TagState;
   robot!:RobotDto;
-  wsState !: WorkstationState;
   constructor(public workstationService: WorkstationService,public dialogRef: MatDialogRef<AddRobotComponent>,
      @Inject(MAT_DIALOG_DATA) public data: any) { 
-       this.wsState  = wsState;
+       this.tagState  = tagState;
     }
   ngOnInit(): void {
      if (this.data.element != undefined) {
@@ -38,7 +38,8 @@ export class AddRobotComponent implements OnInit {
         operationStatus: this.data.element.operationStatus,
         levelBattery: this.data.element.levelBattery,
         speed: this.data.element.speed,
-        workstation: this.data.element.workstation};
+        distance:this.data.element.distance,
+        codeTag:this.data.element.codeTag};
       
       
       return;} 
@@ -49,15 +50,20 @@ export class AddRobotComponent implements OnInit {
       password: "",
       createdAt: new Date(),
       name: "",
-      statusRobot: StatusRobot.RUNNING,
+      statusRobot: StatusRobot.WAITING,
       modeRobot: ModeRobot.MANUAL,
       notice: "",
-      connection: Connection.CONNECTED,
+      connection: Connection.DISCONNECTED,
       operationStatus: OperationStatus.PAUSE,
-      levelBattery: 0,speed: 0,workstation: this.wsState.workstation};
+      levelBattery: 0,
+      speed: 0,
+      distance:0,
+      codeTag:""};
     }
-  compareWorkstation(w1: any, w2: any): boolean { return w1 && w2 ? w1.id === w2.id : w1 === w2; }
+  compareTags(tag1: any, tag2: any): boolean { return tag1 && tag2 ? tag1.id === tag2.id : tag1 === tag2; }
   closepopup() { this.dialogRef.close(null); }
-  onSubmitForm(form: NgForm): void { if (!form.invalid) { this.dialogRef.close(this.robot); } }
+  onSubmitForm(form: NgForm): void { 
+   if (!form.invalid) { this.dialogRef.close(this.robot); } 
+  }
 }
 

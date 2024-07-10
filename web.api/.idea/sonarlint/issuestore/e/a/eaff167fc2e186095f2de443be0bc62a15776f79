@@ -1,12 +1,15 @@
 
-j
-java:S1192W"MDefine a constant instead of duplicating this literal "RobotService" 4 times.(ËÇÆ«8Å…ËÑƒ2
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8Ç…ËÑƒ2
-d
-java:S3655V"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(à£“éıÿÿÿÿ8ì…ËÑƒ2
-_
-java:S3655n"BCall "w.isPresent()" or "!w.isEmpty()" before accessing the value.(‘èæß8ùÖÑƒ2
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8ï…ËÑƒ2
+java:S1192d"MDefine a constant instead of duplicating this literal "RobotService" 4 times.(ªº–8ó¿“»‰2
+Y
+java:S4973W"<Strings and Boxed types should be compared using "equals()".(Û–‚³8ô¿“»‰2
+^
+java:S4973l"<Strings and Boxed types should be compared using "equals()".(æ ï¼şÿÿÿÿ8ô¿“»‰2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8õ¿“»‰2
+i
+java:S6830 "GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8«À“»‰2
 D
-java:S1125f"'Remove the unnecessary boolean literal.(ÏØ‡¯8ø…ËÑƒ2
+java:S1125p"'Remove the unnecessary boolean literal.(ÏØ‡¯8µÀ“»‰2
+X	java:S125w"<This block of commented-out lines of code should be removed.(äÍÑ8¶À“»‰2
+e
+java:S1128"HRemove this unused import 'com.enova.web.api.Repositorys.TagRepository'.(¯¿„„8ÔÆ–»‰2

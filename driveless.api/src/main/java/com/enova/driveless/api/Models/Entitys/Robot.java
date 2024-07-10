@@ -37,16 +37,17 @@ public class Robot implements Serializable {
     @Setter(AccessLevel.NONE)
     String notice;
     @Setter(AccessLevel.NONE)
-    String nameWorkstation;
-    Connection connection;
-    StatusRobot statusRobot;
-    ModeRobot modeRobot;
-    OperationStatus operationStatus;
     Date createdAt;
-    int levelBattery;  // real time  %
+
+    String codeTag;  // real time
+    Connection connection;  // real time
+    StatusRobot statusRobot;  // real time
+    ModeRobot modeRobot;  // real time
+    OperationStatus operationStatus;  // real time
+    double levelBattery;  // real time  %
     double speed; // real time   m/s
-    //double distance; // real time   m
-    public void setSpeed(double speed) {
-        this.speed = Math.round(speed * 10.0) / 10.0;
-    }
+    double distance; // real time   m
+//    public void setSpeed(double speed) {
+//        this.speed = Math.round(speed * 10.0) / 10.0;
+//    }
 }

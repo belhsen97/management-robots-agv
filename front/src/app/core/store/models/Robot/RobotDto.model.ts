@@ -10,13 +10,16 @@ export interface RobotDto {
     clientid: String;
     username: String;
     password: String;
-    name: string;
-       statusRobot: StatusRobot;
-       modeRobot: ModeRobot;
-    notice: string;
-       connection: Connection;
-       operationStatus: OperationStatus;
-       levelBattery: number;  // real time
-       speed: number; // real time
-    workstation: WorkstationDto;
+    name: String;
+    notice: String;
+
+
+    statusRobot: StatusRobot;// real time
+    modeRobot: ModeRobot;// real time
+    connection: Connection;// real time
+    operationStatus: OperationStatus;
+    levelBattery: number;  // real time
+    speed: number; // real time
+    distance: number; // real time
+    codeTag: String; // real time
 }

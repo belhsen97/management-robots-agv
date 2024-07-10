@@ -12,10 +12,6 @@ import sys
 # robotService : robot_service.RobotService
 # clientMqttService : mqtt_service.MqttService
 
-
-
-
-       
 def run():
         state.robotState["robot"].subscribe("connection", robot_effect.on_connection_change)
         state.robotState["robot"].subscribe("statusRobot", robot_effect.on_status_change)
@@ -34,15 +30,14 @@ def run():
         state.mqttState["service"].subscribe(state.mqttState["subscribe"]["control"],mqtt_effect.onSubscribeControlRobot)
         state.mqttState["service"].subscribe(state.mqttState["subscribe"]["controlAll"],mqtt_effect.onSubscribeControlAllRobot)
         state.mqttState["service"].subscribe(state.mqttState["subscribe"]["lastUpdate"],mqtt_effect.onSubscribeInitDataRobot)
-        
         while  not state.mqttState["service"].is_connected() :
                print (state.mqttState["publish"]["lastUpdate"]  )
                state.mqttState["service"].publish( state.mqttState["publish"]["lastUpdate"] ,"vide")
+               time.sleep(1)
 
         while True:
            if state.robotState['robot'].statusRobot  == "INACTIVE" :
               sys.exit("Stopping the script")
-           #    state.robotState["service"].randomData2()
            state.robotState['robot'].createdAt =  datetime.now().isoformat()
            time.sleep(1)
        

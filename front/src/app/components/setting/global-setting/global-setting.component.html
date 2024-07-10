@@ -43,14 +43,14 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mx-2">
-                    <span>0 mm</span>
+                    <span>0 m</span>
                     <mat-slider min="0" max="10" step="0.1" showTickMarks>
                         <input value="3" name="setting-distance-min-input-slider"
                             [(ngModel)]="setting!.distance.min" matSliderStartThumb>
                         <input value="9" name="setting-distance-max-input-slider"
                             [(ngModel)]="setting!.distance.max" matSliderEndThumb>
                     </mat-slider>
-                    <span>10 mm</span>
+                    <span>10 m</span>
                 </div>
             </div>
 
@@ -78,14 +78,14 @@
                     </mat-form-field>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mx-2">
-                    <span>0 m/s</span>
-                    <mat-slider min="0" max="14" step="0.1" showTickMarks>
+                    <span>0.01 m/s</span>
+                    <mat-slider min="0.01" max="0.3" step="0.01" showTickMarks>
                         <input name="setting-speed-min-input-slider" [(ngModel)]="setting.speed.min"
                             matSliderStartThumb>
                         <input name="setting-speed-max-input-slider" [(ngModel)]="setting.speed.max"
                             matSliderEndThumb>
                     </mat-slider>
-                    <span>10 m/s</span>
+                    <span>0.3 m/s</span>
                 </div>
             </div>
             <div class="d-flex justify-content-end">

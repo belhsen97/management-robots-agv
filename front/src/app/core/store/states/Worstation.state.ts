@@ -9,8 +9,7 @@ const  workstation : WorkstationDto ={
     id:"",
     name: "" ,
     enable: true,
-    tags: [],
-    robots: []
+    tags: []
    };
 
 const listWorkstations  : WorkstationDto[] =[];

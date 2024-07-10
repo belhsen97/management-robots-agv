@@ -22,27 +22,11 @@ import java.util.Set;
 public class Workstation  implements Serializable  {
     @Id
     String id;
-    String name ;
-    boolean enable ;
-    @JsonIgnore
-    Set<Robot> robots ;
-    @JsonGetter("robots")
-    public  Set<Robot> getRobots() {return this.robots;}
+    String name;
+    boolean enable;
+    String description ;
     @JsonIgnore
     Set<Tag> tags ;
     @JsonGetter("tags")
     public  Set<Tag> getTags() {return this.tags;}
 }
-//    @Id
-//    String id;
-//    String name ;
-//    TypeStation type ;
-//    String location;
-//    StatusStation status ;
-//    String notice ;
-//    boolean enable ;
-//    Set<Tag> tags ;
-//Maintenance Schedule
-//Operating Hours
-// Task
-//public enum StatusStation {BUSY, AVAILABLE,UNDERMAINTENACE}

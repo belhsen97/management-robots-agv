@@ -7,7 +7,8 @@ public enum TypeProperty {
     OPERATION_STATUS(3),
     LEVEL_BATTERY(4),
     SPEED(5),
-    DISTANCE(6);
+    DISTANCE(6),
+    TAGCODE(7);
     private final int value;
     TypeProperty(int value) {
         this.value = value;
@@ -32,6 +33,8 @@ public enum TypeProperty {
                 return SPEED.getValue();
             case DISTANCE:
                 return DISTANCE.getValue();
+            case TAGCODE:
+                return TAGCODE.getValue();
             default:
                 throw new IllegalArgumentException("Unknown TypeProperty: " + type.name());
         }
@@ -52,6 +55,8 @@ public enum TypeProperty {
                 return SPEED.getValue();
             case "DISTANCE":
                 return DISTANCE.getValue();
+            case "TAGCODE":
+                return TAGCODE.getValue();
             default:
                 throw new IllegalArgumentException("Unknown TypeProperty: " + str);
         }

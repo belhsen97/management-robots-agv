@@ -7,7 +7,7 @@ export interface TagState {
 }
 
 const  listTags : TagDto[]=[];
-const  tag : TagDto ={id:'',code:'',description:'',workstation:wsState.workstation};
+const  tag : TagDto ={id:'',code:'',workstation:wsState.workstation};
 
 export const tagState: TagState = {
     tag : tag,

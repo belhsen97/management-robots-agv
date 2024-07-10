@@ -65,19 +65,19 @@ public class BeanStartup implements CommandLineRunner {
             .build();
 
     List<RobotSetting> robotConfigs = Arrays.asList(
-            RobotSetting.builder().category(TypeProperty.SPEED).constraint(Constraint.MIN).value("1.5").unit("m/s").build(),
-            RobotSetting.builder().category(TypeProperty.SPEED).constraint(Constraint.MAX).value("8").unit("m/s").build(),
-            RobotSetting.builder().category(TypeProperty.DISTANCE).constraint(Constraint.MIN).value("0").unit("mm").build(),
-            RobotSetting.builder().category(TypeProperty.DISTANCE).constraint(Constraint.MAX).value("10").unit("mm").build()
+            RobotSetting.builder().category(TypeProperty.SPEED).constraint(Constraint.MIN).value("0.1").unit("m/s").build(),
+            RobotSetting.builder().category(TypeProperty.SPEED).constraint(Constraint.MAX).value("0.3").unit("m/s").build(),
+            RobotSetting.builder().category(TypeProperty.DISTANCE).constraint(Constraint.MIN).value("0.1").unit("m").build(),
+            RobotSetting.builder().category(TypeProperty.DISTANCE).constraint(Constraint.MAX).value("1").unit("m").build()
     );
 
     @Override
     public void run(String... args) throws Exception {
         this.initAdminUser();
         this.verifyConfiGlobalRobot();
-        //  this.deleteAndRandomAllTags(200);
-        //  this.deleteAndRandomAllRobot(100);
-        //  this.deleteAndRandomAllWorstation(20);
+       // this.deleteAndRandomAllTags(400);
+       // this.deleteAndRandomAllRobot(100);
+       //   this.deleteAndRandomAllWorstation(20);
 //        Date date = new Date();
 //        date.setSeconds(date.getSeconds()+15);
 //        taskSchedulingService.addScheduleTask(new Runnable () {
@@ -106,7 +106,10 @@ public class BeanStartup implements CommandLineRunner {
                 String firstPartFormatted  = String.format("%04d", 0);
                 String secondPartFormatted  = String.format("%04d", i);
                 String codeFormat = String.format("%s-%s-%s", "code", firstPartFormatted, secondPartFormatted);
-                final Tag tag = Tag.builder().code(codeFormat).description("description-tag").build();
+                final Tag tag = Tag.builder()
+                        .code(codeFormat)
+                        .workstation(null)
+                        .build();
             iTagService.insert(tag);
         }
         log.info("finish add All Tag");
@@ -119,16 +122,19 @@ public class BeanStartup implements CommandLineRunner {
             final Robot robot = Robot.builder()
                     .name("robot-" + i)
                     .createdAt(new Date())
-                    .connection(Connection.DISCONNECTED)
-                    .modeRobot(ModeRobot.AUTO)
-                    .statusRobot(StatusRobot.RUNNING)
-                    .operationStatus(OperationStatus.PAUSE)
-                    .levelBattery(100)
-                    .speed(1.5)
                     .notice("")
                     .clientid("robot-" + i)
                     .username("robot-" + i)
                     .password("robot-" + i)
+
+                    .connection(Connection.DISCONNECTED)
+                    .modeRobot(ModeRobot.AUTO)
+                    .statusRobot(StatusRobot.WAITING)
+                    .operationStatus(OperationStatus.PAUSE)
+                    .levelBattery(100.0)
+                    .speed(0.0)
+                    .distance(0.0)
+                    //.codeTag("")
                     .build();
             robotRepository.save(robot);
         }
@@ -140,6 +146,7 @@ public class BeanStartup implements CommandLineRunner {
         for (int i = 1; i <= number; i++) {
             final Workstation workstation = Workstation.builder()
                     .name("workstation-" + i)
+                    .description("workstation-" + i)
                     .enable(true)
                     .build();
             workstationRepository.save(workstation);

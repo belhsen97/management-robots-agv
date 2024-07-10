@@ -9,7 +9,6 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { robotState } from '../store/states/Robot.state';
-import { wsState } from '../store/states/Worstation.state';
 import { RobotSettingDto } from '../store/models/Robot/RobotSettingDto.model';
 
 @Injectable({
@@ -131,7 +130,8 @@ export class RobotService extends Service {
         operationStatus: this.getRandomEnumValue(OperationStatus),
         levelBattery: this.getRandomNumber(10, 100),
         speed: this.getRandomNumber(1.5, 20),
-        workstation: wsState.workstation
+        distance : 0,
+        codeTag : ""
       };
     }
   }

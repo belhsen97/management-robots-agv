@@ -12,18 +12,17 @@
         <div class="mat-elevation-z1">
             <div class="table-container">
                 <table mat-table [dataSource]="dataSource" matSort>
-
                     <ng-container matColumnDef="code">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>code</th>
                         <td mat-cell *matCellDef="let element">{{ element.code }}</td>
                     </ng-container>
-
                     <ng-container matColumnDef="workstation">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>workstation</th>
                         <td mat-cell *matCellDef="let element">
                             <a *ngIf="element.workstation"  [routerLink]="['/workstation', element.workstation.id]"  mat-button color="dark" aria-label="icon button for details robot">
                                 <mat-icon>zoom_in</mat-icon>{{element.workstation.name}}
                             </a>
+                          <span *ngIf="!element.workstation" >empty</span> 
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="action">

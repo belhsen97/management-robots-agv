@@ -6,11 +6,12 @@
         <mat-form-field>
             <mat-label>Code</mat-label>
             <input type="text" matInput [(ngModel)]="tagState.tag.code" #code="ngModel"
-                name="tag-code" placeholder="Ex. 460247808139" required>
+                name="tag-code" placeholder="Ex code-xxxx-xxxx"  pattern="^code-[0-9]{4}+-+[0-9]{4}$"  required>
             <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
             <!-- <mat-error   *ngIf="(code.errors?.['required']">code is <strong>required</strong></mat-error> -->
             <mat-error *ngIf="code.invalid && (code.dirty || code.touched || formModel.submitted)">
                 <span *ngIf="code.errors?.['required']">code is <strong>required</strong></span>
+                <p  *ngIf="code.errors?.['pattern']"> pattern must be code-xxxx-xxxx</p>
             </mat-error>
         </mat-form-field>
 
@@ -22,13 +23,6 @@
               <mat-option *ngFor="let wOption of wsState.listWorkstations" [value]="wOption">{{ wOption.name }}</mat-option>
             </mat-select>
           </mat-form-field>  
-
-        <mat-form-field>
-            <mat-label>Description of new Tag</mat-label>
-            <textarea matInput  placeholder="Ex. it for workstation of stock or for line of ..."
-            [(ngModel)]="tagState.tag.description" #description="ngModel" name="tag-description"
-            ></textarea>
-        </mat-form-field>
 
         <button  *ngIf="!data.isedit" mat-raised-button color="primary" [disabled]="formModel.invalid" type="submit">
             <mat-icon>add</mat-icon>Add Tag</button>

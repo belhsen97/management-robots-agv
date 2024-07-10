@@ -30,23 +30,25 @@ public class Robot implements Serializable {
     String clientid;
     String username;
     String password;
-    Connection connection;
-    StatusRobot statusRobot;
-    ModeRobot modeRobot;
-    OperationStatus operationStatus;
     Date createdAt;
-    int levelBattery;  // real time  %
-    double speed ; // real time   m/s
     String notice;
-    String nameWorkstation;
 
-    @JsonIgnore
-    Workstation workstation;
-   // public void setWorkstation(Workstation w) {if(w==null){return;}this.idWorkstation = w.getName(); this.workstation = null;   }
-    @JsonGetter("workstation")
-    public Workstation getWorkstation() {return this.workstation;}
+
+    Connection connection;  // real time
+    StatusRobot statusRobot;  // real time
+    ModeRobot modeRobot;  // real time
+    OperationStatus operationStatus;  // real time
+    double levelBattery;  // real time  %
+    double speed; // real time   m/s
+    double distance; // real time   m
+    String codeTag;  // real time
+
+//    String nameWorkstation;
+//    @JsonIgnore
+//    Workstation workstation;
+//    @JsonGetter("workstation")
+//    public Workstation getWorkstation() {return this.workstation;}
 }
-
 //    String id;
 //    String name ;
 //    String ip;

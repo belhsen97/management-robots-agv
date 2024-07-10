@@ -14,13 +14,13 @@ public interface WorkstationRepository extends MongoRepository<Workstation, Stri
 //    [{  $lookup:  { from: "robot", localField: "name", foreignField: "nameWorkstation", as: "robots"}},
 //    {  $lookup: {  from: 'tag', localField: 'name', foreignField: 'workstationName', as: 'tags' } }]
     @Aggregation(pipeline = {
-            "{ $lookup: { from: 'robot', localField: 'name', foreignField: 'nameWorkstation', as: 'robots' } }",
+            //"{ $lookup: { from: 'robot', localField: 'name', foreignField: 'nameWorkstation', as: 'robots' } }",
             "{ $lookup: {  from: 'tag', localField: 'name', foreignField: 'workstationName', as: 'tags' } }"
     })
     List<Workstation> findAll();
     @Aggregation(pipeline = {
             "{ $match: { '_id': ObjectId(?0) } }",
-            "{ $lookup: { from: 'robot', localField: 'name', foreignField: 'nameWorkstation', as: 'robots' } }",
+            //"{ $lookup: { from: 'robot', localField: 'name', foreignField: 'nameWorkstation', as: 'robots' } }",
             "{ $lookup: {  from: 'tag', localField: 'name', foreignField: 'workstationName', as: 'tags' } }"
     })
     Optional<Workstation> findById(String id);

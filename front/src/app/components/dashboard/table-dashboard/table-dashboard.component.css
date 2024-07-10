@@ -15,6 +15,9 @@
 }
 
 
+
+
+
 mat-header-cell, mat-cell {
   display: flex;
   align-items: center;
@@ -23,42 +26,26 @@ mat-header-cell, mat-cell {
   vertical-align: middle;
   max-height: 45px;
 }
-
 .mat-column-modeRobot, .mat-column-connection {
   max-width: 9%;
 }
- 
 .mat-column-name {
-     /*border-right: 1px solid currentColor;*/
+    /* border-right: 1px solid currentColor;*/
 }
 .mat-column-levelBattery,
-.mat-column-speed {
-  min-width: 18%;
+.mat-column-speed , mat-column-distance{
+ min-width: 12%;
 }
 .mat-column-operationStatus {
   min-width: 12%;
   text-align: center;
 }
-
-
-
-.cell-danger {
-  color: var(--danger);
+.mat-column-codeTag {
+  min-width: 16%;
 }
 
-.cell-steady {
-  color: var(--success);
-}
-
-.cell-warning {
-  color: var(--warning);
-}
-
-
-.icon-danger {
-  color: var(--danger);
-}
-
-.icon-success {
-  color: var(--success);
-}
+.cell-danger {color: var(--danger);}
+.cell-steady {color: var(--success);}
+.cell-warning {color: var(--warning);}
+.icon-danger {color: var(--danger);}
+.icon-success {color: var(--success);}

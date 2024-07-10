@@ -31,7 +31,6 @@ public class TopicController {
     public void handleTopicStatusClient(String topic, byte[] message) throws JsonProcessingException, RessourceNotFoundException {
         ConnectionInfo connectionInfo = objMapperService.fromJson(new String(message), ConnectionInfo.class);
         final Robot rDB = robotService.selectByClientId(connectionInfo.getClientId());
-
         if (connectionInfo.getConnectedAt() > connectionInfo.getDisconnectedAt()) {
             robotService.updateRobotConnection(connectionInfo.getClientId(), Connection.CONNECTED);
         }

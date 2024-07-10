@@ -15,5 +15,4 @@ public class WorkstationDto {
     String name ;
     boolean enable ;
     List<TagDto> tags ;
-    List<RobotDto> robots;
 }

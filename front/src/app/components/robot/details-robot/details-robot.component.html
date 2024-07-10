@@ -15,7 +15,7 @@
           <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{robot.name}}</mat-card-title>
-          <mat-card-subtitle>{{ ( robot.workstation  ?  robot.workstation.name : "unknown") }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ ( robot.codeTag  ?  robot.codeTag : "unknown") }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <table>
@@ -40,6 +40,8 @@
             <tr>
               <td><strong>status operation</strong></td>
               <td> {{robot.operationStatus}} </td>
+            </tr>
+            <tr>
               <td><strong>Notice</strong></td>
               <td colspan="3">{{ robot.notice }}</td>
             </tr>

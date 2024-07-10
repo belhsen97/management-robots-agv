@@ -27,7 +27,6 @@ export class DetailsWorkstationComponent implements OnInit,OnDestroy   {
       this.wsService.getById(item).subscribe(
         (response) => {
           this.wsState.workstation = response.body;
-          this.wsState.workstation.robots!.forEach(r => r.createdAt = this.wsService.toDate(r.createdAt.toString()));
           console.log(this.wsState.workstation );
          }
         ,(error) => {

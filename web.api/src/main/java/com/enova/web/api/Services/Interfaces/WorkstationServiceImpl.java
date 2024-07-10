@@ -3,7 +3,6 @@ package com.enova.web.api.Services.Interfaces;
 import com.enova.web.api.Models.Entitys.*;
 import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
-import com.enova.web.api.Repositorys.RobotRepository;
 import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Repositorys.WorkstationRepository;
 import com.enova.web.api.Services.TraceService;
@@ -27,7 +26,6 @@ import java.util.Optional;
 public class WorkstationServiceImpl implements WorkstationService {
 
     private final WorkstationRepository workstationRepository;
-    private final RobotRepository robotRepository;
     private final TagRepository tagRepository;
     private final TraceService traceService;
     private final MongoTemplate mongoTemplate;
@@ -59,19 +57,7 @@ public class WorkstationServiceImpl implements WorkstationService {
         if (this.workstationRepository.findbyName(obj.getName()).isPresent()) {
             throw new MethodArgumentNotValidException("other Workstation found");
         }
-        final boolean fullListRobots  = (obj.getRobots() == null && obj.getRobots().isEmpty()? false :true);
         final boolean fullListTags = (obj.getTags() == null && obj.getTags().isEmpty()? false :true);
-        if (fullListRobots) {
-            obj.getRobots().forEach(robot -> {
-                Optional<Robot> robotOptional =   this.robotRepository.findByName(robot.getName());
-                if (robotOptional.isPresent()){robot = robotOptional.get();}
-                else{ robot.setCreatedAt(new Date());}
-                robot.setWorkstation(null);
-                robot.setNameWorkstation(obj.getName());
-                this.robotRepository.save(robot);
-            });
-            //this.robotRepository.saveAll(obj.getRobots());
-        }
         if (fullListTags) {
             obj.getTags().forEach(tag -> {
                 Optional<Tag> tagOptional =   this.tagRepository.findbyCode(tag.getCode());
@@ -84,11 +70,11 @@ public class WorkstationServiceImpl implements WorkstationService {
             });
            // this.tagRepository.saveAll(obj.getTags());
         }
-        obj.setRobots(null);
         obj.setTags(null);
         Workstation w = this.workstationRepository.save(obj);
         w = this.selectById(w.getId());
         traceService.insert(Trace.builder().className("WorkstationService").methodName("insert").description("add new Workstation where is name = "+obj.getName()).build());
+
         return w;
     }
 
@@ -96,23 +82,8 @@ public class WorkstationServiceImpl implements WorkstationService {
     @Transactional
     public Workstation update(String id, Workstation obj) {
         Workstation w = this.selectById(id);
-        //this.robotRepository.changeWorkstation(w.getName(), null);
-        //this.tagRepository.changeWorkstation(w.getName(), null);
-        this.updateMultipleWorstationNameOfRobots( w.getName(), null);
         this.updateMultipleWorstationNameOfTags( w.getName(), null);
-        final boolean fullListRobots  = (obj.getRobots() == null && obj.getRobots().isEmpty()? false :true);
         final boolean fullListTags = (obj.getTags() == null && obj.getTags().isEmpty()? false :true);
-        if (fullListRobots) {
-            obj.getRobots().forEach(robot -> {
-                Optional<Robot> robotOptional =   this.robotRepository.findByName(robot.getName());
-                if (robotOptional.isPresent()){robot = robotOptional.get();}
-                else{ robot.setCreatedAt(new Date());}
-                robot.setWorkstation(null);
-                robot.setNameWorkstation(obj.getName());
-                this.robotRepository.save(robot);
-            });
-            //this.robotRepository.saveAll(obj.getRobots());
-        }
         if (fullListTags) {
             obj.getTags().forEach(tag -> {
                 Optional<Tag> tagOptional =   this.tagRepository.findbyCode(tag.getCode());
@@ -127,7 +98,6 @@ public class WorkstationServiceImpl implements WorkstationService {
         }
         w.setName(obj.getName());
         w.setEnable(obj.isEnable());
-        w.setRobots(null);
         w.setTags(null);
         w = this.workstationRepository.save(w);
         w = this.selectById(w.getId());
@@ -138,9 +108,6 @@ public class WorkstationServiceImpl implements WorkstationService {
     @Override
     public void delete(String id) {
         Workstation w = this.selectById(id);
-        //this.robotRepository.changeWorkstation(w.getName(), null);
-        //this.tagRepository.changeWorkstation(w.getName(), null);
-        this.updateMultipleWorstationNameOfRobots( w.getName(), null);
         this.updateMultipleWorstationNameOfTags( w.getName(), null);
         this.workstationRepository.delete(w);
         traceService.insert(Trace.builder().className("WorkstationService").methodName("delete").description("delete Workstation where is name = "+w.getName()).build());
@@ -152,16 +119,16 @@ public class WorkstationServiceImpl implements WorkstationService {
         traceService.insert(Trace.builder().className("WorkstationService").methodName("deleteAll").description("delete all Workstation").build());
     }
 
-    private void updateMultipleWorstationNameOfRobots( String oldName  , String newName ) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("nameWorkstation").is(oldName));
-        Update update = new Update();
-        update.set("nameWorkstation", newName);
-        UpdateResult updateResult = mongoTemplate.updateMulti(query, update, Robot.class);
-        if (updateResult.getModifiedCount() == 0) {
-            throw new MethodArgumentNotValidException("Cannot update mutiple name workstation of robot may be is empty or old name not correct or the same new name");
-        }
-    }
+//    private void updateMultipleWorstationNameOfRobots( String oldName  , String newName ) {
+//        Query query = new Query();
+//        query.addCriteria(Criteria.where("nameWorkstation").is(oldName));
+//        Update update = new Update();
+//        update.set("nameWorkstation", newName);
+//        UpdateResult updateResult = mongoTemplate.updateMulti(query, update, Robot.class);
+//        if (updateResult.getModifiedCount() == 0) {
+//            throw new MethodArgumentNotValidException("Cannot update mutiple name workstation of robot may be is empty or old name not correct or the same new name");
+//        }
+//    }
     private void updateMultipleWorstationNameOfTags( String oldName  , String newName ) {
         Query query = new Query();
         query.addCriteria(Criteria.where("workstationName").is(oldName));
