@@ -41,16 +41,17 @@ def read_all_logs(log_directory, fileName):
 
     return log_contents
 
-logger = logger_config("robot-1","resources/logs","my_log.log")
-log_contents = read_all_logs("resources/logs","my_log.log")
 
+# log_contents = read_all_logs("resources/logs","my_log.log")
 # Print the contents of each log file
-for idx, content in enumerate(log_contents):
-    print(f"Contents of my_log.log.{idx}:\n{content}\n")
+# for idx, content in enumerate(log_contents):
+#     print(f"Contents of my_log.log.{idx}:\n{content}\n")
+
+# logger = logger_config("robot-1","resources/logs","my_log.log")
 # Example log messages
 # for i in range(10000):
-    logger.debug(f'This is log message {i}')
-    logger.info('Info level log message')
-    logger.warning('Warning level log message')
-    logger.error('Error level log message')
-    logger.critical('Critical level log message')
+    # logger.debug(f'This is log message {i}')
+    # logger.info('Info level log message')
+    # logger.warning('Warning level log message')
+    # logger.error('Error level log message')
+    # logger.critical('Critical level log message')

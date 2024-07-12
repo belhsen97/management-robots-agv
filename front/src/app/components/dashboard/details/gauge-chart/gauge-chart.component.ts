@@ -184,10 +184,10 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
         yAxis: [{
             pane: 0,
             min: 0,
-            max: 10,
+            max: 0.5,
             lineColor: '#000000',
             tickColor: '#202020',
-            tickInterval: 1,
+            tickInterval: 0.1,
             tickWidth: 2,
             minorTickColor: '#339',
             offset: -5,
@@ -203,7 +203,7 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
             endOnTick: false,
             plotBands: [{
                 from: robotState.settingRobot?.speed.max,
-                to: 10,
+                to: 0.5,
                 color: '#CE2C40',
                 innerRadius: '95%',
                 outerRadius: '105%'

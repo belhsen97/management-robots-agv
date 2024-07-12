@@ -1,15 +1,13 @@
 package com.enova.web.api.Services;
 
 import com.enova.web.api.Models.Responses.MsgReponseStatus;
-import com.enova.web.api.Models.Entitys.Attachment;
+import com.enova.web.api.Models.Commons.Attachment;
 import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Models.Entitys.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public interface UserService extends IGenericCRUD<User,String> {

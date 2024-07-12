@@ -3,6 +3,7 @@ package com.enova.web.api.Models.Entitys;
 
 import com.enova.web.api.Enums.Gender;
 import com.enova.web.api.Enums.Roles;
+import com.enova.web.api.Models.Commons.Attachment;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
@@ -22,7 +23,7 @@ import java.util.*;
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User implements Serializable , UserDetails {
+public class User implements Serializable, UserDetails {
     @Id
     String id;
     Date createdAt;
@@ -41,21 +42,27 @@ public class User implements Serializable , UserDetails {
     Set<Token> tokens = new HashSet<Token>();
 
 
-
     public void addToken(Token token) {
-        if ( this.getTokens() == null ){this.setTokens(new HashSet<Token>());}
+        if (this.getTokens() == null) {
+            this.setTokens(new HashSet<Token>());
+        }
         this.tokens.add(token);
     }
+
     public void removeToken(Token token) {
-        if ( this.getTokens() == null ){ return;}
+        if (this.getTokens() == null) {
+            return;
+        }
         tokens.remove(token);
     }
+
     public boolean isTokenValid(String token) {
         return this.tokens.stream()
                 .anyMatch(userToken -> userToken.getToken().equals(token)
                         && !userToken.isRevoked()
                         && !userToken.isExpired());
     }
+
     public boolean updateToken(String tokenString, Token tokenUpdate) {
         Optional<Token> optionalToken = tokens.stream()
                 .filter(token -> token.getToken().equals(tokenString))
@@ -72,11 +79,10 @@ public class User implements Serializable , UserDetails {
     }
 
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        GrantedAuthority  authority = new SimpleGrantedAuthority( this.role.name());
+        GrantedAuthority authority = new SimpleGrantedAuthority(this.role.name());
         authorities.add(authority);
         return authorities;
     }

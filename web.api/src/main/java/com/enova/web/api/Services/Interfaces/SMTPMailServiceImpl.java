@@ -5,7 +5,7 @@ import com.enova.web.api.Configures.SMTPMailConfig;
 import com.enova.web.api.Enums.RecipientType;
 import com.enova.web.api.Enums.TypeBody;
 import com.enova.web.api.Models.Commons.mail.*;
-import com.enova.web.api.Models.Entitys.Attachment;
+import com.enova.web.api.Models.Commons.Attachment;
 import com.enova.web.api.Services.SmtpMailService;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;

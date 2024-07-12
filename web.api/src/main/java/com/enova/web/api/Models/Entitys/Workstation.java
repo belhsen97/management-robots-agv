@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Set;
 
-
 @Document(collection = "workstation")
 @Builder
 @AllArgsConstructor
@@ -19,14 +18,17 @@ import java.util.Set;
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Workstation  implements Serializable  {
+public class Workstation implements Serializable {
     @Id
     String id;
     String name;
     boolean enable;
-    String description ;
+    String description;
     @JsonIgnore
-    Set<Tag> tags ;
+    Set<Tag> tags;
+
     @JsonGetter("tags")
-    public  Set<Tag> getTags() {return this.tags;}
+    public Set<Tag> getTags() {
+        return this.tags;
+    }
 }

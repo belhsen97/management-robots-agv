@@ -2,7 +2,7 @@ package com.enova.web.api.Models.Commons.mail;
 
 import com.enova.web.api.Enums.RecipientType;
 import com.enova.web.api.Enums.StatusMsg;
-import com.enova.web.api.Models.Entitys.Attachment;
+import com.enova.web.api.Models.Commons.Attachment;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.util.StringUtils;
@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

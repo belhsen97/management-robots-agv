@@ -2,7 +2,7 @@ package com.enova.web.api.Mappers;
 
 import com.enova.web.api.Configures.ParameterConfig;
 import com.enova.web.api.Models.Dtos.AttachmentDto;
-import com.enova.web.api.Models.Entitys.Attachment;
+import com.enova.web.api.Models.Commons.Attachment;
 
 public class AttachmentMapper {
     public static AttachmentDto mapToDto(Attachment attachment  ){

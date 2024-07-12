@@ -1,8 +1,5 @@
 package com.enova.web.api.Models.Entitys;
 
-
-
-
 import com.enova.web.api.Enums.TypeProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

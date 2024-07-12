@@ -12,7 +12,6 @@ import com.enova.web.api.Exceptions.MethodArgumentNotValidException;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;
 import com.enova.web.api.Repositorys.RobotPropertyRepository;
 import com.enova.web.api.Repositorys.RobotRepository;
-import com.enova.web.api.Repositorys.TagRepository;
 import com.enova.web.api.Services.RobotService;
 import com.enova.web.api.Services.TagService;
 import com.enova.web.api.Services.TraceService;

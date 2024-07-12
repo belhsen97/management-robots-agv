@@ -19,6 +19,7 @@ import { DetailsRobotComponent } from './components/robot/details-robot/details-
 import { TracingComponent } from './components/statistic/tracing/tracing.component';
 import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
 import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
+import { FieldDashboardComponent } from './components/dashboard/field-dashboard/field-dashboard.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'table',
         component: TableDashboardComponent
+      },
+      {
+        path: 'field',
+        component: FieldDashboardComponent
       },
       {
         path: 'stock/:name',

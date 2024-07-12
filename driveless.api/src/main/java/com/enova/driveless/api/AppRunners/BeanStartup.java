@@ -7,6 +7,7 @@ import com.enova.driveless.api.Models.Entitys.RobotSetting;
 import com.enova.driveless.api.Repositorys.RobotSettingRepository;
 import com.enova.driveless.api.Services.MQTTService;
 import com.enova.driveless.api.Services.RobotService;
+import com.enova.driveless.api.Services.TagService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -24,12 +25,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BeanStartup implements CommandLineRunner {
-    final RobotService robotService;
+//    final RobotService robotService;
+//    final TagService tagService;
     @Override
     public void run(String... args) {
-        List<RobotSetting> list =   robotService.selectAllRobotSetting();
-        RobotSettingCommon robotSettingCommon = RobotSettingMapper.mapToDto(list);
+//        List<RobotSetting> list =   robotService.selectAllRobotSetting();
+//        RobotSettingCommon robotSettingCommon = RobotSettingMapper.mapToDto(list);
        //System.out.println(Arrays.toString(list.toArray()));
-        System.out.println( robotSettingCommon  );
+       // System.out.println( robotSettingCommon  );
+//        List<String> list  = tagService.selectAllCode();
+//        System.out.println( list.size()  );
     }
 }

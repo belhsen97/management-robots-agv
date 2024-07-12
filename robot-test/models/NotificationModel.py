@@ -13,6 +13,7 @@ class ReactiveNotification:
             "notification": []
         }
 
+
     def _notify(self, key, new_value):
         for callback in self._callbacks[key]:
             callback(new_value)
@@ -20,6 +21,11 @@ class ReactiveNotification:
     def subscribe(self, key, callback):
         if key in self._callbacks:
             self._callbacks[key].append(callback)
+
+
+    def __call__(self, name, level, message, asctime):
+        if self._message != message:
+              self._notify("notification", ReactiveNotification (name, level, message, asctime))
 
     @property
     def name(self):
@@ -61,10 +67,12 @@ class ReactiveNotification:
             self._asctime= value
             self._notify("asctime", value)
 
+    def toString(self):
+        return "{name: "+self._name+" , level: "+self._level+" , message: "+self._message+" ,asctime: "+self._asctime+" }"
+         
     def toSerialisation(self):
         data = {
             "name": self._name,
-            "statusRobot": self._statusRobot,
             "level": self._level,
             "message": self._message,
             "asctime": self._asctime

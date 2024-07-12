@@ -9,6 +9,7 @@ const  workstation : WorkstationDto ={
     id:"",
     name: "" ,
     enable: true,
+    description: "" ,
     tags: []
    };
 

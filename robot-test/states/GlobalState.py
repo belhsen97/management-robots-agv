@@ -1,5 +1,13 @@
 from models import RobotModel as robot_model
 from datetime import datetime
+from models import NotificationModel as notification_model
+from configurations import LoggingConfiguration as logging_config
+
+
+
+logging = logging_config.logger_config("robot-1","resources/logs","my_log.log")
+
+notification = notification_model.ReactiveNotification ("name", "level", "message", "asctime")
 
 mqttState =	{
   "broker" : 'localhost',
@@ -7,9 +15,14 @@ mqttState =	{
   "client_id": "robot",
   "username" : "robot",
   "password" : "robot",
-  "publish":{"lastUpdate":"","allData":""},
+  "publish":{"lastUpdate":"","allData":"","notification":""},
   "subscribe":{"control":"","controlAll":"topic/control/robot/all/property/+","lastUpdate":""},
   "service":None
+}
+
+httpState = {
+  "host" : 'localhost',
+  "port" : 8088,
 }
 
 tagCodeState = {
@@ -23,7 +36,7 @@ tagCodeState = {
 robotState = {
         "robot":  robot_model.ReactiveRobot( "robot","DISCONNECTED", "WAITING","AUTO",None,datetime.now().isoformat(),100,0,0, tagCodeState[  "list" ][0]),
         "service":None,
-        "batteryConfig":{ "disChargeTime": 60*60*4 ,"chargeTime" :60*60*1 , "isDisCharging": True},
+        "batteryConfig":{ "disChargeOnRunningTime": 60*60*4 , "disChargeOnWaitingTime": 60*60*8 , "chargeTime" :60*60*1 , "isDisCharging": True},
         "speedTarget": 0.0,
         "accelaration": 0.05
 }

@@ -27,6 +27,6 @@ export class AddTagComponent implements OnInit {
   compareWorkstation(w1: any, w2: any): boolean { return w1 && w2 ? w1.id === w2.id : w1 === w2; }
   closepopup() { this.dialogRef.close(null); }
   onSubmitForm(form: NgForm): void { 
-   // if (!form.invalid) { this.dialogRef.close(this.tagState.tag); } 
+    if (!form.invalid) { this.dialogRef.close(this.tagState.tag); } 
   }
 }

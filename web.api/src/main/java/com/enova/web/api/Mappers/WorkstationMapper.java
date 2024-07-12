@@ -29,6 +29,7 @@ public class WorkstationMapper {
         return Workstation.builder()
                 .name(wd.getName())
                 .enable(wd.isEnable())
+                .description(wd.getDescription())
                 .tags(tagList)
                 .build();
     }
@@ -50,6 +51,7 @@ public class WorkstationMapper {
                 .id(w.getId())
                 .name(w.getName())
                 .enable(w.isEnable())
+                .description(w.getDescription())
                 .tags(tagDtoList)
                 .build();
     }

@@ -4,5 +4,6 @@ export interface WorkstationDto {
     id: String;
     name: string;
     enable: boolean;
+    description: string;
     tags?: TagDto[];
 }

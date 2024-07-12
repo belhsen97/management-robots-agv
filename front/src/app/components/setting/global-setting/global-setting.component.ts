@@ -19,10 +19,7 @@ constructor( private storeRobot: Store<RobotState>){ }
   ngOnDestroy(): void { if (this.getSettingRobot) { this.getSettingRobot.unsubscribe(); }}
   ngOnInit(): void {
     this.getSettingRobot = this.storeRobot.select(getSettingRobot).subscribe(item => { 
- 
         this.setting = item!;
-  
-     
     });
   }
  onSubmitForm(form: NgForm):void {

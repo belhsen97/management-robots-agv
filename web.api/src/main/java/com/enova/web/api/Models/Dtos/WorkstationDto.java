@@ -14,5 +14,6 @@ public class WorkstationDto {
     String id;
     String name ;
     boolean enable ;
+    String description ;
     List<TagDto> tags ;
 }

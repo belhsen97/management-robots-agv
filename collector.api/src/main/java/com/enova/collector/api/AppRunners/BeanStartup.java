@@ -23,8 +23,6 @@ import java.util.Date;
 @Component
 @RequiredArgsConstructor
 public class BeanStartup implements CommandLineRunner {
-    private final MQTTService mqttService;
-    private final MQTTClientConfig mqttClientConfig;
 
     @Override
     public void run(String... args) throws Exception {

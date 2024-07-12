@@ -1,25 +1,18 @@
 import random
 import time
-from paho.mqtt import client as mqtt_client
-from datetime import datetime, timedelta
-import json
-import random_robot
+from datetime import datetime
 import gc
 from states import GlobalState as state
 from services import ThreadService as thread_service
 from enums import RobotEnum as robot_enum
-from decimal import Decimal
-import asyncio
-
-
-
+import requests
 
 class RobotService:
     def __init__(self):
         print("\n RobotService init")
         state.task["speed"] =  thread_service.thread_with_trace(target = self.modifySpeed,args=(state.robotState['robot'].speed,)) 
         state.task["distance"] =  thread_service.thread_with_trace(target = self.modifyDistance) 
-        state.task["battery"] =  thread_service.thread_with_trace(target = self.modifyBattery,args=(False, state.robotState['batteryConfig']['disChargeTime']    ,))
+        state.task["battery"] =  thread_service.thread_with_trace(target = self.modifyBattery,args=(False, state.robotState['batteryConfig']['disChargeOnWaitingTime']    ,))
     def __enter__(self):
         print("\n RobotService enter")
         return self
@@ -59,7 +52,7 @@ class RobotService:
                     state.task["speed"].start()
 
     def updateAll(self,robot):
-         if ("connection" or "statusRobot" or "modeRobot"   or "operationStatus"  or "levelBattery"  or "speed"    in robot ):
+         if not ("connection" or "statusRobot" or "modeRobot"   or "operationStatus"  or "levelBattery"  or "speed"  or "distance"   or "codeTag"    in robot ):
               print ( "<------------   no attribute robot   ------------>" )
          if "connection" in robot:
               state.robotState['robot'].connection = robot["connection"]
@@ -72,27 +65,17 @@ class RobotService:
               state.robotState['robot'].speed = robot["speed"]
          if "statusRobot" in robot:
               state.robotState['robot'].statusRobot = robot["statusRobot"]
+              print ( state.robotState['robot'].statusRobot)
          if "operationStatus" in robot:
               state.robotState['robot'].operationStatus = robot["operationStatus"]
-
-    def randomData(self):
-           random_robot.update_battery_level()
-           random_robot.update_speed_value()
-           state.robotState['robot'].createdAt =  datetime.now().isoformat()
-           state.robotState['robot'].levelBattery =  random_robot.battery_level 
-           state.robotState['robot'].speed =  random_robot.speed_value
-
-
-
-
-
-
-
-
-
-
-
-
+         if "createdAt" in robot:
+              state.robotState['robot'].createdAt = robot["createdAt"]
+         if "codeTag" in robot:
+              state.robotState['robot'].codeTag = robot["codeTag"]
+         if "distance" in robot:
+              state.robotState['robot'].distance = robot["distance"]
+ 
+       
 
 
 
@@ -142,6 +125,45 @@ class RobotService:
             print(f"The index of '{state.robotState['robot'].codeTag}' is: {index}")
          except ValueError:
             print(f"'{state.robotState['robot'].codeTag}' is not in the list.")
+
+
+
+
+    def getRobotCodes(self):
+        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot-avg/driveless/robot/all-code'
+        try:
+           response = requests.get(url)
+           response.raise_for_status()
+           codes = response.json()
+           state.tagCodeState[ "list" ] = codes
+           state.tagCodeState["lengthList"] =  len(codes)
+        except requests.exceptions.HTTPError as http_err:
+           print(f"HTTP error occurred: {http_err}")
+           print("Status code:", response.status_code)
+           print("Response body:", response.json())
+           raise
+        except Exception as err:
+           print(f"Other error occurred: {err}")
+           raise
+
+
+    def getRobot(self,name):
+        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot-avg/driveless/robot/'+name
+        try:
+           response = requests.get(url)
+           response.raise_for_status()
+           robot = response.json()
+           self.updateAll(robot)
+        except requests.exceptions.HTTPError as http_err:
+           print(f"HTTP error occurred: {http_err}")
+           print("Status code:", response.status_code)
+           print("Response body:", response.json())
+           raise
+        except Exception as err:
+           print(f"Other error occurred: {err}")
+           raise
+
+
 
 
    #def randomData2(self):

@@ -3,21 +3,17 @@ import { MqttClientService } from './core/services/mqtt-client.service';
 import { UserService } from './core/services/user.service.ts.service';
 import { userState } from './core/store/states/User.state';
 import {  MQTTState, mqttState } from './core/store/states/Mqtt.state';
-import { IMqttMessage } from 'ngx-mqtt';
 import { Store } from '@ngrx/store';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
-import { connectMQTT, connectionSuccess, desconnectMQTT, onSubscribeMQTT, subscribeMQTT, subscribeStatusClients } from './core/store/actions/Mqtt.Action';
-import { state } from '@angular/animations';
+import { subscribeStatusClients } from './core/store/actions/Mqtt.Action';
 import { Subscription } from 'rxjs';
-import {  selectIsConnected, selectStatusClient } from './core/store/selectors/Mqtt.selector';
-import * as mqtt from 'mqtt';
-import { environment } from 'src/environments/environment';
+import { selectStatusClient } from './core/store/selectors/Mqtt.selector';
 import { RobotService } from './core/services/robot.service';
 import { RobotState, robotState } from './core/store/states/Robot.state';
 import { ShowAlert } from './core/store/actions/Global.Action';
 import { ReponseStatus } from './core/store/models/Global/ReponseStatus.enum';
 import { loadRobots, loadSettingRobot, startListenerAllRobots, startListenerAllRobotsByProperty, stopListenerAllRobots, stopListenerAllRobotsByProperty } from './core/store/actions/Robot.Action';
-import { getListRobot } from './core/store/selectors/Robot.Selector';
+import { getListRobot, getSettingRobot } from './core/store/selectors/Robot.Selector';
 import { TagService } from './core/services/tag.service';
 import { tagState } from './core/store/states/Tag.state';
 import { GlobalState } from './core/store/states/Global.state';
@@ -32,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
   private robot !: RobotDto ;
   private getListRobotSub !: Subscription | undefined;
   private getStatusClientSub !: Subscription | undefined;
-
+  private  getSettingRobotSub !: Subscription | undefined;
   constructor( private tagService: TagService,
     private mqttClientService: MqttClientService,
     private userService: UserService,
@@ -46,6 +42,10 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
     this.getListRobotSub = this.storeRobot.select(getListRobot).subscribe(item => {
       robotState.listRobots = item;
     });
+    this.getSettingRobotSub = this.storeRobot.select(getSettingRobot).subscribe(item => {
+      robotState.settingRobot = item;
+    });
+
     this.getStatusClientSub= this.storeMqtt.select(selectStatusClient).subscribe(item => {
        console.log(item);
     });
@@ -62,8 +62,8 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
 
   }
   ngAfterViewInit(): void {
-    this.storeRobot.dispatch(loadRobots());
     this.storeRobot.dispatch(loadSettingRobot());
+    this.storeRobot.dispatch(loadRobots());
     userState.userDto = this.userService.getUserDto();
     this.storeRobot.dispatch(startListenerAllRobots({ subscribe: mqttState.subscribes.dataRobots }));
     this.storeRobot.dispatch(startListenerAllRobotsByProperty({ subscribe: mqttState.subscribes.dataPropertyRobot }));
@@ -74,8 +74,9 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
     this.storeRobot.dispatch(stopListenerAllRobotsByProperty()); 
 
     console.log("ngOnDestroy"); 
-    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe();       console.log("ngOnDestroy getListRobotSub"); }
+    if (this.getListRobotSub) { this.getListRobotSub.unsubscribe(); }
     if (this.getStatusClientSub) { this.getStatusClientSub.unsubscribe(); }
+    if (this.getSettingRobotSub) { this.getSettingRobotSub.unsubscribe(); }
     this.mqttClientService.disconnect();
   }
 

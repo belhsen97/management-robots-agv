@@ -1,12 +1,9 @@
 package com.enova.web.api.Models.Entitys;
 
-
 import com.enova.web.api.Enums.Connection;
 import com.enova.web.api.Enums.ModeRobot;
 import com.enova.web.api.Enums.OperationStatus;
 import com.enova.web.api.Enums.StatusRobot;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
@@ -25,7 +22,7 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Robot implements Serializable {
     @Id
-    String  id;
+    String id;
     String name;
     String clientid;
     String username;
@@ -42,12 +39,6 @@ public class Robot implements Serializable {
     double speed; // real time   m/s
     double distance; // real time   m
     String codeTag;  // real time
-
-//    String nameWorkstation;
-//    @JsonIgnore
-//    Workstation workstation;
-//    @JsonGetter("workstation")
-//    public Workstation getWorkstation() {return this.workstation;}
 }
 //    String id;
 //    String name ;

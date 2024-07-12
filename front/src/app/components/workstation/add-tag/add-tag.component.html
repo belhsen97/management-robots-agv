@@ -6,7 +6,7 @@
         <mat-form-field>
             <mat-label>Code</mat-label>
             <input type="text" matInput [(ngModel)]="tagState.tag.code" #code="ngModel"
-                name="tag-code" placeholder="Ex code-xxxx-xxxx"  pattern="^code-[0-9]{4}+-+[0-9]{4}$"  required>
+                name="tag-code" placeholder="Ex code-xxxx-xxxx"  pattern="^code-[0-9]{4}-[0-9]{4}$"  required>
             <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
             <!-- <mat-error   *ngIf="(code.errors?.['required']">code is <strong>required</strong></mat-error> -->
             <mat-error *ngIf="code.invalid && (code.dirty || code.touched || formModel.submitted)">

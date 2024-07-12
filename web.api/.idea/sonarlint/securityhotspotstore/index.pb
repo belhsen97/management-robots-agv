@@ -167,8 +167,6 @@ Dsrc/main/java/com/enova/web/api/Models/Commons/mail/BodyContent.java,d\7\d76e7
 c
 3src/main/java/com/enova/web/api/Enums/TypeBody.java,3\3\33b336b155a9f4a49fa222eef62946eca1817208
 n
->src/main/java/com/enova/web/api/Models/Entitys/Attachment.java,0\8\0876e4d3231a896ab017a3054a05bc9b6dc13120
-n
 >src/main/java/com/enova/web/api/Models/Dtos/AttachmentDto.java,c\c\cc93157296b8feae8b99b8328b582c7d41ca889e
 i
 9src/main/java/com/enova/web/api/Services/UserService.java,e\3\e3d291c0998d12d561bdd8ba2dfe83e4fa99a7ed
@@ -214,3 +212,5 @@ o
 ?src/main/java/com/enova/web/api/Models/Entitys/Workstation.java,4\5\45b3b45ff852904ab8390c786766bcd782b33c36
 h
 8src/main/java/com/enova/web/api/Services/TagService.java,b\8\b839d6c8c947e5b84ae18dfc86b84fdc074015c5
+n
+>src/main/java/com/enova/web/api/Models/Commons/Attachment.java,d\f\df798c0c6e36f9f15ec25490b2b23babce46526f

@@ -1,4 +1,4 @@
-package com.enova.web.api.Models.Entitys;
+package com.enova.notification.api.Models.Commons;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

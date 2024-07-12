@@ -3,6 +3,7 @@ package com.enova.web.api.AppRunners;
 
 import com.enova.web.api.Configures.ParameterConfig;
 import com.enova.web.api.Enums.*;
+import com.enova.web.api.Models.Commons.Attachment;
 import com.enova.web.api.Repositorys.*;
 import com.enova.web.api.Services.FileService;
 import com.enova.web.api.Services.TagService;

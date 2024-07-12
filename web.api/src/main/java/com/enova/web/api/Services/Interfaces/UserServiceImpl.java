@@ -7,7 +7,7 @@ import com.enova.web.api.Models.Responses.MsgReponseStatus;
 import com.enova.web.api.Enums.ReponseStatus;
 import com.enova.web.api.Models.Commons.mail.BodyContent;
 import com.enova.web.api.Enums.TypeBody;
-import com.enova.web.api.Models.Entitys.Attachment;
+import com.enova.web.api.Models.Commons.Attachment;
 import com.enova.web.api.Enums.Roles;
 import com.enova.web.api.Models.Entitys.User;
 import com.enova.web.api.Exceptions.RessourceNotFoundException;

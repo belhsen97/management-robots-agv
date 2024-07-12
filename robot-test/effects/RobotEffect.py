@@ -14,9 +14,10 @@ def on_mode_change(value):
 def on_status_change(value):
     print(f"statusRobot changed to {value}")
     state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/STATUS_ROBOT",json.dumps({"value": value}))
-    # if(value ==  robot_enum.Status.INACTIVE.name):
-    #            state.task["speed"].kill() 
-    #            state.robotState['robot'].speed=0
+    if(value ==  robot_enum.Status.INACTIVE.name):
+                state.task["speed"].kill() 
+                state.robotState['robot'].speed=0
+                raise
 
 def on_operation_status_change(value):
     print(f"operationStatus changed to {value}")
@@ -59,14 +60,17 @@ def on_code_tag_change(value):
     state.mqttState["service"].publish(state.mqttState["publish"]["allData"]+"/property/TAGCODE",json.dumps({"value": value}))
     try:
         index = state.tagCodeState["list"].index(state.robotState['robot'].codeTag)
-        if (index <  state.tagCodeState["lengthList"]/2 ) and   state.robotState['batteryConfig']['isDisCharging']:
+        print (index )
+        print (state.robotState['batteryConfig']['isDisCharging'] )
+        if (index <  state.tagCodeState["lengthList"]/4 ) and   state.robotState['batteryConfig']['isDisCharging']:
                 state.task["battery"].kill()
                 state.task["battery"] = thread_service.thread_with_trace(target = state.robotState["service"].modifyBattery,args=(False, state.robotState['batteryConfig']['chargeTime'],))
                 state.task["battery"].start()
                 state.robotState['batteryConfig']['isDisCharging'] = False
-        if (index >  state.tagCodeState["lengthList"]/2 ) and (not  state.robotState['batteryConfig']['isDisCharging']):
+        if (index >  state.tagCodeState["lengthList"]/4 ) and (not  state.robotState['batteryConfig']['isDisCharging']):
+                time =  state.robotState['batteryConfig']['disChargeOnRunningTime'] if   state.robotState['robot'].speed  >  0 else  state.robotState['batteryConfig']['disChargeOnWaitingTime']
                 state.task["battery"].kill()
-                state.task["battery"] = thread_service.thread_with_trace(target = state.robotState["service"].modifyBattery,args=(True, state.robotState['batteryConfig']['disChargeTime'],))
+                state.task["battery"] = thread_service.thread_with_trace(target = state.robotState["service"].modifyBattery,args=(True, time,))
                 state.task["battery"].start()
                 state.robotState['batteryConfig']['isDisCharging'] = True
     except ValueError:

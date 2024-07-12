@@ -40,7 +40,7 @@ public class TopicController {
     }
 
 @ListenerTopic(topic = "topic/data/robot/+/property/+", qos = 0) // example topic: topic/robot/data/robot-1/property/MODE_ROBOT
-public  void handleRobot3TopicMessage(String topic, byte[] message)  throws JsonProcessingException, RessourceNotFoundException {
+public  void handleRobotTopicMessage(String topic, byte[] message)  throws JsonProcessingException, RessourceNotFoundException {
      //   System.out.println("topic/robot/data/#  : " + new String(message));
     String[] parts = topic.split("/");
     int lengthParts = parts.length;
