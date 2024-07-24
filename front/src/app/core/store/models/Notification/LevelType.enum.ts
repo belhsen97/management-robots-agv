@@ -1,0 +1,1 @@
+export enum LevelType {INFO='INFO',WARNING='WARNING',ERROR='ERROR',TRACE='TRACE'}

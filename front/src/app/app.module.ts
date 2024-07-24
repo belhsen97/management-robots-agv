@@ -59,6 +59,8 @@ import { MessageBoxScheduledDatetimeComponent } from './components/shared/messag
 import { SelectButtonChoiceComponent } from './components/shared/select-button-choice/select-button-choice.component';
 import { GlobalButtonControlComponent } from './components/shared/global-button-control/global-button-control.component';
 import { FieldDashboardComponent } from './components/dashboard/field-dashboard/field-dashboard.component';
+import { ListNotificationsComponent } from './components/notification/list-notifications/list-notifications.component';
+import { PopupNotificationsComponent } from './components/notification/popup-notifications/popup-notifications.component';
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
 @NgModule({
@@ -94,7 +96,7 @@ import { FieldDashboardComponent } from './components/dashboard/field-dashboard/
     GaugeChartComponent,
     StockChartComponent,
     ChartsRobotsStatisticComponent,
-    DateFormatPipe,DateAgoPipe, RangeDateComponent, ContainerChipsComponent, MessageBoxScheduledDatetimeComponent, SelectButtonChoiceComponent, GlobalButtonControlComponent, FieldDashboardComponent
+    DateFormatPipe,DateAgoPipe, RangeDateComponent, ContainerChipsComponent, MessageBoxScheduledDatetimeComponent, SelectButtonChoiceComponent, GlobalButtonControlComponent, FieldDashboardComponent, ListNotificationsComponent, PopupNotificationsComponent
   ],
   imports: [
     CommonModule,

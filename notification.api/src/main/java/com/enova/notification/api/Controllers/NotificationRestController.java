@@ -14,12 +14,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class NotificationRestController {
     private final NotificationService notificationService;
-    @PostMapping("/sign-in")
-    public   ResponseEntity<?> authenticate(@RequestBody Object request)  {
-      return null;
-    }
     @GetMapping()
     public Object GetAll() {
+        return null;
+    }
+
+    @PostMapping("/sign-in")
+    public   ResponseEntity<?> aaaaaaaaaaaaa(@RequestBody Object request)  {
         return null;
     }
 

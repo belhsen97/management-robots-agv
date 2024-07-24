@@ -1,0 +1,37 @@
+<div class="notification-list">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+            <h1>Notifications <span>({{notifications.length}})</span></h1>
+            <i class="las la-cog"></i>
+            </div>
+            <h3>Earlier</h3>
+        </div>
+        <ul class="list-group list-group-flush mx-3">
+            <li *ngFor="let notification of notifications  let i = index" [hidden]="i >= 6 && stateOverNotfications"
+                class="list-group-item notification-item">
+                <div class="w-10">
+                    <div class="photo-profile-container  mr-3">
+                        <img [src]="notification.sender.imageUrl ? notification.sender.imageUrl : 'assets/images/user/unkhow-user.jpg' "
+                            class="photo-profile" alt="user">
+                        <img *ngIf="notification.level" class="photo-profile-badge" alt="badge" [src]="notification.level ==  'ERROR' ? '/assets/images/notification/level/error-level.png' :
+                notification.level ==  'WARNING' ? '/assets/images/notification/level/warning-level.webp' :
+                notification.level ==  'TRACE' ? '/assets/images/notification/level/trace-level.png' :
+                '/assets/images/notification/level/info-level.png'">
+                    </div>
+                </div>
+                <div class="w-90">
+                    <div class="text-notification"><strong>{{notification.sender.name}}</strong>&nbsp;
+                        {{notification.message}}
+                    </div>
+                    <small class="text-muted d-block">{{ notification.createdAt| dateAgo }}</small>
+                </div>
+            </li>
+            <!-- Add more notifications as needed -->
+        </ul>
+        <div class="card-footer">
+            <button class="btn btn-light" (click)="onClickOverNotifications()"> {{ stateOverNotfications ? "View all
+                notifications": "Less notifications" }}</button>
+        </div>
+    </div>
+</div>

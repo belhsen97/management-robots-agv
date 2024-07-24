@@ -1,22 +1,22 @@
 package com.enova.notification.api.Models.Responses;
 
-
-import com.enova.notification.api.Enums.ReponseStatus;
+import com.enova.notification.api.Enums.LevelType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
+
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Getter
 @Setter
+@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MsgReponseStatus {
-    String title;
-    Date datestamp;
-    ReponseStatus status;
+public class NotificationResponse  {
+    String id;
+    String sender;
+    Long  createdAt;
+    LevelType level;
     String message;
 }

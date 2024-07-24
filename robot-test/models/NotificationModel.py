@@ -1,4 +1,5 @@
 import json
+from enums import NotificationEnum as notification_enum
 class ReactiveNotification:
     def __init__(self, name, level, message, asctime):
         self._name = name
@@ -42,7 +43,7 @@ class ReactiveNotification:
         return self._level
 
     @level.setter
-    def level(self, value):
+    def level(self, value : notification_enum.LevelType):
         if self._level!= value:
             self._level= value
             self._notify("level", value)
@@ -67,13 +68,13 @@ class ReactiveNotification:
             self._asctime= value
             self._notify("asctime", value)
 
-    def toString(self):
-        return "{name: "+self._name+" , level: "+self._level+" , message: "+self._message+" ,asctime: "+self._asctime+" }"
+    def toString(self) -> str:
+        return "{name: "+self._name+" , level: "+self._level.name+" , message: "+self._message+" ,asctime: "+self._asctime+" }"
          
     def toSerialisation(self):
         data = {
             "name": self._name,
-            "level": self._level,
+            "level": self._level.name,
             "message": self._message,
             "asctime": self._asctime
         }

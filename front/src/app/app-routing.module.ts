@@ -20,6 +20,7 @@ import { TracingComponent } from './components/statistic/tracing/tracing.compone
 import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
 import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
 import { FieldDashboardComponent } from './components/dashboard/field-dashboard/field-dashboard.component';
+import { ListNotificationsComponent } from './components/notification/list-notifications/list-notifications.component';
 
 const routes: Routes = [
   {
@@ -84,6 +85,16 @@ const routes: Routes = [
       {
         path: 'edit',
         component: EditUserComponent
+      }
+    ]
+  },
+  {
+    path: 'notifications',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ListNotificationsComponent
       }
     ]
   },

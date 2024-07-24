@@ -2,7 +2,7 @@ package com.enova.notification.api.Exceptions;
 
 
 import com.enova.notification.api.Enums.ReponseStatus;
-import com.enova.notification.api.Models.Responses.MsgReponseStatus;
+import com.enova.notification.api.Models.Requests.MsgReponseStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

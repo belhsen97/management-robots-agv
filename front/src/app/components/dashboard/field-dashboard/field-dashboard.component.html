@@ -10,6 +10,46 @@
       </div>
     </div>
   </div>
-  <div class="row mb-5" style="min-height: 100vh;">
+  <div class="row mb-5" style="
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;">
+    <style>
+    
  
+  .game-details {
+    color: #B8C6DC;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 20px 27px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .play-board {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    background: #212837;
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+  }
+  .play-board .food {
+    background: #FF003D;
+  }
+  .play-board .head {
+    background: #60CBFF;
+  }
+  
+    </style>
+      <div class="wrapper">
+        <!-- <div class="game-details">
+          <span class="score">Score: 0</span>
+          <span class="high-score">High Score: 0</span>
+        </div> -->
+        <div  id="play-board-id" class="play-board">
+          <div   class="robot-dsign"> </div>
+          <div   class="robot-dsign"> </div>
+        </div>
+      </div>
+
   </div>

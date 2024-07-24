@@ -1,0 +1,20 @@
+.wrapper {
+    position: relative;
+    width: 90%;
+    height: 70vmin;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    background: #293447;
+    box-shadow: 0 20px 40px rgba(52, 87, 220, 0.2);
+  }
+  .robot-dsign {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    height: 50px;
+    width: 50px;
+    background-color: #03ff10;
+  }

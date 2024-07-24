@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'dateAgo' })
 export class DateAgoPipe implements PipeTransform {
-  transform(date: Date): string {
+  transform(date: any): string {
     const now = new Date();
-    const timeDifference = now.getTime() - date.getTime();
+    const timeDifference = now.getTime() - ( typeof date == "number"  ? date :  date.getTime() );
 
     // Calculate time units
     const minutes = Math.floor(timeDifference / 60000); // 1 minute = 60000 milliseconds
@@ -27,9 +27,10 @@ export class DateAgoPipe implements PipeTransform {
     if (remainingMinutes > 0) {
       formattedDate += `${remainingMinutes} minute${remainingMinutes > 1 ? 's' : ''} `;
     }
-
-    formattedDate += "ago";
+    
+    formattedDate += formattedDate == "" ? "now" : "ago";
 
     return formattedDate;
   }
+  
 }

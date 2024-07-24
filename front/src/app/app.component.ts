@@ -80,7 +80,10 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
     this.mqttClientService.disconnect();
   }
 
+
+
 }
+
 
 
 

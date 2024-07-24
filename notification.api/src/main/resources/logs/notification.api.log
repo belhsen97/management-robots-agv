@@ -1,0 +1,4 @@
+2024-07-17 12:14:42.204 ERROR 30368 --- [MQTT Ping: notifaction-service-09-46-57128] o.e.p.c.mqttv3.internal.ClientState      : notifaction-service-09-46-57128: Timed out as no write activity, keepAlive=60,000,000,000 lastOutboundActivity=405,836,487,989,700 lastInboundActivity=405,836,489,967,600 time=482,441,525,102,000 lastPing=405,836,487,997,000
+2024-07-17 13:01:18.499  INFO 30368 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2024-07-17 13:01:18.509  INFO 30368 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'notification.api.errorChannel' has 0 subscriber(s).
+2024-07-17 13:01:18.519  INFO 30368 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'

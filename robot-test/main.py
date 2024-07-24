@@ -9,6 +9,8 @@ from datetime import datetime
 import argparse
 import time
 import sys
+from enums import NotificationEnum as notification_enum
+
 
 # robotService : robot_service.RobotService
 # clientMqttService : mqtt_service.MqttService
@@ -39,13 +41,13 @@ def run():
         #        print (state.mqttState["publish"]["lastUpdate"]  )
         #        state.mqttState["service"].publish( state.mqttState["publish"]["lastUpdate"] ,"vide")
         #        time.sleep(1)
-        #count = 0
+        count = 0
         while True:
         #    if state.robotState['robot'].statusRobot  == "INACTIVE" :
         #       sys.exit("Stopping the script")
         #    state.robotState['robot'].createdAt =  datetime.now().isoformat()
              count+=1
-             #state.notification("name1", "level1", "message"+str(count), "asctime1")
+             state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count), "asctime1")
              time.sleep(1)
        
 

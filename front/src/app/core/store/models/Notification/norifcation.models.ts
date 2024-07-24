@@ -1,10 +1,12 @@
-export interface Notification {
-    id: String;
-    sender:String;
-    createdAt: Number;
-    expiredAt: Number;
-    displayType: String;//"WEB" "MAIL" "WhatsApp"
-    severity:String;//    INFO, SUCCESS, WARNING, ERROR
-    description: String;
+import { LevelType } from "./LevelType.enum";
+
+export interface Sender {
+    name:String;
+    imageUrl?:String;
 }
-//Scheduling
+export interface Notification {
+    sender:Sender;
+    createdAt: Number;
+    level:LevelType;//INFO, SUCCESS, WARNING, ERROR
+    message: String;
+}
