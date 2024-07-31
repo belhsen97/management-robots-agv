@@ -9,27 +9,27 @@
       </div>
     </div>
     <div class="row mt-1">
-        <app-select-button-choice (onChange)="onChangeSelectTypeProperty($event)"></app-select-button-choice>
-        <app-range-date></app-range-date>
+      <app-select-button-choice (onChange)="onChangeSelectTypeProperty($event)"></app-select-button-choice>
+      <app-range-date></app-range-date>
     </div>
   </div>
 </div>
-<div class="row mb-5">
-  <div class="col-4">
-    <figure class="highcharts-figure">
-      <div id="container-bar-chart"></div>
-    </figure>
-  </div>
-  <div class="col-8">
-    <div class="row">
-      <figure class="highcharts-figure">
-        <div id="container-line-chart"></div>
-      </figure>
-    </div>
+<div class="row mb-2">
+  <div class="col-5">
     <div class="row">
       <figure class="highcharts-figure">
         <div id="container-pie-chart"></div>
       </figure>
     </div>
+    <div class="row">
+      <figure class="highcharts-figure">
+        <div id="container-bar-chart"></div>
+      </figure>
+    </div>
+  </div>
+  <div class="col-7">
+    <figure class="highcharts-figure">
+      <div id="container-line-chart"></div>
+    </figure>
   </div>
 </div>

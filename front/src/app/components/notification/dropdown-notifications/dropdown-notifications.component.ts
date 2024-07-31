@@ -3,13 +3,18 @@ import { LevelType } from 'src/app/core/store/models/Notification/LevelType.enum
 import { Notification } from 'src/app/core/store/models/Notification/norifcation.models';
 
 @Component({
-  selector: 'app-list-notifications',
-  templateUrl: './list-notifications.component.html',
-  styleUrls: ['./list-notifications.component.css']
+  selector: 'app-dropdown-notifications',
+  templateUrl: './dropdown-notifications.component.html',
+  styleUrls: ['./dropdown-notifications.component.css']
 })
-export class ListNotificationsComponent {
+export class DropdownNotificationsComponent {
 
- public  stateOver = true;
+  stopPropagation(event: Event): void {
+    event.stopPropagation();
+  }
+
+
+  public stateOver = true;
  onClickOverNotifications():void{
   this.stateOver = !this.stateOver;
  }
@@ -22,7 +27,7 @@ export class ListNotificationsComponent {
       },
       createdAt: Date.now() - 100000,
       level: LevelType.INFO,
-      message: 'John Doe liked your post.'
+      message: 'John Doe liked your post. dfe erfe  er ef'
     },
     {
       sender: {

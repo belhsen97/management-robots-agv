@@ -1,3 +1,1 @@
-2024-07-24 01:40:46.279  INFO 14148 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2024-07-24 01:40:46.293  INFO 14148 --- [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'driveless.api.errorChannel' has 0 subscriber(s).
-2024-07-24 01:40:46.298  INFO 14148 --- [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2024-07-29 15:34:02.926 ERROR 12604 --- [MQTT Ping: driveless-service-23-35-34434] o.e.p.c.mqttv3.internal.ClientState      : driveless-service-23-35-34434: Timed out as no write activity, keepAlive=60,000,000,000 lastOutboundActivity=1,482,671,520,298,000 lastInboundActivity=1,482,671,522,051,000 time=1,531,243,271,246,100 lastPing=1,482,671,520,309,700

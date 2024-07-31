@@ -67,6 +67,7 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
         this.barchart.destroy(); this.piechart.destroy(); this.linechart.destroy();
         if (this.getDateRangeSearchInputSub) { this.getDateRangeSearchInputSub.unsubscribe(); }
         if (this.getlistRobotPropertysSub) { this.getlistRobotPropertysSub.unsubscribe(); }
+        robotState.listRobotDataBand = [];
     }
 
     onChangeSelectTypeProperty(typeProperty: String): void {
@@ -251,7 +252,7 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
 
 
     setBarChartValue(dataRobots: any) {
-        console.log(dataRobots);
+       
         this.barchart.update({
             title: dataRobots.title.bar,
             xAxis: {
@@ -308,22 +309,41 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
 
 
 
-    chartBarOptions: any = {
+    chartBarOptions: any =  {
+        credits: {enabled: false},
         chart: {
-            type: 'bar'
+            spacingRight:10,
+            type: 'bar',
+            scrollablePlotArea: {
+                minHeight: 2000,
+                scrollPositionX: 1,
+              },
         },
         title: {
             text: 'Frequency of property'
         },
         xAxis: {
+            min: 0,
+            //max: 4,
+            scrollbar: { enabled: true },
             categories: ['robot-1', 'robot-2', 'robot-3', 'robot-4', 'robot-5', 'robot-6', 'robot-7', 'robot-8', 'robot-9', 'robot-10',
                 'robot-11', 'robot-12', 'robot-13', 'robot-14', 'robot-15', 'robot-16', 'robot-17', 'robot-18', 'robot-19', 'robot-20']
-        },
+               ,  
+               labels: {
+                rotation: -90,
+                style: {
+                    width: '80px', 
+                    textOverflow: 'ellipsis'  
+                }
+            } 
+            },
+            
         yAxis: {
             min: 0,
             title: {
                 text: 'Frequency'
-            }
+            }, 
+            
         },
         legend: {
             reversed: true
@@ -349,9 +369,10 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
                 name: 'item-3',
                 data: [5, 3, 12, 6, 11, 4, 4, 6, 15, 12, 5, 3, 12, 6, 11, 4, 4, 6, 15, 12]
             }]
-    };
+    }; 
 
     chartPieOptions: any = {
+        credits: {enabled: false},
         chart: {
             type: 'pie'
         },
@@ -414,7 +435,14 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
     };
 
     chartLineOptions: any = {
-
+        chart: {
+            spacingBottom: 40,
+            scrollablePlotArea: {
+                minWidth: 1000,
+                scrollPositionX: 1,
+              },
+        },
+        credits: {enabled: false},
         title: {
             text: 'Duration of Property',
             align: 'left'
@@ -444,16 +472,30 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
         },
 
         xAxis: {
+            
             accessibility: {
                 rangeDescription: 'Range: 2010 to 2020'
             }
             , categories: ['robot-1', 'robot-2', 'robot-3', 'robot-4', 'robot-5', 'robot-6', 'robot-7', 'robot-8', 'robot-9', 'robot-10',
                 'robot-11', 'robot-12', 'robot-13', 'robot-14', 'robot-15', 'robot-16', 'robot-17', 'robot-18', 'robot-19', 'robot-20']
-        },
+        
+                ,min: 0,
+               // max: 4,
+                scrollbar: { enabled: true },
+                labels: {
+                    rotation: -90,
+                    style: {
+                        width: '80px', 
+                        textOverflow: 'ellipsis'  
+                    }
+                }
+        
+            },
         legend: {
             layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
+            align: 'center',
+            verticalAlign: 'top',
+            y: -50,
         },
         plotOptions: {
             series: {
@@ -509,7 +551,16 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
                     }
                 }
             }]
-        }
-
+        },
+       /* scrollbar: {
+            barBorderRadius: 0,
+            barBorderWidth: 1,
+            buttonsEnabled: true,
+            height: 14,
+            margin: 0,
+            rifleColor: '#333',
+            trackBackgroundColor: '#f2f2f2',
+            trackBorderRadius: 0
+        },*/
     };
 }
