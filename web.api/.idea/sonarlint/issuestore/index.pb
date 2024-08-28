@@ -214,3 +214,7 @@ h
 8src/main/java/com/enova/web/api/Services/TagService.java,b\8\b839d6c8c947e5b84ae18dfc86b84fdc074015c5
 n
 >src/main/java/com/enova/web/api/Models/Commons/Attachment.java,d\f\df798c0c6e36f9f15ec25490b2b23babce46526f
+f
+6src/main/java/com/enova/web/api/Configures/csdcsc.java,3\9\39e39e6019e1f9d31643257cc6fcb5d030d8be99
+o
+?src/main/java/com/enova/web/api/Configures/WebClientConfig.java,f\c\fc65a02a3f363a41be9f7685215eedac4f7bd66e

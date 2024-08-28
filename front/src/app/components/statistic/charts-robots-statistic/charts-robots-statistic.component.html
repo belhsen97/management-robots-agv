@@ -1,14 +1,10 @@
 <div class="row">
   <div class="col-12">
-    <div class="row">
-      <div class="col-6">
+    <div class="d-flex justify-content-between">
         <app-panel-robot></app-panel-robot>
-      </div>
-      <div class="col-6 d-flex flex-column justify-content-center align-items-center ">
-        <app-global-button-control></app-global-button-control>
-      </div>
+        <app-global-button-control class="d-flex justify-content-center align-items-center"></app-global-button-control>
     </div>
-    <div class="row mt-1">
+    <div class="d-flex justify-content-between mt-1">
       <app-select-button-choice (onChange)="onChangeSelectTypeProperty($event)"></app-select-button-choice>
       <app-range-date></app-range-date>
     </div>

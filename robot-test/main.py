@@ -5,6 +5,8 @@ from states import GlobalState as state
 from effects import RobotEffect as robot_effect
 from effects import MqttEffect as mqtt_effect
 from effects import NotificationEffect as notification_effect
+from configurations import LoggingConfiguration as logging_config
+
 from datetime import datetime
 import argparse
 import time
@@ -16,7 +18,9 @@ from enums import NotificationEnum as notification_enum
 # clientMqttService : mqtt_service.MqttService
 
 def run():
-        state.notification.subscribe("notification", notification_effect.on_notification_change)
+        state.notification.subscribe("notification", notification_effect.on_send_notification)
+        state.notification.subscribe("notification", notification_effect.on_save_log_notification)
+
         state.robotState["robot"].subscribe("connection", robot_effect.on_connection_change)
         state.robotState["robot"].subscribe("statusRobot", robot_effect.on_status_change)
         state.robotState["robot"].subscribe("modeRobot", robot_effect.on_mode_change)
@@ -47,7 +51,7 @@ def run():
         #       sys.exit("Stopping the script")
         #    state.robotState['robot'].createdAt =  datetime.now().isoformat()
              count+=1
-             state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count), "asctime1")
+             state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count))
              time.sleep(1)
        
 
@@ -60,24 +64,25 @@ def run():
 
 if __name__ == '__main__':
     #GlobalConfiguration.create_config('config.ini')
-
-    config_data = GlobalConfiguration.read_config('config.ini')
+    
+    state.configure = GlobalConfiguration.read_config('config.ini')
     # Print the retrieved values
-    # print("Debug Mode:", config_data['debug_mode'])
-    # print("Log Level:", config_data['log_level'])
-    print("MQTT Name:", config_data['mqtt']['host'])
-    print("MQTT port:", config_data['mqtt']['port'])
-    print("HTTP Name:", config_data['http']['host'])
-    print("HTTP port:", config_data['http']['port'])
-    state.mqttState["broker"]= config_data['mqtt']['host']
-    state.mqttState["port"]= config_data['mqtt']['port']
-    state.httpState["host"]= config_data['http']['host']
-    state.httpState["port"]= config_data['http']['port']
+    # print("Debug Mode:", state.configure['debug_mode'])
+    # print("Log Level:", state.configure['log_level'])
+    print("MQTT Name:", state.configure['mqtt']['host'])
+    print("MQTT port:", state.configure['mqtt']['port'])
+    print("HTTP Name:", state.configure['http']['host'])
+    print("HTTP port:", state.configure['http']['port'])
+    state.mqttState["broker"]= state.configure['mqtt']['host']
+    state.mqttState["port"]= state.configure['mqtt']['port']
+    state.httpState["host"]= state.configure['http']['host']
+    state.httpState["port"]= state.configure['http']['port']
 
     parser = argparse.ArgumentParser(description='Robot MQTT Client')
     parser.add_argument('-name', '--robot_name', type=str, help='Name of the robot')
     args = parser.parse_args()
     if args.robot_name:
+        state.logger = logging_config.logger_config(args.robot_name,state.configure['LOG']['src'],f"{args.robot_name}.log")
         state.mqttState["publish"]["notification"]   = "topic/notification/robot/"+ args.robot_name
         state.mqttState["publish"]["allData"]        = "topic/data/robot/"+ args.robot_name
         state.mqttState["publish"]["lastUpdate"]     = "topic/control/robot/"+args.robot_name+"/last-update"

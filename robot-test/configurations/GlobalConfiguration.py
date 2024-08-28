@@ -6,8 +6,10 @@ def read_config(fileName):
  
     config.read(fileName)
  
-    debug_mode = config.getboolean('General', 'debug')
-    log_level = config.get('General', 'log_level')
+    debug_mode = config.getboolean('LOG', 'debug')
+    log_level = config.get('LOG', 'log_level')
+    log_src = config.get('LOG', 'src')
+
     broker = config.get('MQTT', 'broker')
     port = config.getint('MQTT', 'port')
  
@@ -15,8 +17,7 @@ def read_config(fileName):
     porthttp = config.getint('HTTP', 'port')
 
     config_values = {
-        'debug_mode': debug_mode,
-        'log_level': log_level,
+        'LOG' : {'debug': debug_mode, 'level': log_level, 'src': log_src},
         'mqtt':{'host': broker,'port': port},
         'http':{'host': hosthttp,'port': porthttp}
     }
@@ -25,7 +26,7 @@ def read_config(fileName):
 def create_config(fileName):
     config = configparser.ConfigParser()
  
-    config['General'] = {'debug': True, 'log_level': 'info'}
+    config['LOG'] = {'debug': True, 'level': 'info','src':'resources/logs'}
     config['MQTT'] = {'broker': 'localhost','port': '1883'}
     config['HTTP'] = {'host': 'localhost','port': '8088'}
 

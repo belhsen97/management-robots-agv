@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/notification")
+@RequestMapping("/controller")
 @RequiredArgsConstructor
 public class NotificationRestController {
     private final NotificationService notificationService;
-    @GetMapping()
-    public Object GetAll() {
-        return null;
+    @GetMapping( )
+    public Object GetAll(@RequestBody String payload)  {
+        return payload;
     }
 
     @PostMapping("/sign-in")

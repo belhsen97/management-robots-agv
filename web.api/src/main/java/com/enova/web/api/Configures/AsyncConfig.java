@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
 @Slf4j
 public class AsyncConfig {
     @Bean(name = "mail-smtp")
-    public Executor taskExecutorMail() {
+    public ThreadPoolTaskExecutor taskExecutorMail() {//Executor
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(30); // Set the core pool size to handle 50 users
         executor.setMaxPoolSize(60); // Set the max pool size to allow for additional threads if needed
@@ -26,7 +26,7 @@ public class AsyncConfig {
     }
 
     @Bean(name = "get-robot-data")
-    public Executor taskExecutorDataRobot() {
+    public ThreadPoolTaskExecutor taskExecutorDataRobot() {//Executor
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(50); // Set the core pool size to handle 50 users
         executor.setMaxPoolSize(100); // Set the max pool size to allow for additional threads if needed

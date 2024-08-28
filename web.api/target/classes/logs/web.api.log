@@ -1,31 +1,160 @@
-2024-07-16 09:34:27.448  INFO 33832 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 33832 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
-2024-07-16 09:34:27.458  INFO 33832 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
-2024-07-16 09:34:34.144  INFO 37836 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 37836 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
-2024-07-16 09:34:34.149  INFO 37836 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
-2024-07-16 09:34:35.078  INFO 37836 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2024-07-16 09:34:35.209  INFO 37836 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 7 MongoDB repository interfaces.
-2024-07-16 09:34:35.938  INFO 37836 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
-2024-07-16 09:34:35.949  INFO 37836 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-07-16 09:34:35.949  INFO 37836 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
-2024-07-16 09:34:36.084  INFO 37836 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
-2024-07-16 09:34:36.084  INFO 37836 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1877 ms
-2024-07-16 09:34:36.247  INFO 37836 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
-2024-07-16 09:34:36.311  INFO 37836 --- [cluster-rtt-ClusterId{value='6696309c4d43953206bf423e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:18}] to localhost:27017
-2024-07-16 09:34:36.311  INFO 37836 --- [cluster-ClusterId{value='6696309c4d43953206bf423e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:19}] to localhost:27017
-2024-07-16 09:34:36.314  INFO 37836 --- [cluster-ClusterId{value='6696309c4d43953206bf423e', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=22783600}
-2024-07-16 09:34:36.567  INFO 37836 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
-2024-07-16 09:34:36.568  INFO 37836 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
-2024-07-16 09:34:36.569  INFO 37836 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation'
-2024-07-16 09:34:36.570  INFO 37836 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'workstation -> tags -> workstation'
-2024-07-16 09:34:37.476  INFO 37836 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b5798c2, org.springframework.security.web.context.SecurityContextPersistenceFilter@2f86f9cf, org.springframework.security.web.header.HeaderWriterFilter@75527e36, org.springframework.web.filter.CorsFilter@7540160e, org.springframework.security.web.authentication.logout.LogoutFilter@2b3f7704, com.enova.web.api.Securitys.JwtAuthenticationFilter@125f16b2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e2bd5e6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@76a1146d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71039ce1, org.springframework.security.web.session.SessionManagementFilter@3b39e79b, org.springframework.security.web.access.ExceptionTranslationFilter@2ef041bb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@573a078]
-2024-07-16 09:34:37.667  INFO 37836 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
-2024-07-16 09:34:37.679  INFO 37836 --- [main] com.enova.web.api.Application            : Started Application in 4.064 seconds (JVM running for 5.395)
-2024-07-16 09:34:37.805  INFO 37836 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:20}] to localhost:27017
-2024-07-16 10:38:38.127  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-6] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-07-16 10:38:38.134  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-07-16 10:38:38.236  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 101 ms
-2024-07-16 11:02:33.180  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-9] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:23}] to localhost:27017
-2024-07-16 11:02:38.170  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-5] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:24}] to localhost:27017
-2024-07-16 11:16:23.189  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:25}] to localhost:27017
-2024-07-16 11:57:28.822  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-7] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:8, serverValue:27}] to localhost:27017
-2024-07-16 11:57:28.822  INFO 37836 --- [http-nio-0.0.0.0-8089-exec-8] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:7, serverValue:26}] to localhost:27017
+2024-08-28 03:19:39.280  INFO 48336 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 48336 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-08-28 03:19:39.298  INFO 48336 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-08-28 03:19:40.070  INFO 48336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-08-28 03:19:40.174  INFO 48336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 7 MongoDB repository interfaces.
+2024-08-28 03:19:40.688  INFO 48336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-08-28 03:19:40.695  INFO 48336 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-28 03:19:40.695  INFO 48336 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-08-28 03:19:40.803  INFO 48336 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-08-28 03:19:40.803  INFO 48336 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1438 ms
+2024-08-28 03:19:40.936  INFO 48336 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-08-28 03:19:40.992  INFO 48336 --- [cluster-ClusterId{value='66ce893c82d7ba069320fec6', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:92}] to localhost:27017
+2024-08-28 03:19:40.992  INFO 48336 --- [cluster-rtt-ClusterId{value='66ce893c82d7ba069320fec6', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:91}] to localhost:27017
+2024-08-28 03:19:40.994  INFO 48336 --- [cluster-ClusterId{value='66ce893c82d7ba069320fec6', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=22288401}
+2024-08-28 03:19:41.179  INFO 48336 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation'
+2024-08-28 03:19:41.180  INFO 48336 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'workstation -> tags -> workstation'
+2024-08-28 03:19:41.181  INFO 48336 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-08-28 03:19:41.182  INFO 48336 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-08-28 03:19:42.123  INFO 48336 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@428eb3d5, org.springframework.security.web.context.SecurityContextPersistenceFilter@ab327c, org.springframework.security.web.header.HeaderWriterFilter@702096ef, org.springframework.web.filter.CorsFilter@5ddd84d2, org.springframework.security.web.authentication.logout.LogoutFilter@580c17a0, com.enova.web.api.Securitys.JwtAuthenticationFilter@5345dfe8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@763b0996, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@386e9fd8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3fd5d679, org.springframework.security.web.session.SessionManagementFilter@52433946, org.springframework.security.web.access.ExceptionTranslationFilter@45c423b3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4fbe486c]
+2024-08-28 03:19:42.303  INFO 48336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-08-28 03:19:42.313  INFO 48336 --- [main] com.enova.web.api.Application            : Started Application in 3.483 seconds (JVM running for 4.93)
+2024-08-28 03:19:42.433  INFO 48336 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:93}] to localhost:27017
+2024-08-28 03:19:46.337  INFO 48336 --- [http-nio-0.0.0.0-8089-exec-4] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-28 03:19:46.338  INFO 48336 --- [http-nio-0.0.0.0-8089-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-28 03:19:46.339  INFO 48336 --- [http-nio-0.0.0.0-8089-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-08-28 03:19:46.389  INFO 48336 --- [http-nio-0.0.0.0-8089-exec-4] .s.a.AnnotationAsyncExecutionInterceptor : More than one TaskExecutor bean found within the context, and none is named 'taskExecutor'. Mark one of them as primary or name it 'taskExecutor' (possibly as an alias) in order to use it for async processing: [mail-smtp, get-robot-data, taskScheduler]
+2024-08-28 03:19:48.955 ERROR 48336 --- [http-nio-0.0.0.0-8089-exec-2] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from POST http://localhost:8087/management-robot-avg/notfication/controller
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:218) ~[spring-webflux-5.3.21.jar:5.3.21]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 500 from POST http://localhost:8087/management-robot-avg/notfication/controller [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:218) ~[spring-webflux-5.3.21.jar:5.3.21]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:207) ~[spring-webflux-5.3.21.jar:5.3.21]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:101) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:160) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:400) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:419) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:473) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:703) ~[reactor-netty-http-1.0.20.jar:1.0.20]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:93) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:327) ~[netty-codec-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:299) ~[netty-codec-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.78.Final.jar:4.1.78.Final]
+		at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-08-28 03:19:48.958 ERROR 48336 --- [http-nio-0.0.0.0-8089-exec-2] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/management-robot-avg] threw exception [Request processing failed; nested exception is org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from POST http://localhost:8087/management-robot-avg/notfication/controller] with root cause
+
+org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from POST http://localhost:8087/management-robot-avg/notfication/controller
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:218) ~[spring-webflux-5.3.21.jar:5.3.21]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 500 from POST http://localhost:8087/management-robot-avg/notfication/controller [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:218) ~[spring-webflux-5.3.21.jar:5.3.21]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:207) ~[spring-webflux-5.3.21.jar:5.3.21]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:101) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:160) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.4.19.jar:3.4.19]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:400) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:419) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:473) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:703) ~[reactor-netty-http-1.0.20.jar:1.0.20]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:93) ~[reactor-netty-core-1.0.20.jar:1.0.20]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:327) ~[netty-codec-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:299) ~[netty-codec-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.78.Final.jar:4.1.78.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.78.Final.jar:4.1.78.Final]
+		at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2024-08-28 03:21:46.527  INFO 47432 --- [main] com.enova.web.api.Application            : Starting Application using Java 11.0.18 on PC-001 with PID 47432 (C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api\target\classes started by borhen in C:\Worker\esprit-5eme\stage-pfe-5eme\Enova_Robotics\code\SEBN-project\web.api)
+2024-08-28 03:21:46.530  INFO 47432 --- [main] com.enova.web.api.Application            : No active profile set, falling back to 1 default profile: "default"
+2024-08-28 03:21:47.267  INFO 47432 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-08-28 03:21:47.363  INFO 47432 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 7 MongoDB repository interfaces.
+2024-08-28 03:21:47.849  INFO 47432 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2024-08-28 03:21:47.856  INFO 47432 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-28 03:21:47.857  INFO 47432 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2024-08-28 03:21:47.955  INFO 47432 --- [main] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring embedded WebApplicationContext
+2024-08-28 03:21:47.956  INFO 47432 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1374 ms
+2024-08-28 03:21:48.083  INFO 47432 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2024-08-28 03:21:48.130  INFO 47432 --- [cluster-ClusterId{value='66ce89bccfdc926577882519', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:94}] to localhost:27017
+2024-08-28 03:21:48.130  INFO 47432 --- [cluster-rtt-ClusterId{value='66ce89bccfdc926577882519', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:95}] to localhost:27017
+2024-08-28 03:21:48.131  INFO 47432 --- [cluster-ClusterId{value='66ce89bccfdc926577882519', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16983100}
+2024-08-28 03:21:48.316  INFO 47432 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Workstation' for path 'workstation -> tags -> workstation'
+2024-08-28 03:21:48.319  INFO 47432 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'tags' in type 'Workstation' for path 'workstation -> tags -> workstation'
+2024-08-28 03:21:48.321  INFO 47432 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-08-28 03:21:48.322  INFO 47432 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'workstation' in type 'Tag' for path 'tags -> workstation -> tags'
+2024-08-28 03:21:49.274  INFO 47432 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22899683, org.springframework.security.web.context.SecurityContextPersistenceFilter@6463da36, org.springframework.security.web.header.HeaderWriterFilter@23469199, org.springframework.web.filter.CorsFilter@40017e98, org.springframework.security.web.authentication.logout.LogoutFilter@7a3643e3, com.enova.web.api.Securitys.JwtAuthenticationFilter@4d7cac24, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c6ac73c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29892a77, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4fbe486c, org.springframework.security.web.session.SessionManagementFilter@15f861ee, org.springframework.security.web.access.ExceptionTranslationFilter@72715e61, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@60a4e619]
+2024-08-28 03:21:49.477  INFO 47432 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/management-robot-avg'
+2024-08-28 03:21:49.489  INFO 47432 --- [main] com.enova.web.api.Application            : Started Application in 3.374 seconds (JVM running for 4.495)
+2024-08-28 03:21:49.593  INFO 47432 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:96}] to localhost:27017
+2024-08-28 03:21:57.630  INFO 47432 --- [http-nio-0.0.0.0-8089-exec-1] o.a.c.c.C.[.[.[/management-robot-avg]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-28 03:21:57.630  INFO 47432 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-28 03:21:57.631  INFO 47432 --- [http-nio-0.0.0.0-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-08-28 03:21:57.674  INFO 47432 --- [http-nio-0.0.0.0-8089-exec-1] .s.a.AnnotationAsyncExecutionInterceptor : More than one TaskExecutor bean found within the context, and none is named 'taskExecutor'. Mark one of them as primary or name it 'taskExecutor' (possibly as an alias) in order to use it for async processing: [mail-smtp, get-robot-data, taskScheduler]

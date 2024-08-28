@@ -15,7 +15,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NotificationResponse  {
     String id;
-    String sender;
+    //String sender;
+    String senderName;
+    String senderImageUrl;
     Long  createdAt;
     LevelType level;
     String message;

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,9 @@ public class MQTTServiceImpl implements MQTTService {
     private final MqttConnectOptions mqttConnectOptions;
     // private final CollectorCalback collectorCalback;
 
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    //private ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    private final ExecutorService executorService;
     @PostConstruct
     public void onCreate() throws MqttException {
         System.out.println("UserService Initialized");

@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/robot")
 public class RobotController {
     private final RobotService iService;
+
     private final RobotSettingService irobotSettingService;
     @Autowired
     public RobotController(@Qualifier("robot-service") RobotService iService,

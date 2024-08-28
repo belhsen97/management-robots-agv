@@ -10,7 +10,9 @@ export interface GlobalState{
     ReponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }>;
     msgResponseStatus  : MsgResponseStatus;
     rangeDate:RangeDate;
-    notifications: Notification[] 
+
+    notification: Notification ;
+    listNotifications: Notification[] ;
 }
 export interface RangeDate{
     start:Date;
@@ -162,7 +164,9 @@ export const globalState:GlobalState={
     ReponseStatus: listResponseStatus,
     msgResponseStatus:msgReponseStatus,
     rangeDate : rangeDate,
-    notifications : notifications
+
+    notification: notifications[0],
+    listNotifications : notifications
 
 }
 

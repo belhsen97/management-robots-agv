@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
 import * as Highcharts from 'highcharts';
-//import dataInit from 'highcharts/modules/data';
-//import seriesLabelInit from 'highcharts/modules/series-label';
+import dataInit from 'highcharts/modules/data';
+import seriesLabelInit from 'highcharts/modules/series-label';
 import exportingInit from "highcharts/modules/exporting";
 import exportDataInit from "highcharts/modules/export-data";
 import accessibilityInit from "highcharts/modules/accessibility";
@@ -17,8 +17,8 @@ import { loadDataRobotData } from 'src/app/core/store/actions/Robot.Action';
 import { getListRobotDataBand, getRobotDataBand } from 'src/app/core/store/selectors/Robot.Selector';
 //import noDataToDisplayInit from 'highcharts/modules/no-data-to-display';
 //import annotationsInit from 'highcharts/modules/annotations';
-//dataInit(Highcharts);
-//seriesLabelInit(Highcharts);
+dataInit(Highcharts);
+seriesLabelInit(Highcharts);
 exportingInit(Highcharts);
 exportDataInit(Highcharts);
 accessibilityInit(Highcharts);
@@ -436,9 +436,9 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
 
     chartLineOptions: any = {
         chart: {
-            spacingBottom: 40,
+            spacingBottom: 20,
             scrollablePlotArea: {
-                minWidth: 1000,
+                minWidth: 2000,
                 scrollPositionX: 1,
               },
         },
@@ -483,7 +483,7 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
                // max: 4,
                 scrollbar: { enabled: true },
                 labels: {
-                    rotation: -90,
+                    rotation: 0,
                     style: {
                         width: '80px', 
                         textOverflow: 'ellipsis'  
@@ -538,7 +538,7 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
                 return `${this.series.name}: ${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
         },
-        responsive: {
+       /* responsive: {
             rules: [{
                 condition: {
                     maxWidth: 500
@@ -551,16 +551,16 @@ export class ChartsRobotsStatisticComponent implements OnInit, AfterViewInit, On
                     }
                 }
             }]
-        },
-       /* scrollbar: {
+        },*/
+        scrollbar: {
             barBorderRadius: 0,
             barBorderWidth: 1,
             buttonsEnabled: true,
-            height: 14,
+            height: 20,
             margin: 0,
             rifleColor: '#333',
             trackBackgroundColor: '#f2f2f2',
             trackBorderRadius: 0
-        },*/
+        }
     };
 }

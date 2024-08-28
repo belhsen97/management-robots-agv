@@ -1,11 +1,11 @@
 from models import RobotModel as robot_model
 from datetime import datetime
 from models import NotificationModel as notification_model
-from configurations import LoggingConfiguration as logging_config
 
 
 
-logging = logging_config.logger_config("robot-1","resources/logs","my_log.log")
+configure = None
+logger = None
 
 notification = notification_model.ReactiveNotification ("name", "level", "message", "asctime")
 

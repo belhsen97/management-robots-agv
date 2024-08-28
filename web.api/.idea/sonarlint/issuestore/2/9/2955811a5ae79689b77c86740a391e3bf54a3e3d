@@ -1,24 +1,24 @@
 
-c	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8ÉµÏ¶‰2
-h	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(ìŞÁÊùÿÿÿÿ8ÊµÏ¶‰2
+c	java:S112¹"FDefine and throw a dedicated exception instead of using a generic one.(®İœş8ÉµÏ¶‰2
+h	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(ìŞÁÊùÿÿÿÿ8ÊµÏ¶‰2
 c
-java:S1192{"GDefine a constant instead of duplicating this literal "robot-" 4 times.(óúÚz8ÊµÏ¶‰2
+java:S1192|"GDefine a constant instead of duplicating this literal "robot-" 4 times.(óúÚz8ÊµÏ¶‰2
 …
-java:S1488»"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8ËµÏ¶‰2
+java:S1488¼"bImmediately return this expression instead of assigning it to the temporary variable "attachment".(ƒìÃıÿÿÿÿ8ËµÏ¶‰2
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñæÊ8ÌµÏ¶‰2
 ³
-java:S4449¶"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8İµÏ¶‰2
-X	java:S125N"<This block of commented-out lines of code should be removed.(Úñ¶œ8™¥Õ½‰2
+java:S4449·"Annotate the parameter with @javax.annotation.Nullable in method 'cleanPath' declaration, or make sure that null can not be passed as argument.(óßÄÛüÿÿÿÿ8İµÏ¶‰2
+X	java:S125O"<This block of commented-out lines of code should be removed.(Úñ¶œ8™¥Õ½‰2
 K
-java:S1481f".Remove this unused "firstPart" local variable.(Ï‚™¸8åµÏ¶‰2
+java:S1481g".Remove this unused "firstPart" local variable.(Ï‚™¸8åµÏ¶‰2
 A
-java:S2119Æ"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8íµÏ¶‰2
-Y	java:S125Ò"<This block of commented-out lines of code should be removed.(‰¤˜8ïµÏ¶‰2
-^	java:S125Û"<This block of commented-out lines of code should be removed.(ìï‚ûÿÿÿÿ8ïµÏ¶‰2
-Y	java:S125è"<This block of commented-out lines of code should be removed.(• «ú8ïµÏ¶‰2
+java:S2119Ç"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8íµÏ¶‰2
+Y	java:S125Ó"<This block of commented-out lines of code should be removed.(‰¤˜8ïµÏ¶‰2
+^	java:S125Ü"<This block of commented-out lines of code should be removed.(ìï‚ûÿÿÿÿ8ïµÏ¶‰2
+Y	java:S125é"<This block of commented-out lines of code should be removed.(• «ú8ïµÏ¶‰2
 ]
-java:S1144c";Remove this unused private "deleteAndRandomAllTags" method.(—ãîşúÿÿÿÿ8£¥Õ½‰2
+java:S1144d";Remove this unused private "deleteAndRandomAllTags" method.(—ãîşúÿÿÿÿ8£¥Õ½‰2
 ^
-java:S1144v"<Remove this unused private "deleteAndRandomAllRobot" method.(À™¼õşÿÿÿÿ8İ—ƒ·‰2
+java:S1144w"<Remove this unused private "deleteAndRandomAllRobot" method.(À™¼õşÿÿÿÿ8İ—ƒ·‰2
 d
-java:S1144"ARemove this unused private "deleteAndRandomAllWorstation" method.(ì´¢üÿÿÿÿ8Ğ†ª¼‰2
+java:S1144‘"ARemove this unused private "deleteAndRandomAllWorstation" method.(ì´¢üÿÿÿÿ8Ğ†ª¼‰2

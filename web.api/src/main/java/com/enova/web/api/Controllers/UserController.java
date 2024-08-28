@@ -18,15 +18,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 
@@ -35,13 +39,55 @@ import java.util.stream.Collectors;
 public class UserController {
     private final UserService iUserService;
     private final AuthenticationService authService;
+    private final WebClient webClient;
     @Autowired
     public UserController(@Qualifier("user-service") UserService iUserService,
-                          @Qualifier("authentication-service") AuthenticationService authService
+                          @Qualifier("authentication-service") AuthenticationService authService,
+                          WebClient webClient
                           ) {
         this.iUserService = iUserService;
         this.authService = authService;
+        this.webClient = webClient;
     }
+
+
+
+    @Async
+    @GetMapping("/notification/{payload}")
+    public CompletableFuture<?> selectAllNotification(@PathVariable String payload) {
+        return   webClient.method(HttpMethod.GET)
+                .uri("/controller")
+
+                .bodyValue(payload)
+                .retrieve()
+                .bodyToMono(String.class)
+
+                .toFuture()
+                .thenApply(response -> {
+                    System.out.println("Response from Server B: " + response);
+                    return response;
+                });
+                //.subscribe(response -> { System.out.println("Response from Server B: " + response);});
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping
     public List<UserDto> GetAll() {
@@ -62,6 +108,7 @@ public class UserController {
     public ResponseEntity<UserDto> selectByAuth() {
         return ResponseEntity.ok(UserMapper.mapToDto(iUserService.selectByUsername(authService.getUsername())));
     }
+
     @PostMapping
     public UserDto Add(@RequestBody UserDto user) {
         return UserMapper.mapToDto(iUserService.insert(UserMapper.mapToEntity(user)));

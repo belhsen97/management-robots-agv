@@ -1,163 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { LevelType } from 'src/app/core/store/models/Notification/LevelType.enum';
 import { Notification } from 'src/app/core/store/models/Notification/norifcation.models';
+import { getListNotifications, getNotification } from 'src/app/core/store/selectors/global.Selectors';
+import { globalState, GlobalState } from 'src/app/core/store/states/Global.state';
+
 
 @Component({
   selector: 'app-list-notifications',
   templateUrl: './list-notifications.component.html',
   styleUrls: ['./list-notifications.component.css']
 })
-export class ListNotificationsComponent {
+export class ListNotificationsComponent  implements OnInit , OnDestroy  {
+  private getListNotificationSub !: Subscription | undefined;
+  private getNotificationSub !: Subscription | undefined;
+  public stateOver = true;
+  public notifications!: Notification[];
+  constructor(private storeGlobal: Store<GlobalState>){ }
 
- public  stateOver = true;
- onClickOverNotifications():void{
-  this.stateOver = !this.stateOver;
- }
+  ngOnInit(): void {
+    this.getListNotificationSub = this.storeGlobal.select(getListNotifications).subscribe(item => {
+      globalState.listNotifications = item;
+      this.notifications = item;
+    });
+    this.getNotificationSub = this.storeGlobal.select(getNotification).subscribe(item => {
+      this.notifications.unshift(item);
+    });
 
-   public notifications: Notification[] = [
-    {
-      sender: {
-        name: 'John Doe',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 100000,
-      level: LevelType.INFO,
-      message: 'John Doe liked your post.'
-    },
-    {
-      sender: {
-        name: 'Jane Smith',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 500000,
-      level: LevelType.WARNING,
-      message: 'Jane Smith commented on your photo.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    },
-    {
-      sender: {
-        name: 'Mike Johnson',
-        imageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941'
-      },
-      createdAt: Date.now() - 1000000,
-      level: LevelType.ERROR,
-      message: 'Mike Johnson sent you a friend request.'
-    }
-  ];
+  }
+  ngOnDestroy(): void {
+    if (this.getListNotificationSub) { this.getListNotificationSub.unsubscribe(); }
+    if (this.getNotificationSub) { this.getNotificationSub.unsubscribe(); }
+  }
+
+  stopPropagation(event: Event): void {
+    event.stopPropagation();
+  }
+
+ onClickOverNotifications():void{this.stateOver = !this.stateOver;}
+ 
 }

@@ -1,11 +1,12 @@
 import json
+from datetime import datetime
 from enums import NotificationEnum as notification_enum
 class ReactiveNotification:
-    def __init__(self, name, level, message, asctime):
+    def __init__(self, name, level, message, asctime=None):
         self._name = name
         self._level = level
         self._message = message
-        self._asctime = asctime
+        self._asctime =  datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')[:-3]  if asctime is None else asctime 
         self._callbacks = {
             "name": [],
             "level": [],
@@ -24,7 +25,8 @@ class ReactiveNotification:
             self._callbacks[key].append(callback)
 
 
-    def __call__(self, name, level, message, asctime):
+    def __call__(self, name, level, message, asctime=None):
+        self._asctime =  datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')[:-3]  if asctime is None else asctime 
         if self._message != message:
               self._notify("notification", ReactiveNotification (name, level, message, asctime))
 
