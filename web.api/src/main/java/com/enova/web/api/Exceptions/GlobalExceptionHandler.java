@@ -7,12 +7,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 
+import java.net.ConnectException;
 import java.util.Date;
 
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(WebClientRequestException.class)
+    public ResponseEntity<?> handleWebClientRequestException(WebClientRequestException ex) {
+        Throwable rootCause = ex.getRootCause();
+        if (rootCause instanceof ConnectException) {
+            // Handle connection refused exception
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body( MsgReponseStatus.builder()
+                            .title("WebClient Request Exception")
+                            .status(ReponseStatus.ERROR)
+                            .datestamp(new Date())
+                            .message("Unable to connect to the server. Please try again later.")
+                            .build());
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(MsgReponseStatus.builder()
+                        .title("WebClient Request Exception")
+                        .status(ReponseStatus.ERROR)
+                        .datestamp(new Date())
+                        .message(ex.getMessage())
+                        .build());
+    }
+
+
+
     @ExceptionHandler(javax.mail.MessagingException.class)
     public ResponseEntity<?> handleMessagingException(javax.mail.MessagingException ex, WebRequest request) {
         MsgReponseStatus errorDetails = MsgReponseStatus.builder()

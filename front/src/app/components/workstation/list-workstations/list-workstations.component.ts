@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/Global.selector';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { AddWorkstationComponent } from '../add-workstation/add-workstation.component';
 import { MatDialog } from '@angular/material/dialog';

@@ -50,8 +50,8 @@ def run():
         #    if state.robotState['robot'].statusRobot  == "INACTIVE" :
         #       sys.exit("Stopping the script")
         #    state.robotState['robot'].createdAt =  datetime.now().isoformat()
-             count+=1
-             state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count))
+             #count+=1
+             #state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count))
              time.sleep(1)
        
 

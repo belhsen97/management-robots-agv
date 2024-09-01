@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TraceService } from 'src/app/core/services/trace.service';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
-import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/Global.selector';
 import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { TraceDto } from 'src/app/core/store/models/Trace/TraceDto.model';
 import { globalState } from 'src/app/core/store/states/Global.state';

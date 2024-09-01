@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { LevelType } from 'src/app/core/store/models/Notification/LevelType.enum';
 import { Notification } from 'src/app/core/store/models/Notification/norifcation.models';
-import { getListNotifications, getNotification } from 'src/app/core/store/selectors/global.Selectors';
+import { getListNotifications, getNotification } from 'src/app/core/store/selectors/Global.selector';
 import { globalState, GlobalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
@@ -24,7 +24,7 @@ export class DropdownNotificationsComponent  implements OnInit , OnDestroy  {
       this.notifications = item;
     });
     this.getNotificationSub = this.storeGlobal.select(getNotification).subscribe(item => {
-      this.notifications.unshift(item);
+     // this.notifications.unshift(item);
     });
 
   }

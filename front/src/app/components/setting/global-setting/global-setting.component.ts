@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { updateSettingRobot } from 'src/app/core/store/actions/Robot.Action';
 import { RobotSettingDto } from 'src/app/core/store/models/Robot/RobotSettingDto.model';
-import { getSettingRobot } from 'src/app/core/store/selectors/Robot.Selector';
+import { getSettingRobot } from 'src/app/core/store/selectors/Robot.selector';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({

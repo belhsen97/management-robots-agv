@@ -1,6 +1,6 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8Ù§ÏÞê1
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¯´çüÿÿÿÿ8á§ÏÞê1
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª­†Âýÿÿÿÿ8á§ÏÞê1
 S
-java:S1128"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ8þµ£ßë1
+java:S1128"1Remove this unused import 'java.io.Serializable'.(èãîÂÿÿÿÿÿ8éŠÜ°š2

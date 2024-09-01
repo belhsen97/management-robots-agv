@@ -1,17 +1,19 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { pipe, exhaustMap, map, switchMap, of, Observable, catchError } from "rxjs"
-import { EmptyAction, ShowAlert, searchInputRangeDate, searchInputRangeDateSuccess } from "../actions/Global.Action";
+import { pipe, exhaustMap, map, switchMap, of, Observable, catchError, EMPTY, takeUntil } from "rxjs"
+import { EmptyAction, ShowAlert, loadNotificationSuccess, loadNotificationFail, searchInputRangeDate, searchInputRangeDateSuccess, startListenerNotification, stopListenerNotification } from "../actions/Global.Action";
 import { MsgResponseStatus } from "../models/Global/MsgResponseStatus.model";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { RangeDate } from "../states/Global.state";
+import { MqttClientService } from "../../services/mqtt-client.service";
+import { connectionFailure } from "../actions/Mqtt.Action";
 
 
 @Injectable()
 export class GlobalEffects {
 
-    constructor(private action$: Actions, private _snackbar: MatSnackBar ,) {
+    constructor(private action$: Actions, private _snackbar: MatSnackBar , private mqttClientService: MqttClientService) {
 
     }
     private formatDuration(ms: number): string {
@@ -75,6 +77,39 @@ export class GlobalEffects {
     //         })
     //     )
     // );
+
+
+
+    listenerAllRobots = createEffect(() =>
+        this.action$.pipe(
+            ofType(startListenerNotification),
+            switchMap(action =>
+                { 
+                if (!action.subscribe) { return EMPTY;}
+                 return   this.mqttClientService.subscribe(action.subscribe)!.pipe(
+                    map(message => {
+                        const notificationSend = JSON.parse(message.payload.toString());
+                        return loadNotificationSuccess({ notificationInput: notificationSend });
+                    }),
+                    catchError((_error) =>
+                        of(
+                            connectionFailure({ error: 'listener Notification failed' }),
+                            loadNotificationFail({ errorMessage: _error }),
+                            ShowAlert({
+                                title: "Error",
+                                datestamp: new Date(),
+                                status: ReponseStatus.ERROR,
+                                message: _error
+                            })
+                        )
+                    ),takeUntil(this.action$.pipe(ofType(stopListenerNotification))) 
+                )
+                 }
+             )
+        )
+    );
+
+
 
 
 

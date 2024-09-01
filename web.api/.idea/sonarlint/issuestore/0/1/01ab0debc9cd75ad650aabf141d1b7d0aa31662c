@@ -1,20 +1,22 @@
 
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‰ÜÙšıÿÿÿÿ8àÅè“ş1
+B
+java:S1452"&Remove usage of generic wildcard type.(°†Q8éÅè“ş1
 H
-java:S1452"&Remove usage of generic wildcard type.(ˆ¯ùöøÿÿÿÿ8éÅè“ş1
+java:S1452,"&Remove usage of generic wildcard type.(ˆ¯ùöøÿÿÿÿ8ëÅè“ş1
 C
-java:S1452"&Remove usage of generic wildcard type.(ãµÕé8ëÅè“ş1
+java:S14527"&Remove usage of generic wildcard type.(ãµÕé8ìÅè“ş1
 H
-java:S1452("&Remove usage of generic wildcard type.(ÜÄïùÿÿÿÿ8ìÅè“ş1
+java:S1452C"&Remove usage of generic wildcard type.(ÜÄïùÿÿÿÿ8íÅè“ş1
 C
-java:S14524"&Remove usage of generic wildcard type.(¸ãĞú8íÅè“ş1
+java:S1452O"&Remove usage of generic wildcard type.(¸ãĞú8ïÅè“ş1
 N
-java:S16026",Remove useless curly braces around statement(šôéûÿÿÿÿ8îÅè“ş1
-X	java:S1259"<This block of commented-out lines of code should be removed.(˜ÑÅù8îÅè“ş1
+java:S1602Q",Remove useless curly braces around statement(šôéûÿÿÿÿ8îÅè“ş1
+X	java:S125T"<This block of commented-out lines of code should be removed.(˜ÑÅù8îÅè“ş1
 H
-java:S1452F"&Remove usage of generic wildcard type.(ª ¼„ıÿÿÿÿ8ïÅè“ş1
-j	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ¼´8ğÅè“ş1
+java:S1452a"&Remove usage of generic wildcard type.(ª ¼„ıÿÿÿÿ8ğÅè“ş1
+j	java:S100w"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ¼´8ğÅè“ş1
 C
-java:S1452\"&Remove usage of generic wildcard type.(ñ¼´8ğÅè“ş1
-X	java:S125P"<This block of commented-out lines of code should be removed.(·ùğì8ğÅè“ş1
-]	java:S125i"<This block of commented-out lines of code should be removed.(©ßøÅûÿÿÿÿ8ñÅè“ş1
+java:S1452w"&Remove usage of generic wildcard type.(ñ¼´8­®—Ó™2
+X	java:S125k"<This block of commented-out lines of code should be removed.(·ùğì8ğÅè“ş1
+^	java:S125„"<This block of commented-out lines of code should be removed.(©ßøÅûÿÿÿÿ8ñÅè“ş1

@@ -56,10 +56,10 @@ public class RobotServiceImpl implements RobotService {
         return list;
     }
     @Override
-    public void  updateRobotConnection( String clientId ,  Connection c) {
+    public Robot  updateRobotConnection( String clientId ,  Connection c) {
         Robot r =  this.selectByClientId(clientId);
         r.setConnection(c);
-        robotRepository.save(r);
+        return robotRepository.save(r);
     }
 }
 

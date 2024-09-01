@@ -1,7 +1,7 @@
 import { state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {  getStateSlidebare } from 'src/app/core/store/selectors/global.Selectors';
+import {  getStateSlidebare } from 'src/app/core/store/selectors/Global.selector';
 
 
 @Component({

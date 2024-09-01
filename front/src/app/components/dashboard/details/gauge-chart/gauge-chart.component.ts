@@ -13,7 +13,7 @@ import { Subscription, throttleTime } from 'rxjs';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { Store } from '@ngrx/store';
-import { getConnectionFromRobot, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.Selector';
+import { getConnectionFromRobot, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.selector';
 import { startListenerRobot, startListenerRobotByProperty, stopListenerRobot, stopListenerRobotByProperty } from 'src/app/core/store/actions/Robot.Action';
 
 dataInit(Highcharts);

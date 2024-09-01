@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { searchInputRangeDate } from 'src/app/core/store/actions/Global.Action';
-import { getDateRangeSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getDateRangeSearchInput } from 'src/app/core/store/selectors/Global.selector';
 import { GlobalState, RangeDate } from 'src/app/core/store/states/Global.state';
 
 @Component({

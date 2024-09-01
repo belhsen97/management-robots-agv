@@ -1,0 +1,9 @@
+
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8Ó¯ò°š2
+i
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ°ßþúÿÿÿÿ8â¯ò°š2
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÎµÖùÿÿÿÿ8â¯ò°š2
+H
+java:S1452"&Remove usage of generic wildcard type.(¹ÎµÖùÿÿÿÿ8ã¯ò°š2
+G	java:S106)"+Replace this use of System.out by a logger.(ÒîØƒ8å¯ò°š2
+]	java:S1254"<This block of commented-out lines of code should be removed.(¹ÎµÖùÿÿÿÿ8å¯ò°š2

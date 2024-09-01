@@ -40,17 +40,3 @@ public class Robot implements Serializable {
     double distance; // real time   m
     String codeTag;  // real time
 }
-//    String id;
-//    String name ;
-//    String ip;
-//    Date createdAt;
-//    StatusRobot statusRobot;
-//    ModeRobot modeRobot;
-//    String notice ;
-//    Connection connection;
-//    boolean powerOff;
-//    StatusBattery statusBattery;
-//    double distance ; // real time
-//    int levelBattery;  // real time
-//    double speed ; // real time
-//    String idWorkstation;  enum StatusBattery {CHARGED,DISCHARGED}

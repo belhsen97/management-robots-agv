@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
 import { selectStatusClient } from './core/store/selectors/Mqtt.selector';
 import { RobotService } from './core/services/robot.service';
 import { RobotState, robotState } from './core/store/states/Robot.state';
-import { ShowAlert } from './core/store/actions/Global.Action';
+import { ShowAlert, startListenerNotification, stopListenerNotification } from './core/store/actions/Global.Action';
 import { ReponseStatus } from './core/store/models/Global/ReponseStatus.enum';
 import { loadRobots, loadSettingRobot, startListenerAllRobots, startListenerAllRobotsByProperty, stopListenerAllRobots, stopListenerAllRobotsByProperty } from './core/store/actions/Robot.Action';
-import { getListRobot, getSettingRobot } from './core/store/selectors/Robot.Selector';
+import { getListRobot, getSettingRobot } from './core/store/selectors/Robot.selector';
 import { TagService } from './core/services/tag.service';
 import { tagState } from './core/store/states/Tag.state';
 import { GlobalState } from './core/store/states/Global.state';
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
   constructor( private tagService: TagService,
     private mqttClientService: MqttClientService,
     private userService: UserService,
-    public robotService: RobotService,
+    public  robotService: RobotService,
     private storeMqtt: Store<MQTTState>,
     private storeRobot: Store<RobotState>,
     private storeGlobal: Store<GlobalState>){ }
@@ -68,11 +68,12 @@ export class AppComponent implements OnInit, AfterViewInit , OnDestroy {
     this.storeRobot.dispatch(startListenerAllRobots({ subscribe: mqttState.subscribes.dataRobots }));
     this.storeRobot.dispatch(startListenerAllRobotsByProperty({ subscribe: mqttState.subscribes.dataPropertyRobot }));
     this.storeMqtt.dispatch(subscribeStatusClients({ subscribe: mqttState.subscribes.clientsStatus }));
+    this.storeGlobal.dispatch(startListenerNotification({ subscribe: mqttState.subscribes.notification }));
   }
   ngOnDestroy(): void {
     this.storeRobot.dispatch(stopListenerAllRobots());
     this.storeRobot.dispatch(stopListenerAllRobotsByProperty()); 
-
+    this.storeGlobal.dispatch(stopListenerNotification()); 
     console.log("ngOnDestroy"); 
     if (this.getListRobotSub) { this.getListRobotSub.unsubscribe(); }
     if (this.getStatusClientSub) { this.getStatusClientSub.unsubscribe(); }

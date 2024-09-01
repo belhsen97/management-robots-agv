@@ -1,9 +1,23 @@
 <div class="btn-group">
-    <i class="las la-bell dropdown-toggle cursor-pointer" 
-    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 24px;"></i>  
+    <!-- <i class="las la-bell dropdown-toggle cursor-pointer" 
+    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 24px;">
+    </i>   -->
+ 
+
+<!-- https://codepen.io/mitsuruog/pen/LLyQNq -->
+    <div class="notifier green cursor-pointer"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="las la-bell dropdown-toggle"></i>  
+        <div class="badge">10</div>
+    </div>
+
+
+       
+
+    
     <div class="dropdown-menu dropdown-menu-right mt-4" (click)="stopPropagation($event)">
-        <div class="card" [style]="stateOver ? 'height: 380px;' :  'height: 86vh;'">
-            <div class="card-header">
+        <div class="card">
+            <div class="card-header" >
                 <div class="d-flex justify-content-between">
                 <h1>Notifications <span>({{notifications.length}})</span></h1>
                 <i class="las la-cog"  routerLink="/user/edit" ></i>
@@ -13,12 +27,12 @@
                     <a routerLink="/notifications" class="cursor-pointer">View all</a>
                 </div>
             </div>
-            <ul class="list-group list-group-flush   mx-3"  style="overflow: scroll;">
+            <ul class="list-group list-group-flush   mx-3"  style="overflow: scroll;"  [style]="stateOver ? 'max-height: 380px;' :  'max-height: 66vh;'">
                 <li *ngFor="let notification of notifications  let i = index" [hidden]="i >= 6 && stateOver"
                     class="list-group-item notification-item">
                     <div class="w-20">
                         <div class="photo-profile-container  mr-2">
-                            <img [src]="notification.sender.imageUrl ? notification.sender.imageUrl : 'assets/images/user/unkhow-user.jpg' "
+                            <img [src]="notification.senderImageUrl ? notification.senderImageUrl : 'assets/images/user/unkhow-user.jpg' "
                                 class="photo-profile" alt="user">
                             <img *ngIf="notification.level" class="photo-profile-badge" alt="badge" [src]="notification.level ==  'ERROR' ? '/assets/images/notification/level/error-level.png' :
                     notification.level ==  'WARNING' ? '/assets/images/notification/level/warning-level.webp' :
@@ -27,7 +41,7 @@
                         </div>
                     </div>
                     <div class="w-80">
-                        <div class="text-notification"><strong>{{notification.sender.name}}</strong>&nbsp;
+                        <div class="text-notification"><strong>{{notification.senderName}}</strong>&nbsp;
                             {{notification.message}}
                         </div>
                         <small class="text-muted d-block">{{ notification.createdAt| dateAgo }}</small>

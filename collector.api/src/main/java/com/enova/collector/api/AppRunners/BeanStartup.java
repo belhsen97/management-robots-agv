@@ -1,22 +1,9 @@
 package com.enova.collector.api.AppRunners;
 
-
-import com.enova.collector.api.Configures.MQTTClientConfig;
-import com.enova.collector.api.Enums.TypeProperty;
-import com.enova.collector.api.Mappers.RobotMapper;
-import com.enova.collector.api.Models.Entitys.Robot;
-import com.enova.collector.api.Models.Entitys.RobotProperty;
-import com.enova.collector.api.Services.MQTTService;
-import com.enova.collector.api.Services.RobotService;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 @Order(value = 1)//Register beanStartup bean

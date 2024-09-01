@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { CountRobotsProperties } from 'src/app/core/store/models/Robot/CountRobotsProperties.model';
-import { getCountRobotsProperties } from 'src/app/core/store/selectors/Robot.Selector';
+import { getCountRobotsProperties } from 'src/app/core/store/selectors/Robot.selector';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 
 @Component({

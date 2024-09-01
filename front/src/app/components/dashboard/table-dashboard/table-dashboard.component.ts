@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/Global.selector';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { Subscription, interval, throttleTime } from 'rxjs';

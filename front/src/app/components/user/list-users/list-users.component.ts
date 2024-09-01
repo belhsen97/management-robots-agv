@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getrouterinfo } from 'src/app/core/store/selectors/Router.Seletor';
+import { getrouterinfo } from 'src/app/core/store/selectors/Router.seletor';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator'; 
 import { MatSort } from '@angular/material/sort';
-import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/Global.selector';
 import {   UserDto } from 'src/app/core/store/models/User/UserDto.model'; 
 import { UserService } from 'src/app/core/services/user.service.ts.service';
 

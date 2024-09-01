@@ -8,7 +8,7 @@ import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { TagState, tagState } from 'src/app/core/store/states/Tag.state';
 import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.state';
 import { Store } from '@ngrx/store';
-import { getListRobot } from 'src/app/core/store/selectors/Robot.Selector';
+import { getListRobot } from 'src/app/core/store/selectors/Robot.selector';
 import { RobotDto } from 'src/app/core/store/models/Robot/RobotDto.model';
 @Component({
   selector: 'app-add-workstation',

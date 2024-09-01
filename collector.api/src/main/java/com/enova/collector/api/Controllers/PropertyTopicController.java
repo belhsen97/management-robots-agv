@@ -1,15 +1,18 @@
 package com.enova.collector.api.Controllers;
 
 
+
 import com.enova.collector.api.Enums.TypeProperty;
 import com.enova.collector.api.Exceptions.RessourceNotFoundException;
 import com.enova.collector.api.Listener.ListenerTopic;
+import com.enova.collector.api.Models.Commons.ConnectionInfo;
 import com.enova.collector.api.Services.ObjectMapperService;
 import com.enova.collector.api.Services.RobotService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Map;
 
 @Component
@@ -18,16 +21,24 @@ public class PropertyTopicController {
     private final RobotService robotService;
     private final ObjectMapperService objMapperService;
 
-    @ListenerTopic(topic = "topic/data/robot/+/property/CONNECTION", qos = 0)
-    public void getPropertyConnection(String topic, byte[] message) throws JsonProcessingException, RessourceNotFoundException {
-        String[] parts = topic.split("/");
-        int lengthParts = parts.length;
-        if (lengthParts != 6) {
-            throw new IllegalArgumentException("Invalid topic Connection format: " + topic);
-        }
-        final Map<String, Object> messageMap = objMapperService.fromJson(new String(message), Map.class);
-        robotService.updateConnection(parts[3], messageMap.get("value"));
+
+    @ListenerTopic(topic = "$SYS/brokers/+/clients/#", qos = 0)
+    public void handleTopicStatusClient(String topic, byte[] message) throws JsonProcessingException, RessourceNotFoundException {
+        ConnectionInfo connectionInfo = objMapperService.fromJson(new String(message), ConnectionInfo.class);
+        robotService.updateConnection(connectionInfo);
     }
+
+//    @ListenerTopic(topic = "topic/data/robot/+/property/CONNECTION", qos = 0)
+//    public void getPropertyConnection(String topic, byte[] message) throws JsonProcessingException, RessourceNotFoundException {
+//        String[] parts = topic.split("/");
+//        int lengthParts = parts.length;
+//        if (lengthParts != 6) {
+//            throw new IllegalArgumentException("Invalid topic Connection format: " + topic);
+//        }
+//        final Map<String, Object> messageMap = objMapperService.fromJson(new String(message), Map.class);
+//        robotService.updateConnection(parts[3], messageMap.get("value"));
+//    }
+
 
     @ListenerTopic(topic = "topic/data/robot/+/property/STATUS_ROBOT", qos = 0)
     public void getPropertyStatusRobot(String topic, byte[] message) throws JsonProcessingException, RessourceNotFoundException {

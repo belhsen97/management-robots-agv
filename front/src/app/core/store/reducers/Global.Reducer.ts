@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { RangeDate, globalState } from "../states/Global.state"; 
-import { ShowAlert, openSidebar, searchInput, searchInputRangeDateSuccess } from "../actions/Global.Action";
+import { ShowAlert, loadNotificationSuccess, loadNotificationFail, openSidebar, searchInput, searchInputRangeDateSuccess, loadAllNotificationsSuccess } from "../actions/Global.Action";
 
 const _GlobalReducer  = createReducer(globalState,
     on(openSidebar, (state, action) => {
@@ -23,7 +23,29 @@ const _GlobalReducer  = createReducer(globalState,
             ...state,
             rangeDate:rangeDate
         }
-    }) 
+    }) ,
+
+
+    on(loadNotificationSuccess, (state, action) => {
+        return {
+            ...state,
+            notification: action.notificationInput
+        }
+    }),
+    on(loadAllNotificationsSuccess, (state, action) => {
+        return {
+            ...state,
+            listNotifications: action.listNotifications
+        }
+    }),
+    on(loadNotificationFail, (state, action) => {
+        return {
+            ...state,
+            errorMessage: action.errorMessage.message
+        }
+    }),
+
+
 
 )
 

@@ -20,20 +20,20 @@ import java.io.Serializable;
 @RequestMapping("/authentication")
 public class AuthenticationController {
 
-    private final AuthenticationService iService;
+    private final AuthenticationService service;
 
     @Autowired
-    public AuthenticationController(@Qualifier("authentication-service") AuthenticationService iService) {
-        this.iService = iService;
+    public AuthenticationController(@Qualifier("authentication-service") AuthenticationService service) {
+        this.service = service;
     }
 
     @PostMapping("/register")
     public ResponseEntity<MsgReponseStatus> register(@Validated @RequestBody AuthenticationRequest request) throws MessagingException, IOException {
-        return new ResponseEntity<>(iService.register(request), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(service.register(request), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) throws Exception {
-        return ResponseEntity.ok(iService.authenticate(request));
+        return ResponseEntity.ok(service.authenticate(request));
     }
 }

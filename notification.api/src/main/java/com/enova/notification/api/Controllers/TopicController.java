@@ -34,6 +34,7 @@ public class TopicController {
                                                                                   .senderImageUrl("/assets/images/robots/AGV-AMR.png")
                                                                                   .createdAt(notificationRobot.getAsctime())
                                                                                   .level(notificationRobot.getLevel())
+                                                                                  .message(notificationRobot.getMessage())
                                                                                   .build();
         String notificationResponseJson =  objMapperService.toJson(notificationResponse);
         Publish publish =  Publish.childBuilder().topic("topic/notification/service/notification").retained(false).qos(0).payload(notificationResponseJson.getBytes()).build();

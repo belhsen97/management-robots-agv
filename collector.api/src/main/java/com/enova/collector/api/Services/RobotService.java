@@ -3,6 +3,7 @@ package com.enova.collector.api.Services;
 
 
 import com.enova.collector.api.Enums.Connection;
+import com.enova.collector.api.Models.Commons.ConnectionInfo;
 import com.enova.collector.api.Models.Entitys.Robot;
 import com.enova.collector.api.Models.Entitys.RobotProperty;
 
@@ -15,6 +16,7 @@ public interface RobotService  {
     void insertPropertysRobot(List<RobotProperty> listPropertys);
     void updateRobotConnection( String clientId ,  Connection c);
     void  updateRobot( String name,  Robot robot);
+    void updateConnection(ConnectionInfo connectionInfo);
     void updateConnection( String name , Object Value  );
     void updateStatusRobot( String name , Object Value  );
     void updateModeRobot( String name , Object Value  );

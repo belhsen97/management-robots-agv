@@ -1,6 +1,7 @@
 package com.enova.collector.api.Services.Interfaces;
 
 import com.enova.collector.api.Enums.*;
+import com.enova.collector.api.Models.Commons.ConnectionInfo;
 import com.enova.collector.api.Models.Entitys.Robot;
 import com.enova.collector.api.Models.Entitys.RobotProperty;
 import com.enova.collector.api.Exceptions.RessourceNotFoundException;
@@ -38,6 +39,26 @@ public class RobotServiceImpl implements RobotService {
         }
         return r.get();
     }
+    @Override
+    public void updateConnection(ConnectionInfo connectionInfo ) {
+        final Robot rDB = this.selectByClientId(connectionInfo.getClientId());
+        Connection stateConnection;
+        if (connectionInfo.getConnectedAt() >= connectionInfo.getDisconnectedAt()) {
+            stateConnection = Connection.CONNECTED;
+        } else {
+            stateConnection = Connection.DISCONNECTED;
+        }
+        RobotProperty property = RobotProperty.builder()
+                .name(connectionInfo.getClientId())
+                .type(TypeProperty.CONNECTION)
+                .timestamp(new Date())
+                .value(stateConnection.toString())
+                .build();
+        rDB.setConnection(Connection.valueOf(stateConnection.toString()));
+        robotRepository.save(rDB);
+        this.insertPropertyRobot(property);
+    }
+
     @Override
     public void updateConnection(String name, Object value) {
         Robot robot = this.selectByName(name);
@@ -125,15 +146,15 @@ public class RobotServiceImpl implements RobotService {
     @Override
     public void updateDistance(String name, Object value) {
         Robot robot = this.selectByName(name);
-        RobotProperty property = RobotProperty.builder()
-                .name(name)
-                .type(TypeProperty.DISTANCE)
-                .timestamp(new Date())
-                .value(value.toString())
-                .build();
         robot.setDistance(Double.parseDouble(value.toString()));
         robotRepository.save(robot);
-        this.insertPropertyRobot(property);
+//        RobotProperty property = RobotProperty.builder()
+//                .name(name)
+//                .type(TypeProperty.DISTANCE)
+//                .timestamp(new Date())
+//                .value(value.toString())
+//                .build();
+//        this.insertPropertyRobot(property);
     }
 
     @Override

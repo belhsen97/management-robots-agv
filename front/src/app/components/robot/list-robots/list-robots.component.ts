@@ -12,10 +12,10 @@ import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.en
 import { WorkstationService } from 'src/app/core/services/workstation.service';
 import { MessageBoxConfirmationComponent } from '../../shared/message-box-confirmation/message-box-confirmation.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getValueSearchInput } from 'src/app/core/store/selectors/global.Selectors';
+import { getValueSearchInput } from 'src/app/core/store/selectors/Global.selector';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { wsState } from 'src/app/core/store/states/Worstation.state';
-import { getListRobot } from 'src/app/core/store/selectors/Robot.Selector';
+import { getListRobot } from 'src/app/core/store/selectors/Robot.selector';
 import { addRobot, deleteRobot, updateRobot } from 'src/app/core/store/actions/Robot.Action';
 
 @Component({
