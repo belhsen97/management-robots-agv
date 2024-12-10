@@ -17,7 +17,7 @@ export class DashbordRouterSerializer implements RouterStateSerializer<RouterSta
     }
     const {url, root: { queryParams },} = routerState;
     const { params } = route;
-
+   console.log({ url, params, queryParams });
     // Only return an object including the URL, params and query params
     // instead of the entire snapshot
     return { url, params, queryParams };

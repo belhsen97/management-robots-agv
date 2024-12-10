@@ -1,0 +1,23 @@
+
+g	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(ˆºÿúÿÿÿÿ8ü«½×Ÿ2
+g	java:S112t"FDefine and throw a dedicated exception instead of using a generic one.(Ó‡´Êûÿÿÿÿ8ü«½×Ÿ2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8®ÂˆŸ2
+i
+java:S6830)"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–ß©¿şÿÿÿÿ8¿ÂˆŸ2
+i
+java:S6830*"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òÇäşÿÿÿÿ8¬½×Ÿ2
+o	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÓ¥ÿÿÿÿÿ8¬½×Ÿ2
+c
+java:S16128"AReplace this lambda with method reference 'UserMapper::mapToDto'.(ÑÕæ¿şÿÿÿÿ8¬½×Ÿ2
+o	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊĞÖŠşÿÿÿÿ8î‹ºº2
+c
+java:S1612="AReplace this lambda with method reference 'UserMapper::mapToDto'.(ÑÕæ¿şÿÿÿÿ8–¡ ºº2
+j	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éş­‘8‘¬½×Ÿ2
+o	java:S100S"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯ÏÙÔùÿÿÿÿ8’¬½×Ÿ2
+j	java:S100X"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8“¬½×Ÿ2
+
+java:S1130i"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ˆºÿúÿÿÿÿ8•¬½×Ÿ2
+
+java:S1130t"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Ó‡´Êûÿÿÿÿ8—¬½×Ÿ2
+D
+java:S1452"&Remove usage of generic wildcard type.(…¯Ó©8˜¬½×Ÿ2

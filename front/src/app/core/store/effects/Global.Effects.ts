@@ -2,18 +2,19 @@ import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { pipe, exhaustMap, map, switchMap, of, Observable, catchError, EMPTY, takeUntil } from "rxjs"
-import { EmptyAction, ShowAlert, loadNotificationSuccess, loadNotificationFail, searchInputRangeDate, searchInputRangeDateSuccess, startListenerNotification, stopListenerNotification } from "../actions/Global.Action";
+import { EmptyAction, ShowAlert, loadNotificationSuccess, loadNotificationFail, searchInputRangeDate, searchInputRangeDateSuccess, startListenerNotification, stopListenerNotification, loadAllNotifications, loadAllNotificationsSuccess } from "../actions/Global.Action";
 import { MsgResponseStatus } from "../models/Global/MsgResponseStatus.model";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { RangeDate } from "../states/Global.state";
 import { MqttClientService } from "../../services/mqtt-client.service";
 import { connectionFailure } from "../actions/Mqtt.Action";
-
+import { NotificationService } from "../../services/notification.service";
+import { Notification } from 'src/app/core/store/models/Notification/norifcation.models';
 
 @Injectable()
 export class GlobalEffects {
 
-    constructor(private action$: Actions, private _snackbar: MatSnackBar , private mqttClientService: MqttClientService) {
+    constructor(private action$: Actions, private _snackbar: MatSnackBar, private NotificationService: NotificationService , private mqttClientService: MqttClientService) {
 
     }
     private formatDuration(ms: number): string {
@@ -79,8 +80,28 @@ export class GlobalEffects {
     // );
 
 
-
-    listenerAllRobots = createEffect(() =>
+    _loadAllNotifications  = createEffect(() => this.action$
+        .pipe(
+            ofType(loadAllNotifications),
+            exhaustMap((action) => {
+                return this.NotificationService.getAll().pipe(
+                    map((response) => {return loadAllNotificationsSuccess({ listNotifications: response.body as Notification[]  });}),
+                    catchError((_error) =>
+                        of(
+                            loadNotificationFail({ errorMessage: _error }),
+                            ShowAlert({
+                                title: "Error",
+                                datestamp: new Date(),
+                                status: ReponseStatus.ERROR,
+                                message: _error
+                            })
+                        )
+                    )
+                );
+            })
+        )
+    );
+    _listenerNotification = createEffect(() =>
         this.action$.pipe(
             ofType(startListenerNotification),
             switchMap(action =>
@@ -113,6 +134,9 @@ export class GlobalEffects {
 
 
 
+
+
+
     _ShowAlert = createEffect(() =>
         this.action$.pipe(
             ofType(ShowAlert),
@@ -128,8 +152,7 @@ export class GlobalEffects {
         )
     );
 
-    ShowsnackbarAlert( msg :  MsgResponseStatus) {
-        console.log(msg);
+    ShowsnackbarAlert( msg :  MsgResponseStatus) { 
         const _class =  ( msg.status == ReponseStatus.SUCCESSFUL ? 'green-snackbar' : msg.status == ReponseStatus.UNSUCCESSFUL ? 'yellow-snackbar' : 'red-snackbar');
         return this._snackbar.open(msg.title +" : "+ msg.message + " at " + msg.datestamp.toLocaleString(), 'OK', {
             verticalPosition: 'bottom',

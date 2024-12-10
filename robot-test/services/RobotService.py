@@ -40,10 +40,11 @@ class RobotService:
             if (key  == "OPERATION_STATUS") and ((value == robot_enum.OperationStatus.NORMAL.name )or(value  ==  robot_enum.OperationStatus.EMS.name)or(value ==  robot_enum.OperationStatus.PAUSE.name)) :
                  print (value)
                  state.robotState['robot'].operationStatus = value
-                 print (  state.robotState['robot'].operationStatus )
+                 #print (  state.robotState['robot'].operationStatus )
             #if (key  == "STATUS") and ((value == robot_enum.Status.INACTIVE.name )or(value  == robot_enum.Status.WAITING.name )or(value == robot_enum.Status.RUNNING.name )) :
             if (key  == "STATUS") and ((value == robot_enum.Status.INACTIVE.name )) :
                  state.robotState['robot'].statusRobot = value
+                 print(value)
             if (key  == "SPEED") and  isinstance(value, (int, float)):
                  state.robotState['speedTarget'] = float(value)
                  if state.robotState['robot'].statusRobot == robot_enum.Status.RUNNING.name:
@@ -61,13 +62,16 @@ class RobotService:
          if "levelBattery" in robot:
               state.robotState['robot'].levelBattery = robot["levelBattery"]
          if "speed" in robot:
-              state.robotState['speedTarget'] = robot["speed"]
+              #state.robotState['speedTarget'] = robot["speed"]
               state.robotState['robot'].speed = robot["speed"]
          if "statusRobot" in robot:
               state.robotState['robot'].statusRobot = robot["statusRobot"]
               print ( state.robotState['robot'].statusRobot)
          if "operationStatus" in robot:
-              state.robotState['robot'].operationStatus = robot["operationStatus"]
+              if robot["operationStatus"] == robot_enum.Status.INACTIVE.name:
+                 state.robotState['robot'].operationStatus = robot_enum.Status.WAITING.name
+              else:
+                 state.robotState['robot'].operationStatus = robot["operationStatus"]
          if "createdAt" in robot:
               state.robotState['robot'].createdAt = robot["createdAt"]
          if "codeTag" in robot:
@@ -130,7 +134,7 @@ class RobotService:
 
 
     def getRobotCodes(self):
-        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot-avg/driveless/robot/all-code'
+        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot/driveless-service/tag/code-all'
         try:
            response = requests.get(url)
            response.raise_for_status()
@@ -148,7 +152,7 @@ class RobotService:
 
 
     def getRobot(self,name):
-        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot-avg/driveless/robot/'+name
+        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot/driveless-service/robot/name/'+name
         try:
            response = requests.get(url)
            response.raise_for_status()
@@ -163,7 +167,21 @@ class RobotService:
            print(f"Other error occurred: {err}")
            raise
 
-
+    def getTargetSpeed(self):
+        url = 'http://'+state.httpState["host"]+':'+str(state.httpState["port"])+'/management-robot/driveless-service/robot-setting/speed/average'
+        try:
+           response = requests.get(url)
+           response.raise_for_status()
+           datatargetSpeed = response.json()
+           state.robotState['speedTarget']  =  datatargetSpeed[ "value" ]
+        except requests.exceptions.HTTPError as http_err:
+           print(f"HTTP error occurred: {http_err}")
+           print("Status code:", response.status_code)
+           print("Response body:", response.json())
+           raise
+        except Exception as err:
+           print(f"Other error occurred: {err}")
+           raise
 
 
    #def randomData2(self):

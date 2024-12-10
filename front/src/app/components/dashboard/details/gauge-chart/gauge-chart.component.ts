@@ -13,7 +13,7 @@ import { Subscription, throttleTime } from 'rxjs';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { Store } from '@ngrx/store';
-import { getConnectionFromRobot, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.selector';
+import { getConnectionFromRobot, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.selector';
 import { startListenerRobot, startListenerRobotByProperty, stopListenerRobot, stopListenerRobotByProperty } from 'src/app/core/store/actions/Robot.Action';
 
 dataInit(Highcharts);
@@ -56,18 +56,18 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
      
         this.getConnectionFromRobotSub = this.storeRobot.select(getConnectionFromRobot).pipe().subscribe(item => {
-            console.log("getConnectionFromRobot");
+
         });
         this.getModeFromRobotSub = this.storeRobot.select(getModeFromRobot).pipe().subscribe(item => {
-            console.log("getModeFromRobot");
         });
         this.getStatusRobotFromRobotSub = this.storeRobot.select(getStatusRobotFromRobot).pipe().subscribe(value => {
             console.log("getStatusRobotFromRobot");
+            console.log(value);
             const numCateegory = (value == StatusRobot.RUNNING ? 1 : (value == StatusRobot.WAITING ? 2 : 3));
             this.chart.series[2].setData([numCateegory]);
         });
         this.getOperationStatusFromRobotSub = this.storeRobot.select(getOperationStatusFromRobot).pipe().subscribe(item => {
-            console.log("getOperationStatusFromRobot");
+
         });
         this.getLevelBatteryFromRobotSub = this.storeRobot.select(getLevelBatteryFromRobot).pipe().subscribe(value => {
             this.chart.series[1].setData([parseFloat(value.toFixed(1))]);
@@ -83,11 +83,11 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
     }
     ngAfterViewInit() {
-        this.storeRobot.dispatch(startListenerRobot({ subscribe: this.subTopicRobot }));
+       // this.storeRobot.dispatch(startListenerRobot({ subscribe: this.subTopicRobot }));
         this.storeRobot.dispatch(startListenerRobotByProperty({ subscribe: this.subTopicRobotByProperty }));
     }
     ngOnDestroy() {
-        this.storeRobot.dispatch(stopListenerRobot());
+       // this.storeRobot.dispatch(stopListenerRobot());
         this.storeRobot.dispatch(stopListenerRobotByProperty());
         this.chart.destroy();
         if (this.getConnectionFromRobotSub) {this.getConnectionFromRobotSub.unsubscribe();}

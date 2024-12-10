@@ -15,15 +15,16 @@ export class GlobalButtonControlComponent {
 
   
   onClickStop(): void {
-    const publish: Publish = { topic: "topic/control/robot/all/OPERATION_STATUS/PAUSE", qos: 0, payload: "" };
+    const publish: Publish = { topic: "topic/control/driveless/robot/all/OPERATION_STATUS", qos: 0, payload: JSON.stringify({value:"PAUSE"}) };
     this.mqttClientService.publish(publish);
   }
   onClickStart(): void {
-    const publish: Publish = { topic: "topic/control/robot/all/OPERATION_STATUS/NORMAL", qos: 0, payload: "" };
+    const publish: Publish = { topic: "topic/control/driveless/robot/all/OPERATION_STATUS", qos: 0, payload: JSON.stringify({value:"NORMAL"}) };
     this.mqttClientService.publish(publish);
   }
   onClickTrunOff(): void {
-
+    const publish: Publish = { topic: "topic/control/robot/all/property/STATUS", qos: 0, payload: JSON.stringify({value:"INACTIVE"}) };
+    this.mqttClientService.publish(publish);
   }
 
 }

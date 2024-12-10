@@ -1,0 +1,13 @@
+
+c
+java:S1192I"GDefine a constant instead of duplicating this literal "robot-" 4 times.(óúÚz8ˆÇ÷ø¡2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¯ä³øÿÿÿÿ8ŠÇ÷ø¡2
+X	java:S125,"<This block of commented-out lines of code should be removed.(Úñ¶œ8›Ç÷ø¡2
+K
+java:S14814".Remove this unused "firstPart" local variable.(Ï‚™¸8œÇ÷ø¡2
+]
+java:S11441";Remove this unused private "deleteAndRandomAllTags" method.(—ãîþúÿÿÿÿ8 Ç÷ø¡2
+^
+java:S1144D"<Remove this unused private "deleteAndRandomAllRobot" method.(À™¼õþÿÿÿÿ8 Ç÷ø¡2
+c
+java:S1144^"ARemove this unused private "deleteAndRandomAllWorstation" method.(ìŽ´¢üÿÿÿÿ8 Ç÷ø¡2

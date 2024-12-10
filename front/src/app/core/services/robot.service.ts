@@ -19,25 +19,25 @@ export class RobotService extends Service {
   constructor(http: HttpClient, router: Router, activeRoute: ActivatedRoute) {   super(http, router, activeRoute);}
 
   getAll(): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot`,
+    return this.http.get(`${this.url}/trackbot-service/robot`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
   getAllRobotConfig(): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot-setting`,
+    return this.http.get(`${this.url}/trackbot-service/robot-setting`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
   getById(id:string): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot/${id}`,
+    return this.http.get(`${this.url}/trackbot-service/robot/${id}`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
   getByName(name:string): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/robot/name/${name}`,
+    return this.http.get(`${this.url}/trackbot-service/robot/name/${name}`,
       { observe: 'response', 
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
@@ -58,7 +58,7 @@ export class RobotService extends Service {
         }
       });
     }
-    return this.http.get(`${this.url}/robot/data-chart`,
+    return this.http.get(`${this.url}/trackbot-service/robot/data-chart`,
       { observe: 'response', params: params,
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
@@ -81,35 +81,35 @@ export class RobotService extends Service {
         }
       });
     }
-    return this.http.get(`${this.url}/robot/databand`,
+    return this.http.get(`${this.url}/trackbot-service/robot/databand`,
       { observe: 'response', params: params,
       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token })
      })
   }
  insert(r: RobotDto): Observable<HttpResponse<any>> {
-    return this.http.post(`${this.url}/robot`, r,
+    return this.http.post(`${this.url}/trackbot-service/robot`, r,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json',
-        //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+      'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     }) })
   }
   update(id: String, r: RobotDto): Observable<HttpResponse<any>> {
-    return this.http.put(`${this.url}/robot/${id}`, r,
+    return this.http.put(`${this.url}/trackbot-service/robot/${id}`, r,
       { observe: 'response',
        headers: new HttpHeaders({'Content-Type': 'application/json',
-       // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+       'Authorization': "Bearer " + this.getAuthenticationRequest().token 
       }) })
   }
   updateRobotConfig(r: RobotSettingDto): Observable<HttpResponse<any>> {
-    return this.http.put(`${this.url}/robot-setting`, r,
+    return this.http.put(`${this.url}/trackbot-service/robot-setting`, r,
       { observe: 'response',
        headers: new HttpHeaders({'Content-Type': 'application/json',
-       // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+       'Authorization': "Bearer " + this.getAuthenticationRequest().token 
       }) })
   }
   delete(id: any): Observable<HttpResponse<any>> {
-    return this.http.delete(`${this.url}/robot/${id}`,
+    return this.http.delete(`${this.url}/trackbot-service/robot/${id}`,
       { observe: 'response',
-       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
+       headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
       })
   }
 

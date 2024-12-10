@@ -149,7 +149,7 @@ export class DetailsRobotComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     });
-    this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!; });
+    this.getRobotSub = this.storeRobot.select(getRobot).subscribe(item => { this.robot = item!;});
   }
 
 

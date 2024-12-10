@@ -1,0 +1,7 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÎÖ‡éüÿÿÿÿ
+œ
+java:S1130"…Remove the declaration of thrown exception 'org.eclipse.paho.client.mqttv3.MqttException', as it cannot be thrown from method's body.(³ğÄ
+E	java:S106"+Replace this use of System.out by a logger.(†·Ï±ûÿÿÿÿ
+G	java:S106"+Replace this use of System.out by a logger.(Üç¡8Ğ»Ù†¡2
+L	java:S106 "+Replace this use of System.out by a logger.(óîŸ úÿÿÿÿ8¡‘ˆÅ¦2

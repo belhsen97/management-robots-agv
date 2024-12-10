@@ -1,15 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬ôƒ™
-A
-java:S3599",Use another way to initialize this instance.(ÃÄÐ"
-n
-java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÃÄÐ"
-G
-java:S3599",Use another way to initialize this instance.(Ø•ÔÐùÿÿÿÿ
-t
-java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(Ø•ÔÐùÿÿÿÿ
-V	java:S125"<This block of commented-out lines of code should be removed.(¼è÷ïøÿÿÿÿ
-Z
-java:S1128"?Remove this unused import 'com.enova.web.api.Enums.Constraint'.(Öû£öþÿÿÿÿ
-\
-java:S1128"ARemove this unused import 'com.enova.web.api.Enums.TypeProperty'.(©ßµ˜úÿÿÿÿ

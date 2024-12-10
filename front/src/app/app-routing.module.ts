@@ -21,16 +21,13 @@ import { StockChartComponent } from './components/dashboard/details/stock-chart/
 import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
 import { FieldDashboardComponent } from './components/dashboard/field-dashboard/field-dashboard.component';
 import { ListNotificationsComponent } from './components/notification/list-notifications/list-notifications.component';
+import { ActivateRouteService } from './core/services/activate-route.service';
 
 const routes: Routes = [
   {
-    path: 'statistic',
+    path: 'statistic',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
-    children: [
-      {
-        path: 'tracing',
-        component: TracingComponent
-      },
+    children: [ 
       {
         path: 'charts',
         component: ChartsRobotsStatisticComponent
@@ -38,7 +35,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'dashboard',
+    path: 'dashboard',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {
@@ -56,7 +53,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'workstation',
+    path: 'workstation',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {
@@ -75,7 +72,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'user',
+    path: 'user',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {
@@ -85,11 +82,15 @@ const routes: Routes = [
       {
         path: 'edit',
         component: EditUserComponent
+      },
+      {
+        path: 'tracing',
+        component: TracingComponent
       }
     ]
   },
   {
-    path: 'notifications',
+    path: 'notifications' , canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {
@@ -119,7 +120,7 @@ const routes: Routes = [
     component: SuccessSignUpComponent
   },
   {
-    path: 'robot-avg',
+    path: 'robot-avg', canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {
@@ -133,21 +134,17 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'global',
+    path: 'global',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {
         path: 'setting',
         component: GlobalSettingComponent
-      },
-      // {
-      //   path: 'notification',
-      //   component: NotificationComponent
-      // }
+      }
     ]
   },
   {
-    path: 'mail',
+    path: 'mail',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
     children: [
       {

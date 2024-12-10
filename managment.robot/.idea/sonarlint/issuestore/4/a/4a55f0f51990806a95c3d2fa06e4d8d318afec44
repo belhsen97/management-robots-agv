@@ -1,0 +1,9 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98°‰¨•»2
+i
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ô¨ùþÿÿÿÿ8»‰¨•»2
+]	java:S125&"<This block of commented-out lines of code should be removed.(ŠÝ‹üÿÿÿÿ8½‰¨•»2
+b
+java:S1854\"@Remove this useless assignment to local variable "notification".(”º†•ýÿÿÿÿ8Á‰¨•»2
+S
+java:S1481\"1Remove this unused "notification" local variable.(”º†•ýÿÿÿÿ8Â‰¨•»2

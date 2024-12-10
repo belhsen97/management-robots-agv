@@ -17,35 +17,35 @@ export class WorkstationService extends Service {
 
 
   getAll(): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/workstation`,
+    return this.http.get(`${this.url}/trackbot-service/workstation`,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json',
-      //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+      'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     })
      })
   }
   getById(id: any): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/workstation/${id}`,
+    return this.http.get(`${this.url}/trackbot-service/workstation/${id}`,
       { observe: 'response', headers: new HttpHeaders({  'Content-Type': 'application/json',
-        //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+        'Authorization': "Bearer " + this.getAuthenticationRequest().token 
       }) })
   }
   insert(Wd: WorkstationDto): Observable<HttpResponse<any>> {
-    return this.http.post(`${this.url}/workstation`, Wd,
+    return this.http.post(`${this.url}/trackbot-service/workstation`, Wd,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json',
-        //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+        'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     }) })
   }
   update(id: string, Wd: WorkstationDto): Observable<HttpResponse<any>> {
-    return this.http.put(`${this.url}/workstation/${id}`, Wd,
+    return this.http.put(`${this.url}/trackbot-service/workstation/${id}`, Wd,
       { observe: 'response',
        headers: new HttpHeaders({'Content-Type': 'application/json',
-       // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+       'Authorization': "Bearer " + this.getAuthenticationRequest().token 
       }) })
   }
   delete(id: any): Observable<HttpResponse<any>> {
-    return this.http.delete(`${this.url}/workstation/${id}`,
+    return this.http.delete(`${this.url}/trackbot-service/workstation/${id}`,
       { observe: 'response',
-       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
+       headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
       })
   }
   randomDataWorkstations(): void {

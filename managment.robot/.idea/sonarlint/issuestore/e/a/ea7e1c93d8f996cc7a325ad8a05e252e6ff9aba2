@@ -1,0 +1,13 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98¯õ··§2
+i
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îË­Üıÿÿÿÿ8½õ··§2
+p
+java:S1602"SRemove useless curly braces around statement and then remove useless return keyword(·Šàë8Àõ··§2
+X	java:S125("<This block of commented-out lines of code should be removed.(ò™á8Äõ··§2
+p
+java:S16022"SRemove useless curly braces around statement and then remove useless return keyword(·Šàë8Æõ··§2
+p
+java:S1602C"SRemove useless curly braces around statement and then remove useless return keyword(·Šàë8Èõ··§2
+a
+java:S1128"DRemove this unused import 'tn.enova.Models.Commons.RobotSettingDto'.(º‚„š8Òôâ·§2

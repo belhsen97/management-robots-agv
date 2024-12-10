@@ -1,0 +1,12 @@
+
+a
+java:S1192""FDefine a constant instead of duplicating this literal "UTF-8" 4 times.(Ì£¦¶ýÿÿÿÿ
+f	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂËø€
+f	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Š‚è
+f	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„æì£
+f	java:S1172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—×ß¤
+k	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥®ˆÆþÿÿÿÿ
+f	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“›‚Í
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ9
+]
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û›×¶

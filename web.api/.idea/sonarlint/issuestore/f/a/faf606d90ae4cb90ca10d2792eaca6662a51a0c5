@@ -1,10 +1,0 @@
-
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾ž±µÿÿÿÿÿ8ˆ‰º“þ1
-d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óìõ•8ŸŠº“þ1
-X	java:S125_"<This block of commented-out lines of code should be removed.(ÛûÒí8¬Šº“þ1
-X	java:S125g"<This block of commented-out lines of code should be removed.(êûí¿8¯Šº“þ1
-]	java:S125o"<This block of commented-out lines of code should be removed.(­Óüÿÿÿÿ8¯Šº“þ1
-T
-java:S3252"6Use static access with "javax.mail.Part" for "INLINE".(à¼Æå8µŠº“þ1
-^	java:S125²"<This block of commented-out lines of code should be removed.(ôÕüýÿÿÿÿ8·Šº“þ1

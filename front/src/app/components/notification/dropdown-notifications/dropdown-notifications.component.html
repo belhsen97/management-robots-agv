@@ -8,7 +8,7 @@
     <div class="notifier green cursor-pointer"
      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="las la-bell dropdown-toggle"></i>  
-        <div class="badge">10</div>
+        <div class="badge"  [ngStyle]="{'background': badge.color}">{{badge.count}}</div>
     </div>
 
 

@@ -1,14 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8ÔýÆ÷ó1
-j
-java:S2259;"MA "NullPointerException" could be thrown; "robotProperties" is nullable here.(ÒÔ±Ä8Ì»ò¸‰2
-W
-java:S1118":Add a private constructor to hide the implicit public one.(®â¤Ð8è€Ç÷ó1
-X	java:S125"<This block of commented-out lines of code should be removed.(ÙÿÎ¦8«ùµ‰2
-X	java:S125l"<This block of commented-out lines of code should be removed.(üÿ„º8 Ý×÷ó1
-f
-java:S1128"IRemove this unused import 'com.enova.web.api.Models.Dtos.WorkstationDto'.(úñ±Ð8áÆ«¹‰2
-k
-java:S1128"IRemove this unused import 'com.enova.web.api.Models.Entitys.Workstation'.(Íé†ûÿÿÿÿ8áÆ«¹‰2
-V
-java:S1144_"4Remove this unused private "parseConnection" method.(Ïæßëúÿÿÿÿ8 Ý×÷ó1

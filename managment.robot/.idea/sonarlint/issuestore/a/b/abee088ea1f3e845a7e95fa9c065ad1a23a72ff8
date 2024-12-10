@@ -1,0 +1,30 @@
+
+f
+java:S1192"IDefine a constant instead of duplicating this literal "username" 4 times.(º²¤8šÈ€É¤2
+
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(±ù„«ûÿÿÿÿ8Â ÿÈ¤2
+
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(§¤Á§şÿÿÿÿ8ÑŒ€É¤2
+
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ø­Ñÿÿÿÿÿ8ÑŒ€É¤2
+‰
+java:S1319""mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(‡ÇÅ8ÑŒ€É¤2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8±²ıÈ¤2
+I
+java:S3599",Use another way to initialize this instance.(º²¤8·²ıÈ¤2
+v
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(º²¤8·²ıÈ¤2
+I
+java:S3599",Use another way to initialize this instance.(º²¤8¯€É¤2
+v
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(º²¤8Ÿ¯€É¤2
+I
+java:S3599",Use another way to initialize this instance.(º²¤8¤È€É¤2
+v
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(º²¤8¤È€É¤2
+I
+java:S3599#",Use another way to initialize this instance.(º²¤8¾ä€É¤2
+v
+java:S1171#"YMove the contents of this initializer to a standard constructor or to field initializers.(º²¤8¾ä€É¤2
+L
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8¾ä€É¤2

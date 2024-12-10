@@ -5,7 +5,7 @@ import { Role } from "./Role.enum"
 export interface UserDto {
     no:number
     id:string,
-    createdAt:Date,
+    createdAt:Number,
     username:string,
     password:string,
     code:string,

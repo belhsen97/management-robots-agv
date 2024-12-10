@@ -1,0 +1,9 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÎÖ‡éüÿÿÿÿ8ä®ğÅ¦2
+L	java:S1069"+Replace this use of System.err by a logger.(³Õßëüÿÿÿÿ8€¯ğÅ¦2
+k
+java:S1128"IRemove this unused import 'org.eclipse.paho.client.mqttv3.MqttException'.(ì¬…úÿÿÿÿ8ƒ¯ğÅ¦2
+c
+java:S1128	"FRemove this unused import 'org.springframework.core.annotation.Order'.(Ö¨æ8„¯ğÅ¦2
+X
+java:S1128";Remove this unused import 'javax.annotation.PostConstruct'.(›ÅÁ8„¯ğÅ¦2

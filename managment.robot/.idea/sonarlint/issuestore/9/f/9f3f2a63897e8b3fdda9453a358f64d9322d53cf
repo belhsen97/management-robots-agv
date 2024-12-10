@@ -1,0 +1,14 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“·‘98µÔﬁ«∫2
+c
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä€ŒB8∆Ôﬁ«∫2
+X	java:S125*"<This block of commented-out lines of code should be removed.(Õ∂∆´8»Ôﬁ«∫2
+]	java:S125:"<This block of commented-out lines of code should be removed.(˚ﬂ•À˝ˇˇˇˇ8 Ôﬁ«∫2
+E
+java:S1125>"(Remove the unnecessary boolean literals.(Ëı¨ó8 Ôﬁ«∫2
+]	java:S125I"<This block of commented-out lines of code should be removed.(≠º•√˝ˇˇˇˇ8ÃÔﬁ«∫2
+E
+java:S1125Y"(Remove the unnecessary boolean literals.(Ëı¨ó8ŒÔﬁ«∫2
+]	java:S125d"<This block of commented-out lines of code should be removed.(≠º•√˝ˇˇˇˇ8œÔﬁ«∫2
+Y	java:S125É"<This block of commented-out lines of code should be removed.(≈•√Ô8”Ôﬁ«∫2
+^	java:S125ú"<This block of commented-out lines of code should be removed.(˚ﬂ•À˝ˇˇˇˇ8◊Ôﬁ«∫2

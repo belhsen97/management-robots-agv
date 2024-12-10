@@ -11,10 +11,7 @@ import { MessageBoxConfirmationComponent } from '../../shared/message-box-confir
 import { MatDialog } from '@angular/material/dialog';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
 import { UserState, userState } from 'src/app/core/store/states/User.state';
-import { globalState } from 'src/app/core/store/states/Global.state';
-
-
-
+import { GlobalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-edit-user',
@@ -23,14 +20,14 @@ import { globalState } from 'src/app/core/store/states/Global.state';
 })
 export class EditUserComponent implements OnInit {
   userState !: UserState;
-  constructor(public userService : UserService  , private store: Store , public dialog: MatDialog){this.userState = userState;}
-   ngOnInit(): void { 
-    }
+  constructor(public userService: UserService, private storeGlobal: Store<GlobalState>, public dialog: MatDialog) { this.userState = userState; }
+  ngOnInit(): void {
+  }
 
 
-   //Msg box
-   openDialogConfirmation(title:string ,message:string, enterAnimationDuration: string, 
-    exitAnimationDuration: string ,  callback: () => void): void {
+  //Msg box
+  openDialogConfirmation(title: string, message: string, enterAnimationDuration: string,
+    exitAnimationDuration: string, callback: () => void): void {
     const dialogRef = this.dialog.open(MessageBoxConfirmationComponent, {
       width: '400px',
       // height: '400px',
@@ -41,128 +38,97 @@ export class EditUserComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        callback();  
-      } 
-    }); 
+        callback();
+      }
+    });
   }
- 
 
 
 
 
-//Personal Information  upload image profile
-  stateMsgBoxUploadImg : boolean = false;
-  onClickOnUploadPersonalInformation():void { 
+
+  //Personal Information  upload image profile
+  stateMsgBoxUploadImg: boolean = false;
+  onClickOnUploadPersonalInformation(): void {
     this.stateMsgBoxUploadImg = true;
   }
-  onYesNoEventUploadImgPersonalInformation($event:any):void {this.stateMsgBoxUploadImg = $event ;} 
-uploadImageProfile($event:File):void {
-  this.userService.updatePhotoProfile(  this.userState.userDto.username , $event ).subscribe(
-    (response) => {
-      const photo_Profile : AttachementDto = response.body;
-      this.userState.userDto.photo =  photo_Profile;
-      this.userService.setUserDto(this.userState.userDto);
-     }
-    ,(error) => { 
-      this.userService.msgResponseStatus  =  
-      { title : "Error", datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message};
-      this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
-    }) ;
-}
+  onYesNoEventUploadImgPersonalInformation($event: any): void { this.stateMsgBoxUploadImg = $event; }
+  uploadImageProfile($event: File): void {
+    this.userService.updatePhotoProfile(this.userState.userDto!.username, $event).subscribe(
+      (response) => {
+        const photo_Profile: AttachementDto = response.body;
+        this.userState.userDto!.photo = photo_Profile;
+        //this.userService.setUserDto(this.userState.userDto);
+      });
+  }
 
 
-//Personal Information  upload role
-stateMsgBoxUploadRolePersonalInformation : boolean = false;
-onClickOnUploadRolePersonalInformation():void {
+  //Personal Information  upload role
+  stateMsgBoxUploadRolePersonalInformation: boolean = false;
+  onClickOnUploadRolePersonalInformation(): void {
     this.stateMsgBoxUploadRolePersonalInformation = true;
 
-}
-onYesNoEventUploadRolePersonalInformation($event:any):void {this.stateMsgBoxUploadRolePersonalInformation = $event ;} 
-updateRoleProfile($event:Role):void {
-  console.log($event);
-   this.userService.updateRoleWithPermission(  this.userState.userDto.username ,  this.userState.userDto.role , $event ).subscribe(
-    (response) => {
-      const msg : MsgResponseStatus = response.body;
-      this.userService.msgResponseStatus =  
-      { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-
-     }
-    ,(error) => {
-      this.userService.msgResponseStatus =  
-      { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
-    }) ; 
-}
-
-
-
-
-
-//Personal Information
-onCheckRadioGenderOption(gender:Gender):void {this.userState.userDto.gender = gender ;}
-onClickOnSubmitPersonalInformation(form: NgForm):void { 
-   if(  !form.invalid ){
-    this.openDialogConfirmation('Confirmation', '  Would you want to change you Personal Information ?','300ms', '500ms',
-    () => { 
-
-      this.userService.update( this.userState.userDto .id,this.userState.userDto) .subscribe(
-        (response) => {     
-          this.userState.userDto = response.body;
-          this.userService.setUserDto(this.userState.userDto);
-          this.userService.msgResponseStatus  =    { title : "Success",   datestamp: new Date() ,status : ReponseStatus.SUCCESSFUL , message : "updated !"}
-          this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
-        }
-        ,(error) => {
-          this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-          this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
-        }) ;
-
-    });
-   }  
   }
- 
-
-
-
-
-
-//Change Password
-isNotSamePassword : boolean = false;
-public currentPassword! :string ;
-public newPassword! : string;
-public valodatePassword! : string;
-onClickSubmitUpdatePassword(form: NgForm):void {
-  if(  !form.invalid ){
-    this.openDialogConfirmation('Confirmation', 'Do you want to change you Password ?','300ms', '500ms',
-    () => { 
-
-    this.userService.updatePassword( this.userState.userDto.username,this.currentPassword,this.newPassword) .subscribe(
+  onYesNoEventUploadRolePersonalInformation($event: any): void { this.stateMsgBoxUploadRolePersonalInformation = $event; }
+  updateRoleProfile($event: Role): void {
+    console.log($event);
+    this.userService.updateRoleWithPermission(this.userState.userDto!.username, this.userState.userDto!.role, $event).subscribe(
       (response) => {
-        this.userService.msgResponseStatus  = response.body;
-      }
-      ,(error) => {
-        this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-          this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
-      }) ;
+        const msg: MsgResponseStatus = response.body;
+        this.userService.msgResponseStatus =
+          { title: msg.title, datestamp: new Date(), status: msg.status, message: msg.message };
 
-    });
-
-
-
-   }  
-}
-
-validatorPassword():void{
-  if (this.newPassword != this.valodatePassword){this.isNotSamePassword = true;}else {this.isNotSamePassword = false;}
-}
+      });
+  }
 
 
 
 
 
+  //Personal Information
+  onCheckRadioGenderOption(gender: Gender): void { this.userState.userDto!.gender = gender; }
+  onClickOnSubmitPersonalInformation(form: NgForm): void {
+    if (!form.invalid) {
+      this.openDialogConfirmation('Confirmation', '  Would you want to change you Personal Information ?', '300ms', '500ms',
+        () => {
+
+          this.userService.update(this.userState.userDto!.id, this.userState.userDto!).subscribe(
+            (response) => {
+              this.userState.userDto = response.body;
+              //this.userService.setUserDto(this.userState.userDto);
+              this.userService.msgResponseStatus = { title: "Success", datestamp: new Date(), status: ReponseStatus.SUCCESSFUL, message: "updated !" }
+              this.storeGlobal.dispatch(ShowAlert(this.userService.msgResponseStatus));
+            });
+        });
+    }
+  }
 
 
 
 
 
+
+  //Change Password
+  isNotSamePassword: boolean = false;
+  public currentPassword!: string;
+  public newPassword!: string;
+  public valodatePassword!: string;
+  onClickSubmitUpdatePassword(form: NgForm): void {
+    if (!form.invalid) {
+      this.openDialogConfirmation('Confirmation', 'Do you want to change you Password ?', '300ms', '500ms',
+        () => {
+
+          this.userService.updatePassword(this.userState.userDto!.username, this.currentPassword, this.newPassword).subscribe(
+            (response) => {
+              this.userService.msgResponseStatus = response.body;
+            });
+
+        });
+    }
+  }
+
+  validatorPassword(): void {
+    if (this.newPassword != this.valodatePassword) { this.isNotSamePassword = true; } else { this.isNotSamePassword = false; }
+  }
 
 }

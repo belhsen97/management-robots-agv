@@ -1,4 +1,0 @@
-2024-08-30 00:21:23.509  INFO 8804 --- [http-nio-0.0.0.0-8087-exec-1] .[.[.[/management-robot-avg/notfication] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-08-30 00:21:23.522  INFO 8804 --- [http-nio-0.0.0.0-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-08-30 00:21:23.553  INFO 8804 --- [http-nio-0.0.0.0-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 31 ms
-2024-08-30 17:54:50.141 ERROR 8804 --- [MQTT Ping: notifaction-service-17-17-38662] o.e.p.c.mqttv3.internal.ClientState      : notifaction-service-17-17-38662: Timed out as no write activity, keepAlive=60,000,000,000 lastOutboundActivity=84,389,934,329,400 lastInboundActivity=84,389,936,022,100 time=138,202,304,012,700 lastPing=84,389,934,332,000

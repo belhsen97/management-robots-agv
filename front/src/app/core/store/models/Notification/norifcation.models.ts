@@ -7,3 +7,7 @@ export interface Notification {
     level:LevelType;//INFO, SUCCESS, WARNING, ERROR
     message: String;
 }
+export interface Badge {
+    color:String;
+    count: number;
+}

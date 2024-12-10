@@ -1,0 +1,11 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ž©ˆøüÿÿÿÿ
+b
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æŸ˜Öýÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ž×ªõÿÿÿÿÿ
+^
+java:S1612!"HReplace this lambda with method reference 'WorkstationMapper::mapToDto'.(áñ«„
+h	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×æÖèúÿÿÿÿ
+h	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«ÅšŸøÿÿÿÿ
+h	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÁáúþÿÿÿÿ
+c	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó

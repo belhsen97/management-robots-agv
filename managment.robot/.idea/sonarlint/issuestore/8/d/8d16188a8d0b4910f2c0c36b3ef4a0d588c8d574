@@ -1,0 +1,19 @@
+
+h
+java:S1192%"FDefine a constant instead of duplicating this literal "value" 7 times.(÷ø¨İûÿÿÿÿ8èë±ò¹2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8—ø¶ñ¹2
+N
+java:S3599%",Use another way to initialize this instance.(÷ø¨İûÿÿÿÿ8¾øÀò¹2
+{
+java:S1171%"YMove the contents of this initializer to a standard constructor or to field initializers.(÷ø¨İûÿÿÿÿ8¾øÀò¹2
+`
+java:S1854|">Remove this useless assignment to local variable "messageMap".(†ñïúÿÿÿÿ8³ø¶ñ¹2
+Q
+java:S1481|"/Remove this unused "messageMap" local variable.(†ñïúÿÿÿÿ8´ø¶ñ¹2
+H
+java:S1128"+Remove this unused import 'lombok.Builder'.(§’Ğß8û«¯·º2
+h
+java:S1128
+"KRemove this unused import 'tn.enova.Models.Responses.NotificationResponse'.(ğÛ‚Ì8û«¯·º2
+d
+java:S1128"BRemove this unused import 'tn.enova.Services.NotificationService'.(Â¿•ôùÿÿÿÿ8û«¯·º2

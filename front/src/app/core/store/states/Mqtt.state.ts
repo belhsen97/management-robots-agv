@@ -19,7 +19,7 @@ const listSubscribes = {
     dataRobots : { topic: 'topic/data/robot/+', qos: 0 },
     dataPropertyRobot : { topic: 'topic/data/robot/+/property/+', qos: 0 },
     clientsStatus : { topic: '$SYS/brokers/+/clients/#', qos: 0 },
-    notification : { topic: 'topic/notification/service/notification', qos: 0 }
+    notification : { topic: 'topic/data/service/notification/+/name/+', qos: 0 }
 };
 const listPublishs = {
     controleRobot : { topic: 'topic/control/robot/1', qos: 0, payload: '{ "msg": "Hello, I am browser." }' }

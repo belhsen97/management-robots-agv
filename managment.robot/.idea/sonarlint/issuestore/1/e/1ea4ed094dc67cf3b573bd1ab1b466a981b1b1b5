@@ -1,0 +1,12 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“·‘98Ã‘Î¶¢2
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ω∏áÈ8Ÿ‘Î¶¢2
+X	java:S125P"<This block of commented-out lines of code should be removed.(µ¥í…8‡‘Î¶¢2
+X	java:S125W"<This block of commented-out lines of code should be removed.(ˇÉû„8‡‘Î¶¢2
+W
+java:S1128"5Remove this unused import 'tn.enova.Enums.LevelType'.(®—Æö˘ˇˇˇˇ8ë∏°Ï∫2
+h
+java:S1128"KRemove this unused import 'tn.enova.Models.Responses.NotificationResponse'.(€ÇÃ8ë∏°Ï∫2
+`
+java:S1128"CRemove this unused import 'java.util.concurrent.CompletableFuture'.(Ùﬁ‰¥8ë∏°Ï∫2

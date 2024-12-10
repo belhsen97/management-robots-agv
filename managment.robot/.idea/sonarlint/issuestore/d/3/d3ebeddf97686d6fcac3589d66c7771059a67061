@@ -1,0 +1,11 @@
+
+Y
+java:S4973]"<Strings and Boxed types should be compared using "equals()".(Û–‚³8ø‘±ü¡2
+^
+java:S4973u"<Strings and Boxed types should be compared using "equals()".(æ ï¼şÿÿÿÿ8ø‘±ü¡2
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98ù‘±ü¡2
+i
+java:S6830""GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8˜’±ü¡2
+D
+java:S1125y"'Remove the unnecessary boolean literal.(ÏØ‡¯8¡’±ü¡2
+Y	java:S125€"<This block of commented-out lines of code should be removed.(äÍÑ8¤’±ü¡2

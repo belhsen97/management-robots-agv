@@ -1,0 +1,17 @@
+
+g	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8øİ¶ëº2
+g	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ùİ¶ëº2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8úİ¶ëº2
+C
+java:S1452'"&Remove usage of generic wildcard type.(ƒÏ‡¥8ƒŞ¶ëº2
+L	java:S106*"+Replace this use of System.out by a logger.(Ùá¨·ùÿÿÿÿ8„Ş¶ëº2
+L	java:S106-"+Replace this use of System.out by a logger.(Êµçşÿÿÿÿ8…Ş¶ëº2
+f
+java:S2147:"DCombine this catch with the one at line 56, which has the same body.(¢­§Œÿÿÿÿÿ8…Ş¶ëº2
+G	java:S106A"+Replace this use of System.err by a logger.(Ş×ş8‡Ş¶ëº2
+j	java:S100L"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å¢ı8èæËëº2
+L	java:S106O"+Replace this use of System.out by a logger.(ÿ îşÿÿÿÿ8éæËëº2
+L	java:S106Q"+Replace this use of System.out by a logger.(§×İµúÿÿÿÿ8éæËëº2
+]	java:S125Z"<This block of commented-out lines of code should be removed.(œÑ×Œüÿÿÿÿ8êæËëº2
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8‘‡·ëº2

@@ -6,18 +6,17 @@ from effects import RobotEffect as robot_effect
 from effects import MqttEffect as mqtt_effect
 from effects import NotificationEffect as notification_effect
 from configurations import LoggingConfiguration as logging_config
+from enums import RobotEnum as robot_enum
 
 from datetime import datetime
 import argparse
 import time
-import sys
-from enums import NotificationEnum as notification_enum
-
 
 # robotService : robot_service.RobotService
 # clientMqttService : mqtt_service.MqttService
 
 def run():
+        exit_flag = False
         state.notification.subscribe("notification", notification_effect.on_send_notification)
         state.notification.subscribe("notification", notification_effect.on_save_log_notification)
 
@@ -38,6 +37,8 @@ def run():
         state.mqttState["service"].subscribe(state.mqttState["subscribe"]["control"],mqtt_effect.onSubscribeControlRobot)
         state.mqttState["service"].subscribe(state.mqttState["subscribe"]["controlAll"],mqtt_effect.onSubscribeControlAllRobot)
         state.mqttState["service"].subscribe(state.mqttState["subscribe"]["lastUpdate"],mqtt_effect.onSubscribeInitDataRobot)
+        
+        state.robotState["service"].getTargetSpeed( )
         state.robotState["service"].getRobotCodes()
         state.robotState["service"].getRobot( state.robotState['robot'].name )
 
@@ -45,14 +46,13 @@ def run():
         #        print (state.mqttState["publish"]["lastUpdate"]  )
         #        state.mqttState["service"].publish( state.mqttState["publish"]["lastUpdate"] ,"vide")
         #        time.sleep(1)
-        count = 0
-        while True:
-        #    if state.robotState['robot'].statusRobot  == "INACTIVE" :
-        #       sys.exit("Stopping the script")
-        #    state.robotState['robot'].createdAt =  datetime.now().isoformat()
-             #count+=1
+        while  not exit_flag:
+     
              #state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count))
+             #if state.robotState['robot'].operationStatus != robot_enum.Status.INACTIVE.name : 
+             #       exit_flag = True
              time.sleep(1)
+
        
 
 

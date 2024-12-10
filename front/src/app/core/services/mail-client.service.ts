@@ -25,7 +25,7 @@ export class MailClientService  extends Service {
 //     }) })
 //   }
 getAllAddressMail(): Observable<HttpResponse<any>> {
-  return this.http.get(`${this.url}/mail/all-address-mail`,
+  return this.http.get(`${this.url}/mail-service/mail/all-address-mail`,
     { observe: 'response', headers: new HttpHeaders(
       //{ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }
     ) })
@@ -45,7 +45,7 @@ sendMail(files: File[], msg: any): Observable<HttpResponse<any>> {
   });
 
  // return this.http.post(`${this.url}/mail`, formData, { headers });
- return this.http.post(`${this.url}/mail`, formData,
+ return this.http.post(`${this.url}/mail-service/mail`, formData,
  { observe: 'response', headers })
 }
 

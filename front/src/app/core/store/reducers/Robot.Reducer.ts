@@ -237,6 +237,7 @@ const _robotReducer = createReducer(robotState,
         if (parts.length !== 6) { return { ...state } }
         const propertyKey = parts[5];
         const index = state.listRobots.findIndex(robot => robot.name === parts[3]);
+        
         if (index === -1) { return { ...state } }
         // const updatedRobot = state.listRobots[index];
 

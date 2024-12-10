@@ -1,7 +1,0 @@
-
-h
-java:S1192:"KDefine a constant instead of duplicating this literal "TagService" 4 times.(ŸüÜÉ8¶ı¶‰2
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾±µÿÿÿÿÿ8¶ı¶‰2
-i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éâ†Òşÿÿÿÿ8¶ı¶‰2
-L	java:S106E"+Replace this use of System.out by a logger.(ÙÚşÍÿÿÿÿÿ8¤¶ı¶‰2

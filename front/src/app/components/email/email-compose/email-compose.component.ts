@@ -12,7 +12,6 @@ import { MailState, mailState } from 'src/app/core/store/states/Mail.state';
 import { Store } from '@ngrx/store';
 import { GlobalState } from 'src/app/core/store/states/Global.state';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
-import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { MsgResponseStatus } from 'src/app/core/store/models/Global/MsgResponseStatus.model';
 import { RecipientType } from 'src/app/core/store/models/mail/RecipientType.enum';
 import { TypeBody } from 'src/app/core/store/models/mail/TypeBody.enum';
@@ -50,12 +49,7 @@ export class EmailComposeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.mailService.getAllAddressMail().subscribe(
-      (response) => { mailState.listAddress = response.body; }
-      , (error) => {
-        this.storeGlobal.dispatch(ShowAlert(
-          { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        ));
-      });
+      (response) => { mailState.listAddress = response.body; });
 
 
 
@@ -114,11 +108,7 @@ export class EmailComposeComponent implements OnInit, AfterViewInit {
         const msg: MsgResponseStatus = response.body;
         this.storeGlobal.dispatch(ShowAlert(msg));
       }
-      , (error) => {
-        this.storeGlobal.dispatch(ShowAlert(
-          { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message }
-        ));
-      });
+      );
   }
   onSchedule(): void {
     const dialogRef = this.openDialogMessageBoxScheduled('Would you want to change you Personal Information ?', '300ms', '500ms');

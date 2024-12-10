@@ -1,0 +1,20 @@
+
+g	java:S1126"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8Ä«óóº2
+g	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8‹Àóóº2
+g	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8Ùëóóº2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¯ä³øÿÿÿÿ8ÎâÛ·§2
+]	java:S125 "<This block of commented-out lines of code should be removed.(şüÆÚşÿÿÿÿ8×âÛ·§2
+]	java:S125&"<This block of commented-out lines of code should be removed.(×£‚÷øÿÿÿÿ8×âÛ·§2
+I
+java:S16022",Remove useless curly braces around statement(ìı¹8ÚâÛ·§2
+X	java:S1255"<This block of commented-out lines of code should be removed.(èë«Â8¹‘÷óº2
+N
+java:S16029",Remove useless curly braces around statement(óòä˜ıÿÿÿÿ8Üä·§2
+X	java:S125<"<This block of commented-out lines of code should be removed.(­éîÂ8æÌ÷óº2
+N
+java:S1602@",Remove useless curly braces around statement(ÁïÉÇüÿÿÿÿ8áÛßñ¹2
+]	java:S125C"<This block of commented-out lines of code should be removed.(Áª²ùÿÿÿÿ8æÌ÷óº2
+G	java:S106I"+Replace this use of System.out by a logger.(Ë¾¶¤8éïÛñ¹2
+L	java:S106K"+Replace this use of System.err by a logger.(Ã—ßøÿÿÿÿ8éçØğ¹2
+U
+java:S1128"8Remove this unused import 'tn.enova.States.GlobalState'.(¼ßÊª8ãÛßñ¹2

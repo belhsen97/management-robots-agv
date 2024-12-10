@@ -33,6 +33,7 @@ const _GlobalReducer  = createReducer(globalState,
         }
     }),
     on(loadAllNotificationsSuccess, (state, action) => {
+
         return {
             ...state,
             listNotifications: action.listNotifications

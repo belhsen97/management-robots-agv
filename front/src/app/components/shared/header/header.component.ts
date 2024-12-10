@@ -30,8 +30,9 @@ export class HeaderComponent {
    onClickSignOut():void{
     this.userService.logout().subscribe(
       (response) => {
-        //userState.userDto = defaultUserDto;
-        this.userService.clearAll();  
+        this.userService.clearAuthenticationRequest();
+       this.userState.userDto = null ;
+       userState.userDto = null;
         this.userService.goToComponent('sign-in');}
       ,(error) => {
         this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}

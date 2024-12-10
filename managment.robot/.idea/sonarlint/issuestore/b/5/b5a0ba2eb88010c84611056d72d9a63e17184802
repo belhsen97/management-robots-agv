@@ -1,0 +1,9 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98Üƒòò¤2
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÄÄı8èƒòò¤2
+p
+java:S1602,"SRemove useless curly braces around statement and then remove useless return keyword(·Šàë8êƒòò¤2
+X	java:S1256"<This block of commented-out lines of code should be removed.(ò™á8ìƒòò¤2
+W
+java:S1128"5Remove this unused import 'tn.enova.Enums.LevelType'.(¨Ñ®šùÿÿÿÿ8Ğº¨Éº2

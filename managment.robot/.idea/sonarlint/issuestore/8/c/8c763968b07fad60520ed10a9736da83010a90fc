@@ -1,0 +1,5 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ºø±ö
+X	java:S125"<This block of commented-out lines of code should be removed.(¼¼Ë¤8ºæÙ”»2
+p
+java:S1128"NRemove this unused import 'org.springframework.data.mongodb.repository.Query'.(Ç§ò•øÿÿÿÿ8îç”»2

@@ -1,9 +1,0 @@
-
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é£˜¹8ÀäÁ¢å1
-d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šºªÖ8ÉäÁ¢å1
-i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘îŒ#8ÉäÁ¢å1
-d
-java:S1612"BReplace this lambda with method reference 'TraceMapper::mapToDto'.(Ž£ÅÊþÿÿÿÿ8ËäÁ¢å1
-j	java:S100""NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8ŠŸÚ³î1
-o	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦Ïíÿÿÿÿÿ8ŒŸÚ³î1

@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { WorkstationService } from 'src/app/core/services/workstation.service';
-import { TagService } from 'src/app/core/services/tag.service';
-import { RobotService } from 'src/app/core/services/robot.service';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { TagState, tagState } from 'src/app/core/store/states/Tag.state';
 import { WorkstationState, wsState } from 'src/app/core/store/states/Worstation.state';

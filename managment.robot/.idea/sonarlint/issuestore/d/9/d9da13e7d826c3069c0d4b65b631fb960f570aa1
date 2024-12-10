@@ -1,0 +1,17 @@
+
+`	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ9
+b
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŽÒ–½ùÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(ö¢úÐþÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(âÒ“¢
+]	java:S125$"<This block of commented-out lines of code should be removed.(Ê‚²¦ÿÿÿÿÿ8ÄñåÓ2
+L	java:S1060"+Replace this use of System.out by a logger.(ù‹Ñ–úÿÿÿÿ8ÅñåÓ2
+G	java:S1063"+Replace this use of System.out by a logger.(Éà±8ÅñåÓ2
+Q	java:S125<"<This block of commented-out lines of code should be removed.(Ïó’
+G	java:S106I"+Replace this use of System.out by a logger.(ÈñÓ‡8ÈñåÓ2
+F	java:S106L"+Replace this use of System.out by a logger.(šÇ,8ÈñåÓ2
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Qualifier'.(íàÄ®ýÿÿÿÿ8·Æ¿Ó2
+]
+java:S1128";Remove this unused import 'java.util.concurrent.Executors'.(äåÒÛÿÿÿÿÿ8·Æ¿Ó2

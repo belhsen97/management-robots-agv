@@ -19,29 +19,29 @@ export class TagService extends Service {
       this.randomDataTags();
     }
   getAll(): Observable<HttpResponse<any>> {
-    return this.http.get(`${this.url}/tag`,
+    return this.http.get(`${this.url}/trackbot-service/tag`,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json',
-      //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+      'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     })
      })
   }
   insert(t: TagDto): Observable<HttpResponse<any>> {
-    return this.http.post(`${this.url}/tag`, t,
+    return this.http.post(`${this.url}/trackbot-service/tag`, t,
       { observe: 'response', headers: new HttpHeaders({ 'Content-Type': 'application/json',
-        //'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+        'Authorization': "Bearer " + this.getAuthenticationRequest().token 
     }) })
   }
   update(id: string, t: TagDto): Observable<HttpResponse<any>> {
-    return this.http.put(`${this.url}/tag/${id}`, t,
+    return this.http.put(`${this.url}/trackbot-service/tag/${id}`, t,
       { observe: 'response',
        headers: new HttpHeaders({'Content-Type': 'application/json',
-       // 'Authorization': "Bearer " + this.getAuthenticationRequest().token 
+       'Authorization': "Bearer " + this.getAuthenticationRequest().token 
       }) })
   }
   delete(id: any): Observable<HttpResponse<any>> {
-    return this.http.delete(`${this.url}/tag/${id}`,
+    return this.http.delete(`${this.url}/trackbot-service/tag/${id}`,
       { observe: 'response',
-       //headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
+       headers: new HttpHeaders({ 'Authorization': "Bearer " + this.getAuthenticationRequest().token }) 
       })
   }
 

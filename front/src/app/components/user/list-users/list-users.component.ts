@@ -1,19 +1,17 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getrouterinfo } from 'src/app/core/store/selectors/Router.seletor';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator'; 
 import { MatSort } from '@angular/material/sort';
 import { getValueSearchInput } from 'src/app/core/store/selectors/Global.selector';
-import {   UserDto } from 'src/app/core/store/models/User/UserDto.model'; 
+import { UserDto } from 'src/app/core/store/models/User/UserDto.model'; 
 import { UserService } from 'src/app/core/services/user.service.ts.service';
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
-import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { MsgResponseStatus } from 'src/app/core/store/models/Global/MsgResponseStatus.model';
 import { UserState, userState } from 'src/app/core/store/states/User.state';
-import { globalState } from 'src/app/core/store/states/Global.state';
+import { GlobalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-list-users',
@@ -38,20 +36,19 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
 
   expandedElement !: UserDto | null;
   userState !: UserState;
-  constructor( private store: Store ,  public userService : UserService ) {this.userState = userState;}
+  constructor( private storeGlobal: Store<GlobalState> ,  public userService : UserService ) {this.userState = userState;}
 
 
   ngOnInit(): void {
 
 
 
-    // this.store.select(getrouterinfo).subscribe(item => {
+    // this.storeGlobal.select(getrouterinfo).subscribe(item => {
     //   console.log( item);
     // });
-    this.store.select(getValueSearchInput).subscribe(value => {
+    this.storeGlobal.select(getValueSearchInput).subscribe(value => {
       if (value === null || value === undefined || this.dataSource == undefined ){return ; }
       this.dataSource.filter = value;
-      console.log(  value );
     });
 
     this.dataSource = new MatTableDataSource<UserDto>(userState.ListUsers);
@@ -62,15 +59,9 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
         userState.ListUsers = response.body; 
         userState.ListUsers.forEach((user, index) => {
           user.no = 1+index;
-          user.createdAt = this.userService.toDate (user.createdAt.toString() );
           if ( user.photo == null )  { user.photo = userState.defaultPhotoUser;}
       });
         this.dataSource.data =  userState.ListUsers ;
-      }
-      ,(error) => {
-        this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-        this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
-        this.userService.goToComponent("/sign-in");
       }) ;
  
   }
@@ -86,17 +77,12 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
       (response) => {
         const msg : MsgResponseStatus = response.body;
         this.userService.msgResponseStatus  = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-        this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
+        this.storeGlobal.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
    
         const index = userState.ListUsers.findIndex(u => u.username === username);
         if (index !== -1) {  userState.ListUsers[index].enabled =  enable;  } 
         this.dataSource.data = userState.ListUsers;
 
-      }
-      ,(error) => {
-        this.userService.msgResponseStatus  =  
-        { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
-        this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
       }) ; 
   }
 
@@ -109,7 +95,7 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
       (response) => {
         const msg : MsgResponseStatus = response.body;
         this.userService.msgResponseStatus  = { title : msg.title, datestamp: new Date() ,status : msg.status , message : msg.message };
-        this.store.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
+        this.storeGlobal.dispatch( ShowAlert( this.userService.msgResponseStatus ) ); 
 
         console.log(typeof (event));
         console.log(typeof (selectedRole));
@@ -117,11 +103,6 @@ export class ListUsersComponent implements OnInit , AfterViewInit{
         if (index !== -1) {  userState.ListUsers[index].role =  event.value;  } 
         this.dataSource.data = userState.ListUsers;
 
-      }
-      ,(error) => {
-        this.userService.msgResponseStatus  =  
-        { title : "Error", datestamp: new Date(),status : ReponseStatus.ERROR , message : error.message};
-        this.store.dispatch( ShowAlert(this.userService.msgResponseStatus ) ); 
       }) ; 
   }
 

@@ -130,4 +130,10 @@ export class Service {
     
         return `${segment1}.${segment2}.${segment3}.${segment4}`;
       }
+
+
+
+
+
+    
 }

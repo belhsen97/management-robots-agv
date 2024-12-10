@@ -1,19 +1,0 @@
-
-~
-java:S11040"aMake staticLinkServiceUser a static final constant or non-public and provide accessors if needed.(õ¹›8 ƒ€ñ1
-y
-java:S11041"\Make host_ContextPath a static final constant or non-public and provide accessors if needed.(·Œé×8 ƒ€ñ1
-S
-java:S14441"6Make this "public static host_ContextPath" field final(·Œé×8 ƒ€ñ1
-h
-java:S2184"FCast one of the operands of this multiplication operation to a "long".(¨ùñ…ûÿÿÿÿ8 ƒ€ñ1
-u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œÎ±v8Ÿ ƒ€ñ1
-„	java:S116"cRename this field "file_forgotPassword_HTML" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯æÄüûÿÿÿÿ8¢ ƒ€ñ1
-|	java:S116"`Rename this field "file_ConfirmMail_HTML" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©†‚¯8¢ ƒ€ñ1
-~	java:S116"bRename this field "link_UpdateNewUser_HTML" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀèÚÛ8¢ ƒ€ñ1
-|	java:S116"`Rename this field "file_defaultUserPhoto" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ¿ãÕ8¢ ƒ€ñ1
-x
-java:S30081"[Rename this field "host_ContextPath" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·Œé×8¢ ƒ€ñ1
-]	java:S125"<This block of commented-out lines of code should be removed.(ƒÛâàúÿÿÿÿ8·Ş¨…2
-S
-java:S26966"6Make the enclosing method "static" or remove this set.(¢éÒ8¨ ƒ€ñ1

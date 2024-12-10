@@ -23,7 +23,7 @@ import { ListWorkstationsComponent } from './components/workstation/list-worksta
 import { EditUserComponent } from './components/user/edit-user/edit-user.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormForgotPasswordComponent } from './components/user/form-forgot-password/form-forgot-password.component';
 import { GlobalEffects } from './core/store/effects/Global.Effects';
 import { EffectsModule } from '@ngrx/effects';
@@ -37,7 +37,7 @@ import { TableDashboardComponent } from './components/dashboard/table-dashboard/
 import { PanelRobotComponent } from './components/shared/panel-robot/panel-robot.component';
 import { AddTagComponent } from './components/workstation/add-tag/add-tag.component';
 import { AddRobotComponent } from './components/robot/add-robot/add-robot.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
@@ -61,6 +61,8 @@ import { GlobalButtonControlComponent } from './components/shared/global-button-
 import { FieldDashboardComponent } from './components/dashboard/field-dashboard/field-dashboard.component';
 import { ListNotificationsComponent } from './components/notification/list-notifications/list-notifications.component';
 import { DropdownNotificationsComponent } from './components/notification/dropdown-notifications/dropdown-notifications.component';
+import { ErrorInterceptor } from './core/services/error-interceptor.service';
+import { ActivateRouteService } from './core/services/activate-route.service';
 
 //export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = environment.mqttClientConfig;
 @NgModule({
@@ -128,7 +130,10 @@ import { DropdownNotificationsComponent } from './components/notification/dropdo
     
    MqttModule.forRoot(environment.mqttClientConfig)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ActivateRouteService,DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

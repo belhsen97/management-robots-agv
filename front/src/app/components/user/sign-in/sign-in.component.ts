@@ -1,11 +1,12 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { ShowAlert } from 'src/app/core/store/actions/Global.Action';
-import { ReponseStatus } from 'src/app/core/store/models/Global/ReponseStatus.enum';
 import { UserService } from 'src/app/core/services/user.service.ts.service';
-import { globalState } from 'src/app/core/store/states/Global.state';
+import { GlobalState, globalState } from 'src/app/core/store/states/Global.state';
+import { AuthenticationResponse } from 'src/app/core/store/models/User/AuthenticationResponse.model';
+import { userState } from 'src/app/core/store/states/User.state';
+import { UserDto } from 'src/app/core/store/models/User/UserDto.model';
+import { loadAllNotifications } from 'src/app/core/store/actions/Global.Action';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +14,7 @@ import { globalState } from 'src/app/core/store/states/Global.state';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent {
-  constructor(public userService : UserService  , private store: Store){}
+  constructor(public userService : UserService,   private storeGlobal: Store<GlobalState> ){}
 
 
   signIn(form: NgForm):void {
@@ -22,29 +23,40 @@ export class SignInComponent {
         (response) => { 
           this.userService.authResponse = response.body; 
           
-          this.userService.msgResponseStatus   = {
+          globalState.msgResponseStatus = {
             title:this.userService.authResponse.title,
             datestamp:this.userService.authResponse.datestamp,
             status:this.userService.authResponse.status,
-            message:this.userService.authResponse.message}; 
-
-            if ( this.userService.msgResponseStatus .status ===  globalState.ReponseStatus.successful ) 
+            message:this.userService.authResponse.message};
+            if ( globalState.msgResponseStatus .status ===  globalState.ReponseStatus.successful ) 
             {
-              this.userService.saveLogin( this.userService.authResponse,this.userService.authRequest.username );
+              this.saveLogin( this.userService.authResponse,this.userService.authRequest.username );
             }
         }
-        ,
-        (error:HttpErrorResponse) => {
-          if (error.status === 403 ) { this.userService.msgResponseStatus  = error.error; }
-          else {
-            this.userService.msgResponseStatus  =    { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-          }
-          this.store.dispatch( ShowAlert(globalState.msgResponseStatus ) );  console.log(error.status) ;
-        }  
         );
      }
   }
 
+
+
+  saveLogin(authResponseDto: AuthenticationResponse, username: string): void {
+    this.userService.setToken(authResponseDto);
+    this.userService.getByUsername(username).subscribe(
+      (response) => {
+        userState.userDto = response.body as UserDto;
+        //this.userService.setUserDto(userState.userDto);
+        //this.userService.goToComponent('user/profile/'+this.userDto.username); // ??????????????????
+        this.storeGlobal.dispatch(loadAllNotifications());
+        this.userService.goToComponent('/dashboard/table'); // ??????????????????
+      }
+    );
+  }
+
+
+
+
+
+
+
    
 }
-

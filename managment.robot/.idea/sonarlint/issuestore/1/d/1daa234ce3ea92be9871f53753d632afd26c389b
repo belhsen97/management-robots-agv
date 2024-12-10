@@ -1,0 +1,295 @@
+
+t
+java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(Õ‚Î…ÿÿÿÿÿ
+p
+java:S2293¥"YReplace the type specification in this constructor call with the diamond operator ("<>").(Æùùò
+u
+java:S2293“"YReplace the type specification in this constructor call with the diamond operator ("<>").(äÙ­¡ùÿÿÿÿ
+u
+java:S2293¹"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÕÈ¯—şÿÿÿÿ
+u
+java:S2293¼"YReplace the type specification in this constructor call with the diamond operator ("<>").(×ÄşÅüÿÿÿÿ
+p
+java:S2293À"YReplace the type specification in this constructor call with the diamond operator ("<>").(ËÏæó
+u
+java:S2293Ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(³“àÂüÿÿÿÿ
+u
+java:S2293Û"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÃÆÑĞùÿÿÿÿ
+p
+java:S2293ß"YReplace the type specification in this constructor call with the diamond operator ("<>").(…ÍÎ
+u
+java:S2293ù"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÆÕ‰£øÿÿÿÿ
+u
+java:S2293ş"YReplace the type specification in this constructor call with the diamond operator ("<>").(Û£‘¢ıÿÿÿÿ
+u
+java:S2293„"YReplace the type specification in this constructor call with the diamond operator ("<>").(©¸åüÿÿÿÿ
+u
+java:S2293¡"YReplace the type specification in this constructor call with the diamond operator ("<>").(çôìşıÿÿÿÿ
+u
+java:S2293¦"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÒŒÕûÿÿÿÿ
+u
+java:S2293«"YReplace the type specification in this constructor call with the diamond operator ("<>").(şÈÆÆÿÿÿÿÿ
+u
+java:S2293Ê"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ê‰ú²ÿÿÿÿÿ
+p
+java:S2293Ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(øÙÙ£
+p
+java:S2293Õ"YReplace the type specification in this constructor call with the diamond operator ("<>").(—ì©Ó
+u
+java:S2293ò"YReplace the type specification in this constructor call with the diamond operator ("<>").(½öé…ıÿÿÿÿ
+p
+java:S2293÷"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ïºõ‰
+u
+java:S2293ü"YReplace the type specification in this constructor call with the diamond operator ("<>").(º¤åúıÿÿÿÿ
+d
+java:S1192’"HDefine a constant instead of duplicating this literal "average" 6 times.(×Õƒüÿÿÿÿ
+b
+java:S1192š"FDefine a constant instead of duplicating this literal "Pause" 3 times.(ñÊØşÿÿÿÿ
+`
+java:S1192Í"IDefine a constant instead of duplicating this literal "standby" 14 times.(«”Î¢
+_
+java:S1192£"HDefine a constant instead of duplicating this literal "waiting" 7 times.(éÉŠ
+f
+java:S1192•"JDefine a constant instead of duplicating this literal "Connected" 3 times.(œŸÊûÿÿÿÿ
+^
+java:S1192–"GDefine a constant instead of duplicating this literal "Manual" 3 times.(³ä™¿
+d
+java:S1192+"NDefine a constant instead of duplicating this literal "StatusBattery" 8 times.(¬Îíò
+c
+java:S1192Ù"GDefine a constant instead of duplicating this literal "manual" 7 times.(Ñ‘Êüÿÿÿÿ
+f
+java:S1192”"JDefine a constant instead of duplicating this literal "frequency" 6 times.(û–­ùÿÿÿÿÿ
+`
+java:S1192“"IDefine a constant instead of duplicating this literal "duration" 6 times.(‹ËÒ±
+d
+java:S1192¤"HDefine a constant instead of duplicating this literal "running" 7 times.(ªöÃôÿÿÿÿÿ
+`
+java:S1192("JDefine a constant instead of duplicating this literal "ModeRobot" 8 times.(Èªµ
+e
+java:S1192¢"IDefine a constant instead of duplicating this literal "inactive" 7 times.(…©¬ÿÿÿÿÿ
+e
+java:S1192¢"IDefine a constant instead of duplicating this literal "MinSpeed" 3 times.(ãªˆÄúÿÿÿÿ
+k
+java:S1192)"PDefine a constant instead of duplicating this literal "OperationStatus" 9 times.(—º©üÿÿÿÿ
+a
+java:S1192Ì"JDefine a constant instead of duplicating this literal "discharge" 7 times.(ğÂ¶¾
+`
+java:S1192›"IDefine a constant instead of duplicating this literal "Inactive" 3 times.(ÏşŸ‡
+^
+java:S1192ú"GDefine a constant instead of duplicating this literal "normal" 7 times.(’ùèİ
+i
+java:S1192»"MDefine a constant instead of duplicating this literal "desconnected" 7 times.(îöæùÿÿÿÿ
+e
+java:S1192¡"IDefine a constant instead of duplicating this literal "MaxSpeed" 3 times.(ÄÀáıÿÿÿÿ
+^
+java:S1192Ë"GDefine a constant instead of duplicating this literal "charge" 7 times.(Î´Ú°
+]
+java:S1192"GDefine a constant instead of duplicating this literal "Charge" 3 times.(«„éF
+f
+java:S1192'"KDefine a constant instead of duplicating this literal "Connection" 8 times.(˜õ¥ıúÿÿÿÿ
+b
+java:S1192*"LDefine a constant instead of duplicating this literal "StatusRobot" 9 times.(‡«ç
+^
+java:S1192 "HDefine a constant instead of duplicating this literal "Standby" 3 times.(£˜±W
+^
+java:S1192˜"GDefine a constant instead of duplicating this literal "Normal" 3 times.(ÒÚ˜š
+h
+java:S1192£"LDefine a constant instead of duplicating this literal "NormalSpeed" 3 times.(™”÷­ùÿÿÿÿ
+]
+java:S1192ü"FDefine a constant instead of duplicating this literal "pause" 7 times.(Ä‘
+f
+java:S1192Ÿ"JDefine a constant instead of duplicating this literal "Discharge" 3 times.(î‚·Õûÿÿÿÿ
+d
+java:S1192œ"HDefine a constant instead of duplicating this literal "Waiting" 3 times.(„Åß÷øÿÿÿÿ
+f
+java:S1192º"JDefine a constant instead of duplicating this literal "connected" 7 times.(ŞöŠÈıÿÿÿÿ
+d
+java:S1192”"MDefine a constant instead of duplicating this literal "Desconnected" 3 times.(ºß‘×
+g
+java:S1192,"LDefine a constant instead of duplicating this literal "StatusSpeed" 8 times.(õÜü‚úÿÿÿÿ
+d
+java:S1192"HDefine a constant instead of duplicating this literal "Running" 3 times.(„ÑéËüÿÿÿÿ
+`
+java:S1192•"IDefine a constant instead of duplicating this literal "interval" 6 times.(›ù–†
+t	java:S135±"YReduce the total number of break and continue statements in this loop to use at most one.(³±ğŒüÿÿÿÿ
+o	java:S135ä"YReduce the total number of break and continue statements in this loop to use at most one.(õòõ÷
+o
+java:S1104"YMake globalSetting a static final constant or non-public and provide accessors if needed.(ïš‘
+I
+java:S1444"3Make this "public static globalSetting" field final(ïš‘
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(‰„‚£ûÿÿÿÿ8®¦Œ¸º2
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(§Ì›øÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(‰„‚£ûÿÿÿÿ
+G
+java:S3599",Use another way to initialize this instance.(îò¶›úÿÿÿÿ
+t
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(îò¶›úÿÿÿÿ
+B
+java:S3599",Use another way to initialize this instance.(ƒ‡Ï—
+o
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ƒ‡Ï—
+m
+java:S3776\"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ˆ“Ÿùÿÿÿÿ
+R
+java:S1854t"=Remove this useless assignment to local variable "timestamp".(ºŒÎx
+R
+java:S1854{"=Remove this useless assignment to local variable "timestamp".(ºŒÎx
+S
+java:S1854‚"=Remove this useless assignment to local variable "timestamp".(ºŒÎx
+S
+java:S1854"=Remove this useless assignment to local variable "timestamp".(ºŒÎx
+S
+java:S1854³"=Remove this useless assignment to local variable "timestamp".(ºŒÎx
+o
+java:S3776”"SRefactor this method to reduce its Cognitive Complexity from 101 to the 15 allowed.( ÃÒüÿÿÿÿ
+[
+java:S4143Ä"DVerify this is the key that was intended; it was already set before.(‡Åí
+[
+java:S4143Ã"DVerify this is the key that was intended; it was already set before.(“àğÅ
+`
+java:S4143â"DVerify this is the key that was intended; it was already set before.(Á–…Îùÿÿÿÿ
+`
+java:S4143ã"DVerify this is the key that was intended; it was already set before.(ßû‰Üÿÿÿÿÿ
+`
+java:S4143Š"DVerify this is the key that was intended; it was already set before.(ñì ­ÿÿÿÿÿ
+`
+java:S4143‰"DVerify this is the key that was intended; it was already set before.(ÿ°Ÿáúÿÿÿÿ
+[
+java:S4143ˆ"DVerify this is the key that was intended; it was already set before.(æáŞ
+Z
+java:S4143°"DVerify this is the key that was intended; it was already set before.(Ëô
+`
+java:S4143¯"DVerify this is the key that was intended; it was already set before.(Óã¤ıüÿÿÿÿ
+[
+java:S4143±"DVerify this is the key that was intended; it was already set before.(¾È‹‹
+[
+java:S4143Ù"DVerify this is the key that was intended; it was already set before.(¦ğ£¤
+[
+java:S4143Ú"DVerify this is the key that was intended; it was already set before.(çË¥Ğ
+`
+java:S4143Û"DVerify this is the key that was intended; it was already set before.(·Ì©ûúÿÿÿÿ
+`
+java:S4143€"DVerify this is the key that was intended; it was already set before.(â³õšúÿÿÿÿ
+[
+java:S4143"DVerify this is the key that was intended; it was already set before.(ˆúû
+Z
+java:S4143‚"DVerify this is the key that was intended; it was already set before.(ÚÄ»2
+R	java:S125•"<This block of commented-out lines of code should be removed.(ñÖôƒ
+W	java:S125Ä"<This block of commented-out lines of code should be removed.(Œ±Ü¢ûÿÿÿÿ
+Q	java:S125õ"<This block of commented-out lines of code should be removed.(”âé
+6
+java:S2129Á" Remove this "Double" constructor(ñÑ!
+D
+java:S1874Á".Remove this use of "Double"; it is deprecated.(ñÑ!
+<
+java:S2129Â" Remove this "Double" constructor(ï³ì¬ÿÿÿÿÿ
+J
+java:S1874Â".Remove this use of "Double"; it is deprecated.(ï³ì¬ÿÿÿÿÿ
+7
+java:S2129à" Remove this "Double" constructor(æÎ¹é
+E
+java:S1874à".Remove this use of "Double"; it is deprecated.(æÎ¹é
+7
+java:S2129á" Remove this "Double" constructor(³¾İÖ
+E
+java:S1874á".Remove this use of "Double"; it is deprecated.(³¾İÖ
+<
+java:S2129…" Remove this "Double" constructor(ûµÆ“şÿÿÿÿ
+J
+java:S1874…".Remove this use of "Double"; it is deprecated.(ûµÆ“şÿÿÿÿ
+<
+java:S2129†" Remove this "Double" constructor(ˆÇÈşúÿÿÿÿ
+J
+java:S1874†".Remove this use of "Double"; it is deprecated.(ˆÇÈşúÿÿÿÿ
+<
+java:S2129‡" Remove this "Double" constructor(Šè¡¬ùÿÿÿÿ
+J
+java:S1874‡".Remove this use of "Double"; it is deprecated.(Šè¡¬ùÿÿÿÿ
+<
+java:S2129¬" Remove this "Double" constructor(ü½Èóúÿÿÿÿ
+J
+java:S1874¬".Remove this use of "Double"; it is deprecated.(ü½Èóúÿÿÿÿ
+<
+java:S2129­" Remove this "Double" constructor(Àì„úÿÿÿÿ
+J
+java:S1874­".Remove this use of "Double"; it is deprecated.(Àì„úÿÿÿÿ
+7
+java:S2129®" Remove this "Double" constructor(²İ¾ç
+E
+java:S1874®".Remove this use of "Double"; it is deprecated.(²İ¾ç
+<
+java:S2129Ö" Remove this "Double" constructor(ÔÑÉ²üÿÿÿÿ
+J
+java:S1874Ö".Remove this use of "Double"; it is deprecated.(ÔÑÉ²üÿÿÿÿ
+7
+java:S2129×" Remove this "Double" constructor(é·§õ
+E
+java:S1874×".Remove this use of "Double"; it is deprecated.(é·§õ
+<
+java:S2129Ø" Remove this "Double" constructor(àÍßıÿÿÿÿ
+J
+java:S1874Ø".Remove this use of "Double"; it is deprecated.(àÍßıÿÿÿÿ
+<
+java:S2129ı" Remove this "Double" constructor(™±ó·şÿÿÿÿ
+J
+java:S1874ı".Remove this use of "Double"; it is deprecated.(™±ó·şÿÿÿÿ
+<
+java:S2129ş" Remove this "Double" constructor(Ë«Ù˜ıÿÿÿÿ
+J
+java:S1874ş".Remove this use of "Double"; it is deprecated.(Ë«Ù˜ıÿÿÿÿ
+7
+java:S2129ÿ" Remove this "Double" constructor(–Œ…İ
+E
+java:S1874ÿ".Remove this use of "Double"; it is deprecated.(–Œ…İ
+W	java:S125†"<This block of commented-out lines of code should be removed.(Ò·ñ¶ûÿÿÿÿ
+C
+java:S3599‘",Use another way to initialize this instance.(ÆÅ´
+p
+java:S1171‘"YMove the contents of this initializer to a standard constructor or to field initializers.(ÆÅ´
+C
+java:S3599•",Use another way to initialize this instance.(›ù–†
+p
+java:S1171•"YMove the contents of this initializer to a standard constructor or to field initializers.(›ù–†
+C
+java:S3599›",Use another way to initialize this instance.(ÆÅ´
+p
+java:S1171›"YMove the contents of this initializer to a standard constructor or to field initializers.(ÆÅ´
+C
+java:S3599Ÿ",Use another way to initialize this instance.(›ù–†
+p
+java:S1171Ÿ"YMove the contents of this initializer to a standard constructor or to field initializers.(›ù–†
+C
+java:S3599¥",Use another way to initialize this instance.(ÆÅ´
+p
+java:S1171¥"YMove the contents of this initializer to a standard constructor or to field initializers.(ÆÅ´
+C
+java:S3599©",Use another way to initialize this instance.(›ù–†
+p
+java:S1171©"YMove the contents of this initializer to a standard constructor or to field initializers.(›ù–†
+C
+java:S3599°",Use another way to initialize this instance.(ÆÅ´
+p
+java:S1171°"YMove the contents of this initializer to a standard constructor or to field initializers.(ÆÅ´
+C
+java:S3599´",Use another way to initialize this instance.(›ù–†
+p
+java:S1171´"YMove the contents of this initializer to a standard constructor or to field initializers.(›ù–†
+C
+java:S3599»",Use another way to initialize this instance.(ÆÅ´
+p
+java:S1171»"YMove the contents of this initializer to a standard constructor or to field initializers.(ÆÅ´
+C
+java:S3599¿",Use another way to initialize this instance.(›ù–†
+p
+java:S1171¿"YMove the contents of this initializer to a standard constructor or to field initializers.(›ù–†
+C
+java:S3599Æ",Use another way to initialize this instance.(ÆÅ´
+p
+java:S1171Æ"YMove the contents of this initializer to a standard constructor or to field initializers.(ÆÅ´
+C
+java:S3599Ê",Use another way to initialize this instance.(›ù–†
+p
+java:S1171Ê"YMove the contents of this initializer to a standard constructor or to field initializers.(›ù–†
+ã
+java:S6541”"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 510 to 64, Complexity from 76 to 14, Nesting Level from 3 to 2, Number of Variables from 63 to 6.( ÃÒüÿÿÿÿ

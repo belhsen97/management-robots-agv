@@ -1,0 +1,13 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’¿Ë˜ýÿÿÿÿ
+C
+java:S1452"&Remove usage of generic wildcard type.(¾òéÌ8Ê“Ž„Ÿ2
+]	java:S125"<This block of commented-out lines of code should be removed.(Þ›Ë²úÿÿÿÿ8äü—ËŸ2
+B
+java:S1452/"&Remove usage of generic wildcard type.(°†Q8²‘‘„Ÿ2
+C
+java:S1452I"&Remove usage of generic wildcard type.(¯°²¦8´‘‘„Ÿ2
+H
+java:S1452T"&Remove usage of generic wildcard type.(»¥¸Òþÿÿÿÿ8èü—ËŸ2
+C
+java:S1452^"&Remove usage of generic wildcard type.(¯¯ë¢8¥€™ëº2

@@ -1,0 +1,10 @@
+
+t
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(à—Òºüÿÿÿÿ
+s	java:S135""YReduce the total number of break and continue statements in this loop to use at most one.(‡ÓÍ’ùÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÎÖ‡éüÿÿÿÿ
+V	java:S125("<This block of commented-out lines of code should be removed.(ÉØˆêøÿÿÿÿ
+Y
+java:S1144Q"7Remove this unused private "getMethodsForTopic" method.(úùÛúÿÿÿÿ8ŠÍ€½¥2
+S
+java:S1144["1Remove this unused private "topicAllowed" method.( ¯ÛÒýÿÿÿÿ8ŠÍ€½¥2

@@ -9,6 +9,7 @@ import { Subscription, interval, throttleTime } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { GaugeChartComponent } from '../details/gauge-chart/gauge-chart.component';
 import { refreshPannelRobot } from 'src/app/core/store/actions/Robot.Action';
+import { GlobalState } from 'src/app/core/store/states/Global.state';
 
 @Component({
   selector: 'app-table-dashboard',
@@ -22,14 +23,14 @@ export class TableDashboardComponent implements OnInit, AfterViewInit, OnDestroy
   displayedColumns: string[] = ['name', 'view', 'statusRobot', 'modeRobot', 'connection', 'operationStatus', 'levelBattery', 'speed','distance','codeTag'];
   dataSource !: MatTableDataSource<RobotDto>;
   @ViewChild(MatSort) sort  !: MatSort;
-  constructor(private store: Store,
+  constructor(private storeGlobal: Store<GlobalState>,
     private storeRobot: Store<RobotState>,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<RobotDto>();
     this.dataSource.data = robotState.listRobots;
-    this.getValueSearchInputSub = this.store.select(getValueSearchInput).subscribe(value => {
+    this.getValueSearchInputSub = this.storeGlobal.select(getValueSearchInput).subscribe(value => {
       if (value === null || value === undefined || this.dataSource == undefined) { return; }
       this.dataSource!.filter = value;
     });

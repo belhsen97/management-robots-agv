@@ -1,11 +1,0 @@
-
-u
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÍÕ·"8¥Ñ¹šõ1
-v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(î¾þð8¥Ñ¹šõ1
-m
-java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(åÓ÷“ÿÿÿÿÿ8¥Ñ¹šõ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ëÒàË8¦Ñ¹šõ1
-\
-java:S1118":Add a private constructor to hide the implicit public one.(äÏÄŒøÿÿÿÿ8µÑ¹šõ1
-z	java:S131"YComplete cases by adding the missing enum constants or add a default case to this switch.(åÓ÷“ÿÿÿÿÿ8ºÑ¹šõ1

@@ -1,0 +1,9 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“·‘98í≤…Ù∫2
+m
+java:S3655""PCall "speedMax.isPresent()" or "!speedMax.isEmpty()" before accessing the value.(‘¢íò8ö≤…Ù∫2
+m
+java:S3655""PCall "speedMin.isPresent()" or "!speedMin.isEmpty()" before accessing the value.(‘¢íò8ö≤…Ù∫2
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ω∏áÈ8õ≤…Ù∫2
+G	java:S106X"+Replace this use of System.out by a logger.(ºÀù˙8°≤…Ù∫2

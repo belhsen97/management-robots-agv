@@ -1,0 +1,47 @@
+
+b	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(ÍÎ‚ø8ÚÙÒ¸º2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8ÜÙÒ¸º2
+i
+java:S68308"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜¨¢ûÿÿÿÿ8üÙÒ¸º2
+i
+java:S68309"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ŸÜÁüÿÿÿÿ8üÙÒ¸º2
+i
+java:S68309"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ŸÜÁüÿÿÿÿ8üÙÒ¸º2
+j	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂŸ±¹8şÙÒ¸º2
+_
+java:S1612T"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8ÿÙÒ¸º2
+o	java:S100W"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹©¬–ÿÿÿÿÿ8ÿÙÒ¸º2
+_
+java:S1612Y"BReplace this lambda with method reference 'RobotMapper::mapToDto'.(Úİˆ8ÿÙÒ¸º2
+j	java:S100]"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§À°‹8€ÚÒ¸º2
+j	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è§ÀÎ8€ÚÒ¸º2
+j	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áæƒï8ÚÒ¸º2
+C
+java:S1452g"&Remove usage of generic wildcard type.(áæƒï8ÚÒ¸º2
+S
+java:S2696m"6Make the enclosing method "static" or remove this set.(§ìŒ¬8‚ÚÒ¸º2
+j	java:S100x"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦‹ß…8‚ÚÒ¸º2
+k	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Š«»8ƒÚÒ¸º2
+D
+java:S1452"&Remove usage of generic wildcard type.(™Š«»8ƒÚÒ¸º2
+p	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»éºÔıÿÿÿÿ8ƒÚÒ¸º2
+k	java:S100”"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÖ”®8„ÚÒ¸º2
+k	java:S100™"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹é‡ó8„ÚÒ¸º2
+H	java:S106¨"+Replace this use of System.out by a logger.(’è©ï8†ÚÒ¸º2
+e
+java:S1128"CRemove this unused import 'org.springframework.util.ResourceUtils'.(Š’Ğ¦úÿÿÿÿ8†ÚÒ¸º2
+]
+java:S1128	"ARemove this unused import 'org.springframework.util.StringUtils'.(Ğôÿ8†ÚÒ¸º2
+n
+java:S1128
+"LRemove this unused import 'org.springframework.web.multipart.MultipartFile'.(ôŸœÿÿÿÿÿ8†ÚÒ¸º2
+Y
+java:S1128"<Remove this unused import 'tn.enova.Libs.MockMultipartFile'.(ŞƒÒŠ8‡ÚÒ¸º2
+F
+java:S1128"")Remove this unused import 'java.io.File'.(†Ğ¥Å8‡ÚÒ¸º2
+M
+java:S1128%"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8‡ÚÒ¸º2
+L
+java:S1128&"/Remove this unused import 'java.nio.file.Path'.(×²êÂ8‡ÚÒ¸º2
+M
+java:S1128'"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8‡ÚÒ¸º2

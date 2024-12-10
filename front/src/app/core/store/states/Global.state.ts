@@ -1,7 +1,7 @@
 import { MsgResponseStatus } from "../models/Global/MsgResponseStatus.model";
 import { ReponseStatus } from "../models/Global/ReponseStatus.enum";
 import { LevelType } from "../models/Notification/LevelType.enum";
-import { Notification } from 'src/app/core/store/models/Notification/norifcation.models';
+import { Badge, Notification } from 'src/app/core/store/models/Notification/norifcation.models';
 
 export interface GlobalState{
     IsOpen:boolean;
@@ -9,7 +9,9 @@ export interface GlobalState{
     ReponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseStatus; unsuccessful: ReponseStatus; }>;
     msgResponseStatus  : MsgResponseStatus;
     rangeDate:RangeDate;
-    notification: Notification ;
+
+    badge:Badge;
+    notification?: Notification ;
     listNotifications: Notification[] ;
 }
 export interface RangeDate{
@@ -41,7 +43,7 @@ const listResponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseSt
 
 
 
-    const notifications: Notification[] = [
+const notifications: Notification[] = [
         {
           senderName: 'John Doe',
           senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
@@ -55,117 +57,9 @@ const listResponseStatus: Readonly<{ successful: ReponseStatus; error: ReponseSt
           createdAt: Date.now() - 500000,
           level: LevelType.WARNING,
           message: 'Jane Smith commented on your photo.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
-        },
-        {
-          senderName: 'John Doe',
-          senderImageUrl: 'https://wac-cdn.atlassian.com/fr/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1941',
-          createdAt: Date.now() - 1000000,
-          level: LevelType.ERROR,
-          message: 'Mike Johnson sent you a friend request.'
         }
       ];
-
-
-
-
-
-
-
-
-
-
-
+const badge : Badge = {color : "#d7dde1" , count :0};
 
 
 export const globalState:GlobalState={
@@ -175,9 +69,10 @@ export const globalState:GlobalState={
     msgResponseStatus:msgReponseStatus,
     rangeDate : rangeDate,
 
-    notification: notifications[0],
-    listNotifications : notifications
 
+    badge:badge ,
+    //notification: notifications[0],
+    listNotifications : notifications
 }
 
 

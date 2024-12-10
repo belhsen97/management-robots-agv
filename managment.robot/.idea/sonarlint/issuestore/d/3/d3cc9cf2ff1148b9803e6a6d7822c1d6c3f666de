@@ -1,0 +1,23 @@
+
+x
+java:S1104"VMake listRobots a static final constant or non-public and provide accessors if needed.(‹†¥ºüÿÿÿÿ8°´Èû¡2
+v
+java:S1104"TMake listTags a static final constant or non-public and provide accessors if needed.(ë³Ì–úÿÿÿÿ8°´Èû¡2
+
+java:S1104"]Make listRobotSettings a static final constant or non-public and provide accessors if needed.(“å¸Ôÿÿÿÿÿ8¹ÍÈû¡2
+R
+java:S1444"0Make this "public static listRobots" field final(‹†¥ºüÿÿÿÿ8°´Èû¡2
+P
+java:S1444".Make this "public static listTags" field final(ë³Ì–úÿÿÿÿ8°´Èû¡2
+Y
+java:S1444"7Make this "public static listRobotSettings" field final(“å¸Ôÿÿÿÿÿ8¹ÍÈû¡2
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿ„©š8ãš½û¡2
+?
+java:S2386"Make this member "protected".(‹†¥ºüÿÿÿÿ8åš½û¡2
+?
+java:S2386"Make this member "protected".(ë³Ì–úÿÿÿÿ8‰è¾û¡2
+?
+java:S2386"Make this member "protected".(“å¸Ôÿÿÿÿÿ8ÎÓÁû¡2
+\
+java:S1118
+":Add a private constructor to hide the implicit public one.(³šà±øÿÿÿÿ8åš½û¡2

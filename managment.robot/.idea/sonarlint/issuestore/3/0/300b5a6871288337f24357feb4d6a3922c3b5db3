@@ -1,0 +1,16 @@
+
+‚
+java:S1192"eDefine a constant instead of duplicating this literal "Invalid Topic Control Robot Format: " 4 times.(×Âüœ8ıñ¬îº2
+c
+java:S1192"FDefine a constant instead of duplicating this literal "value" 3 times.(†´8¿…Ûóº2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8şñ¬îº2
+G	java:S106"+Replace this use of System.out by a logger.(ò÷æß8‡ò¬îº2
+G	java:S106)"+Replace this use of System.out by a logger.(ò÷æß8¹ÂÎóº2
+`
+java:S18545">Remove this useless assignment to local variable "messageMap".(†ñïúÿÿÿÿ8…²Ğîº2
+Q
+java:S14815"/Remove this unused "messageMap" local variable.(†ñïúÿÿÿÿ8†²Ğîº2
+G	java:S1066"+Replace this use of System.out by a logger.(ò÷æß8¦âÏóº2
+G	java:S106@"+Replace this use of System.out by a logger.(ò÷æß8–§Óóº2
+T
+java:S1128"7Remove this unused import 'tn.enova.Enums.StatusRobot'.(•§ì×8Ì…Ûóº2

@@ -1,6 +1,6 @@
 export const environment = {  
     production: true,
-    apiUrl :'http://localhost:8089/management-robot-avg',
+    apiUrl :'http://localhost:8089/management-robot',
     mqttClientConfig:{
         hostname: 'localhost',
         port: 8083,
