@@ -1,12 +1,12 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8´Î†ÂŸ2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©ˆøüÿÿÿÿ8æ‹şÄ2
 C
-java:S1452%"&Remove usage of generic wildcard type.(ùŠ‡ä8ÃÎ†ÂŸ2
+java:S1452%"&Remove usage of generic wildcard type.(ùŠ‡ä8ø‹şÄ2
 H
-java:S1452:"&Remove usage of generic wildcard type.(»‡¾äûÿÿÿÿ8ÇÎ†ÂŸ2
+java:S1452;"&Remove usage of generic wildcard type.(»‡¾äûÿÿÿÿ8©ü‘Ä2
 p
-java:S1602?"SRemove useless curly braces around statement and then remove useless return keyword(·Šàë8ÈÎ†ÂŸ2
+java:S1602@"SRemove useless curly braces around statement and then remove useless return keyword(·Šàë8«ü‘Ä2
 ]
-java:S1128"ARemove this unused import 'org.springframework.util.StringUtils'.(Ğôÿ8È¯ìÓŸ2
+java:S1128"ARemove this unused import 'org.springframework.util.StringUtils'.(Ğôÿ8…ŒşÄ2
 \
-java:S1128"?Remove this unused import 'tn.enova.Models.Commons.Attachment'.(˜•˜ê8È¯ìÓŸ2
+java:S1128"?Remove this unused import 'tn.enova.Models.Commons.Attachment'.(˜•˜ê8…ŒşÄ2

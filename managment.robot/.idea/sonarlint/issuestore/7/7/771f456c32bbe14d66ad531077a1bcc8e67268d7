@@ -1,9 +1,14 @@
 
-n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“·‘9
-]
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”Ïıï
-Q	java:S125a"<This block of commented-out lines of code should be removed.(€˚“Ì
-Q	java:S125i"<This block of commented-out lines of code should be removed.(Í˚Ìø
-V	java:S125q"<This block of commented-out lines of code should be removed.(≠”ùÅ¸ˇˇˇˇ
-M
-java:S3252í"6Use static access with "javax.mail.Part" for "INLINE".(‡º∆Â
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“·‘98Éﬁ¸ìƒ2
+d
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”Ïıï8ê‡¸ìƒ2
+o
+java:S3776W"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(€ÃÅÑ8õ‡¸ìƒ2
+]	java:S125\"<This block of commented-out lines of code should be removed.(ù¸ùÅ˛ˇˇˇˇ8°‡¸ìƒ2
+X	java:S125a"<This block of commented-out lines of code should be removed.(€˚“Ì8¢‡¸ìƒ2
+X	java:S125i"<This block of commented-out lines of code should be removed.(Í˚Ìø8£‡¸ìƒ2
+]	java:S125q"<This block of commented-out lines of code should be removed.(≠”ùÅ¸ˇˇˇˇ8•‡¸ìƒ2
+T
+java:S3252ì"6Use static access with "javax.mail.Part" for "INLINE".(‡º∆Â8Æ‡¸ìƒ2
+\
+java:S1144H"?Remove this unused private "convertAllToEmbeddedImages" method.(÷ ”∞8≤‡¸ìƒ2

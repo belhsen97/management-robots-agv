@@ -71,7 +71,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .datestamp(new Date())
                 .message("To complete the next step, you should verify the confirmation mail.")
                 .build();
-
         return this.notificationService.send(msg).thenCompose(result -> {
                     List<User> adminList = this.userRepository.findUsersByRole(Roles.ADMIN);
                     if (!adminList.isEmpty()) {
@@ -86,7 +85,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         }};
                         NotificationResponse notificationAdmin = NotificationResponse.builder().from(request.getUsername()).level(LevelType.INFO).message("new user registry with username : "+request.getUsername()).build();
                         Msg adminMsg = Msg.builder().subject("New User Registration").recipients(recipientList).bodyContents(adminBodyContentList).build();
-
                         CompletableFuture<?> adminMsgFuture = this.notificationService.send(adminMsg);
                         CompletableFuture<?> notificationAdminFuture = this.notificationService.send(notificationAdmin);
                         return CompletableFuture.allOf(adminMsgFuture, notificationAdminFuture).thenApply(v -> msgReponseStatus);

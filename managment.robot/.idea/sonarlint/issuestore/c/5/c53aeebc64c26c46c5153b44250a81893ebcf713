@@ -1,9 +1,12 @@
 
 u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98’²Éôº2
 m
-java:S3655""PCall "speedMax.isPresent()" or "!speedMax.isEmpty()" before accessing the value.(Ô¢’˜8š²Éôº2
+java:S3655$"PCall "speedMin.isPresent()" or "!speedMin.isEmpty()" before accessing the value.(Ô¢’˜8š²Éôº2
 m
-java:S3655""PCall "speedMin.isPresent()" or "!speedMin.isEmpty()" before accessing the value.(Ô¢’˜8š²Éôº2
+java:S3655$"PCall "speedMax.isPresent()" or "!speedMax.isEmpty()" before accessing the value.(Ô¢’˜8š²Éôº2
 d
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½¸‡é8›²Éôº2
-G	java:S106X"+Replace this use of System.out by a logger.(¼Ëú8¡²Éôº2
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½¸‡é8›²Éôº2
+e
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Lazy'.(İ·­æ8£ıõ‡¼2
+]
+java:S1128";Remove this unused import 'tn.enova.Services.RobotService'.(îÀÙôûÿÿÿÿ8£ıõ‡¼2

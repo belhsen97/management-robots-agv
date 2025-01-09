@@ -1,14 +1,0 @@
-
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(§Ì›øÿÿÿÿ8ÜßŠºº2
-`
-java:S1854#">Remove this useless assignment to local variable "fetchUsers".(×å›Æúÿÿÿÿ8âßŠºº2
-\
-java:S1854"?Remove this useless assignment to local variable "fetchRobots".(ƒ¤¡á8âßŠºº2
-G	java:S106 "+Replace this use of System.err by a logger.(á‰®é8äßŠºº2
-M
-java:S1481"0Remove this unused "fetchRobots" local variable.(ƒ¤¡á8äßŠºº2
-G	java:S106'"+Replace this use of System.err by a logger.(á‰®é8äßŠºº2
-Q
-java:S1481#"/Remove this unused "fetchUsers" local variable.(×å›Æúÿÿÿÿ8äßŠºº2
-H
-java:S1168*"+Return an empty collection instead of null.(¥¹ï8äßŠºº2

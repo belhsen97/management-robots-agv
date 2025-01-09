@@ -46,6 +46,26 @@ export class RobotService extends Service {
 
 
 
+  getDataHighcharts(): Observable<HttpResponse<any>> {
+    return this.http.get('https://demo-live-data.highcharts.com/aapl-historical.json',
+      { observe: 'response',  })
+  }
+  getDataHighcharts2(  queryParams: any): Observable<HttpResponse<any>> {
+    let params = new HttpParams();
+    if (queryParams) {
+      Object.keys(queryParams).forEach(key => {
+        const value = queryParams[key];
+        if (value !== null && value !== undefined) { // Check for null or undefined
+          params = params.append(key, value.toString());
+        }
+      });
+    }
+    return this.http.get('https://demo-live-data.highcharts.com/aapl-historical.json',
+      { observe: 'response', params: params,
+     })
+  }
+
+
 
 
   geDataChartRobot(  queryParams: any): Observable<HttpResponse<any>> {
@@ -77,7 +97,7 @@ export class RobotService extends Service {
       Object.keys(queryParams).forEach(key => {
         const value = queryParams[key];
         if (value !== null && value !== undefined) { // Check for null or undefined
-          params = params.append(key, value.toString());
+          params = params.append(key, value );
         }
       });
     }

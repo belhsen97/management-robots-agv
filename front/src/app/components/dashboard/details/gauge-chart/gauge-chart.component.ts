@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 
 import * as Highcharts from 'highcharts/highstock';
 import dataInit from 'highcharts/modules/data';
@@ -9,12 +9,12 @@ import exportDataInit from "highcharts/modules/export-data";
 import accessibilityInit from "highcharts/modules/accessibility";
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscribe } from 'src/app/core/store/models/Mqtt/Subscribe.model';
-import { Subscription, throttleTime } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { RobotState, robotState } from 'src/app/core/store/states/Robot.state';
 import { Store } from '@ngrx/store';
 import { getConnectionFromRobot, getLevelBatteryFromRobot, getModeFromRobot, getOperationStatusFromRobot, getSpeedFromRobot, getStatusRobotFromRobot } from 'src/app/core/store/selectors/Robot.selector';
-import { startListenerRobot, startListenerRobotByProperty, stopListenerRobot, stopListenerRobotByProperty } from 'src/app/core/store/actions/Robot.Action';
+import { loadRobotByName, startListenerRobotByProperty, stopListenerRobotByProperty } from 'src/app/core/store/actions/Robot.Action';
 
 dataInit(Highcharts);
 highchartsMoreInit(Highcharts);
@@ -29,40 +29,28 @@ accessibilityInit(Highcharts);
     styleUrls: ['./gauge-chart.component.css']
 })
 export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
-    private curSubscription: Subscription | undefined;
-   
-
+    private nameRobot!:string;
     private getConnectionFromRobotSub: Subscription | undefined;
     private getModeFromRobotSub: Subscription | undefined;
     private getStatusRobotFromRobotSub: Subscription | undefined;
     private getOperationStatusFromRobotSub: Subscription | undefined;
     private getLevelBatteryFromRobotSub: Subscription | undefined;
     private getSpeedFromRobotSub: Subscription | undefined;
-
     private chart: any;
-    private subTopicRobot: Subscribe = { topic: "topic/data/robot/", qos: 0 };
     private subTopicRobotByProperty: Subscribe = { topic: "topic/data/robot/+/property/+", qos: 0 };
-    constructor(/* private mqttClientService :MqttClientService,*/
-        private storeRobot: Store<RobotState>,
-        private dialogRef: MatDialogRef<GaugeChartComponent>,
-        @Inject(MAT_DIALOG_DATA) private data: any) { }
+    constructor(private storeRobot: Store<RobotState>,private dialogRef: MatDialogRef<GaugeChartComponent>, @Inject(MAT_DIALOG_DATA) private data: any) { }
 
     ngOnInit() {
         if (this.data.name == "") { this.dialogRef.close(null); return; }
+        this.nameRobot= this.data.name ;
         this.chart = Highcharts.chart("gauge-container-robot", this.chartOption);
-        this.subTopicRobot.topic += this.data.name;
-        this.subTopicRobotByProperty.topic = `topic/data/robot/${this.data.name}/property/+`;
-
-
-     
+        this.subTopicRobotByProperty.topic = `topic/data/robot/${this.nameRobot}/property/+`;
         this.getConnectionFromRobotSub = this.storeRobot.select(getConnectionFromRobot).pipe().subscribe(item => {
 
         });
         this.getModeFromRobotSub = this.storeRobot.select(getModeFromRobot).pipe().subscribe(item => {
         });
         this.getStatusRobotFromRobotSub = this.storeRobot.select(getStatusRobotFromRobot).pipe().subscribe(value => {
-            console.log("getStatusRobotFromRobot");
-            console.log(value);
             const numCateegory = (value == StatusRobot.RUNNING ? 1 : (value == StatusRobot.WAITING ? 2 : 3));
             this.chart.series[2].setData([numCateegory]);
         });
@@ -75,19 +63,12 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
         this.getSpeedFromRobotSub = this.storeRobot.select(getSpeedFromRobot).pipe().subscribe(value => {
             this.chart.series[0].setData([parseFloat(value.toFixed(1))]);
         });
-        
-
-
-
-
-
     }
     ngAfterViewInit() {
-       // this.storeRobot.dispatch(startListenerRobot({ subscribe: this.subTopicRobot }));
+       this.storeRobot.dispatch(loadRobotByName({name:this.nameRobot}));
         this.storeRobot.dispatch(startListenerRobotByProperty({ subscribe: this.subTopicRobotByProperty }));
     }
     ngOnDestroy() {
-       // this.storeRobot.dispatch(stopListenerRobot());
         this.storeRobot.dispatch(stopListenerRobotByProperty());
         this.chart.destroy();
         if (this.getConnectionFromRobotSub) {this.getConnectionFromRobotSub.unsubscribe();}
@@ -97,55 +78,6 @@ export class GaugeChartComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.getLevelBatteryFromRobotSub) {this.getLevelBatteryFromRobotSub.unsubscribe();}
         if (this.getSpeedFromRobotSub) {this.getSpeedFromRobotSub.unsubscribe();}
     }
-
-
-    //     <mat-card class="example-card col-md-6" *ngFor="let card of obs | async">
-    //      <div class="container-gauge"  #chartContainer  id="gauge-container-{{card.name}}"></div> 
-    // </mat-card>
-    //  this.robotService.getAll().subscribe(
-    //     (response) => { 
-    //       robotState.listRobots = response.body;
-    //       robotState.listRobots.forEach(r => r.createdAt = this.robotService.toDate(r.createdAt.toString()));
-    //       this.dataSource.data =    robotState.listRobots ;
-    //       this.observer = new IntersectionObserver((entries) => {
-    //         entries.forEach(entry => {
-    //           if (entry.isIntersecting) {
-    //             const chartId = entry.target.getAttribute("id");
-    //             this.loadChart(chartId!);
-    //             this.observer.unobserve(entry.target);
-    //           }
-    //         });
-    //       });
-    //       const chartContainers = document.querySelectorAll(".container-gauge");
-    //       chartContainers.forEach(container => {
-    //         this.observer.observe(container);
-    //       });
-    // observer!: IntersectionObserver;
-    // loadChart(id:string) :void{ Highcharts.chart(id,this.chartOption);}
-    //     }
-    //     ,(error) => {
-    //       this.robotService.msgResponseStatus  =   { title : "Error",   datestamp: new Date() ,status : ReponseStatus.ERROR , message : error.message}
-    //       this.store.dispatch( ShowAlert(  this.robotService.msgResponseStatus ) ); 
-    //       //this.robotService.goToComponent("/sign-in");
-    //     }) ;
-        //     this.batteryIcon = this.chart.renderer.html(
-        //     '<i class="las la-battery-empty" style="font-size:24px;"></i>', // HTML icon content
-        //     this.chart.plotLeft +  this.chart.plotWidth / 2 - 16, // X position
-        //     this.chart.plotTop +  this.chart.plotHeight / 2 - 16, // Y position   las la-exclamation-triangle
-        //     'auto', // Width default auto
-        //     'auto', // Height default auto
-        //     'battery-icon', // CSS class name
-        //     true // Allows HTML
-        // ).add();
-
-    //     batteryIcon : any ;
-    //    updateBatteryIcon(state : string ) : void {
-    //     this.batteryIcon.update({
-    //         html: '<i class="fa fa-battery-' + state + '"></i>'
-    //     });
-    // }
-
-
     chartOption: any = {
         chart: {
             type: 'gauge',

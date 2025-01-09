@@ -13,7 +13,7 @@
     <mat-card class="example-card col-md-6" *ngFor="let card of obs | async">
         <mat-card-header>
             <!-- <div class="avatar-circle" [ngClass]="getStatusClass(card.statusRobot)"></div> -->
-            <div mat-card-avatar class="example-header-image"></div>
+            <div mat-card-avatar class="example-header-image" ></div>
             <mat-card-title>{{card.name}}</mat-card-title>
             <mat-card-subtitle>{{ ( card.codeTag  ?  card.codeTag : "unknown") }}</mat-card-subtitle>
         </mat-card-header>

@@ -1,10 +1,12 @@
 package tn.enova.Services.Interfaces;
 
 import tn.enova.Enums.LevelType;
+import tn.enova.Enums.Roles;
 import tn.enova.Exceptions.NotificationNotFound;
 import tn.enova.Exceptions.NotificationNullPointerException;
 import tn.enova.Models.Commons.Publish;
 import tn.enova.Models.Entitys.Notification;
+import tn.enova.Models.Requests.UserRequest;
 import tn.enova.Models.Responses.NotificationResponse;
 import tn.enova.Repositorys.NotificationRepository;
 import tn.enova.Services.MQTTService;
@@ -30,7 +32,14 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<Notification> selectAll() {
-        return  this.repository.findAll();
+        return  this.repository.findAllByOrderByCreatedAtDesc();
+    }
+
+    @Override
+    public List<Notification> selectAllByRole(UserRequest user) {
+        if ( user.getRole() == Roles.OPERATOR ){return repository.findFilteredNotificationsByUserAndSenderRobotAndLevelInfoAndWarning(user.getId());}
+        if ( user.getRole() == Roles.MAINTENANCE ){return repository.findFilteredNotificationsByUserAndSenderRobotWithoutLevelTrace(user.getId());}
+        return this.selectAll();
     }
 
     @Override

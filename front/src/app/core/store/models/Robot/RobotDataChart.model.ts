@@ -1,4 +1,4 @@
-type DataPoint = [number, number];
+type DataPoint = [number, any];
 export interface RobotDataChart {
     name: string;
     speed: DataPoint[];

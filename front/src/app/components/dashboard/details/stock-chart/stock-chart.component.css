@@ -7,9 +7,13 @@ mat-card {
   }
 
 #container-stock-chart-robot {
-    min-height: 600px;
+   /* min-height: 600px;*/
+   min-height: 86vh;
     width:100%;
 }
+/*.highcharts-figure{
+    height: 100%;
+}*/
 .highcharts-figure,
 .highcharts-data-table table {
     min-width: 360px;

@@ -89,7 +89,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(smtpMailConfig.username));
 
-        msg.setBodyContents(this.convertAllToEmbeddedImages(msg.getBodyContents()));
+       // msg.setBodyContents(this.convertAllToEmbeddedImages(msg.getBodyContents()));
 
 
         List<Recipient> listRecipients = msg.getRecipientsByType(RecipientType.TO);
@@ -133,6 +133,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
                 htmlMultipart.addBodyPart(htmlBodyPart);
 
                 // Add embedded images
+                if (content.getEmbeddeds()!=null){
                 for (Map.Entry<String, BodyContent> entry : content.getEmbeddeds().entrySet()) {
 
 
@@ -146,7 +147,7 @@ public class SMTPMailServiceImpl implements SmtpMailService {
                     imageBodyPart.setDisposition(MimeBodyPart.INLINE);
 
                     htmlMultipart.addBodyPart(imageBodyPart);
-                }
+                }}
 
 
                 messageBodyPart.setContent(htmlMultipart);

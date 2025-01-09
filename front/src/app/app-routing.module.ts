@@ -16,7 +16,6 @@ import { TableDashboardComponent } from './components/dashboard/table-dashboard/
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
-import { TracingComponent } from './components/statistic/tracing/tracing.component';
 import { StockChartComponent } from './components/dashboard/details/stock-chart/stock-chart.component';
 import { ChartsRobotsStatisticComponent } from './components/statistic/charts-robots-statistic/charts-robots-statistic.component';
 import { FieldDashboardComponent } from './components/dashboard/field-dashboard/field-dashboard.component';
@@ -24,6 +23,11 @@ import { ListNotificationsComponent } from './components/notification/list-notif
 import { ActivateRouteService } from './core/services/activate-route.service';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/sign-in',
+    pathMatch: 'full',  
+  },
   {
     path: 'statistic',  canActivateChild : [ActivateRouteService], 
     component: LayoutComponent,
@@ -82,10 +86,6 @@ const routes: Routes = [
       {
         path: 'edit',
         component: EditUserComponent
-      },
-      {
-        path: 'tracing',
-        component: TracingComponent
       }
     ]
   },

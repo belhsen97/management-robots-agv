@@ -26,10 +26,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             message: error.message
           };
         } 
-        console.log(  error.error);
+        console.error(error.error);
         this.storeGlobal.dispatch(ShowAlert(msgResponseStatus));
-      //  console.error('Error status:', error.status, 'Error message:', error.message);
-
         return throwError(() => error);
       })
     );

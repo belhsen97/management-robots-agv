@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "mixins.scss",
+        "_badge.scss",
+        "_buttons.scss",
+        "_hover.scss",
+        "_colored-shadows.scss",
+        "_social-buttons.scss",
+        "_vendor.scss"
+    ],
+    "names": [],
+    "file": "mixins.css"
+}

@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
 
   # MongoDB service
@@ -15,8 +16,7 @@ services:
       - mongodata:/data/db      
     networks:
       - ennova-network
-     
-     
+      
   # MQTT X Web UI service
   mqttx-web:
     container_name: mqttx-web
@@ -25,7 +25,7 @@ services:
       - "18084:80"
     networks:
       - ennova-network
-
+      
   # EMQX MQTT Broker service  https://github.com/emqx/emqx-rel/blob/master/deploy/docker/README.md
   emqx:
     image: emqx/emqx:latest
@@ -50,11 +50,251 @@ services:
     networks:
       - ennova-network
 
+  config-service:
+    container_name: config-service
+    image: "config-service:0.0.1"
+    build: ./managment.robot/configure.api
+    ports:
+      -  "8101:8101"
+    environment:
+      - SPRING_APPLICATION_NAME=config-service
+    volumes:
+      - config-service-src:/app/resources
+    networks:
+      - ennova-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8101/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
 
+  discovery-service:
+    container_name:  discovery-service
+    image: "discovery-service:0.0.1"
+    build: ./managment.robot/discovery.api
+    ports:
+      - "8761:8761" 
+    environment:
+      - SPRING_APPLICATION_NAME=discovery-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+    volumes:
+      - discovery-service-src:/app/resources
+    networks:
+      - ennova-network
+    depends_on:
+      config-service:
+        condition: service_healthy
 
+  gateway-service:
+    container_name: gateway-service
+    image: "gateway-service:0.0.1"
+    build: ./managment.robot/gateway.api
+    ports:
+      - "8089:8089" 
+    environment:
+      - SPRING_APPLICATION_NAME=gateway-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - EUREKA_HOST=discovery-service
+      - EUREKA_PORT=8761
+    volumes:
+      - gateway-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+    networks:
+      - ennova-network
 
+  user-service:
+    container_name: user-service
+    image: "user-service:0.0.1"
+    build: ./managment.robot/user.api
+    ports:
+      - "52739:52739" 
+    environment:
+      - SPRING_APPLICATION_NAME=user-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - USER_PATH_RESOURCES=/app/resources
+      - EUREKA_HOST=discovery-service
+      - EUREKA_PORT=8761
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+    volumes:
+      - user-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      gateway-service:
+        condition: service_started
+      mongodb:
+        condition: service_started
+    networks:
+      - ennova-network
 
+  trackbot-service:
+    container_name: trackbot-service
+    image: "trackbot-service:0.0.1"
+    build: ./managment.robot/trackbot.api
+    ports:
+      - "52738:52738" 
+    environment:
+      - SPRING_APPLICATION_NAME=trackbot-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - TRACKBOT_PATH_RESOURCES=/app/resources
+      - EUREKA_HOST=discovery-service
+      - EUREKA_PORT=8761
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+    volumes:
+      - trackbot-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      gateway-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+      mongodb:
+        condition: service_started
+    networks:
+      - ennova-network
+    healthcheck:
+      test: ["CMD", "curl", "-f","http://localhost:8089/management-robot/trackbot-service/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 2m
 
+  notification-service:
+    container_name: notification-service
+    image: "notification-service:0.0.1"
+    build: ./managment.robot/notification.api
+    ports:
+      - "52737:52737" 
+    environment:
+      - SPRING_APPLICATION_NAME=notification-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - TRACKBOT_PATH_RESOURCES=/app/resources
+      - EUREKA_HOST=discovery-service
+      - EUREKA_PORT=8761
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+      - MQTT_PROTOCOL_BROKER=tcp
+      - MQTT_HOST_BROKER=emqx
+      - MQTT_PORT_BROKER=1883
+    volumes:
+      - notification-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      gateway-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+      emqx:
+        condition: service_started
+      mongodb:
+        condition: service_started
+      trackbot-service:
+        condition: service_started
+    networks:
+      - ennova-network
+
+  mail-service:
+    container_name: mail-service
+    image: "mail-service:0.0.1"
+    build: ./managment.robot/mail.api
+    ports:
+      - "52736:52736" 
+    environment:
+      - SPRING_APPLICATION_NAME=mail-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - EUREKA_HOST=discovery-service
+      - EUREKA_PORT=8761
+      - MAIL_SMTP_HOST=smtp.gmail.com
+      - MAIL_SMTP_AUTH=true
+      - MAIL_SMTP_ENABLESTARTTLS=true
+      - MAIL_SMTP_USERNAME=exemple@gmail.com
+      - MAIL_SMTP_PASSWORD=mot-pass
+    volumes:
+      - mail-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      gateway-service:
+        condition: service_started
+      notification-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+    networks:
+      - ennova-network
+
+  # driveless-service:
+    container_name: driveless-service
+    image: "driveless-service:0.0.1"
+    build: ./managment.robot/driveless.api
+    ports:
+      - "52735:52735" 
+    environment:
+      - SPRING_APPLICATION_NAME=driveless-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - EUREKA_HOST=discovery-service
+      - EUREKA_PORT=8761
+      - MQTT_PROTOCOL_BROKER=tcp
+      - MQTT_HOST_BROKER=emqx
+      - MQTT_PORT_BROKER=1883
+    volumes:
+      - driveless-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      gateway-service:
+        condition: service_started
+      emqx:
+        condition: service_started
+      notification-service:
+        condition: service_started
+      trackbot-service:
+        condition: service_healthy
+    networks:
+      - ennova-network
+
+  # collector-service:
+    container_name: collector-service
+    image: "collector-service:0.0.1"
+    build: ./managment.robot/collector.api
+    environment:
+      - SPRING_APPLICATION_NAME=collector-service
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8101
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+      - MQTT_PROTOCOL_BROKER=tcp
+      - MQTT_HOST_BROKER=emqx
+      - MQTT_PORT_BROKER=1883
+    volumes:
+      - collector-service-src:/app/resources
+    depends_on:
+      config-service:
+        condition: service_healthy
+      emqx:
+        condition: service_started
+      mongodb:
+        condition: service_started
+    networks:
+      - ennova-network
 
 
 networks:
@@ -62,11 +302,21 @@ networks:
     driver: bridge
 
 volumes:
-  web-api-src:
-  collector-api-src:
-  driveless-api-src:
-  mongodata:
-  # EMQX MQTT Broker volumes
+  collector-service-src:
+  config-service-src:
+  discovery-service-src:
+  driveless-service-src:
   emqx-data:
   emqx-log:
   emqx-etc:
+  gateway-service-src:
+  mail-service-src:
+  mongodata:
+  notification-service-src:
+  user-service-src:
+  trackbot-service-src:
+
+  
+  
+# docker network ls
+# docker network inspect sebn-project_ennova-network

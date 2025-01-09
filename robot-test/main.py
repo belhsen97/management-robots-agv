@@ -4,7 +4,7 @@ from services import RobotService as robot_service
 from states import GlobalState as state
 from effects import RobotEffect as robot_effect
 from effects import MqttEffect as mqtt_effect
-from effects import NotificationEffect as notification_effect
+from effects import LoggingEffect as logging_effect
 from configurations import LoggingConfiguration as logging_config
 from enums import RobotEnum as robot_enum
 
@@ -17,8 +17,8 @@ import time
 
 def run():
         exit_flag = False
-        state.notification.subscribe("notification", notification_effect.on_send_notification)
-        state.notification.subscribe("notification", notification_effect.on_save_log_notification)
+        state.logging.subscribe("logging", logging_effect.on_send_logging)
+        state.logging.subscribe("logging", logging_effect.on_save_log_logging)
 
         state.robotState["robot"].subscribe("connection", robot_effect.on_connection_change)
         state.robotState["robot"].subscribe("statusRobot", robot_effect.on_status_change)
@@ -48,7 +48,7 @@ def run():
         #        time.sleep(1)
         while  not exit_flag:
      
-             #state.notification("name1", notification_enum.LevelType.INFO, "message"+str(count))
+             #state.logging("name1", logging_enum.LevelType.INFO, "message"+str(count))
              #if state.robotState['robot'].operationStatus != robot_enum.Status.INACTIVE.name : 
              #       exit_flag = True
              time.sleep(1)
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.robot_name:
         state.logger = logging_config.logger_config(args.robot_name,state.configure['LOG']['src'],f"{args.robot_name}.log")
-        state.mqttState["publish"]["notification"]   = "topic/notification/robot/"+ args.robot_name
+        state.mqttState["publish"]["logging"]   = "topic/logging/robot/"+ args.robot_name
         state.mqttState["publish"]["allData"]        = "topic/data/robot/"+ args.robot_name
         state.mqttState["publish"]["lastUpdate"]     = "topic/control/robot/"+args.robot_name+"/last-update"
         state.mqttState["subscribe"]["control"]      = "topic/control/robot/"+args.robot_name +"/property/+"
@@ -101,52 +101,3 @@ if __name__ == '__main__':
         
     else:
         print("Please provide the name of the robot using -name or --robot_name argument.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-import requests
-url = 'http://localhost:8089/management-robot-avg/robot/name/robot-1'
-response = requests.get(url)
-if response.status_code == 200:
-    data = response.json()  # Assuming the response contains JSON data
-    print(data)
-else:
-    print(f"Failed to retrieve data: {response.status_code}")"""
-
-
-
-
-
-
-
-"""
-# Usage
-
-state.robotState[ "robot"].subscribe("name", on_name_change)
-state.robotState[ "robot"].subscribe("statusRobot", on_status_change)
-state.robotState[ "robot"].subscribe("levelBattery", on_battery_change)
-
-# Access the values
-print(f"Current name: {state.robotState['robot'].name}")
-print(f"Current status: {state.robotState['robot'].statusRobot}")
-print(f"Current battery level: {state.robotState['robot'].levelBattery}")
-
-# Change the values
-state.robotState[ "robot"].name = "new_robot"
-state.robotState[ "robot"].statusRobot = "STOPPED"
-state.robotState[ "robot"].levelBattery = 50"""

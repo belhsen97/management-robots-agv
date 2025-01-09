@@ -4,6 +4,7 @@ package tn.enova.Controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import tn.enova.Enums.ReponseStatus;
+import tn.enova.Enums.Roles;
 import tn.enova.Exceptions.NotificationException;
 import tn.enova.Mappers.NotificationMapper;
 import tn.enova.Models.Commons.Publish;
@@ -74,31 +75,15 @@ public class UserNotificationRestController {
 
     @GetMapping()
     public CompletableFuture<List<NotificationResponse>> GetAll(@RequestHeader("auth-user-id") String authUsername) {
+        System.out.println(authUsername);
         return userService.getUserByUsername(authUsername)
                 .thenCompose(userRequest -> {
                     System.out.println(userRequest.toString());
-                    List<Notification> listNotification = notificationService.selectAll();
-                    System.out.println(listNotification.size());
+                    List<Notification> listNotification = notificationService.selectAllByRole(userRequest);
                     return notificationMapper.mapToListResponse(listNotification);
                 })
                 .exceptionally(ex -> {
                     throw new NotificationException("Failed to fetch user by username or process notifications", ex);
                 });
     }
-
-   /* @GetMapping( )
-    public CompletableFuture<List<NotificationResponse>> GetAll(@RequestHeader("auth-user-id") String authUserId)  {
-        userService.getUserByUsername(authUserId)
-                .thenAccept(userRequest -> {
-
-                     System.out.println(userRequest.toString());
-                })
-                .exceptionally(ex -> {
-                    System.err.println("Failed to fetch user by username  : " + ex.getMessage());
-                    return null;
-                });
-        List<Notification>  listNotification =    notificationService.selectAll();
-        System.out.println(listNotification.size());
-        return  notificationMapper.mapToListResponse(listNotification);
-    }*/
 }

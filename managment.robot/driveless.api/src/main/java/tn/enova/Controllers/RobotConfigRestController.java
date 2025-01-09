@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.enova.Enums.ReponseStatus;
 import tn.enova.Models.Commons.RobotSetting;
 import tn.enova.Models.Responses.MsgReponseStatus;
+import tn.enova.Services.RobotService;
 import tn.enova.Services.RobotSettingService;
 
 import java.util.Date;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class RobotConfigRestController {
 
     private final RobotSettingService service;
-
+    private final RobotService robotService;
 
     @GetMapping("/speed/average")
     public ResponseEntity<Map> GetSpeedAverage() {
@@ -51,8 +52,10 @@ public class RobotConfigRestController {
     }
     @PutMapping()
     public ResponseEntity<MsgReponseStatus> UpdateMultiple(@RequestBody List<RobotSetting> list) {
-       service.update(list);
-        return ResponseEntity.ok(MsgReponseStatus.builder()
+           service.update(list);
+           Double speedAverage =  service.selectSpeedAverage();
+           robotService.updateAllRobotsSpeed(speedAverage);
+            return ResponseEntity.ok(MsgReponseStatus.builder()
                 .status(ReponseStatus.SUCCESSFUL)
                 .title("Update Tag")
                 .message("SUCCESSFUL to Update list of RobotSettings")

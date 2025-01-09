@@ -1,13 +1,13 @@
 from models import RobotModel as robot_model
 from datetime import datetime
-from models import NotificationModel as notification_model
+from models import LoggingModel as logging_model
 
 
 
 configure = None
 logger = None
 
-notification = notification_model.ReactiveNotification ("name", "level", "message", "asctime")
+logging = logging_model.ReactiveLogging ("name", "level", "message", "asctime")
 
 mqttState =	{
   "broker" : 'localhost',
@@ -15,7 +15,7 @@ mqttState =	{
   "client_id": "robot",
   "username" : "robot",
   "password" : "robot",
-  "publish":{"lastUpdate":"","allData":"","notification":""},
+  "publish":{"lastUpdate":"","allData":"","logging":""},
   "subscribe":{"control":"","controlAll":"topic/control/robot/all/property/+","lastUpdate":""},
   "service":None
 }

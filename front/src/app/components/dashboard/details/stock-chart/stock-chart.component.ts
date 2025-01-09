@@ -22,6 +22,7 @@ import { StatusRobot } from 'src/app/core/store/models/Robot/StatusRobot.enum';
 import { OperationStatus } from 'src/app/core/store/models/Robot/OperationStatus.enum';
 import { Connection } from 'src/app/core/store/models/Robot/Connection.enum';
 import { ModeRobot } from 'src/app/core/store/models/Robot/ModeRobot.enum';
+import { RobotDataChart } from 'src/app/core/store/models/Robot/RobotDataChart.model';
 
 dataInit(Highcharts);
 seriesLabelInit(Highcharts);
@@ -63,8 +64,7 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     constructor(private storeRouter: Store, 
-        private robotService: RobotService,
-        //private mqttClientService: MqttClientService,
+        public robotService: RobotService,
         private storeRobot: Store<RobotState>,
     ) { }
 
@@ -80,147 +80,117 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
         this.subTopicRobotByProperty.topic = `topic/data/robot/${this.nameRobot}/property/+`;
 
 
-        this.chart = Highcharts.stockChart('container-stock-chart-robot', this.chartOptions);
 
-        this.chart.showLoading("Loading data from server...");
-        this.getDataRobotChartSub = this.storeRobot.select(getDataRobotChart).subscribe(item => {
-            if (item.speed.length !== 0) { this.chart.series[0].setData(item.speed); } //if (this.state) {this.chart.navigator.series[0].setData(item.speed);}
    
-
-            if (item.battery.length !== 0) { this.chart.series[1].setData(item.battery); }
-            if (item.statusRobot.length !== 0) { this.chart.series[2].setData(item.statusRobot); }
-            if (item.operationStatus.length !== 0) { this.chart.series[3].setData(item.operationStatus); }
-            item.connectionPlotBand.forEach((data) => {
-                this.chart.xAxis[0].addPlotBand({
-                    from: data.from,
-                    to: data.to,
-                    color: "#F7CAC9",
-                    zIndex: 2,
-                });
-            });
-            item.modePlotBand.forEach((data) => {
-                this.chart.xAxis[0].addPlotBand({
-                    from: data.from,
-                    to: data.to,
-                    color: "#e5e8e8",
-                    zIndex: 1,
-                  });
-              });
-            item.connectionPlotLine.forEach((data) => {
-                this.chart.xAxis[0].addPlotLine({
-                    color: '#000000', width: 1, value: data.value,  zIndex: 3,
-                    label: { text: data.text, rotation: (data.text == "CONNECTED" ? 90 : -90), x: (data.text == "CONNECTED" ? 5 : -5), y: (data.text == "CONNECTED" ? 5 : 110) }
-                });
-            });
-            item.modePlotLine.forEach((data) => {
-                this.chart.xAxis[0].addPlotLine({
-                    color: '#000000', width: 1, value: data.value,  zIndex: 3,
-                    label: {  verticalAlign: 'bottom',text: data.text, rotation: (data.text == "AUTO" ? 90 : -90), x: (data.text == "AUTO" ? 5 : -5) }
-                });
-            });
-
-         
-            this.chart.hideLoading();
+      this.robotService.geDataChartRobot({ name: this.nameRobot }).subscribe(
+      (response) => { 
+      const  data = response.body as RobotDataChart;
+      if (data.speed.length !== 0) {
+         data.speed.push([Date.now(),null]);
+         //   this.chartOptions.navigator.series.data=data.speed; 
+         this.chartOptions.navigator.series[0].data=data.speed; 
+         this.chartOptions.series[0].data=data.speed; 
         }
-        );
-
-
-        // this.getConnectionFromRobotSub = this.storeRobot.select(getConnectionFromRobot).pipe().subscribe(value => {
-        //     const x = (new Date()).getTime();
-        //     if ( this.connectionState != value ){
-        //     this.chart.xAxis[0].addPlotLine({
-        //         color: '#000000', width: 1, value: x,
-        //         label: { text:  value , rotation: ( value  == "CONNECTED" ? 90 : -90), x: ( value  == "CONNECTED" ? 5 : -5), y: ( value  == "CONNECTED" ? 5 : 110) }
-        //     });
-        //     this.connectionState = value;
-        //    }
-        // });
-        // this.getModeFromRobotSub = this.storeRobot.select(getModeFromRobot).pipe().subscribe(value => {
-        //     const x = (new Date()).getTime();
-        //     if ( this.modeState != value ){
-        //     this.chart.xAxis[0].addPlotLine({
-        //         color: '#000000', width: 1, value: x,
-        //         label: {  verticalAlign: 'bottom', text:  value, rotation: ( value == "AUTO" ? 90 : -90), x: ( value == "AUTO" ? 5 : -5)}
-        //     });
-        //     this.modeState = value;
-        //    }
-        // });
-        // this.getStatusRobotFromRobotSub = this.storeRobot.select(getStatusRobotFromRobot).pipe().subscribe(value => {
-
-        // });
-        // this.getOperationStatusFromRobotSub = this.storeRobot.select(getOperationStatusFromRobot).pipe().subscribe(item => {
-
-        // });
-        // this.getLevelBatteryFromRobotSub = this.storeRobot.select(getLevelBatteryFromRobot).pipe().subscribe(value => {
-        //     const x = (new Date()).getTime();
-        //     const y = value;
-        //     this.chart.series[1].addPoint([x,y], true, false);
-        // });
-        // this.getSpeedFromRobotSub = this.storeRobot.select(getSpeedFromRobot).pipe().subscribe(value => {
-        //     const x = (new Date()).getTime();
-        //     const y = value;
-        //     this.chart.series[0].addPoint([x,y], true, false); 
-        // });
-        
-
-
-        this.getRobotSub = this.storeRobot.select(getRobot).pipe(throttleTime(500)).subscribe(r => {
-          const x = (new Date()).getTime();
-           let y = r.speed;
-           this.chart.series[0].addPoint([x,y], true, false);   //addPoint(options [, redraw] [, shift] [, animation] [, withEvent])
-           y = r.levelBattery;
-           this.chart.series[1].addPoint([x,y], true, false);
-
-           y = (r.statusRobot == StatusRobot.RUNNING ?  2 : (r.statusRobot == StatusRobot.WAITING ? 1 : 0));
-           this.chart.series[2].addPoint([x,y], true, false);
-           y = (r.operationStatus == OperationStatus.PAUSE ?  2 : (r.operationStatus == OperationStatus.EMS ? 1 : 0));
-           this.chart.series[3].addPoint([x,y], true, false);
-
-
-           if ( this.connectionState != r.connection ){
-            this.chart.xAxis[0].addPlotLine({
-                color: '#000000', width: 1, value: x,
-                label: { text:  r.connection , rotation: ( r.connection  == "CONNECTED" ? 90 : -90), x: ( r.connection   == "CONNECTED" ? 5 : -5), y: ( r.connection  == "CONNECTED" ? 5 : 110) }
-            });
-            this.connectionState = r.connection;
+      if (data.battery.length !== 0) {
+          //  data.battery.push([Date.now(),null]);
+            this.chartOptions.series[1].data=data.battery; 
+            this.chartOptions.navigator.series[1].data=data.battery; 
            }
-           //if ( this.connectionState == Connection.CONNECTED ){ }
-           //if ( this.connectionState == Connection.DISCONNECTED ){ }
-           if ( this.modeState != r.modeRobot ){
-            this.chart.xAxis[0].addPlotLine({
-                color: '#000000', width: 1, value: x,
-                label: {  verticalAlign: 'bottom', text:  r.modeRobot, rotation: ( r.modeRobot == "AUTO" ? 90 : -90), x: ( r.modeRobot == "AUTO" ? 5 : -5)}
-            });
-            this.modeState = r.modeRobot;
-           }
+      if (data.statusRobot.length !== 0) { 
+         // data.statusRobot.push([Date.now(),null]);
+         this.chartOptions.series[2].data = data.statusRobot; 
+         this.chartOptions.navigator.series[2].data=data.statusRobot; 
         }
-        );
-       this.storeRobot.dispatch(loadDataRobotChart({ name: this.nameRobot,start:null,end:null }));
- 
-
+      if (data.operationStatus.length !== 0) { 
+        // data.operationStatus.push([Date.now(),null]);
+         this.chartOptions.series[3].data=data.operationStatus;
+         this.chartOptions.navigator.series[3].data=data.operationStatus; 
+        }
+       data.connectionPlotBand.forEach((element) => {
+           this.chartOptions.xAxis.plotBands.push({
+                from: element.from,
+                to: element.to,
+                color: "#F7CAC9",
+                zIndex: 2,
+           });
+        });
+        data.modePlotBand.forEach((element) => {
+            this.chartOptions.xAxis.plotBands.push({
+                from: element.from,
+                to: element.to,
+                color: "#e5e8e8",
+                zIndex: 1,
+            });
+        });
+        data.connectionPlotLine.forEach((element) => {
+            this.chartOptions.xAxis.plotLines.push({
+                color: '#000000', width: 1, value: element.value,  zIndex: 3,
+                label: { text: element.text, rotation: (element.text == "CONNECTED" ? 90 : -90), x: (element.text == "CONNECTED" ? 5 : -5), y: (element.text == "CONNECTED" ? 5 : 110) }
+            });
+        });
+        data.modePlotLine.forEach((element) => {
+            this.chartOptions.xAxis.plotLines.push({
+                color: '#000000', width: 1, value: element.value,  zIndex: 3,
+                label: {  verticalAlign: 'bottom',text: element.text, rotation: (element.text == "AUTO" ? 90 : -90), x: (element.text == "AUTO" ? 5 : -5) }
+            });
+        });
+      this.chartOptions.xAxis.events = {   afterSetExtremes: (e: any) => this.afterSetExtremes(e) };
+      this.chart = Highcharts.stockChart('container-stock-chart-robot',   this.chartOptions );
+      });
 
     }
 
 
   
     ngAfterViewInit() {
-        this.storeRobot.dispatch(startListenerRobot({ subscribe: this.subTopicRobot }));
-        this.storeRobot.dispatch(startListenerRobotByProperty({ subscribe: this.subTopicRobotByProperty }));
     }
 
     ngOnDestroy(): void {
-        //this.mqttClientService.closeSubscribe(this.curSubscription);
-        this.storeRobot.dispatch(stopListenerRobot());
-        this.storeRobot.dispatch(stopListenerRobotByProperty());
         this.chart.destroy();
-        if (this.getRouterNameSub) { this.getRouterNameSub.unsubscribe(); }
-        if (this.getDataRobotChartSub) { this.getDataRobotChartSub.unsubscribe(); }
-        if (this.getRobotSub) {this.getRobotSub.unsubscribe();}
     } 
- 
-    isExtremesSetDueToNavigatorMove: boolean = false;
+
+
+     afterSetExtremes(e:any): void{
+        const { chart } = e.target;
+        chart.showLoading('Loading data from server...');
+        this.robotService.geDataChartRobot({ name:  this.nameRobot, start:Math.round(e.min) ,end:Math.round(e.max) }).subscribe(
+            (response) => { 
+            const data = response.body as RobotDataChart;
+                       chart.series[0].setData(data.speed);
+                       chart.series[1].setData(data.battery);
+                       chart.series[2].setData(data.statusRobot);
+                       chart.series[3].setData(data.operationStatus);
+
+                       let listPlotBands: { from: number; to: number; color: string; zIndex: number; }[] = [];
+                       let listPlotLines: { color: string; width: number; value: number; zIndex: number; label: { text: String; rotation: number; x: number; y: number; } | { verticalAlign: string; text: String; rotation: number; x: number; }; }[] = [];
+                       data.connectionPlotBand.forEach((element) => {
+                        listPlotBands.push({from: element.from, to: element.to, color: "#F7CAC9",zIndex: 1 });
+                       });
+                       data.modePlotBand.forEach((element) => {
+                        listPlotBands.push({from: element.from, to: element.to, color: "#e5e8e8",zIndex: 1 });
+                    });
+                      data.connectionPlotLine.forEach((element) => {
+                        listPlotLines.push({
+                               color: '#000000', width: 1, value: element.value,  zIndex: 3,label: { text: element.text, rotation: (element.text == "CONNECTED" ? 90 : -90), x: (element.text == "CONNECTED" ? 5 : -5), y: (element.text == "CONNECTED" ? 5 : 110) } });
+                        });
+                        data.modePlotLine.forEach((element) => {
+                            listPlotLines.push({
+                                color: '#000000', width: 1, value: element.value,  zIndex: 3, label: {  verticalAlign: 'bottom',text: element.text, rotation: (element.text == "AUTO" ? 90 : -90), x: (element.text == "AUTO" ? 5 : -5) }
+                            });
+                        });
+                    chart.yAxis[0].update({ plotBands: listPlotBands , plotLines : listPlotLines});
+                    chart.hideLoading();
+            });
+    }
 
     chartOptions: any = {
+        chart: {
+            type: 'candlestick',
+            zooming: {
+                type: 'x'
+            },
+        },
+
         title: {
             useHTML: true,
             text: 'Robot AGV Statistics',
@@ -232,7 +202,7 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
                 fontSize: '24px', 'letter-spacing': '0.2em'
                 , 'font-family': 'Cambria'
             }
-        },
+        },        
         subtitle: {
             text: 'properities of robot in relative time',
             align: 'center',
@@ -242,224 +212,6 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
                 fontSize: '18px', 'letter-spacing': '0.1em'
                 , 'font-family': 'Cambria'
             }
-        },
-        plotOptions: {
-            series: {
-                animation: {
-                    duration: 4000
-                }
-            }
-        },
-        navigator: {
-            enabled: true, height: 50, margin: 10,
-            maskFill: 'rgba(180, 198, 220, 0.75)',
-            maskInside: true,
-            //adaptToUpdatedData: false,
-            // series: [{
-            //     data: robotState.robotData!.speed,
-            //}]
-        },
-
-
-        rangeSelector: {
-            floating: false,
-            inputEnabled: false,
-            inputPosition: {
-                align: 'left',
-                x: 0,
-                y: 0
-            },
-            buttonPosition: {
-                align: 'right',
-                x: 0,
-                y: 0
-            },
-
-            buttons: [
-                {
-                    type: 'minute',
-                    count: 1,
-                    text: '1m'
-                }, {
-                    type: 'minute',
-                    count: 5,
-                    text: '5m'
-                }, {
-                    type: 'minute',
-                    count: 30,
-                    text: '30m'
-                }, {
-                    type: 'hour',
-                    count: 1,
-                    text: '1h'
-                }, {
-                    type: 'hour',
-                    count: 12,
-                    text: '12h'
-                }, {
-                    type: 'day',
-                    count: 1,
-                    text: '1d'
-                }
-
-                // {
-                //     type: 'month',
-                //     count: 1,
-                //     text: '1m',
-                //     events: {
-                //         click: function() {
-                //             alert('Clicked button');
-                //         }
-                //     }
-                // }, {
-                //     type: 'month',
-                //     count: 3,
-                //     text: '3m'
-                // }, {
-                //     type: 'month',
-                //     count: 6,
-                //     text: '6m'
-                // }, {
-                //     type: 'ytd',
-                //     text: 'YTD'
-                // }, {
-                //     type: 'year',
-                //     count: 1,
-                //     text: '1y'
-                // }
-            ], buttonTheme: { width: 30 },
-            selected: 1, allButtonsEnabled: true
-        },
-        yAxis: [{
-            title: { enabled: true, text: "Speed", style: { color: '#000000', fontSize: '14px' } },
-            labels: { format: '{text}m/s', align: 'right', x: -2, style: { color: '#000000', fontSize: '14px' } },
-            gridLineWidth: 0,  // lineColor: '#FF0000',lineWidth: 1,
-            top: '0%', height: '75%', //,  height: '50%', 
-            //alternateGridColor: '#FDFFD5',
-            crosshair: true,
-            plotLines: [{
-                value: robotState.settingRobot!.speed.max,
-                color: 'red',
-                dashStyle: 'shortDash',
-                width: 2,
-                zIndex: 1000,
-                label: { align: 'left', text: 'max speed', x: 30, style: { color: '#DD4124', fontWeight: 'bold', fontSize: '14px' } }
-            },
-            {
-                value: robotState.settingRobot!.speed.min,
-                color: 'red',
-                dashStyle: 'shortDash',
-                width: 2,
-                zIndex: 1000,
-                label: { text: 'min speed', align: 'left', x: 30, style: { color: '#DD4124', fontWeight: 'bold', fontSize: '14px' } }
-            }
-            ],
-        }
-            , { // right y axis
-            // linkedTo: 1,
-            min: 0, max: 100,
-            title: { enabled: true, text: "Battery Level", style: { color: '#000000', fontSize: '14px' } },
-            labels: { format: '{value:.,0f}%', align: 'left', x: -3, style: { color: '#000000', fontSize: '14px' } },
-            gridLineWidth: 0,
-            endOnTick: false, // over limit y axis
-            opposite: false,
-            top: '0%', height: '75%',//top: '50%',height: '50%',
-            offset: 0,
-            crosshair: true
-        },
-        {
-            title: { enabled: true, text: 'Status', style: { color: '#000000', fontSize: '14px' } },
-            labels: { align: 'right', x: 0, style: { color: '#000000', fontSize: '10px' } },
-            top: '75%',
-            height: '25%',
-            opposite: true,
-            offset: 0,
-            categories: ['INACTIVE', 'WAITING', 'RUNNING'],
-            crosshair: true
-        },
-        {
-            title: { enabled: true, text: 'Operation Status', style: { color: '#000000', fontSize: '14px' } },
-            labels: { align: 'left', x: 0, style: { color: '#000000', fontSize: '10px' } },
-            top: '75%',
-            height: '25%',
-            opposite: false,
-            offset: 0,
-            categories: ['NORMAL', 'EMS', 'PAUSE'],
-            crosshair: true,//Configure a crosshair that follows either the mouse pointer or the hovered point.
-            //reversed: true,
-        }
-        ],
-
-        xAxis: {
-            events: {
-               afterSetExtremes:  (e: any) => {
-                const { chart } = e.target;
-                this.chart = chart;
-                console.log("afterSetExtremes");
-                if (this.isExtremesSetDueToNavigatorMove && e.max !== e.dataMax) {
-                  // chart.showLoading("Loading data from server...");
-                    //console.log(e.min); console.log(e.max);
-                    const min = Math.floor(e.min);
-                    const max = Math.floor(e.max);
-                //  this.storeRobot.dispatch(loadDataRobotChartByNameAndUnixDatetime({ name:  this.nameRobot, start:min ,end:max }));
-                }
-                this.isExtremesSetDueToNavigatorMove = false;
-            },
-                setExtremes: () => {  this.isExtremesSetDueToNavigatorMove = true ;  }
-            },
-            //crosshair: true,
-            //range: 12*60*60*1000,
-            //minRange: 60*60*1000,
-            //maxRange: 24*60*60*1000,
-            plotBands: [
-                //   {
-                //     from: 1647523800000,
-                //     to: 1647869400000,
-                //     color: '#FED9C9',
-                //     zIndex: 2,
-                //     label: {
-                //         text: 'Disconnected',
-                //         align: 'center',
-                //         x: 0
-                //     }
-                // },
-                // {
-                //     from: 1647437400000,
-                //     to: 1647523800000,
-                //     color: '#FFEFD8',
-                //     zIndex: 1,
-                //     label: {
-                //         text: 'Manual',
-                //         align: 'center',
-                //         x: 0,y:40
-                //     }
-                // },
-                // {
-                //     from: 1647869400000,
-                //     to: 1647955800000,
-                //     color: '#8FE9C6',
-                //     label: {
-                //         text: 'connected',
-                //         align: 'center',
-                //         x: 0
-                //     }
-                // }
-            ]
-            , plotLines: [{
-                value: 1647523800000,
-                color: '#000000',
-                width: 1, label: { text: 'Plot line', rotation: -90, x: -5, y: 50 },
-
-
-                //         //                     align: 'center',
-                //  x: 0,y:-10, rotation: -90
-
-
-            }, {
-                value: 1647869400000,
-                color: '#000000',
-                width: 1
-            }],
         },
         tooltip: {
             outside: true,
@@ -497,6 +249,81 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
             },
             x: 0,
             y: -40
+        },
+
+
+        navigator: {
+            enabled: true, height: 50, margin: 10,
+            maskFill: 'rgba(180, 198, 220, 0.75)',
+            adaptToUpdatedData: false,
+       
+            series: [
+                     //data:  [[]],
+                {
+                    type: 'spline',
+                    name: 'Speed',
+                    data: [] 
+                },
+                {
+                    type: 'areaspline',
+                    name: 'Battery',
+                    data: [] 
+                },
+                {
+                    type: 'line',
+                    name: 'Status',
+                    step: 'left',
+                    data: [] 
+                },
+                {
+                    type: 'line',
+                    name: 'Operation Status',
+                    step: 'left',
+                    data: [] 
+                }
+            ]
+        },
+
+        scrollbar: {
+            liveRedraw: false
+        },
+
+
+        rangeSelector: {
+            floating: false,
+            inputEnabled: true,
+            inputPosition: {
+                align: 'left',
+                x: 0,
+                y: 0
+            },
+            buttonPosition: {
+                align: 'right',
+                x: 0,
+                y: 0
+            },
+            selected: 4 ,// all
+            buttons: [{
+                type: 'hour',
+                count: 1,
+                text: '1h'
+            }, {
+                type: 'day',
+                count: 1,
+                text: '1d'
+            }, {
+                type: 'month',
+                count: 1,
+                text: '1m'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
+
         },
         series: [{
             yAxis: 0,
@@ -557,6 +384,202 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
             }
         }
         ],
+
+
+
+
+
+
+
+
+
+
+        xAxis: {
+            events: {
+                afterSetExtremes: null
+            },
+            minRange: 3600 * 1000, // one hour
+           //crosshair: true,
+            //range: 12*60*60*1000,
+            //minRange: 60*60*1000,
+            //maxRange: 24*60*60*1000,
+            plotBands: [
+                //   {
+                //     from: 1647523800000,
+                //     to: 1647869400000,
+                //     color: '#FED9C9',
+                //     zIndex: 2,
+                //     label: {
+                //         text: 'Disconnected',
+                //         align: 'center',
+                //         x: 0
+                //     }
+                // },
+                // {
+                //     from: 1647437400000,
+                //     to: 1647523800000,
+                //     color: '#FFEFD8',
+                //     zIndex: 1,
+                //     label: {
+                //         text: 'Manual',
+                //         align: 'center',
+                //         x: 0,y:40
+                //     }
+                // },
+                // {
+                //     from: 1647869400000,
+                //     to: 1647955800000,
+                //     color: '#8FE9C6',
+                //     label: {
+                //         text: 'connected',
+                //         align: 'center',
+                //         x: 0
+                //     }
+                // }
+            ]
+            , plotLines: [
+            //     {value: 1647523800000,color: '#000000',width: 1, label: { text: 'Plot line', rotation: -90, x: -5, y: 50 },
+            //     align: 'center',x: 0,y:-10, rotation: -90}, 
+            // {value: 1647869400000,color: '#000000',width: 1}
+        ],
+        },
+
+        
+        yAxis: [{
+            title: { enabled: true, text: "Speed", style: { color: '#000000', fontSize: '14px' } },
+            labels: { format: '{text}m/s', align: 'right', x: -2, style: { color: '#000000', fontSize: '14px' } },
+            gridLineWidth: 0,  // lineColor: '#FF0000',lineWidth: 1,
+            top: '0%', height: '75%', //,  height: '50%', 
+            //alternateGridColor: '#FDFFD5',
+            crosshair: true,
+            plotLines: [{
+                value: robotState.settingRobot!.speed.max,
+                color: 'red',
+                dashStyle: 'shortDash',
+                width: 2,
+                zIndex: 1000,
+                label: { align: 'left', text: 'max speed', x: 30, style: { color: '#DD4124', fontWeight: 'bold', fontSize: '14px' } }
+            },
+            {
+                value: robotState.settingRobot!.speed.min,
+                color: 'red',
+                dashStyle: 'shortDash',
+                width: 2,
+                zIndex: 1000,
+                label: { text: 'min speed', align: 'left', x: 30, style: { color: '#DD4124', fontWeight: 'bold', fontSize: '14px' } }
+            }
+            ],
+        }
+            , { // right y axis
+            // linkedTo: 1,
+            min: 0, max: 100,
+            title: { enabled: true, text: "Battery Level", style: { color: '#000000', fontSize: '14px' } },
+            labels: { format: '{value:.,0f}%', align: 'left', x: -3, style: { color: '#000000', fontSize: '14px' } },
+            gridLineWidth: 0,
+            endOnTick: false, // over limit y axis
+            opposite: false,
+            top: '0%', height: '75%',//top: '50%',height: '50%',
+            offset: 0,
+            crosshair: true
+        },
+        {
+            title: { enabled: true, text: 'Status', style: { color: '#000000', fontSize: '14px' } },
+            labels: { align: 'right', x: 0, style: { color: '#000000', fontSize: '10px' } },
+            top: '75%',
+            height: '25%',
+            opposite: true,
+            offset: 0,
+            categories: ['INACTIVE', 'WAITING', 'RUNNING'],
+            crosshair: true
+        },
+        {
+            title: { enabled: true, text: 'Operation Status', style: { color: '#000000', fontSize: '14px' } },
+            labels: { align: 'left', x: 0, style: { color: '#000000', fontSize: '10px' } },
+            top: '75%',
+            height: '25%',
+            opposite: false,
+            offset: 0,
+            categories: ['NORMAL', 'EMS', 'PAUSE'],
+            crosshair: true,//Configure a crosshair that follows either the mouse pointer or the hovered point.
+            //reversed: true,
+        }
+        ]
+
+  
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+    chartOptionsxxxx: any = {
+
+        plotOptions: {
+            series: {
+                animation: {
+                    duration: 4000
+                }
+            }
+        },
+
+
+        rangeSelector: {
+            floating: false,
+            inputEnabled: false,
+            inputPosition: {
+                align: 'left',
+                x: 0,
+                y: 0
+            },
+            buttonPosition: {
+                align: 'right',
+                x: 0,
+                y: 0
+            },
+
+            buttons: [
+                {
+                    type: 'minute',
+                    count: 1,
+                    text: '1m'
+                }, {
+                    type: 'minute',
+                    count: 5,
+                    text: '5m'
+                }, {
+                    type: 'minute',
+                    count: 30,
+                    text: '30m'
+                }, {
+                    type: 'hour',
+                    count: 1,
+                    text: '1h'
+                }, {
+                    type: 'hour',
+                    count: 12,
+                    text: '12h'
+                }, {
+                    type: 'day',
+                    count: 1,
+                    text: '1d'
+                }, {
+                    type: 'day',
+                    count: 7,
+                    text: '1w'
+                }
+            ], buttonTheme: { width: 30 },
+            selected: 1, allButtonsEnabled: true
+        },
+
+    
+        
         responsive: {
             rules: [{
                 condition: {
@@ -574,76 +597,3 @@ export class StockChartComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
 }
-
-
-
-        /*
-            private curSubscription: Subscription | undefined;
-        this.robotService.getbyNameAllDatabyNameAndDatetime("robot-1", { start: '2024-01-01', end: '2024-04-01' }).subscribe(
-            (response) => {}
-            , (error) => {
-                this.robotService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message };
-                this.store.dispatch(ShowAlert(this.robotService.msgResponseStatus));
-            });*/
-
-
-
-        // this.robotService.getbyNameAllDatabyNameAndUnixDatetime(this.nameRobot,{start:1691622800,end:1712975287866}).subscribe(
-        /* this.robotService.getAllDatabyName(this.nameRobot).subscribe(
-        (response) => {
-                 robotState.robotDataChart! = response.body;
-                 if (robotState.robotDataChart!.speed.length!=0){this.chart.series[0].setData(robotState.robotDataChart!.speed);}
-                 if (robotState.robotDataChart!.battery.length!=0){this.chart.series[1].setData(robotState.robotDataChart!.battery);}
-                 if (robotState.robotDataChart!.statusRobot.length!=0){this.chart.series[2].setData(robotState.robotDataChart!.statusRobot);}
-                 if (robotState.robotDataChart!.operationStatus.length!=0){this.chart.series[3].setData(robotState.robotDataChart!.operationStatus);}
-                 robotState.robotDataChart!.connectionPlotBand.forEach((data) => {
-                     this.chart.xAxis[0].addPlotBand({
-                         from: data.from,
-                         to: data.to,
-                         color: "#F7CAC9",
-                     });
-                 });
-                 robotState.robotDataChart!.connectionPlotLine.forEach((data) => {
-                     this.chart.xAxis[0].addPlotLine({
-                         color: '#000000', width: 1, value: data.value,
-                         label: { text: data.text, rotation: (data.text == "CONNECTED" ? 90 : -90), x: (data.text == "CONNECTED" ? 5 : -5), y: (data.text == "CONNECTED" ? 5 : 110) }
-                     });
-                 });
-                 robotState.robotDataChart!.modePlotLine.forEach((data) => {
-                     this.chart.xAxis[0].addPlotLine({
-                         color: '#000000', width: 1, value: data.value,
-                         label: { text: data.text, rotation: (data.text == "AUTO" ? 90 : -90), x: (data.text == "AUTO" ? 5 : -5), y: (data.text == "AUTO" ? 5 : 60) }
-                     });
-                 });
-                 //   robotState.robotDataChart!.modePlotBand.forEach((data) => {
-                 //     this.chart.xAxis[0].addPlotBand({
-                 //         from: data.from,
-                 //         to: data.to,
-                 //         color: "#EDD59E"
-                 //       });
-                 //   });
-                 this.chart.hideLoading();
-             }
-             , (error) => {
-                 this.robotService.msgResponseStatus = { title: "Error", datestamp: new Date(), status: ReponseStatus.ERROR, message: error.message };
-                 this.store.dispatch(ShowAlert(this.robotService.msgResponseStatus));
-             });*/
-        //     ngAfterViewInit() { while (this.chart.series[0].points.length > 0) {this.chart.series[0].points[0].remove();}
-        // while (this.chart.series[1].points.length > 0) {  this.chart.series[1].points[0].remove();}
-        // while (this.chart.series[2].points.length > 0) { this.chart.series[2].points[0].remove();}
-        //   this.curSubscription = this.mqttClientService.subscribe(this.sub)?.pipe(
-        //     debounceTime(1000) //pour retarder l'émission des éléments d'un flux jusqu'à ce qu'aucun nouvel élément ne soit émis pendant un laps de temps spécifié. émet le dernier élément émis après une pause spécifiée
-        //  throttleTime(1000) //pour limiter le nombre d'événements émis par l'observable à un maximum d'un toutes les 1000ms.   émet le premier élément et ignore les éléments suivants pendant une période spécifiée.
-        //  ).subscribe((message: IMqttMessage) => {
-        //   const  updateRobot : RobotDto =JSON.parse(message.payload.toString());
-        //    console.log(updateRobot);
-        //  const x = (new Date()).getTime();
-        //  let y = updateRobot.speed;
-        //  //addPoint(options [, redraw] [, shift] [, animation] [, withEvent])
-        //  this.chart.series[0].addPoint([x,y], true, false);
-        //  y = updateRobot.levelBattery;
-        //  this.chart.series[1].addPoint([x,y], true, false);
-        //    }); }
-
-        //ngOnDestroy(): void {
-            //this.mqttClientService.closeSubscribe(this.curSubscription);}

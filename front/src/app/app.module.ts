@@ -8,7 +8,6 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { PageErrorComponent } from './components/shared/page-error/page-error.component';
 import { LayoutComponent } from './components/layout/layout.component';
-// import { HighchartsChartModule } from 'highcharts-angular';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
 import { ListUsersComponent } from './components/user/list-users/list-users.component';
 import { StoreModule } from '@ngrx/store';
@@ -41,8 +40,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ListTagsComponent } from './components/workstation/list-tags/list-tags.component';
 import { DetailsWorkstationComponent } from './components/workstation/details-workstation/details-workstation.component';
 import { DetailsRobotComponent } from './components/robot/details-robot/details-robot.component';
-import { TracingComponent } from './components/statistic/tracing/tracing.component';
-import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
+import { MqttModule } from 'ngx-mqtt';
 import { environment } from 'src/environments/environment';
 import { AppReducer } from './core/store/App.Reducer';
 import { MqttEffects } from './core/store/effects/Mqtt.Effect';
@@ -94,7 +92,6 @@ import { ActivateRouteService } from './core/services/activate-route.service';
     ListTagsComponent,
     DetailsWorkstationComponent,
     DetailsRobotComponent,
-    TracingComponent,
     GaugeChartComponent,
     StockChartComponent,
     ChartsRobotsStatisticComponent,
@@ -136,4 +133,4 @@ import { ActivateRouteService } from './core/services/activate-route.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

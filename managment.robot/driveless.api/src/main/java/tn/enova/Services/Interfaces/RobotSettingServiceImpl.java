@@ -2,12 +2,14 @@ package tn.enova.Services.Interfaces;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import tn.enova.Enums.Constraint;
 import tn.enova.Enums.TypeProperty;
 import tn.enova.Exceptions.RessourceFoundException;
 import tn.enova.Exceptions.RessourceNotFoundException;
 import tn.enova.Models.Commons.RobotSetting;
+import tn.enova.Services.RobotService;
 import tn.enova.Services.RobotSettingService;
 import tn.enova.States.GlobalState;
 
@@ -85,7 +87,6 @@ public class RobotSettingServiceImpl implements RobotSettingService {
     }
     @Override
     public List<RobotSetting> update(List<RobotSetting> objects) {
-        System.out.println(objects.toString());
         for (int i = 0; i < objects.size(); i++) {
             final Optional<RobotSetting> opt = this.findRobotSettingByCategoryAndConstraint(objects.get(i).getCategory(), objects.get(i).getConstraint());
             if (opt.isEmpty()) {

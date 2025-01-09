@@ -2,13 +2,41 @@
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-            <h1>Notifications <span>({{notifications.length}})</span></h1>
+            <h1>Notifications <span>({{list.length}})</span></h1>
             <i  routerLink="/user/edit"  class="las la-cog"></i>
             </div>
+            <div class="d-flex flex-wrap">
+                <label class="toggle-button toggle-btn-outline-primary rounded-pill mr-1">
+                    <input type="checkbox"  [(ngModel)]="checkboxValues['INFO']" (change)="onCheckboxChange()">
+                    <span>Info</span>
+                </label>
+                <label class="toggle-button toggle-btn-outline-secondary rounded-pill mr-1">
+                    <input type="checkbox" [(ngModel)]="checkboxValues['DEBUG']" (change)="onCheckboxChange()">
+                    <span>Debug</span>
+                </label>
+                <label class="toggle-button toggle-btn-outline-danger rounded-pill mr-1">
+                    <input type="checkbox" [(ngModel)]="checkboxValues['ERROR']" (change)="onCheckboxChange()">
+                    <span>Error</span>
+                </label>
+                <label class="toggle-button toggle-btn-outline-warning rounded-pill mr-1">
+                    <input type="checkbox" [(ngModel)]="checkboxValues['WARNING']" (change)="onCheckboxChange()">
+                    <span>Warning</span>
+                </label>
+                <label class="toggle-button toggle-btn-outline-trace rounded-pill mr-1">
+                    <input type="checkbox" [(ngModel)]="checkboxValues['TRACE']" (change)="onCheckboxChange()">
+                    <span>Trace</span>
+                </label>
+                <!-- <button type="button" class="btn btn-outline-primary rounded-pill mb-3">Trace</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill mb-3">Debug</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill mb-3">Error</button>
+                <button type="button" class="btn btn-outline-warning rounded-pill mb-3">Warining</button>
+                <button type="button" class="btn btn-outline-info rounded-pill mb-3">Info</button> -->
+            </div>
+            
             <h3>Earlier</h3>
         </div>
         <ul class="list-group list-group-flush mx-3">
-            <li *ngFor="let notification of notifications  let i = index" [hidden]="i >= 6 && stateOver"
+            <li *ngFor="let notification of listFilter  let i = index" [hidden]="i >= 6 && stateOver"
                 class="list-group-item notification-item">
                 <div class="w-10">
                     <div class="photo-profile-container  mr-3">
@@ -30,7 +58,7 @@
             <!-- Add more notifications as needed -->
         </ul>
         <div class="card-footer">
-            <button class="btn btn-light" (click)="onClickOverNotifications()"> {{ stateOver ? "View all
+            <button class="btn-view-all btn-light" (click)="onClickOverNotifications()"> {{ stateOver ? "View all
                 notifications": "Less notifications" }}</button>
         </div>
     </div>

@@ -14,6 +14,7 @@ import tn.enova.States.GlobalState;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service("robot-service")
 @RequiredArgsConstructor
@@ -41,6 +42,13 @@ public class RobotServiceImpl implements RobotService {
     @Override
     public List<Robot> selectAll() {
         return GlobalState.listRobots;
+    }
+    public List<Robot> selectAllMissing() {
+        return GlobalState.listRobots.stream()
+                .filter(
+                        r -> (r.getConnection() == Connection.DISCONNECTED) || (r.getStatusRobot() ==  StatusRobot.INACTIVE)
+                )
+                .collect(Collectors.toList());
     }
     @Override
     public Robot selectById(String id) {
@@ -134,8 +142,9 @@ public class RobotServiceImpl implements RobotService {
     }
 
     @Override
-    public Robot  updateRobotStatus( String nameRobot ,  StatusRobot s)  {
-        Robot r =  this.selectByName(nameRobot);
+    public Robot  updateRobotStatus( String name ,  Object value)  {
+        StatusRobot s = StatusRobot.valueOf( value.toString() );
+        Robot r =  this.selectByName(name);
         if ( r.getStatusRobot() != s){
             NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                     .message("Status of robot  "+r.getName()+" is  "+s.name()).build();
@@ -148,8 +157,9 @@ public class RobotServiceImpl implements RobotService {
         return r;
     }
     @Override
-    public Robot  updateRobotMode( String nameRobot ,  ModeRobot m)  {
-        Robot r =  this.selectByName(nameRobot);
+    public Robot  updateRobotMode( String name , Object value)   {
+        ModeRobot m = ModeRobot.valueOf( value.toString() );
+        Robot r =  this.selectByName(name);
         if ( r.getModeRobot() != m){
             NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                     .message("Mode of robot  "+r.getName()+" is  "+m.name()).build();
@@ -161,8 +171,9 @@ public class RobotServiceImpl implements RobotService {
         return r;
     }
     @Override
-    public Robot  updateRobotOperationStatus( String nameRobot ,  OperationStatus o) {
-        Robot r =  this.selectByName(nameRobot);
+    public Robot  updateRobotOperationStatus( String name , Object value) {
+        OperationStatus o = OperationStatus.valueOf( value.toString() );
+        Robot r =  this.selectByName(name);
         if ( r.getOperationStatus() != o){
             NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                     .message("Operation status of robot  "+r.getName()+" is  "+o.name()).build();
@@ -175,34 +186,36 @@ public class RobotServiceImpl implements RobotService {
         return r;
     }
     @Override
-    public Robot  updateRobotLevelBattery( String nameRobot ,  double value) {
-        Robot r =  this.selectByName(nameRobot);
-        if ( (value == 100l) && (value != r.getSpeed())  ){
+    public Robot  updateRobotLevelBattery( String name ,  Object value) {
+        Double batteryValue = (Double) value;
+        Robot r =  this.selectByName(name);
+        if ( (batteryValue == 100l) && (batteryValue != r.getSpeed())  ){
             NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                                                                                       .level(LevelType.WARNING)
                                                                                       .message("robot "+r.getName()+" is Full charge")
                                                                                       .build();
             notificationService.notify(notificationResponse);
         }
-        if ( ( value == 0l )  && (value != r.getSpeed())){
+        if ( ( batteryValue == 0l )  && (batteryValue != r.getSpeed())){
             NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                                                                                       .level(LevelType.WARNING)
                                                                                       .message("robot "+r.getName()+" is Low power will be INACTIVE")
                                                                                       .build();
             notificationService.notify(notificationResponse);
         }
-        r.setLevelBattery(value);
+        r.setLevelBattery(batteryValue);
         return r;
     }
     @Override
-    public Robot  updateRobotSpeed( String nameRobot ,  double value) {
-        Robot r =  this.selectByName(nameRobot);
+    public Robot  updateRobotSpeed( String name ,  Object value) {
+        Double speedValue = (Double) value;
+        Robot r =  this.selectByName(name);
 
         List<RobotSetting> listSetting = this.robotSettingService.selectByTypeProperty(TypeProperty.SPEED);
         for ( RobotSetting robotSetting :  listSetting){
             if ( robotSetting.getConstraint() ==  Constraint.MIN ){
                 double minSpeed = Double.parseDouble(robotSetting.getValue());
-                if ( (minSpeed > value) &&  !(minSpeed > r.getSpeed())  ){
+                if ( (minSpeed > speedValue) &&  !(minSpeed > r.getSpeed())  ){
                     NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                                                                                               .level(LevelType.WARNING)
                                                                                               .message("speed of robot "+r.getName()+" is over than "+robotSetting.getValue()+robotSetting.getUnit())
@@ -212,7 +225,7 @@ public class RobotServiceImpl implements RobotService {
             }
             if ( robotSetting.getConstraint() ==  Constraint.MAX ){
                 double maxSpeed = Double.parseDouble(robotSetting.getValue());
-                if ( (maxSpeed < value) &&  !(maxSpeed < r.getSpeed())  ){
+                if ( (maxSpeed < speedValue) &&  !(maxSpeed < r.getSpeed())  ){
                     NotificationResponse notificationResponse = NotificationResponse.builder().from(r)
                                                                                               .level(LevelType.WARNING)
                                                                                               .message("speed of robot "+r.getName()+" is over than "+robotSetting.getValue()+robotSetting.getUnit())
@@ -222,30 +235,47 @@ public class RobotServiceImpl implements RobotService {
             }
         }
 
-        r.setSpeed(value);
+        r.setSpeed(speedValue);
         return r;
     }
     @Override
-    public Robot  updateRobotTagCode( String nameRobot ,  String code) {
+    public Robot  updateRobotTagCode( String nameRobot ,  Object value) {
+        String code = value.toString();
         Robot r =  this.selectByName(nameRobot);
         Tag  tag = tagService.selectByCode(code);
         if (tag != null)  { r.setCodeTag(code);}
         return r;
     }
     @Override
-    public void  updateAllRobotsStatus( StatusRobot newStatus) {
+    public Robot  updateRobotDistance( String nameRobot ,  Object value) {
+        Double distance = ( Double ) value;
+        Robot r =  this.selectByName(nameRobot);
+        r.setDistance(distance);
+        return r;
     }
+
+
+
+
+
+
     @Override
     public void  updateAllRobotsMode( ModeRobot newMode) {
         orderService.send(TypeProperty.MODE_ROBOT,newMode.name());
+        List<Robot> list =  this.selectAllMissing();
+        for ( Robot robot : list){robot.setModeRobot(newMode);}
     }
     @Override
     public void  updateAllRobotsOperationStatus( OperationStatus newOperationStatus) {
         orderService.send(TypeProperty.OPERATION_STATUS,newOperationStatus.name());
+        List<Robot> list =  this.selectAllMissing();
+        for ( Robot robot : list){robot.setOperationStatus(newOperationStatus);}
     }
     @Override
     public void  updateAllRobotsSpeed( double value) {
         orderService.send(TypeProperty.SPEED,value);
+        List<Robot> list =  this.selectAllMissing();
+        for ( Robot robot : list){robot.setSpeed(value);}
     }
 
 

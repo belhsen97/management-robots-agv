@@ -31,13 +31,12 @@ public class SecurityConfiguration {
             //.anyRequest().permitAll()
              //.authenticated()
              //.antMatchers("/management-robot/trackbot-service/robot").authenticated()
-            .antMatchers("/management-robot/trackbot-service/trace/**").permitAll()
             //.antMatchers("/management-robot/trackbot-service/robot/**").permitAll()
             .antMatchers("/management-robot/trackbot-service/robot-setting/**").permitAll()
             .antMatchers("/management-robot/notification-service/notification/**").permitAll()
 
 
-
+            .antMatchers(HttpMethod.GET,"/management-robot/trackbot-service/actuator/health").permitAll()
             .antMatchers(HttpMethod.GET,"/management-robot/trackbot-service/robot/**").permitAll()
             .antMatchers(HttpMethod.POST,"/management-robot/trackbot-service/robot").hasAnyAuthority(Roles.ADMIN.name(),Roles.MAINTENANCE.name())
             .antMatchers(HttpMethod.PUT,"/management-robot/trackbot-service/robot/*").hasAnyAuthority(Roles.ADMIN.name(),Roles.MAINTENANCE.name())

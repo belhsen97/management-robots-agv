@@ -14,6 +14,8 @@ import { getListRobot, getSettingRobot } from './core/store/selectors/Robot.sele
 import { TagService } from './core/services/tag.service';
 import { tagState } from './core/store/states/Tag.state';
 import { GlobalState } from './core/store/states/Global.state';
+// build + deploy https://v17.angular.io/guide/deployment#routed-apps-must-fallback-to-indexhtml
+//https://scalabledeveloper.com/posts/angularjs-html5-mode-or-pretty-urls-on-apache-using-htaccess/
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -1,17 +1,15 @@
 
 d
-java:S1192‚"FDefine a constant instead of duplicating this literal " is  " 4 times.(·§½Š8ÒŠÚîº2
+java:S1192Š"FDefine a constant instead of duplicating this literal " is  " 4 times.(·§½Š8êÅÏ“¼2
 ^
-java:S4973]"<Strings and Boxed types should be compared using "equals()".(ëÅŠËıÿÿÿÿ8ÕŠÚîº2
-u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98ÖŠÚîº2
-¤
-java:S1186ì"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(è‡ş“øÿÿÿÿ8¿½å•»2
+java:S4973e"<Strings and Boxed types should be compared using "equals()".(ëÅŠËıÿÿÿÿ8îÅÏ“¼2
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒáÔ98ğÅÏ“¼2
 i
-java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8ø‹Úîº2
-]	java:S125^"<This block of commented-out lines of code should be removed.(®É®›ùÿÿÿÿ8ş‹Úîº2
+java:S6830"GRename this bean to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é´Ğºıÿÿÿÿ8ÇÏ“¼2
+]	java:S125f"<This block of commented-out lines of code should be removed.(®É®›ùÿÿÿÿ8šÇÏ“¼2
 I
-java:S1125e"'Remove the unnecessary boolean literal.(Ø³½´úÿÿÿÿ8ş‹Úîº2
-G
-java:S1940Í")Use the opposite operator ("<=") instead.(‚²ğÇ8†ŒÚîº2
+java:S1125m"'Remove the unnecessary boolean literal.(Ø³½´úÿÿÿÿ8šÇÏ“¼2
 L
-java:S1940×")Use the opposite operator (">=") instead.(‚™ğ€üÿÿÿÿ8†ŒÚîº2
+java:S1940Ú")Use the opposite operator ("<=") instead.(…­Ëÿÿÿÿÿ8¥ÇÏ“¼2
+L
+java:S1940ä")Use the opposite operator (">=") instead.(ªç¦£ÿÿÿÿÿ8¦ÇÏ“¼2

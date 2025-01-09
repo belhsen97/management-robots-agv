@@ -38,7 +38,7 @@ public class MailController {
         msg.addAttachments(files);
         long dataNowUnix = new Date().getTime();
         if (msg.getTimestamp() <= dataNowUnix) {
-            this.service.sendingMessage(msg);
+           this.service.sendingMessage(msg);
             return CompletableFuture.completedFuture(MsgReponseStatus.builder().title("message").datestamp(new Date()).status(ReponseStatus.SUCCESSFUL).message("success send mail").build());
         }
         if (msg.getTimestamp() > dataNowUnix) {
@@ -50,6 +50,7 @@ public class MailController {
                 }
             }, new Date(msg.getTimestamp()));
         }
+
         return CompletableFuture.completedFuture(MsgReponseStatus.builder().title("message").datestamp(new Date()).status(ReponseStatus.SUCCESSFUL).message("success send mail").build());
     }
 

@@ -69,6 +69,7 @@ tr,td {
     display: block;
     width: 100%;
     max-height: 500px;
+
     /*overflow: auto;*/
     overflow-x: auto;
     overflow-y: auto;

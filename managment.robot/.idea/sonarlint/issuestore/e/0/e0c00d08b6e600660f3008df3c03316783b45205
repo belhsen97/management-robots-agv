@@ -1,20 +1,20 @@
 
 k
-java:S11921"NDefine a constant instead of duplicating this literal "Authorization" 3 times.(§»İÕ8€»‚É¤2
-r	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÛãÂùÿÿÿÿ8»‚É¤2
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(üæøĞÿÿÿÿÿ8‚»‚É¤2
-X	java:S125"<This block of commented-out lines of code should be removed.(ïµ“8ˆ»‚É¤2
+java:S11921"NDefine a constant instead of duplicating this literal "Authorization" 3 times.(§»İÕ8…Ñ´ÑÁ2
+r	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÛãÂùÿÿÿÿ8†Ñ´ÑÁ2
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(üæøĞÿÿÿÿÿ8‡Ñ´ÑÁ2
+X	java:S125"<This block of commented-out lines of code should be removed.(ïµ“8”Ñ´ÑÁ2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‰»‚É¤2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8–Ñ´ÑÁ2
 
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ı¸m8Š»‚É¤2
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ı¸m8©š·ÑÁ2
 V
-java:S1905#"4Remove this unnecessary cast to "ServerHttpRequest".(üÇ‡‰úÿÿÿÿ8Œ»‚É¤2
-X	java:S125$"<This block of commented-out lines of code should be removed.(ÂÀÛã8Œ»‚É¤2
-L	java:S1069"+Replace this use of System.out by a logger.(úÅÀ÷ÿÿÿÿÿ8»‚É¤2
-]	java:S1258"<This block of commented-out lines of code should be removed.(ñÓÆøÿÿÿÿ8»‚É¤2
-W	java:S125E"<This block of commented-out lines of code should be removed.(¾Ñğ8»‚É¤2
-W	java:S125I"<This block of commented-out lines of code should be removed.(¾Ñğ8»‚É¤2
-]	java:S125M"<This block of commented-out lines of code should be removed.(åÔãïûÿÿÿÿ8»‚É¤2
+java:S1905#"4Remove this unnecessary cast to "ServerHttpRequest".(üÇ‡‰úÿÿÿÿ8­š·ÑÁ2
+X	java:S125$"<This block of commented-out lines of code should be removed.(ÂÀÛã8®š·ÑÁ2
+L	java:S1069"+Replace this use of System.out by a logger.(úÅÀ÷ÿÿÿÿÿ8±š·ÑÁ2
+]	java:S1258"<This block of commented-out lines of code should be removed.(ñÓÆøÿÿÿÿ8±š·ÑÁ2
+W	java:S125E"<This block of commented-out lines of code should be removed.(¾Ñğ8´š·ÑÁ2
+W	java:S125I"<This block of commented-out lines of code should be removed.(¾Ñğ8´š·ÑÁ2
+]	java:S125M"<This block of commented-out lines of code should be removed.(åÔãïûÿÿÿÿ8µš·ÑÁ2
 f
-java:S1612U"DReplace this lambda with method reference 'dataBufferFactory::wrap'.(ßÑÚ™ûÿÿÿÿ8»‚É¤2
+java:S1612U"DReplace this lambda with method reference 'dataBufferFactory::wrap'.(ßÑÚ™ûÿÿÿÿ8·š·ÑÁ2
