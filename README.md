@@ -1,12 +1,9 @@
 # SEBN-project ( PFE 2024 )
 
-# Note
-The project is not yet complete !
-
-# About
+## About
 Development Web Application to manage, control and monitor AGV robots.
 
-# Description
+## Description
 It is a platform designe to manage the robots in the production line, managing typical elements such as system status, mission status, alerts and notifications, statistics, control mode, fleet management, etc., as well as the importance of real time as robots move simultaneously through the line on both the interaction and control sides, in order to guarantee maintenance time, and add or remove robots in the event of failure.
 In short, an AGV robot dashboard is designed to provide users with complete visibility of the AGV robot's operation and performance, as well as the tools to monitor it and react quickly if necessary.
 
@@ -25,6 +22,9 @@ In short, an AGV robot dashboard is designed to provide users with complete visi
 
 
 
+## Contact
+
+Bachouch Belhsen - [@Linkedin](https://www.linkedin.com/in/belhsen-bachouch-2a0a72135/) - belhsenbachouch97@gmail.com
 
 
 
